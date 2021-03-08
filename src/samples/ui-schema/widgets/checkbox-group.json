@@ -1,0 +1,306 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"typeDefault": {
+				"title": "Группа чек-боксов (по умолчанию)",
+				"description": "текст опции является значением",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/language"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"$ref": "#/definitions/language",
+						"readOnly": true
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/language"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/language"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"typeLine": {
+				"title": "Группа чек-боксов (в линию)",
+				"description": "текст опции является значением",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/browser"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"$ref": "#/definitions/browser",
+						"readOnly": true
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/browser"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/browser"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"typeButton": {
+				"title": "Группа кнопок",
+				"description": "текст опции является указателем на идентификатор",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/service"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"$ref": "#/definitions/service",
+						"readOnly": true
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/service"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/service"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"validation": {
+				"title": "Проверки",
+				"description": "текст опции является указателем на идентификатор",
+				"properties": {
+					"minSelected": {
+						"title": "Минимум опций",
+						"$ref": "#/definitions/protocol"
+					},
+					"maxSelected": {
+						"title": "Максимум опций",
+						"$ref": "#/definitions/protocol"
+					},
+					"containsSelected": {
+						"title": "Обязательные опции",
+						"$ref": "#/definitions/protocol"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"language": {
+				"title": "Язык программирования",
+				"type": "array",
+				"items": {
+					"enum": ["JavaScript", "Java", "Swift", "Kotlin"],
+					"not": {
+						"enum": ["Kotlin"]
+					}
+				},
+				"uniqueItems": true
+			},
+			"browser": {
+				"title": "Браузер",
+				"type": "array",
+				"items": {
+					"enum": ["Chrome", "Mozilla", "Safari", "Edge", "Opera"],
+					"not": {
+						"enum": ["Opera"]
+					}
+				},
+				"uniqueItems": true
+			},
+			"service": {
+				"title": "Сервис",
+				"type": "array",
+				"items": {
+					"anyOf": [
+						{
+							"title": "BitBucket",
+							"const": "git"
+						},
+						{
+							"title": "Jira",
+							"const": "jira"
+						},
+						{
+							"title": "Confluence",
+							"const": "confluence"
+						},
+						{
+							"title": "Jenkins",
+							"const": "jen"
+						},
+						{
+							"title": "Kubernetes",
+							"const": "kube",
+							"readOnly": true
+						}
+					]
+				},
+				"uniqueItems": true
+			},
+			"protocol": {
+				"title": "Протокол",
+				"type": "array",
+				"items": {
+					"anyOf": [
+						{
+							"title": "HTTP",
+							"const": "http"
+						},
+						{
+							"title": "HTTPS",
+							"const": "https"
+						},
+						{
+							"title": "LDAP",
+							"const": "ldap"
+						},
+						{
+							"title": "FTP",
+							"const": "ftp"
+						},
+						{
+							"title": "SSH",
+							"const": "ssh",
+							"readOnly": true
+						}
+					]
+				},
+				"minItems": 2,
+				"maxItems": 3,
+				"uniqueItems": true,
+				"contains": {
+					"enum": ["http", "https"]
+				},
+				"x-errorMessages": {
+					"minItems": "должно быть минимум 2-а протокола",
+					"maxItems": "должно быть максимум 3-а протокола",
+					"contains": "\"HTTP\" или \"HTTPS\" обязательны"
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["typeDefault"],
+		"typeDefault": {
+			"default": {
+				"ui:widget": "checkbox-group",
+				"ui:gridColumn": "1 / 7"
+			},
+			"disabled": {
+				"ui:widget": "checkbox-group",
+				"ui:gridColumn": "7 / 13"
+			},
+			"valid": {
+				"ui:widget": "checkbox-group",
+				"ui:gridColumn": "1 / 7"
+			},
+			"invalid": {
+				"ui:widget": "checkbox-group",
+				"ui:gridColumn": "7 / 13"
+			}
+		},
+		"typeLine": {
+			"default": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "line"
+				}
+			},
+			"disabled": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "line"
+				}
+			},
+			"valid": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "line"
+				}
+			},
+			"invalid": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "line"
+				}
+			}
+		},
+		"typeButton": {
+			"default": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "button"
+				}
+			},
+			"disabled": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "button"
+				}
+			},
+			"valid": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "button"
+				}
+			},
+			"invalid": {
+				"ui:widget": "checkbox-group",
+				"ui:options": {
+					"type": "button"
+				}
+			}
+		},
+		"validation": {
+			"minSelected": {
+				"ui:widget": "checkbox-group",
+				"ui:gridColumn": "1 / 7"
+			},
+			"maxSelected": {
+				"ui:widget": "checkbox-group",
+				"ui:gridColumn": "7 / 13"
+			},
+			"containsSelected": {
+				"ui:widget": "checkbox-group",
+				"ui:gridColumn": "1 / 7"
+			}
+		}
+	},
+	"formData": {
+		"typeDefault": {
+			"default": [],
+			"disabled": ["JavaScript", "Java"],
+			"valid": ["Java", "Swift"]
+		},
+		"typeLine": {
+			"default": [],
+			"disabled": ["Chrome", "Mozilla"],
+			"valid": ["Mozilla", "Safari"]
+		},
+		"typeButton": {
+			"default": [],
+			"disabled": ["git"],
+			"valid": ["jira", "confluence"]
+		},
+		"validation": {
+			"minSelected": ["http"],
+			"maxSelected": ["http", "https", "ftp", "ssh"],
+			"containsSelected": ["ldap", "ftp"],
+			"notSelected": ["Опция 2"]
+		}
+	}
+}

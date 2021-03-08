@@ -1,0 +1,9 @@
+.checkbox-group-widget {
+  .label-widget + & {
+    margin-top: 8px;
+  }
+
+  .checkbox-group__box > div:last-child > &__checkbox {
+    margin-bottom: 0;
+  }
+}

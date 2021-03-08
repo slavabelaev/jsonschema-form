@@ -1,0 +1,35 @@
+.editor-widget {
+  &__header {
+    display: flex;
+    align-items: center;
+    color: rgba(11, 31, 53, 0.6);
+    font-size: var(--font-size-s);
+    padding: 4px 16px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  &__label {
+    margin-right: auto;
+  }
+
+  &__icon-button {
+    margin-left: 2px;
+  }
+
+  &_view_filled {
+    .monaco-editor-background,
+    .monaco-editor .margin {
+      background: transparent;
+    }
+
+    .editor-widget__header,
+    .monaco-editor {
+      background-color: rgba(11, 31, 53, .05);
+      opacity: .75;
+    }
+
+    .monaco-editor {
+      border-bottom: rgba(11, 31, 53, 0.15) 1px solid;
+    }
+  }
+}

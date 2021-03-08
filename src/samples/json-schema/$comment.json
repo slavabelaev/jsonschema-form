@@ -1,0 +1,11 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"type": "string",
+		"title": "Кодовое слово",
+		"pattern": "^[А-Я0-9]{3,8}$",
+		"maxLength": 8,
+		"$comment": "Author: slav@belaev.com"
+	},
+	"formData": "СЕКРЕТ12"
+}

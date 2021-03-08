@@ -1,0 +1,241 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"type": "object",
+		"properties": {
+			"typeDefault": {
+				"title": "Группа радио-кнопок (по умолчанию)",
+				"description": "Заголовок является значением",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/city"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"readOnly": true,
+						"$ref": "#/definitions/city"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/city"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/city"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"typeLine": {
+				"title": "Группа радио-кнопок (в линию)",
+				"description": "Заголовок является указателем на идентификатор",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/paymentSystem"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"readOnly": true,
+						"$ref": "#/definitions/paymentSystem"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/paymentSystem"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/paymentSystem"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"typeButton": {
+				"title": "Группа кнопок",
+				"description": "Заголовок является указателем на идентификатор",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/currency"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"readOnly": true,
+						"$ref": "#/definitions/currency"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/currency"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/currency"
+					}
+				},
+				"required": ["invalid"]
+			}
+		},
+		"definitions": {
+			"city": {
+				"title": "Станция метро",
+				"enum": [
+					"Охотный ряд",
+					"Театральная",
+					"Площадь Революции",
+					"Арбатская"
+				],
+				"not": {
+					"enum": ["Арбатская"]
+				},
+				"x-errorMessages": {
+					"enum": "должно быть выбрано значение списка"
+				}
+			},
+			"paymentSystem": {
+				"title": "Платежная система",
+				"type": "string",
+				"anyOf": [
+					{
+						"title": "Visa",
+						"const": "visa"
+					},
+					{
+						"title": "MasterCard",
+						"const": "mastercard"
+					},
+					{
+						"title": "Мир",
+						"const": "mir"
+					},
+					{
+						"title": "Белкарт",
+						"const": "belkart"
+					}
+				],
+				"not": {
+					"enum": ["belkart"]
+				}
+			},
+			"currency": {
+				"title": "Валюта",
+				"type": "string",
+				"anyOf": [
+					{
+						"title": "Российский рубль",
+						"const": "RUR"
+					},
+					{
+						"title": "Доллар США",
+						"const": "USD"
+					},
+					{
+						"title": "Евро",
+						"const": "EUR"
+					},
+					{
+						"title": "Фунт стерлингов",
+						"const": "GBP",
+						"readOnly": true
+					}
+				]
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["typeDefault"],
+		"typeDefault": {
+			"default": {
+				"ui:widget": "radio-group",
+				"ui:gridColumn": "1 / 6"
+			},
+			"disabled": {
+				"ui:widget": "radio-group",
+				"ui:gridColumn": "7 / 13"
+			},
+			"valid": {
+				"ui:widget": "radio-group",
+				"ui:gridColumn": "1 / 6"
+			},
+			"invalid": {
+				"ui:widget": "radio-group",
+				"ui:gridColumn": "7 / 13"
+			}
+		},
+		"typeLine": {
+			"default": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "line"
+				}
+			},
+			"disabled": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "line"
+				}
+			},
+			"valid": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "line"
+				}
+			},
+			"invalid": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "line"
+				}
+			}
+		},
+		"typeButton": {
+			"default": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "button"
+				},
+				"ui:gridColumn": "1 / 6"
+			},
+			"disabled": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "button"
+				},
+				"ui:gridColumn": "7 / 13"
+			},
+			"valid": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "button"
+				},
+				"ui:gridColumn": "1 / 6"
+			},
+			"invalid": {
+				"ui:widget": "radio-group",
+				"ui:options": {
+					"type": "button"
+				},
+				"ui:gridColumn": "7 / 13"
+			}
+		}
+	},
+	"formData": {
+		"typeDefault": {
+			"disabled": "Охотный ряд",
+			"valid": "Театральная"
+		},
+		"typeLine": {
+			"disabled": "visa",
+			"valid": "mastercard"
+		},
+		"typeButton": {
+			"disabled": "RUR",
+			"valid": "USD"
+		}
+	}
+}

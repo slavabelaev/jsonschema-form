@@ -1,0 +1,60 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/basicInformation"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/basicInformation"
+			}
+		},
+		"definitions": {
+			"basicInformation": {
+				"type": "object",
+				"properties": {
+					"lastName": {
+						"title": "Фамилия",
+						"type": "string"
+					},
+					"firstName": {
+						"title": "Имя",
+						"type": "string"
+					},
+					"middleName": {
+						"title": "Отчество",
+						"type": "string"
+					}
+				},
+				"patternProperties": {
+					"^.*?Name$": {
+						"minLength": 3,
+						"pattern": "^[А-яA-z ]+$",
+						"x-errorMessages": {
+							"pattern": "должно содержать только буквы и пробел"
+						}
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": {
+			"firstName": "Иван",
+			"lastName": "Иванов",
+			"middleName": "Иванович"
+		},
+		"invalid": {
+			"firstName": "",
+			"lastName": "",
+			"middleName": ""
+		}
+	}
+}

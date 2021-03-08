@@ -1,0 +1,86 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"properties": {
+			"additionalPropertiesAllowed": {
+				"title": "Дополнительные свойства разрешены",
+				"properties": {
+					"phone": {
+						"title": "Мобильный телефон",
+						"type": "string",
+						"format": "tel",
+						"minLength": 10
+					},
+					"email": {
+						"title": "E-mail",
+						"type": "string",
+						"format": "email"
+					}
+				},
+				"additionalProperties": true
+			},
+			"additionalPropertiesNotAllowed": {
+				"title": "Дополнительные свойства не разрешены",
+				"properties": {
+					"phone": {
+						"title": "Мобильный телефон",
+						"type": "string",
+						"format": "tel",
+						"minLength": 10
+					},
+					"email": {
+						"title": "E-mail",
+						"type": "string",
+						"format": "email"
+					}
+				},
+				"additionalProperties": false
+			},
+			"additionalPropertiesSchema": {
+				"title": "Схема дополнительных элементов",
+				"properties": {
+					"phone": {
+						"title": "Мобильный телефон",
+						"type": "string",
+						"format": "tel",
+						"minLength": 10
+					},
+					"email": {
+						"title": "E-mail",
+						"type": "string",
+						"format": "email"
+					}
+				},
+				"additionalProperties": {
+					"title": "Дополнительные контакты",
+					"type": "string",
+					"pattern": "^.*?: .*$",
+					"x-errorMessages": {
+						"pattern": "должно содержать тип контакта и id, например \"skype: username\""
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["additionalPropertiesAllowed"]
+	},
+	"formData": {
+		"additionalPropertiesAllowed": {
+			"phone": "+74951236789",
+			"email": "ivan.ivanov@example.com",
+			"skype": "ivan.ivanov"
+		},
+		"additionalPropertiesNotAllowed": {
+			"phone": "+74951236789",
+			"email": "ivan.ivanov@example.com"
+		},
+		"additionalPropertiesSchema": {
+			"phone": "+74951236789",
+			"email": "ivan.ivanov@example.com",
+			"telegram": "telegram: ivan.ivanov",
+			"skype": "skype:"
+		}
+	}
+}

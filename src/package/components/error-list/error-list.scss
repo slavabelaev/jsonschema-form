@@ -1,0 +1,16 @@
+.error-list {
+  box-sizing: border-box;
+
+  .plate__title + .plate__content {
+    margin-top: 8px;
+  }
+
+  .list {
+    margin-bottom: 0;
+    padding-left: 36px;
+  }
+
+  .list__item:last-child {
+    margin-bottom: 0;
+  }
+}

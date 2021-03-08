@@ -1,0 +1,20 @@
+.md-list-item {
+  position: relative;
+  line-height: 1.4;
+  list-style: none;
+  margin-left: 48px;
+  font-size: inherit;
+
+  &:before {
+    content: "\2014";
+    display: block;
+    position: absolute;
+    right: 100%;
+    top: 0;
+    margin-right: 0.6em;
+  }
+
+  & + & {
+    margin-top: 8px;
+  }
+}

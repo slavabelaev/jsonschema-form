@@ -1,0 +1,157 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/fullName"
+					},
+					"disabled": {
+						"title": "Отключен",
+						"readOnly": true,
+						"$ref": "#/definitions/fullName"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/fullName"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/fullName"
+					}
+				}
+			},
+			"masks": {
+				"title": "Маска",
+				"properties": {
+					"alphanumeric": {
+						"title": "Стандартная",
+						"description": "[шаблон маски](https://github.com/insin/inputmask-core#pattern)",
+						"type": "string",
+						"examples": ["AZ 123456"]
+					},
+					"withFormatCharacters": {
+						"title": "Нестандартная",
+						"description": "в маске используются дополнительные символы форматирования",
+						"type": "string",
+						"examples": ["БЯ 123-456"]
+					}
+				}
+			},
+			"simpleValidation": {
+				"title": "Простые проверки",
+				"properties": {
+					"minLength": {
+						"title": "Минимальная длина",
+						"$ref": "#/definitions/fullName"
+					},
+					"maxLength": {
+						"title": "Максимальная длина",
+						"$ref": "#/definitions/fullName"
+					},
+					"pattern": {
+						"title": "Регулярное выражение",
+						"type": "string",
+						"pattern": "^[A-z0-9]+$",
+						"examples": ["username1970"],
+						"x-errorMessages": {
+							"pattern": "должно состоять из букв и / или цифр"
+						}
+					},
+					"format": {
+						"title": "Формат",
+						"type": "string",
+						"format": "email",
+						"examples": ["username@example.com"]
+					}
+				}
+			},
+			"complexValidation": {
+				"title": "Составные проверки",
+				"properties": {
+					"multipleValidation": {
+						"title": "Несколько проверок",
+						"type": "string",
+						"examples": ["Иванов"],
+						"allOf": [
+							{
+								"pattern": "^[А-ЯЁ]",
+								"x-errorMessages": {
+									"pattern": "должно начинаться на заглавную русскую букву"
+								}
+							},
+							{
+								"pattern": "^[А-яЁё\\- ]+$",
+								"x-errorMessages": {
+									"pattern": "должно состоять из русских букв | пробелов | тире"
+								}
+							},
+							{
+								"minLength": 3,
+								"maxLength": 24
+							}
+						]
+					}
+				}
+			}
+		},
+		"definitions": {
+			"fullName": {
+				"title": "ФИО",
+				"type": "string",
+				"pattern": "^[А-ЯЁ]",
+				"minLength": 3,
+				"maxLength": 24,
+				"examples": ["Иванов Иван Иванович"],
+				"x-errorMessages": {
+					"pattern": "должно начинаться с заглавной буквы"
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"],
+		"masks": {
+			"alphanumeric": {
+				"ui:widget": "input",
+				"ui:options": {
+					"mask": "AA 111111"
+				}
+			},
+			"withFormatCharacters": {
+				"ui:widget": "input",
+				"ui:options": {
+					"mask": "ww 111-111",
+					"maskFormatCharacters": {
+						"w": {
+							"transform": "toUpperCase",
+							"validate": "^[А-я]$"
+						}
+					}
+				}
+			}
+		}
+	},
+	"formData": {
+		"state": {
+			"disabled": "Иванов Иван Иванович",
+			"valid": "Иванов Иван Иванович",
+			"invalid": "иванов Иван Иванович"
+		},
+		"simpleValidation": {
+			"minLength": "",
+			"maxLength": "Пабло Диего Хозе Франциско де Паула",
+			"pattern": "",
+			"format": ""
+		},
+		"complexValidation": {
+			"multipleValidation": ""
+		}
+	}
+}

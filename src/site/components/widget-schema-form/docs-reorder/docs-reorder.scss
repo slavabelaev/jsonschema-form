@@ -1,0 +1,32 @@
+.docs-reorder {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    &__button {
+        padding: 0;
+        border-width: 1px;
+        border-radius: 2px;
+        cursor: pointer;
+        height: auto;
+
+        &:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:last-child {
+            margin: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        & + & {
+            border-left-width: 0;
+        }
+
+        &.button_disabled + & {
+            border-left-width: 1px;
+        }
+    }
+}

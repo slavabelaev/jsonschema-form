@@ -1,0 +1,53 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"type": "object",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/registrationData"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/registrationData"
+			}
+		},
+		"definitions": {
+			"registrationData": {
+				"type": "object",
+				"properties": {
+					"email": {
+						"title": "E-mail",
+						"type": "string"
+					},
+					"password": {
+						"title": "Пароль",
+						"type": "string",
+						"format": "password",
+						"minLength": 8
+					},
+					"fullName": {
+						"title": "ФИО",
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"password"
+				]
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": {
+			"email": "ivan.ivanov@email.com",
+			"password": "$3CR3T246",
+			"fullName": "Иванов Иван Иванович"
+		}
+	}
+}

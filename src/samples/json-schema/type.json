@@ -1,0 +1,191 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"string": {
+				"title": "string",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/firstName"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/firstName"
+					}
+				}
+			},
+			"number": {
+				"title": "number",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/initialFee"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/initialFee"
+					}
+				}
+			},
+			"integer": {
+				"title": "integer",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/bornYear"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/bornYear"
+					}
+				}
+			},
+			"boolean": {
+				"title": "boolean",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/agreement"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/agreement"
+					}
+				}
+			},
+			"null": {
+				"title": "null",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/emptyValue"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/emptyValue"
+					}
+				}
+			},
+			"array": {
+				"title": "array",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/children"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/children"
+					}
+				}
+			},
+			"object": {
+				"title": "object",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/personalData"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/personalData"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"firstName": {
+				"title": "Имя",
+				"type": "string"
+			},
+			"initialFee": {
+				"title": "Первоначальный взнос",
+				"type": "number"
+			},
+			"bornYear": {
+				"title": "Год рождения",
+				"type": "integer",
+				"minimum": 1900,
+				"maximum": 2020
+			},
+			"agreement": {
+				"title": "Я соглашаюсь с [условиями](https://example.com) и даю свое [согласие на обработку](https://example.com) и использование моих персональных данных",
+				"type": "boolean",
+				"default": false
+			},
+			"emptyValue": {
+				"type": "null"
+			},
+			"children": {
+				"title": "Дети",
+				"type": "array",
+				"items": {
+					"title": "ФИО ребенка",
+					"type": "string"
+				}
+			},
+			"personalData": {
+				"title": "Персональные данные",
+				"properties": {
+					"fullName": {
+						"type": "string",
+						"title": "ФИО"
+					},
+					"gender": {
+						"title": "Пол",
+						"enum": ["мужской", "женский"],
+						"default": ""
+					},
+					"birthdate": {
+						"title": "Дата рождения",
+						"type": "string",
+						"format": "date"
+					}
+				},
+				"required": ["fullName", "gender", "birthdate"]
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list"
+	},
+	"formData": {
+		"string": {
+			"valid": "Иван",
+			"invalid": null
+		},
+		"number": {
+			"valid": 9999.99,
+			"invalid": null
+		},
+		"integer": {
+			"valid": 1970,
+			"invalid": null
+		},
+		"boolean": {
+			"valid": false,
+			"invalid": ""
+		},
+		"null": {
+			"valid": null,
+			"invalid": ""
+		},
+		"array": {
+			"valid": [
+				"Иванова Анна Ивановна",
+				"Иванов Сергей Иванович"
+			],
+			"invalid": null
+		},
+		"object": {
+			"valid": {
+				"fullName": "Иванов Иван Иванович",
+				"gender": "мужской",
+				"birthdate": "1970-12-31"
+			},
+			"invalid": {}
+		}
+	}
+}

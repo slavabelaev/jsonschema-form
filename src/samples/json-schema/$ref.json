@@ -1,0 +1,68 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"type": "object",
+		"properties": {
+			"definitionReference": {
+				"title": "Ссылка на определение",
+				"properties": {
+					"lastName": {
+						"title": "Фамилия",
+						"$ref": "#/definitions/name"
+					},
+					"firstName": {
+						"title": "Имя",
+						"$ref": "#/definitions/name"
+					},
+					"middleName": {
+						"title": "Отчество",
+						"$ref": "#/definitions/name"
+					}
+				}
+			},
+			"propertyReference": {
+				"title": "Ссылка на свойство",
+				"properties": {
+					"lastName": {
+						"title": "Фамилия",
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 24,
+						"pattern": "[А-Я]{1}[а-я]*"
+					},
+					"firstName": {
+						"title": "Имя",
+						"$ref": "#/properties/propertyReference/properties/lastName"
+					},
+					"middleName": {
+						"title": "Отчество",
+						"$ref": "#/properties/propertyReference/properties/lastName"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"name": {
+				"type": "string",
+				"minLength": 3,
+				"maxLength": 24,
+				"pattern": "[А-Я]{1}[а-я]*"
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list"
+	},
+	"formData": {
+		"definitionReference": {
+			"lastName": "",
+			"firstName": "",
+			"middleName": ""
+		},
+		"propertyReference": {
+			"lastName": "",
+			"firstName": "",
+			"middleName": ""
+		}
+	}
+}

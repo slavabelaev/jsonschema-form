@@ -1,0 +1,254 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"description": "текст подсказки",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64"
+					},
+					"disabled": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"readOnly": true
+					},
+					"valid": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64"
+					},
+					"invalid": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"sizeValidation": {
+				"title": "Минимальный / максимальный размер файла",
+				"properties": {
+					"minLength": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"minLength": 2999,
+						"x-errorMessages": {
+							"minLength": "должен быть не менее, чем ${limitFileSize}"
+						},
+						"$comment": "https://stackoverflow.com/questions/13378815/base64-length-calculation"
+					},
+					"maxLength": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"maxLength": 50,
+						"x-errorMessages": {
+							"maxLength": "должен быть не более, чем ${limitFileSize}"
+						},
+						"$comment": "https://stackoverflow.com/questions/13378815/base64-length-calculation"
+					}
+				}
+			},
+			"itemsValidation": {
+				"title": "Минимальное / максимальное кол-во файлов",
+				"properties": {
+					"minItems": {
+						"type": "array",
+						"items": {
+							"description": ".pdf",
+							"type": "string",
+							"format": "data-url",
+							"contentEncoding": "base64",
+							"contentMediaType": "application/pdf"
+						},
+						"minItems": 3,
+						"x-errorMessages": {
+							"minItems": "должно быть не менее, чем ${limit} файла"
+						}
+					},
+					"maxItems": {
+						"type": "array",
+						"items": {
+							"description": ".png",
+							"type": "string",
+							"format": "data-url",
+							"contentEncoding": "base64"
+						},
+						"maxItems": 2,
+						"x-errorMessages": {
+							"maxItems": "должно быть не более, чем ${limit} файла"
+						}
+					}
+				}
+			},
+			"otherValidation": {
+				"title": "Другие проверки",
+				"properties": {
+					"format": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64"
+					},
+					"uniqueItems": {
+						"title": "Проверка на уникальность",
+						"type": "array",
+						"items": {
+							"description": ".jpeg",
+							"type": "string",
+							"format": "data-url",
+							"contentEncoding": "base64"
+						},
+						"uniqueItems": true,
+						"x-errorMessages": {
+							"uniqueItems": "не должно содержать идентичные файлы"
+						}
+					}
+				}
+			},
+			"contentMediaType": {
+				"title": "Ограничение выбора по типу файла",
+				"properties": {
+					"txt": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "text/plain"
+					},
+					"csv": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "text/csv"
+					},
+					"doc": {
+						"title": "Выберите документ",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/msword"
+					},
+					"word": {
+						"title": "Выберите документ",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+					},
+					"pdf": {
+						"title": "Выберите документ",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/pdf"
+					},
+					"ppt": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/vnd.ms-powerpoint"
+					},
+					"xls": {
+						"title": "Выберите документ",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/vnd.ms-excel"
+					},
+					"xml": {
+						"title": "Выберите документ",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/xml"
+					},
+					"zip": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/zip"
+					},
+					"rar": {
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "application/vnd.rar"
+					},
+					"svg": {
+						"title": "Выберите изображение",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "image/svg+xml"
+					},
+					"png": {
+						"title": "Выберите изображение",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "image/png"
+					},
+					"jpg": {
+						"title": "Выберите изображение",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "image/jpeg"
+					},
+					"tiff": {
+						"title": "Выберите изображение",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "image/tiff"
+					},
+					"image": {
+						"title": "Выберите изображение",
+						"type": "string",
+						"format": "data-url",
+						"contentEncoding": "base64",
+						"contentMediaType": "image/*"
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"]
+	},
+	"formData": {
+		"state": {
+			"disabled": "data:application/pdf;name=имя-файла.pdf;lastModified=1610740574334;base64,",
+			"valid": "data:application/pdf;name=имя-файла.pdf;lastModified=1610740574334;base64,"
+		},
+		"sizeValidation": {
+			"minLength": "data:image/png;name=имя-файла.png;lastModified=1610740574334;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH1ggDCwMADQ4NnwAAAFVJREFUGJWNkMEJADEIBEcbSDkXUnfSgnBVeZ8LSAjiwjyEQXSFEIcHGP9oAi+H0Bymgx9MhxbFdZE2a0s9kTZdw01ZhhYkABSwgmf1Z6r1SNyfFf4BZ+ZUExcNUQUAAAAASUVORK5CYII=",
+			"maxLength": "data:image/png;name=имя-файла.png;lastModified=1610740574334;base64,"
+		},
+		"itemsValidation": {
+			"minItems": [
+				"data:image/png;name=имя-файла-0.png;lastModified=1610740574334;base64,",
+				"data:image/png;name=имя-файла-1.png;lastModified=1610740574334;base64,"
+			],
+			"maxItems": [
+				"data:image/png;name=имя-файла-0.png;lastModified=1610740574334;base64,",
+				"data:image/png;name=имя-файла-1.png;lastModified=1610740587765;base64,",
+				"data:image/png;name=имя-файла-2.png;lastModified=1610740587765;base64,"
+			]
+		},
+		"otherValidation": {
+			"format": "data:application/pdf;name=имя-файла.pdf;lastModified=1610740574334;",
+			"uniqueItems": [
+				"data:image/png;name=имя-файла-1.png;lastModified=1610740587765;base64,",
+				"data:image/png;name=имя-файла-1.png;lastModified=1610740587765;base64,"
+			]
+		}
+	}
+}

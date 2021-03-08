@@ -1,0 +1,91 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/color"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"readOnly": true,
+						"$ref": "#/definitions/color"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/color"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/color"
+					}
+				}
+			},
+			"samples": {
+				"title": "Примеры",
+				"properties": {
+					"primary": {
+						"title": "Primary",
+						"$ref": "#/definitions/color"
+					},
+					"secondary": {
+						"title": "Secondary",
+						"$ref": "#/definitions/color"
+					},
+					"background": {
+						"title": "Background",
+						"$ref": "#/definitions/color"
+					},
+					"brandRed": {
+						"title": "Brand Red",
+						"$ref": "#/definitions/color"
+					},
+					"uiRed": {
+						"title": "UI Red",
+						"$ref": "#/definitions/color"
+					},
+					"uiPink": {
+						"title": "UI Pink",
+						"$ref": "#/definitions/color"
+					},
+					"uiGreen": {
+						"title": "UI Green",
+						"$ref": "#/definitions/color"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"color": {
+				"title": "Цвет",
+				"type": "string",
+				"format": "color"
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"]
+	},
+	"formData": {
+		"state": {
+			"valid": "#ef3124",
+			"disabled": "#000000",
+			"invalid": "#ffff"
+		},
+		"samples": {
+			"primary": "#0B1F35",
+			"secondary": "#6D7986",
+			"background": "#F3F4F5",
+			"brandRed": "#EF3124",
+			"uiRed": "#F15045",
+			"uiPink": "#FF5C5C",
+			"uiGreen": "#2FC26E"
+		}
+	}
+}

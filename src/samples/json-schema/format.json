@@ -1,0 +1,299 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"type": "object",
+		"properties": {
+			"date": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/date"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/date"
+					}
+				}
+			},
+			"date-time": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/date-time"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/date-time"
+					}
+				}
+			},
+			"uri": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/uri"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/uri"
+					}
+				}
+			},
+			"email": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/email"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/email"
+					}
+				}
+			},
+			"hostname": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/hostname"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/hostname"
+					}
+				}
+			},
+			"ipv4": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/ipv4"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/ipv4"
+					}
+				}
+			},
+			"ipv6": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/ipv6"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/ipv6"
+					}
+				}
+			},
+			"regex": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/regex"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/regex"
+					}
+				}
+			},
+			"uuid": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/uuid"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/uuid"
+					}
+				}
+			},
+			"json-pointer": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/json-pointer"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/json-pointer"
+					}
+				}
+			},
+			"color": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/color"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/color"
+					}
+				}
+			},
+			"password": {
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/password"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/password"
+					}
+				}
+			},
+			"data-url": {
+				"properties": {
+					"valid": {
+						"$ref": "#/definitions/data-url"
+					},
+					"invalid": {
+						"$ref": "#/definitions/data-url"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"date": {
+				"title": "Дата",
+				"type": "string",
+				"format": "date"
+			},
+			"date-time": {
+				"title": "Дата и время",
+				"type": "string",
+				"format": "date-time"
+			},
+			"uri": {
+				"title": "URL",
+				"type": "string",
+				"format": "uri"
+			},
+			"email": {
+				"title": "E-mail",
+				"type": "string",
+				"format": "email"
+			},
+			"hostname": {
+				"title": "Хост",
+				"type": "string",
+				"format": "hostname"
+			},
+			"ipv4": {
+				"title": "IPv4",
+				"type": "string",
+				"format": "ipv4"
+			},
+			"ipv6": {
+				"title": "IPv6",
+				"type": "string",
+				"format": "ipv6"
+			},
+			"regex": {
+				"title": "Регулярное выражение",
+				"type": "string",
+				"format": "regex"
+			},
+			"uuid": {
+				"title": "UUID",
+				"type": "string",
+				"format": "uuid"
+			},
+			"json-pointer": {
+				"title": "JSON Pointer",
+				"type": "string",
+				"format": "json-pointer"
+			},
+			"color": {
+				"title": "Цвет",
+				"type": "string",
+				"format": "color",
+				"examples": [
+					"#ffffff",
+					"rgb(255,255,255)"
+				]
+			},
+			"password": {
+				"title": "Пароль",
+				"type": "string",
+				"format": "password",
+				"pattern": "^[A-z0-9]{8,}$",
+				"x-errorMessages": {
+					"pattern": "должен состоять из букв и цифр, минимальная длина 8 символов"
+				}
+			},
+			"data-url": {
+				"title": "Выберите изображение",
+				"type": "string",
+				"format": "data-url",
+				"x-errorMessages": {
+					"format": "должен быть выбран файл"
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"date": {
+			"valid": "2020-12-31",
+			"invalid": "2020.12-31"
+		},
+		"date-time": {
+			"valid": "2020-12-31T00:00:00.000Z",
+			"invalid": "2020.12-31T00:00:00.000Z"
+		},
+		"uri": {
+			"valid": "https://example.com",
+			"invalid": "example.com"
+		},
+		"email": {
+			"valid": "username@example.com",
+			"invalid": "username@example."
+		},
+		"hostname": {
+			"valid": "example.com",
+			"invalid": "http://example.com"
+		},
+		"ipv4": {
+			"valid": "255.255.255.255",
+			"invalid": "256.256.256.256"
+		},
+		"ipv6": {
+			"valid": "2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d",
+			"invalid": "_2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d"
+		},
+		"regex": {
+			"valid": "^[А-Яа-я0-9]$",
+			"invalid": "^[А-Яа-я0-9"
+		},
+		"uuid": {
+			"valid": "fcc18103-f6c4-4852-b332-89384556a9f4",
+			"invalid": "fcc18103-f6c4-4852-b332-89384556a9f4_"
+		},
+		"json-pointer": {
+			"valid": "/path/to/property",
+			"invalid": "#/path/to/property"
+		},
+		"color": {
+			"valid": "#ffffff",
+			"invalid": "#fffff_"
+		},
+		"password": {
+			"valid": "BADPASSWORD1234",
+			"invalid": "PASS123"
+		},
+		"data-url": {
+			"valid": "data:image/png;name=one-pixel-image.png;base64,iVBORw0KGgo",
+			"invalid": ""
+		}
+	}
+}

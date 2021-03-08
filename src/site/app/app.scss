@@ -1,0 +1,59 @@
+.app {
+    display: grid;
+    font-family: var(--font);
+    height: 100vh;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+
+    &__main {
+        overflow: auto;
+        padding: 16px;
+
+        &_theme {
+            &_alfa-on-white {
+                background: initial;
+            }
+
+            &_alfa-on-color {
+                background: var(--color-dark-indigo);
+            }
+        }
+    }
+
+    &__aside {
+        overflow: auto;
+    }
+
+    &__bottom-bar {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &__aside,
+    &__main {
+        box-sizing: border-box;
+        scroll-snap-align: start;
+    }
+
+    @media (min-width: 768px) {
+        grid-template-columns: 240px 50vw 50vw;
+
+        & > * + * {
+            border-left: 1px solid var(--color-dark-indigo-15);
+        }
+
+        &__bottom-bar {
+            display: none;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: 240px 5fr 4fr;
+    }
+
+    @media (max-width: 767px) {
+        grid-template-columns: repeat(3, 100vw);
+    }
+}

@@ -1,0 +1,35 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/country"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/country"
+			}
+		},
+		"definitions": {
+			"country": {
+				"type": "string",
+				"title": "Страна регистрации",
+				"not": {
+					"enum": [
+						"Германия",
+						"США"
+					]
+				},
+				"x-errorMessages": {
+					"not": "не разрешены: \"Германия\", \"США\""
+				}
+			}
+		}
+	},
+	"formData": {
+		"valid": "Россия",
+		"invalid": "США"
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"title": "Fixed array without buttons",
+		"type": "array",
+		"items": [
+			{
+				"title": "A number",
+				"type": "number",
+				"default": 42
+			},
+			{
+				"title": "A boolean",
+				"type": "boolean",
+				"default": false
+			}
+		],
+		"additionalItems": {
+			"title": "A string",
+			"type": "string",
+			"default": "lorem ipsum"
+		}
+	},
+	"uiSchema": {
+		"ui:options": {
+			"addable": false,
+			"orderable": false,
+			"removable": false
+		}
+	},
+	"formData": [
+		42,
+		true,
+		"additional item one",
+		"additional item two"
+	]
+}

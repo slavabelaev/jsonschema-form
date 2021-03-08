@@ -1,0 +1,238 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/currency"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"readOnly": true,
+						"$ref": "#/definitions/currency"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/currency"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/currency"
+					}
+				}
+			},
+			"simpleValidation": {
+				"title": "Простые проверки",
+				"properties": {
+					"minimum": {
+						"title": "Минимальная сумма",
+						"$ref": "#/definitions/currency"
+					},
+					"maximum": {
+						"title": "Максимальная сумма",
+						"$ref": "#/definitions/currency"
+					},
+					"multipleOf": {
+						"title": "Кратная сумма",
+						"$ref": "#/definitions/currency"
+					}
+				}
+			},
+			"complexValidation": {
+				"title": "Составные проверки",
+				"properties": {
+					"not": {
+						"title": "Недоступные суммы",
+						"type": "number",
+						"not": {
+							"enum": [7000, 8000, 9000, 10000]
+						},
+						"x-errorMessages": {
+							"not": "не должно быть суммой: ${notAllowedCurrencies}"
+						}
+					},
+					"any": {
+						"title": "Доступные диапазоны сумм",
+						"type": "number",
+						"anyOf": [
+							{
+								"minimum": 0,
+								"maximum": 3000,
+								"x-errorMessages": {
+									"minimum": "должно быть больше, чем ${limitCurrency}",
+									"maximum": "должно быть меньше, чем ${limitCurrency}"
+								}
+							},
+							{
+								"minimum": 10000,
+								"maximum": 20000,
+								"x-errorMessages": {
+									"minimum": "должно быть больше, чем ${limitCurrency}",
+									"maximum": "должно быть меньше, чем ${limitCurrency}"
+								}
+							}
+						]
+					},
+					"notAny": {
+						"title": "Недоступные диапазоны сумм",
+						"type": "number",
+						"minimum": 0,
+						"maximum": 100000,
+						"not": {
+							"anyOf": [
+								{
+									"minimum": 1000,
+									"maximum": 10000
+								},
+								{
+									"minimum": 50000,
+									"maximum": 60000
+								}
+							]
+						},
+						"x-errorMessages": {
+							"not": "недоступны суммы от 1 000-10 000 и от 50 000-60 000"
+						}
+					}
+				}
+			},
+			"samples": {
+				"title": "Валюты",
+				"properties": {
+					"USD": {
+						"title": "Доллар США",
+						"type": "number"
+					},
+					"EUR": {
+						"title": "Евро",
+						"type": "number"
+					},
+					"GBP": {
+						"title": "Фунт стерлингов",
+						"type": "number"
+					},
+					"CHF": {
+						"title": "Швейцарский франк",
+						"type": "number"
+					},
+					"JPY": {
+						"title": "Йен",
+						"type": "number"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"currency": {
+				"type": "number",
+				"minimum": 5000,
+				"maximum": 1000000,
+				"multipleOf": 1000,
+				"x-errorMessages": {
+					"minimum": "должно быть >= ${limitCurrency}",
+					"maximum": "должно быть <= ${limitCurrency}",
+					"multipleOf": "должно делиться на ${multipleOf} без остатка"
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"],
+		"state": {
+			"default": {
+				"ui:widget": "money-input"
+			},
+			"disabled": {
+				"ui:widget": "money-input"
+			},
+			"valid": {
+				"ui:widget": "money-input"
+			},
+			"invalid": {
+				"ui:widget": "money-input"
+			}
+		},
+		"errors": {
+			"minimum": {
+				"ui:widget": "money-input"
+			},
+			"maximum": {
+				"ui:widget": "money-input"
+			},
+			"multipleOf": {
+				"ui:widget": "money-input"
+			},
+			"any": {
+				"ui:widget": "money-input"
+			},
+			"not": {
+				"ui:widget": "money-input"
+			},
+			"notAny": {
+				"ui:widget": "money-input"
+			}
+		},
+		"samples": {
+			"USD": {
+				"ui:widget": "money-input",
+				"ui:options": {
+					"currencyCode": "USD"
+				}
+			},
+			"EUR": {
+				"ui:widget": "money-input",
+				"ui:options": {
+					"currencyCode": "EUR"
+				}
+			},
+			"GBP": {
+				"ui:widget": "money-input",
+				"ui:options": {
+					"currencyCode": "GBP"
+				}
+			},
+			"CHF": {
+				"ui:widget": "money-input",
+				"ui:options": {
+					"currencyCode": "CHF"
+				}
+			},
+			"JPY": {
+				"ui:widget": "money-input",
+				"ui:options": {
+					"currencyCode": "JPY"
+				}
+			}
+		}
+	},
+	"formData": {
+		"state": {
+			"disabled": 123000,
+			"valid": 123000,
+			"invalid": 1235678
+		},
+		"simpleValidation": {
+			"minimum": 999.99,
+			"maximum": 9999999.99,
+			"multipleOf": 99999.99
+		},
+		"complexValidation": {
+			"not": 8000,
+			"any": 5500,
+			"notAny": 5000
+		},
+		"samples": {
+			"USD": 1234567.89,
+			"EUR": 1234567.89,
+			"GBP": 1234567.89,
+			"CHF": 1234567.89,
+			"JPY": 1234567.89
+		}
+	}
+}

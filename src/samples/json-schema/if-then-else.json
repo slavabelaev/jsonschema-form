@@ -1,0 +1,51 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/contact"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"description": "если начинается на \"+\", должно быть номером телефона, а если содержит \"@\", должно быть адресом электронной почты",
+				"$ref": "#/definitions/contact"
+			}
+		},
+		"definitions": {
+			"contact": {
+				"type": "array",
+				"items": {
+					"title": "Контакт",
+					"type": "string",
+					"if": {
+						"pattern": "^\\+"
+					},
+					"then": {
+						"pattern": "^\\+79[0-9]{8}",
+						"x-errorMessages": {
+							"pattern": "должно соответствовать формату \"номер телефона\""
+						}
+					},
+					"else": {
+						"if": {
+							"pattern": "@"
+						},
+						"then": {
+							"format": "email"
+						}
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": ["+79876543210", "ivan.ivanov@email.com"],
+		"invalid": ["+7", "ivan.ivanov@"]
+	}
+}

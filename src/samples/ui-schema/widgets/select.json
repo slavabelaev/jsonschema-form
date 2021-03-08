@@ -1,0 +1,257 @@
+{
+  "$schema": "../../../package/schemas/form-props.schema.json",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "singleChoice": {
+        "title": "Выбор одной опции",
+        "properties": {
+          "default": {
+            "title": "По умолчанию",
+            "$ref": "#/definitions/city"
+          },
+          "disabled": {
+            "title": "Отключено",
+            "readOnly": true,
+            "$ref": "#/definitions/city"
+          },
+          "disabledOptions": {
+            "title": "Опции отключены",
+            "not": {
+              "enum": ["Москва", "Подольск", "Зеленоград", "Красногорск", "Мытищи", "Химки"]
+            },
+            "$ref": "#/definitions/city"
+          },
+          "valid": {
+            "title": "Верно",
+            "$ref": "#/definitions/city"
+          },
+          "invalid": {
+            "title": "Неверно",
+            "$ref": "#/definitions/city"
+          }
+        },
+        "required": ["invalid"]
+      },
+      "multipleChoice": {
+        "title": "Выбор нескольких опций",
+        "properties": {
+          "disabled": {
+            "title": "Отключено",
+            "readOnly": true,
+            "$ref": "#/definitions/cities"
+          },
+          "valid": {
+            "title": "Верно",
+            "$ref": "#/definitions/cities"
+          },
+          "invalid": {
+            "title": "Неверно",
+            "$ref": "#/definitions/cities"
+          }
+        },
+        "required": ["invalid"]
+      },
+      "validation": {
+        "title": "Проверки",
+        "properties": {
+          "minItems": {
+            "title": "Минимум опций",
+            "$ref": "#/definitions/cities"
+          },
+          "maxItems": {
+            "title": "Максимум опций",
+            "$ref": "#/definitions/cities"
+          },
+          "contains": {
+            "title": "Обязательные опции",
+            "$ref": "#/definitions/cities"
+          }
+        },
+        "required": ["invalid"]
+      },
+      "samples": {
+        "title": "Опции с идентификатором",
+        "properties": {
+          "incomeTypes": {
+            "$ref": "#/definitions/incomeTypes"
+          },
+          "education": {
+            "$ref": "#/definitions/education"
+          }
+        }
+      }
+    },
+    "definitions": {
+      "incomeTypes": {
+        "title": "Источники дохода",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "anyOf": [
+            {
+              "title": "Премия/бонус",
+              "const": "BONUS"
+            },
+            {
+              "title": "Алименты",
+              "const": "ALIMONY"
+            },
+            {
+              "title": "Сдача квартиры в аренду",
+              "const": "RENT"
+            },
+            {
+              "title": "Работа по совместительству",
+              "const": "OFF_H_JOB"
+            },
+            {
+              "title": "Репетиторство/частная практика",
+              "const": "COACHING"
+            },
+            {
+              "title": "Доходы от ценных бумаг/депозитов",
+              "const": "DIVIDENT"
+            },
+            {
+              "title": "Подсобное хозяйство",
+              "const": "FARMING"
+            },
+            {
+              "title": "Частный извоз",
+              "const": "PRIV_TAXI"
+            },
+            {
+              "title": "Строительство/ремонт квартир",
+              "const": "BUILDING"
+            },
+            {
+              "title": "Помощь родственников",
+              "const": "RELAT_HELP"
+            },
+            {
+              "title": "Сверхурочные/чаевые",
+              "const": "TIPS"
+            },
+            {
+              "title": "Другое",
+              "const": "OTHER"
+            }
+          ],
+          "not": {
+            "enum": ["RENT"]
+          }
+        },
+        "uniqueItems": true
+      },
+      "education": {
+        "title": "Образование",
+        "type": "string",
+        "anyOf": [
+          {
+            "title": "Неполное среднее",
+            "const": "US",
+            "readOnly": true
+          },
+          {
+            "title": "Среднее",
+            "const": "S"
+          },
+          {
+            "title": "Среднее специальное",
+            "const": "SS"
+          },
+          {
+            "title": "Неполное высшее",
+            "const": "UH"
+          },
+          {
+            "title": "Высшее",
+            "const": "H"
+          },
+          {
+            "title": "Несколько высших",
+            "const": "HH"
+          },
+          {
+            "title": "Ученая степень / MBA",
+            "const": "A"
+          }
+        ]
+      },
+      "city": {
+        "title": "Город",
+        "enum": [
+          "Москва",
+          "Королев",
+          "Подольск",
+          "Балашиха",
+          "Зеленоград",
+          "Реутов",
+          "Красногорск",
+          "Одинцово",
+          "Мытищи",
+          "Люберцы",
+          "Химки"
+        ]
+      },
+      "cities": {
+        "title": "Города",
+        "type": "array",
+        "items": {
+          "enum": [
+            "Москва",
+            "Королев",
+            "Подольск",
+            "Балашиха",
+            "Зеленоград",
+            "Реутов",
+            "Красногорск",
+            "Одинцово",
+            "Мытищи",
+            "Люберцы",
+            "Химки"
+          ]
+        },
+        "uniqueItems": true,
+        "minItems": 2,
+        "maxItems": 3,
+        "contains": {
+          "enum": ["Москва", "Химки"]
+        },
+        "x-errorMessages": {
+          "minItems": "должно быть выбрано не менее, чем 2 города",
+          "maxItems": "должно быть выбрано не более, чем 3 города",
+          "contains": "\"Москва\" или \"Химки\" обязательны"
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "ui:template": "collapse-list",
+    "ui:expanded": ["singleChoice"],
+    "multipleChoiceEnum": {
+      "ui:widget": "select"
+    }
+  },
+  "formData": {
+    "singleChoice": {
+      "disabled": "Химки",
+      "valid": "Москва"
+    },
+    "multipleChoice": {
+      "disabled": ["Москва", "Химки"],
+      "valid": ["Москва", "Королев"]
+    },
+    "validation": {
+      "minItems": ["Москва"],
+      "maxItems": ["Москва", "Королев", "Химки", "Балашиха"],
+      "contains": ["Королев", "Балашиха"]
+    },
+    "samples": {
+      "incomeTypes": [],
+      "education": ""
+    }
+  }
+}

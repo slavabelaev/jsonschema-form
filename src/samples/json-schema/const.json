@@ -1,0 +1,26 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/oldPassword"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/oldPassword"
+			}
+		},
+		"definitions": {
+			"oldPassword": {
+				"title": "Старый пароль",
+				"const": "12345"
+			}
+		}
+	},
+	"formData": {
+		"valid": "12345",
+		"invalid": "54321"
+	}
+}

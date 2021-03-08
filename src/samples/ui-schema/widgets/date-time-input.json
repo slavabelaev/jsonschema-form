@@ -1,0 +1,200 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"type": "string",
+						"format": "date-time"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"type": "string",
+						"readOnly": true,
+						"format": "date-time"
+					},
+					"valid": {
+						"title": "Верно",
+						"type": "string",
+						"format": "date-time"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"type": "string",
+						"format": "date-time",
+						"examples": ["2021-01-02T12:30:00.000Z"]
+					}
+				}
+			},
+			"limitDateTime": {
+				"title": "Минимальная / максимальная дата",
+				"description": "Из-за ограничений спецификации JSON-Schema, данная проверка доступна только для числового типа",
+				"properties": {
+					"earlierLimit": {
+						"title": "Минимальная",
+						"type": "integer",
+						"minimum": 1610658000000,
+						"x-errorMessages": {
+							"minimum": "должно быть не ранее, чем ${limitDateTime}"
+						}
+					},
+					"laterLimit": {
+						"title": "Максимальная",
+						"type": "integer",
+						"maximum": 1610658000000,
+						"x-errorMessages": {
+							"maximum": "должно быть не позднее, чем ${limitDateTime}"
+						}
+					}
+				}
+			},
+			"offDays": {
+				"title": "Недоступные даты",
+				"properties": {
+					"stringDateTime": {
+						"title": "Дата-время-строка",
+						"type": "string",
+						"format": "date-time",
+						"not": {
+							"enum": [
+								"2021-01-02T12:30:00.000Z",
+								"2021-01-04T12:30:00.000Z",
+								"2021-01-06T12:30:00.000Z",
+								"2021-01-08T12:30:00.000Z",
+								"2021-01-10T12:30:00.000Z",
+								"2021-01-12T12:30:00.000Z",
+								"2021-01-14T12:30:00.000Z",
+								"2021-01-16T12:30:00.000Z",
+								"2021-01-18T12:30:00.000Z",
+								"2021-01-20T12:30:00.000Z"
+							]
+						},
+						"x-errorMessages": {
+							"not": "выбранная дата и время недоступно"
+						}
+					},
+					"integerDateTime": {
+						"title": "Дата-время-число",
+						"type": "integer",
+						"not": {
+							"enum": [
+								1609534800000,
+								1609707600000,
+								1609880400000,
+								1610053200000,
+								1610226000000,
+								1610398800000,
+								1610571600000,
+								1610744400000,
+								1610917200000,
+								1611090000000
+							]
+						},
+						"x-errorMessages": {
+							"not": "выбранная дата и время недоступно"
+						}
+					}
+				}
+			},
+			"limitDateTimeRanges": {
+				"title": "Разрешенные / запрещенные диапазоны дат",
+				"description": "Если выбранная дата будет в одном из запрещенных (или за пределами разрешенного) диапазонов, будет показана ошибка",
+				"properties": {
+					"allowedDateTimeRanges": {
+						"title": "Разрешенные",
+						"type": "integer",
+						"anyOf": [
+							{
+								"minimum": 1590226000000,
+								"maximum": 1600226000000,
+								"x-errorMessages": {
+									"minimum": "должно быть не ранее, чем ${limitDateTime}",
+									"maximum": "должно быть не позднее, чем ${limitDateTime}"
+								}
+							},
+							{
+								"minimum": 1610226000000,
+								"maximum": 1620226000000,
+								"x-errorMessages": {
+									"minimum": "должно быть не ранее, чем ${limitDateTime}",
+									"maximum": "должно быть не позднее, чем ${limitDateTime}"
+								}
+							}
+						]
+					},
+					"notAllowedDateTimeRanges": {
+						"title": "Запрещенные",
+						"type": "integer",
+						"not": {
+							"anyOf": [
+								{
+									"minimum": 1590226000000,
+									"maximum": 1600226000000
+								},
+								{
+									"minimum": 1610226000000,
+									"maximum": 1620226000000
+								}
+							]
+						},
+						"x-errorMessages": {
+							"not": "выбранная дата и время недоступно"
+						}
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"],
+		"limitDateTime": {
+			"earlierLimit": {
+				"ui:widget": "date-time-input"
+			},
+			"laterLimit": {
+				"ui:widget": "date-time-input"
+			}
+		},
+		"offDays": {
+			"stringDateTime": {
+				"ui:widget": "date-time-input"
+			},
+			"integerDateTime": {
+				"ui:widget": "date-time-input"
+			}
+		},
+		"limitDateTimeRanges": {
+			"allowedDateTimeRanges": {
+				"ui:widget": "date-time-input"
+			},
+			"notAllowedDateTimeRanges": {
+				"ui:widget": "date-time-input"
+			}
+		}
+	},
+	"formData": {
+		"state": {
+			"disabled": "2021-01-15T12:30:00.000Z",
+			"valid": "2021-01-15T12:30:00.000Z",
+			"invalid": "2021.01.22 23:30"
+		},
+		"limitDateTime": {
+			"earlierLimit": 1610571600000,
+			"laterLimit": 1610830800000
+		},
+		"offDays": {
+			"stringDateTime": "2021-01-02T12:30:00.000Z",
+			"integerDateTime": 1610571600000
+		},
+		"limitDateTimeRanges": {
+			"allowedDateTimeRanges": 1421874000000,
+			"notAllowedDateTimeRanges": 1610658000000
+		}
+	}
+}

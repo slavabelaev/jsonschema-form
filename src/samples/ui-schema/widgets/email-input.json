@@ -1,0 +1,103 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"$ref": "#/definitions/email"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"$ref": "#/definitions/email",
+						"readOnly": true
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/email"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/email"
+					}
+				}
+			},
+			"limitLength": {
+				"title": "Минимальная / максимальная длина",
+				"properties": {
+					"minLength": {
+						"title": "Минимальная",
+						"$ref": "#/definitions/email"
+					},
+					"maxLength": {
+						"title": "Максимальная",
+						"$ref": "#/definitions/email"
+					}
+				}
+			},
+			"patterns": {
+				"title": "Регулярное выражение",
+				"properties": {
+					"startsWith": {
+						"title": "Начинается на",
+						"type": "string",
+						"format": "email",
+						"pattern": "^[A-z]+@",
+						"examples": ["ivanivanov@example.com"],
+						"x-errorMessages": {
+							"pattern": "логин должен состоять исключительно из букв"
+						}
+					},
+					"endsWith": {
+						"title": "Заканчивается на",
+						"type": "string",
+						"format": "email",
+						"pattern": "@example.com$",
+						"examples": ["ivan.ivanov@example.com"],
+						"x-errorMessages": {
+							"pattern": "должен принадлежать домену \"example.com\""
+						}
+					}
+				}
+			}
+		},
+		"definitions": {
+			"email": {
+				"type": "string",
+				"format": "email",
+				"minLength": 3,
+				"maxLength": 24
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"],
+		"patterns": {
+			"endsWith": {
+				"ui:widget": "email-input",
+				"ui:options": {
+					"providers": ["example.com"]
+				}
+			}
+		}
+	},
+	"formData": {
+		"state": {
+			"disabled": "ivan.ivanov@example.com",
+			"valid": "ivan.ivanov@example.com",
+			"invalid": "ivan.ivanov@"
+		},
+		"limitLength": {
+			"minLength": "us",
+			"maxLength": "username@long-domain-name.com"
+		},
+		"patterns": {
+			"startsWith": "user.name@not-example.com",
+			"endsWith": "username@not-example.com"
+		}
+	}
+}

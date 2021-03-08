@@ -1,0 +1,21 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"type": "array",
+		"title": "A list of strings",
+		"items": {
+			"type": "string",
+			"default": "bazinga"
+		}
+	},
+	"uiSchema": {
+		"items": {
+			"ui:emptyValue": ""
+		}
+	},
+	"formData": [
+		"foo",
+		"bar"
+	]
+}

@@ -1,0 +1,73 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"default": {
+				"title": "Порядок по умолчанию",
+				"$ref": "#/definitions/form"
+			},
+			"reordered": {
+				"title": "Измененный порядок",
+				"description": "Измените разрешение экрана, чтобы увидеть как будет меняться макет",
+				"$ref": "#/definitions/form"
+			}
+		},
+		"definitions": {
+			"form": {
+				"properties": {
+					"firstName": {
+						"title": "Имя",
+						"type": "string"
+					},
+					"lastName": {
+						"title": "Фамилия",
+						"type": "string"
+					},
+					"middleName": {
+						"title": "Отчество",
+						"type": "string"
+					},
+					"birthdate": {
+						"title": "Дата рождения",
+						"type": "string",
+						"format": "date"
+					},
+					"birthplace": {
+						"title": "Страна рождения",
+						"enum": ["Россия", "Беларусь", "Украина"]
+					},
+					"email": {
+						"title": "Email",
+						"type": "string",
+						"format": "email"
+					},
+					"phone": {
+						"title": "Телефон",
+						"type": "string"
+					},
+					"livingAddress": {
+						"title": "Адрес проживания",
+						"type": "string"
+					},
+					"registrationAddress": {
+						"title": "Адрес регистрации",
+						"type": "string"
+					},
+					"comment": {
+						"title": "Комментарий",
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["default"],
+		"reordered": {
+			"ui:order": ["email", "phone", "lastName", "*"]
+		}
+	},
+	"formData": {}
+}

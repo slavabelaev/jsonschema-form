@@ -1,0 +1,42 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/name"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/name"
+			}
+		},
+		"definitions": {
+			"name": {
+				"propertyNames": {
+					"pattern": "^[a-z]+?Name$",
+					"minLength": 3,
+					"maxLength": 12
+				},
+				"additionalProperties": true
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": {
+			"firstName": "Иван",
+			"lastName": "Иванов",
+			"middleName": "Иванович"
+		},
+		"invalid": {
+			"_firstName": "Иван",
+			"_lastName": "Иванов",
+			"_middleName": "Иванович"
+		}
+	}
+}

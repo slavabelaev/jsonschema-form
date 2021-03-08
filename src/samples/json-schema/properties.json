@@ -1,0 +1,62 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/basicInformation"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/basicInformation"
+			}
+		},
+		"definitions": {
+			"basicInformation": {
+				"properties": {
+					"fullName": {
+						"title": "ФИО",
+						"type": "string",
+						"minLength": 3
+					},
+					"birthdate": {
+						"title": "Дата рождения",
+						"type": "string",
+						"format": "date"
+					},
+					"gender": {
+						"title": "Пол",
+						"type": "string",
+						"anyOf": [
+							{
+								"title": "мужской",
+								"const": "m"
+							},
+							{
+								"title": "женский",
+								"const": "f"
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": {
+			"fullName": "Иванов Иван Иванович",
+			"birthdate": "1970-12-12",
+			"gender": "m"
+		},
+		"invalid": {
+			"fullName": "",
+			"birthdate": "",
+			"gender": ""
+		}
+	}
+}

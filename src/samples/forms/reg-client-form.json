@@ -1,0 +1,1909 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"scanning": {
+				"title": "Сканирование",
+				"properties": {
+					"documentType": {
+						"title": "Удостоверение личности",
+						"type": "string",
+						"default": "001",
+						"anyOf": [
+							{
+								"title": "Паспорт гражданина РФ",
+								"const": "001"
+							},
+							{
+								"title": "Загранпаспорт гражданина Российской Федерации",
+								"const": "002"
+							},
+							{
+								"title": "Удостоверение личности военнослужащего",
+								"const": "003"
+							},
+							{
+								"title": "Военный билет солдата",
+								"const": "004"
+							},
+							{
+								"title": "Паспорт гражданина СССР",
+								"const": "006"
+							},
+							{
+								"title": "Дипломатический паспорт гражданина РФ",
+								"const": "011"
+							},
+							{
+								"title": "Свидетельство о рождении",
+								"const": "012"
+							},
+							{
+								"title": "Военный билет офицера запаса",
+								"const": "013"
+							},
+							{
+								"title": "Удостоверение личности моряка/паспорт моряка",
+								"const": "015"
+							},
+							{
+								"title": "Временное удостоверение личности гражданина РФ",
+								"const": "016"
+							},
+							{
+								"title": "Справка об освобождении из мест лишения свободы",
+								"const": "021"
+							},
+							{
+								"title": "Иные документы",
+								"const": "091"
+							}
+						]
+					}
+				},
+				"dependencies": {
+					"documentType": {
+						"type": "object",
+						"properties": {
+							"attach_OTHER_main": {
+								"$ref": "#/definitions/attachment",
+								"title": "Дополнительный документ для сканирования"
+							}
+						},
+						"oneOf": [
+							{
+								"properties": {
+									"documentType": {
+										"const": "001"
+									},
+									"attach_001_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Паспорт гражданина РФ, Основная информация"
+									},
+									"attach_001_registration": {
+										"$ref": "#/definitions/attachment",
+										"title": "Паспорт гражданина РФ, Страница регистрации"
+									},
+									"attach_001_oldpassport": {
+										"$ref": "#/definitions/attachment",
+										"title": "Паспорт гражданина РФ, Страница с информацией о ранее выданном паспорте"
+									},
+									"attach_001_registrationAdditional": {
+										"$ref": "#/definitions/attachment",
+										"title": "Паспорт гражданина РФ, Страница регистрации доп."
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_001_main",
+									"attach_001_registration",
+									"attach_001_oldpassport",
+									"attach_001_registrationAdditional"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "002"
+									},
+									"attach_002_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Загранпаспорт гражданина Российской Федерации"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_002_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "003"
+									},
+									"attach_003_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Удостоверение личности военнослужащего"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_003_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "004"
+									},
+									"attach_004_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Военный билет солдата"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_004_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "006"
+									},
+									"attach_006_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Паспорт гражданина СССР, Основная информация"
+									},
+									"attach_006_registration": {
+										"$ref": "#/definitions/attachment",
+										"title": "Паспорт гражданина СССР, Страница регистрации"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_006_main",
+									"attach_006_registration"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "011"
+									},
+									"attach_011_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Дипломатический паспорт гражданина РФ"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_011_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "012"
+									},
+									"attach_012_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Свидетельство о рождении"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_012_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "013"
+									},
+									"attach_013_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Военный билет офицера запаса"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_013_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "015"
+									},
+									"attach_015_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Удостоверение личности моряка/паспорт моряка"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_015_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "016"
+									},
+									"attach_016_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Временное удостоверение личности гражданина РФ, Основная информация"
+									},
+									"attach_016_registration": {
+										"$ref": "#/definitions/attachment",
+										"title": "Временное удостоверение личности гражданина РФ, Страница регистрации"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_016_main",
+									"attach_016_registration"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "021"
+									},
+									"attach_021_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Справка об освобождении из мест лишения свободы"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_021_main"
+								]
+							},
+							{
+								"properties": {
+									"documentType": {
+										"const": "091"
+									},
+									"attach_091_main": {
+										"$ref": "#/definitions/attachment",
+										"title": "Иные документы, Основная информация"
+									},
+									"attach_091_registration": {
+										"$ref": "#/definitions/attachment",
+										"title": "Иные документы, Страница регистрации"
+									}
+								},
+								"required": [
+									"documentType",
+									"attach_091_main",
+									"attach_091_registration"
+								]
+							}
+						]
+					}
+				}
+			},
+			"personal": {
+				"title": "Персональные данные",
+				"properties": {
+					"lastName": {
+						"type": "string",
+						"title": "Фамилия",
+						"maxLength": 35,
+						"examples": [
+							"Иванов"
+						]
+					},
+					"firstName": {
+						"type": "string",
+						"title": "Имя",
+						"maxLength": 35,
+						"examples": [
+							"Иван"
+						]
+					},
+					"patronymic": {
+						"type": "string",
+						"title": "Отчество",
+						"description": "Как в паспорте",
+						"maxLength": 35,
+						"examples": [
+							"Иванович"
+						]
+					},
+					"embossedName": {
+						"type": "string",
+						"title": "Имя на карте",
+						"description": "Как на карте",
+						"maxLength": 35,
+						"examples": [
+							"IVAN IVANOV"
+						]
+					},
+					"codeWord": {
+						"type": "string",
+						"title": "Кодовое слово",
+						"maxLength": 35,
+						"pattern": "[A-zА-я]+[0-9]+",
+						"description": "Должно содержать не менее одной буквы и одной цифры",
+						"examples": [
+							"КОД123"
+						]
+					},
+					"sex": {
+						"title": "Пол",
+						"type": "string",
+						"anyOf": [
+							{
+								"title": "Мужской",
+								"const": "m"
+							},
+							{
+								"title": "Женский",
+								"const": "f"
+							}
+						]
+					},
+					"birthDate": {
+						"type": "string",
+						"title": "Дата рождения",
+						"format": "date",
+						"examples": [
+							"01.01.1990"
+						]
+					},
+					"birthPlace": {
+						"type": "string",
+						"title": "Место рождения",
+						"description": "Как в паспорте",
+						"maxLength": 254,
+						"examples": [
+							"Москва"
+						]
+					},
+					"clientInn": {
+						"type": "string",
+						"title": "ИНН",
+						"maxLength": 15,
+						"examples": [
+							"123456789012"
+						]
+					}
+				},
+				"required": [
+					"lastName",
+					"firstName",
+					"patronymic",
+					"embossedName",
+					"codeWord",
+					"sex",
+					"birthDate",
+					"birthPlace"
+				]
+			},
+			"document": {
+				"title": "Документ, удостоверяющий личность",
+				"properties": {
+					"number": {
+						"type": "string",
+						"title": "Серия и номер",
+						"maxLength": 35,
+						"examples": [
+							"40 40 123456"
+						]
+					},
+					"issuer": {
+						"type": "string",
+						"title": "Кем выдан",
+						"description": "Как в документе",
+						"maxLength": 254,
+						"examples": [
+							"УМФС России по г.Москве"
+						]
+					},
+					"divisionCode": {
+						"type": "string",
+						"title": "Код подразделения",
+						"maxLength": 70,
+						"pattern": "[0-9]{3}-[0-9]{3}",
+						"examples": [
+							"780-085"
+						]
+					},
+					"issueDate": {
+						"type": "string",
+						"title": "Дата выдачи",
+						"format": "date",
+						"examples": [
+							"01.01.1990"
+						]
+					},
+					"isChangedPassport": {
+						"title": "Меняли паспорт?",
+						"type": "boolean",
+						"anyOf": [
+							{
+								"title": "Нет",
+								"const": false
+							},
+							{
+								"title": "Да",
+								"const": true
+							}
+						]
+					}
+				},
+				"dependencies": {
+					"isChangedPassport": {
+						"oneOf": [
+							{
+								"properties": {
+									"isChangedPassport": {
+										"const": false
+									}
+								}
+							},
+							{
+								"properties": {
+									"isChangedPassport": {
+										"const": true
+									},
+									"oldDocumentType": {
+										"title": "Выберите тип документа",
+										"type": "string",
+										"anyOf": [
+											{
+												"title": "Паспорт гражданина РФ",
+												"const": "006"
+											},
+											{
+												"title": "Паспорт гражданина СССР",
+												"const": "001"
+											}
+										]
+									}
+								},
+								"dependencies": {
+									"oldDocumentType": {
+										"oneOf": [
+											{
+												"properties": {
+													"oldDocumentType": {
+														"const": "006"
+													},
+													"oldNumber": {
+														"type": "string",
+														"title": "Серия и номер старого паспорта",
+														"maxLength": 35,
+														"examples": [
+															"40 40 123456"
+														]
+													},
+													"oldDivisionCode": {
+														"type": "string",
+														"title": "Код подразделения",
+														"maxLength": 70,
+														"examples": [
+															"780-085"
+														]
+													},
+													"oldIssueDate": {
+														"type": "string",
+														"title": "Дата выдачи",
+														"format": "date",
+														"examples": [
+															"01.01.1990"
+														]
+													}
+												},
+												"required": [
+													"oldNumber",
+													"oldDivisionCode",
+													"oldIssueDate"
+												]
+											},
+											{
+												"properties": {
+													"oldDocumentType": {
+														"const": "001"
+													},
+													"oldNumber": {
+														"type": "string",
+														"title": "Серия и номер старого паспорта",
+														"maxLength": 17,
+														"examples": [
+															"XXXVIII-БВ 123456"
+														]
+													},
+													"oldDivisionCode": {
+														"type": "string",
+														"title": "Код подразделения",
+														"maxLength": 70,
+														"examples": [
+															"780-085"
+														]
+													},
+													"oldIssueDate": {
+														"type": "string",
+														"title": "Дата выдачи",
+														"format": "date",
+														"examples": [
+															"01.01.1990"
+														]
+													}
+												},
+												"required": [
+													"oldNumber",
+													"oldDivisionCode",
+													"oldIssueDate"
+												]
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"registrationAddress": {
+				"title": "Адрес регистрации",
+				"$ref": "#/definitions/address"
+			},
+			"livingAddress": {
+				"title": "Адрес проживания",
+				"properties": {
+					"registrationAddressMatches": {
+						"title": "Адрес регистрации совпадает с адресом проживания",
+						"type": "boolean"
+					}
+				},
+				"dependencies": {
+					"registrationAddressMatches": {
+						"oneOf": [
+							{
+								"properties": {
+									"registrationAddressMatches": {
+										"const": true
+									}
+								}
+							},
+							{
+								"properties": {
+									"registrationAddressMatches": {
+										"const": false
+									},
+									"registrationAddress": {
+										"title": "Адрес регистрации",
+										"$ref": "#/definitions/address"
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"employment": {
+				"title": "Занятость",
+				"properties": {
+					"type": {
+						"title": "Тип занятости",
+						"type": "string",
+						"anyOf": [
+							{
+								"title": "По постоянному контракту",
+								"const": "FULL"
+							},
+							{
+								"title": "Собственный бизнес",
+								"const": "OWN"
+							},
+							{
+								"title": "Индивидуальный предприниматель",
+								"const": "SELF"
+							},
+							{
+								"title": "Не трудоустроен",
+								"const": "UNEMPLOYED"
+							}
+						]
+					}
+				},
+				"dependencies": {
+					"type": {
+						"oneOf": [
+							{
+								"title": "По постоянному контракту",
+								"properties": {
+									"type": {
+										"const": "FULL"
+									},
+									"company": {
+										"type": "string",
+										"title": "Название организации",
+										"maxLength": 35
+									},
+									"position": {
+										"type": "string",
+										"title": "Должность",
+										"maxLength": 35
+									}
+								},
+								"allOf": [
+									{
+										"$ref": "#/definitions/employment"
+									}
+								]
+							},
+							{
+								"title": "Собственный бизнес",
+								"properties": {
+									"type": {
+										"const": "OWN"
+									},
+									"company": {
+										"type": "string",
+										"title": "Название организации",
+										"maxLength": 35
+									},
+									"position": {
+										"type": "string",
+										"title": "Должность",
+										"maxLength": 35
+									}
+								},
+								"allOf": [
+									{
+										"$ref": "#/definitions/employment"
+									}
+								]
+							},
+							{
+								"title": "Индивидуальный предприниматель",
+								"properties": {
+									"type": {
+										"const": "SELF"
+									}
+								},
+								"allOf": [
+									{
+										"$ref": "#/definitions/employment"
+									}
+								]
+							},
+							{
+								"title": "Не трудоустроен",
+								"properties": {
+									"type": {
+										"const": "UNEMPLOYED"
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"contacts": {
+				"title": "Контактная информация",
+				"properties": {
+					"mobilePhone": {
+						"type": "string",
+						"title": "Мобильный телефон"
+					},
+					"email": {
+						"type": "string",
+						"title": "Электронная почта",
+						"format": "email"
+					},
+					"registrationPhone": {
+						"type": "string",
+						"title": "Телефон по месту регистрации"
+					},
+					"actualPhone": {
+						"type": "string",
+						"title": "Телефон по месту проживания"
+					}
+				}
+			},
+			"servicePackage": {
+				"title": "Пакет услуг",
+				"properties": {
+					"type": {
+						"title": "Тип пакета услуг",
+						"type": "string",
+						"anyOf": [
+							{
+								"title": "Карта Категории 1",
+								"const": "T01"
+							},
+							{
+								"title": "Карта Категории 2",
+								"const": "T02"
+							},
+							{
+								"title": "ПУ Максимум+New",
+								"const": "T03"
+							},
+							{
+								"title": "ПУ Технический",
+								"const": "T04"
+							},
+							{
+								"title": "ПУ \"Премиум\"",
+								"const": "T05"
+							},
+							{
+								"title": "ПУ для кредитов и депозитов",
+								"const": "T06"
+							},
+							{
+								"title": "ПУ Альфа Priority",
+								"const": "T07"
+							}
+						]
+					}
+				}
+			},
+			"cards": {
+				"title": "Карты",
+				"properties": {
+					"paymentSystem": {
+						"title": "Платежная система",
+						"type": "string",
+						"anyOf": [
+							{
+								"title": "Любая",
+								"const": ""
+							},
+							{
+								"title": "Visa",
+								"const": "Visa"
+							},
+							{
+								"title": "MasterCard",
+								"const": "MasterCard"
+							},
+							{
+								"title": "Мир",
+								"const": "Мир"
+							}
+						]
+					},
+					"category": {
+						"title": "Категория карты",
+						"type": "string",
+						"anyOf": [
+							{
+								"title": "Любая",
+								"const": ""
+							},
+							{
+								"title": "Gold",
+								"const": "Gold"
+							},
+							{
+								"title": "Classic",
+								"const": "Classic"
+							},
+							{
+								"title": "Platinum",
+								"const": "Platinum"
+							}
+						]
+					},
+					"card": {
+						"title": "Вам подходит 50 карт",
+						"type": "string",
+						"anyOf": [
+							{
+								"title": "QD-Visa Rewards Пятерочка INSTAN PW (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "YK-МВК MC World Yandex DB PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "QC-Visa Rewards Пятерочка PW (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "YN-Yandex.Plus MC World DB PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "0J-MC Standard Kids DB PP Sticker (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "EA-MC Platinum Аэрофлот PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HI-VISA PUL ATravel Prem Sign PW (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HH-MC Black CashBack Premium PP DB (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HM-MC PUL Black CashBack Prem PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HL-MC PUL Black AlfaCard Prem PP (PDTKR3)",
+								"const": "PDTKR3"
+							},
+							{
+								"title": "SU-MC World PP (PDTKR)",
+								"const": "PDTKR"
+							},
+							{
+								"title": "SV-VISA Rewards PW (PDTKR)",
+								"const": "PDTKR"
+							},
+							{
+								"title": "HK-VISA PUL Black AlfaCard Prem PW (PDTKR3)",
+								"const": "PDTKR3"
+							},
+							{
+								"title": "1J-MC Standard Teens DB PP Sticker (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "SU-MC World PP (PDTO)",
+								"const": "PDTO"
+							},
+							{
+								"title": "SV-VISA Rewards PW (PDTO)",
+								"const": "PDTO"
+							},
+							{
+								"title": "EE-MC Black Аэрофлот PP 2мили (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "N0-MC Standard Next bear PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "N3-MC Standard Next surfer PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "N2-MC Standard Next superman PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "N5-MC Standard Next crystal PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "N4-MC Standard Next words PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "RC-МИР Classic DB Contactless (PDTRA)",
+								"const": "PDTRA"
+							},
+							{
+								"title": "ER-MC World CashBack (1%/5%/10%)PP (PDTT04)",
+								"const": "1%/5%/10%"
+							},
+							{
+								"title": "WH-MC Standard WorldOfTanks2 PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "WI-MC World of WarShips PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "SO-MC Alfa-card BarCode World PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "JS-MC Beeline BarCode World DB PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HD-VISA Black AlfaCard Premium PW (PDTO2)",
+								"const": "PDTO2"
+							},
+							{
+								"title": "JR-MC Beeline World DB PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HD-VISA Black AlfaCard Premium PW (PDTKR3)",
+								"const": "PDTKR3"
+							},
+							{
+								"title": "WB-MC Wargaming Premium PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HF-MC Black AlfaCard Premium PP DB (PDTO2)",
+								"const": "PDTO2"
+							},
+							{
+								"title": "HF-MC Black AlfaCard Premium PP DB (PDTKR3)",
+								"const": "PDTKR3"
+							},
+							{
+								"title": "WA-MC World of Tanks PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "PI-MC World Перекресток PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "SV-VISA Rewards PW (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "WZ-MC World of Tanks Blitz PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "SU-MC World PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "H1-MC St.Kids Bumbl Silver PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "H0-MC St.Kids Bumbl Red PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "H3-MC St.Teens Bumbl Silver PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "HK-VISA PUL Black AlfaCard Prem PW (PDPREM)",
+								"const": "PDPREM"
+							},
+							{
+								"title": "GR-VISA AlfaTravel Sign DB (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "H2-MC St.Teens Bumbl Red PP (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "SU-MC World PP (PDTKRW)",
+								"const": "PDTKRW"
+							},
+							{
+								"title": "GQ-VISA AlfaTravel Prem Sign DB (PDTT04)",
+								"const": "PDTT04"
+							},
+							{
+								"title": "SU-MC World PP (PDT04Z)",
+								"const": "PDT04Z"
+							},
+							{
+								"title": "HL-MC PUL Black AlfaCard Prem PP (PDPREM)",
+								"const": "PDPREM"
+							},
+							{
+								"title": "SV-VISA Rewards PW (PDT04Z)",
+								"const": "PDT04Z"
+							}
+						]
+					},
+					"currency": {
+						"$ref": "#/definitions/currency"
+					},
+					"addAlfaCheck": {
+						"$ref": "#/definitions/addAlfaCheck"
+					},
+					"hasBonusCode": {
+						"title": "Есть бонусный номер?",
+						"type": "boolean",
+						"anyOf": [
+							{
+								"title": "Нет",
+								"const": false
+							},
+							{
+								"title": "Да",
+								"const": true
+							}
+						]
+					}
+				},
+				"dependencies": {
+					"hasBonusCode": {
+						"oneOf": [
+							{
+								"properties": {
+									"hasBonusCode": {
+										"const": true
+									},
+									"bonusCode": {
+										"type": "integer",
+										"title": "Бонусный номер",
+										"maxLength": 16
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"cardDelivery": {
+				"title": "Доставка карт",
+				"properties": {
+					"settlement": {
+						"title": "Населенный пункт",
+						"enum": [
+							"Абакан",
+							"Альметьевск",
+							"Ангарск",
+							"Архангельск",
+							"Ачинск",
+							"Балашиха",
+							"Барвиха",
+							"Барнаул",
+							"Белгород",
+							"Бердск",
+							"Бийск",
+							"Бузулук",
+							"Владивосток",
+							"Владимир",
+							"Волгоград",
+							"Волжский",
+							"Воронеж",
+							"Глазов",
+							"Дзержинск",
+							"Екатеринбург",
+							"Железногорск",
+							"Зеленоград",
+							"Златоуст",
+							"Ижевск",
+							"Иркутск",
+							"Йошкар-Ола",
+							"Казань",
+							"Калининград",
+							"Калуга",
+							"Каменск-Уральский",
+							"Кемерово",
+							"Киров",
+							"Комсомольск-на-Амуре",
+							"Королев",
+							"Котельники",
+							"Красногорск",
+							"Краснодар",
+							"Красноярск",
+							"Курган",
+							"Курск",
+							"Линево",
+							"Липецк",
+							"Люберцы",
+							"Магнитогорск",
+							"Мегион",
+							"Миасс",
+							"Москва",
+							"Московская область",
+							"Мурманск",
+							"Мытищи",
+							"Набережные Челны",
+							"Находка",
+							"Нижневартовск",
+							"Нижний Новгород",
+							"Нижний Тагил",
+							"Новая Адыгея",
+							"Новокузнецк",
+							"Новороссийск",
+							"Новосибирск",
+							"Новотроицк",
+							"Новочеркасск",
+							"Одинцово",
+							"Омск",
+							"Оренбург",
+							"Орск",
+							"Пенза",
+							"Первоуральск",
+							"Пермь",
+							"Петрозаводск",
+							"Подольск",
+							"Прокопьевск",
+							"Псков",
+							"Радужный",
+							"Развилка",
+							"Реутов",
+							"Ростов-на-Дону",
+							"Рязань",
+							"Самара",
+							"Санкт-Петербург",
+							"Саранск",
+							"Саратов",
+							"Северодвинск",
+							"Сосновый Бор",
+							"Сочи",
+							"Ставрополь",
+							"Стерлитамак",
+							"Сургут",
+							"Сызрань",
+							"Таганрог",
+							"Тверь",
+							"Тольятти",
+							"Томск",
+							"Туапсе",
+							"Тула",
+							"Тюмень",
+							"Ульяновск",
+							"Усолье-Сибирское",
+							"Уссурийск",
+							"Уфа",
+							"Хабаровск",
+							"Химки",
+							"Чебоксары",
+							"Челябинск",
+							"Энгельс",
+							"Южно-Сахалинск",
+							"Юрга",
+							"Якутск",
+							"Ярославль",
+							"Ясный"
+						]
+					},
+					"office": {
+						"type": "string",
+						"title": "Отделение",
+						"description": "Напишите адрес, название отделения или метро"
+					}
+				}
+			},
+			"account": {
+				"title": "Привязка карты к счету",
+				"properties": {
+					"linkCardToAccount": {
+						"type": "boolean",
+						"title": "Привязать карту к счету"
+					}
+				},
+				"dependencies": {
+					"linkCardToAccount": {
+						"oneOf": [
+							{
+								"properties": {
+									"linkCardToAccount": {
+										"const": true
+									},
+									"card": {
+										"title": "Карта",
+										"properties": {
+											"number": {
+												"type": "string",
+												"title": "Номер карты",
+												"maxLength": 19
+											},
+											"expiryDate": {
+												"type": "string",
+												"title": "Срок действия карты",
+												"maxLength": 5,
+												"examples": [
+													"ММ/ГГ"
+												]
+											},
+											"currency": {
+												"$ref": "#/definitions/currency"
+											},
+											"addAlfaCheck": {
+												"$ref": "#/definitions/addAlfaCheck"
+											},
+											"cardContract": {
+												"title": "Карточный контракт",
+												"type": "string",
+												"anyOf": [
+													{
+														"title": "-",
+														"const": "-"
+													},
+													{
+														"title": "--",
+														"const": "--"
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			}
+		},
+		"definitions": {
+			"attachment": {
+				"type": "string",
+				"format": "data-url",
+				"contentEncoding": "base64",
+				"contentMediaType": "image/jpeg,image/pjpeg,image/png"
+			},
+			"address": {
+				"title": "Адрес",
+				"properties": {
+					"fullAddress": {
+						"type": "string",
+						"title": "Укажите адрес",
+						"examples": [
+							"Москва, ул. Ленина"
+						]
+					},
+					"country": {
+						"type": "string",
+						"title": "Страна",
+						"examples": [
+							"РОССИЯ"
+						]
+					},
+					"postalCode": {
+						"type": "string",
+						"title": "Индекс",
+						"maxLength": 6
+					},
+					"region": {
+						"type": "string",
+						"title": "Регион",
+						"enum": [
+							"Алтайский край",
+							"Амурская область",
+							"Архангельская область",
+							"Астраханская область",
+							"Белгородская область",
+							"Брянская область",
+							"Владимирская область",
+							"Волгоградская область",
+							"Вологодская область",
+							"Воронежская область",
+							"г. Москва",
+							"г. Санкт - Петербург",
+							"г. Севастополь",
+							"город и космодром Байконур",
+							"Еврейская автономная область",
+							"Забайкальский край",
+							"Ивановская область",
+							"Ингушская Республика",
+							"Иркутская область",
+							"Кабардино - Балкарская Республика",
+							"Калининградская область",
+							"Калужская область",
+							"Камчатский край",
+							"Карачаево - Черкесская Республика",
+							"Кемеровская область - Кузбасс",
+							"Кировская область",
+							"Корякский автономный округ",
+							"Костромская область",
+							"Краснодарский край",
+							"Красноярский край",
+							"Курганская область",
+							"Курская область",
+							"Ленинградская область",
+							"Липецкая область",
+							"Магаданская область",
+							"Московская область",
+							"Мурманская область",
+							"не использ. Агинск.Бурятск.АО",
+							"не использ. Коми-Пермяцк.АО",
+							"не использ. Усть-Ордынск.Бурятск.АО",
+							"Ненецкий автономный округ",
+							"Нижегородская область",
+							"Новгородская область",
+							"Новосибирская область",
+							"Омская область",
+							"Оренбургская область",
+							"Орловская область",
+							"Пензенская область",
+							"Пермский край",
+							"Приморский край",
+							"Псковская область",
+							"Республика Адыгея",
+							"Республика Алтай",
+							"Республика Башкортостан",
+							"Республика Бурятия",
+							"Республика Дагестан",
+							"Республика Калмыкия",
+							"Республика Карелия",
+							"Республика Коми",
+							"Республика Крым",
+							"Республика Марий Эл",
+							"Республика Мордовия",
+							"Республика Саха (Якутия)",
+							"Республика Северная Осетия",
+							"Республика Татарстан (Татарстан)",
+							"Республика Тыва",
+							"Республика Хакасия",
+							"Ростовская область",
+							"Рязанская область",
+							"Самарская область",
+							"Саратовская область",
+							"Сахалинская область",
+							"Свердловская область",
+							"Смоленская область",
+							"Ставропольский край",
+							"Таймыр. (Долган Ненецк.) авт. окр.",
+							"Тамбовская область",
+							"Тверская область",
+							"Томская область",
+							"Тульская область",
+							"Тюменская область",
+							"Удмуртская Республика",
+							"Ульяновская область",
+							"Хабаровский край",
+							"Ханты-Мансийский автономный окр.",
+							"Челябинская область",
+							"Чеченская Республика",
+							"Чувашская Респуб. - Чаваш Респуб.",
+							"Чукотский автономный округ",
+							"Эвенкийский автономный округ",
+							"Ямало - Ненецкий автономный округ",
+							"Ярославская область"
+						],
+						"examples": [
+							"г. Москва"
+						]
+					},
+					"city": {
+						"type": "string",
+						"title": "Город",
+						"examples": [
+							"Москва"
+						]
+					},
+					"administrativeDivision": {
+						"title": "Административное деление",
+						"properties": {
+							"areaType": {
+								"title": "Тип",
+								"type": "string",
+								"anyOf": [
+									{
+										"title": "АВТОНОМНАЯ ОБЛАСТЬ",
+										"const": "001"
+									},
+									{
+										"title": "АВТОНОМНЫЙ ОКРУГ",
+										"const": "002"
+									},
+									{
+										"title": "ВОЛОСТЬ",
+										"const": "003"
+									},
+									{
+										"title": "ГОРОД",
+										"const": "015"
+									},
+									{
+										"title": "ГОРОД ФЕДЕРАЛЬНОГО ЗНАЧЕНИЯ",
+										"const": "018"
+									},
+									{
+										"title": "ГОРОДСКОЙ ОКРУГ",
+										"const": "017"
+									},
+									{
+										"title": "КРАЙ",
+										"const": "004"
+									},
+									{
+										"title": "МУНИЦИПАЛЬНЫЙ ОКРУГ",
+										"const": "005"
+									},
+									{
+										"title": "МЫС",
+										"const": "006"
+									},
+									{
+										"title": "ОБЛАСТЬ",
+										"const": "007"
+									},
+									{
+										"title": "ОКРУГ",
+										"const": "016"
+									},
+									{
+										"title": "ОСТРОВ",
+										"const": "008"
+									},
+									{
+										"title": "ПОЛУОСТРОВ",
+										"const": "009"
+									},
+									{
+										"title": "РАЙОН",
+										"const": "010"
+									},
+									{
+										"title": "РЕСПУБЛИКА",
+										"const": "010"
+									},
+									{
+										"title": "ТЕРРИТОРИЯ",
+										"const": "012"
+									},
+									{
+										"title": "ЦЕНТРАЛЬНЫЙ ОКРУГ",
+										"const": "013"
+									}
+								]
+							},
+							"area": {
+								"type": "string",
+								"title": "Наименование"
+							}
+						},
+						"required": [
+							"areaType",
+							"area"
+						]
+					},
+					"settlement": {
+						"title": "Населенный пункт",
+						"properties": {
+							"type": {
+								"title": "Тип",
+								"enum": [
+									"ААЛ",
+									"Автодорога",
+									"АРБАН",
+									"АУЛ",
+									"АЭРОПОРТ",
+									"БАЗА ОТДЫХА",
+									"БРИГАДА",
+									"БУГОР",
+									"БУХТА",
+									"ВЛАДЕНИЕ",
+									"ВОЛОСТЬ",
+									"ВЫСЕЛКИ(ОК)",
+									"ГОРОД",
+									"ГОРОДОК",
+									"ГОРОДСКОЙ ПОСЕЛОК",
+									"ДАЧНО-СТРОИТ. КООПЕРАТИВ",
+									"ДАЧНЫЙ ПОСЕЛОК",
+									"ДВОР(ИКИ)",
+									"ДЕПО",
+									"ДЕРЕВНЯ",
+									"ДЕТСКИЙ ДОМ",
+									"ДОМ ОТДЫХА",
+									"ДОМ-ИНТЕРНАТ (ИНТЕРНАТ)",
+									"ДОРОГА",
+									"ЕРИК",
+									"Ж/Д ОБГОННЫЙ ПУНКТ",
+									"Ж/Д ОСТАНОВОЧНЫЙ ПУНКТ",
+									"ЖЕЛЕЗНОДОРОЖНАЯ БУДКА",
+									"ЖЕЛЕЗНОДОРОЖНАЯ КАЗАРМА",
+									"ЖЕЛЕЗНОДОРОЖНАЯ ПЛАТФОРМА",
+									"ЖЕЛЕЗНОДОРОЖНАЯ СТАНЦИЯ",
+									"ЖЕЛЕЗНОДОРОЖНЫЙ ПОСТ",
+									"ЖЕЛЕЗНОДОРОЖНЫЙ РАЗЪЕЗД",
+									"ЖИВОТНОВОДЧЕСКАЯ ТОЧКА",
+									"Жилая зона",
+									"Жилой район",
+									"ЗАВОД",
+									"ЗАИМКА",
+									"ЗАСТАВА",
+									"ЗОНА ОТДЫХА",
+									"ИНДИВИДУАЛЬНАЯ ЗАСТРОЙКА",
+									"КАЗАРМА",
+									"КАНАЛ",
+									"КАРЬЕР",
+									"КВАРТАЛ",
+									"КИЛОМЕТР",
+									"КИШЛАК",
+									"КОЛХОЗ",
+									"КОЛЬЦО",
+									"КОРДОН",
+									"КОШАРА",
+									"КРАЙ",
+									"КУРОРТНЫЙ ПОСЕЛОК",
+									"ЛЕСНИЧЕСТВО",
+									"Леспромхоз",
+									"ЛЕСХОЗ",
+									"ЛОГ",
+									"МАССИВ",
+									"МАЯК",
+									"МЕСТЕЧКО",
+									"МЕТЕОСТАНЦИЯ",
+									"МИКРОРАЙОН",
+									"МЫС",
+									"НАСЕЛЕННЫЙ ПУНКТ",
+									"ОБЩЕЖИТИЕ",
+									"ОВРАГ",
+									"ОЗЕРО",
+									"ОСТРОВ",
+									"ОТАРА",
+									"ОТДЕЛЕНИЕ",
+									"ПАДЬ",
+									"ПАНСИОНАТ",
+									"ПАРК",
+									"ПЕРЕЕЗД",
+									"ПИКЕТ",
+									"ПИОНЕРСКИЙ ЛАГЕРЬ",
+									"ПИТОМНИК",
+									"ПЛАНИРОВОЧНЫЙ РАЙОН",
+									"ПЛАТФОРМА",
+									"ПЛОДООВОЩНОЙ СОВХОЗ",
+									"Погост",
+									"ПОДСОБНОЕ ХОЗЯЙСТВО",
+									"ПОДЪЕМ",
+									"ПОЙМА",
+									"ПОЛЕ",
+									"ПОЛУОСТРОВ",
+									"ПОЛУСТАНОК",
+									"ПОРТ",
+									"ПОСЕЛЕНИЕ",
+									"ПОСЕЛОК",
+									"ПОСЕЛОК ГОРОДСКОГО ТИПА",
+									"ПОСЕЛОК ЗАВОДСКОЙ",
+									"ПОСЕЛОК ПРИ СТАНЦИИ",
+									"ПОСТ",
+									"ПОЧИНОК",
+									"ПОЧТОВОЕ ОТДЕЛЕНИЕ",
+									"ПРИИСК",
+									"ПРОМЫШЛЕННАЯ ЗОНА",
+									"ПРОСЕЛОК",
+									"ПРОФИЛАКТОРИЙ",
+									"РАБОЧИЙ ПОСЕЛОК",
+									"РАЗРЕЗ",
+									"РАЗЪЕЗД",
+									"Район",
+									"РЕКА",
+									"РЕМОНТНАЯ БАЗА",
+									"РЕЧКА",
+									"РОВ",
+									"РУДНИК",
+									"РЫНОК",
+									"САД",
+									"САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО",
+									"Садовое неком-е товарищество",
+									"САНАТОРИЙ",
+									"САНАТОРИЙ-ПРОФИЛАКТОРИЙ",
+									"СЕЛО",
+									"сельское поселение",
+									"сельсовет",
+									"СЛОБОДА",
+									"СОВХОЗ",
+									"СООРУЖЕНИЕ",
+									"СТАНИЦА",
+									"СТАНЦИЯ",
+									"СТОРОЖКА",
+									"СТРОЕНИЕ",
+									"ТЕРРИТОРИЯ",
+									"ТУРИСТИЧЕСКАЯ БАЗА",
+									"УЛУС",
+									"УРОЧИЩЕ",
+									"УСАДЬБА",
+									"УЧАСТОК",
+									"УЧЕБНОЕ ХОЗЯЙСТВО",
+									"ФАКТОРИЯ",
+									"ФЕРМА",
+									"ХОЗЯЙСТВО",
+									"ХУТОР",
+									"ЦЕНТР. УСАДЬБА ПОДС. ХОЗЯЙСТВА",
+									"ЦЕНТРАЛЬНАЯ УСАДЬБА",
+									"ЦЕНТРАЛЬНАЯ УСАДЬБА СОВХОЗА",
+									"ЦЕНТРАЛЬНАЯ УСАДЬБА ТОО",
+									"ЦЕНТРАЛЬНЫЙ ОКРУГ",
+									"ШАХТА"
+								]
+							},
+							"name": {
+								"type": "string",
+								"title": "Наименование"
+							}
+						}
+					},
+					"street": {
+						"title": "Улица",
+						"properties": {
+							"type": {
+								"title": "Тип",
+								"enum": [
+									"ААЛ",
+									"Абонентский ящик",
+									"АЛЛЕЯ",
+									"Аллея",
+									"АРБАН",
+									"АУЛ",
+									"АЭРОПОРТ",
+									"БАЗА ОТДЫХА",
+									"БАЛКА",
+									"Берег",
+									"БРИГАДА",
+									"БУГОР",
+									"БУДКА",
+									"БУЛЬВАР",
+									"БУХТА",
+									"ВАГОН",
+									"ВАЛ",
+									"ВЗВОЗ",
+									"ВЛАДЕНИЕ",
+									"ВЪЕЗД",
+									"ВЫСЕЛКИ(ОК)",
+									"ГАРАЖ",
+									"Гаражно-строительный кооперат",
+									"ГАРАЖНЫЙ КООПЕРАТИВ",
+									"ГОРКА",
+									"ГОРОД",
+									"ГОРОДОК",
+									"ДАЧНО-СТРОИТ. КООПЕРАТИВ",
+									"Дачное неком-е партнерство",
+									"ДАЧНЫЙ ПОСЕЛОК",
+									"ДВОР(ИКИ)",
+									"ДЕПО",
+									"ДЕРЕВНЯ",
+									"ДОМ ОТДЫХА",
+									"ДОРОГА",
+									"ЕРИК",
+									"Ж/Д ОСТАНОВ. (ОБГОННЫЙ) ПУНКТ",
+									"ЖЕЛЕЗНОДОРОЖНАЯ БУДКА",
+									"ЖЕЛЕЗНОДОРОЖНАЯ КАЗАРМА",
+									"Железнодорожная платформа",
+									"ЖЕЛЕЗНОДОРОЖНАЯ СТАНЦИЯ",
+									"ЖЕЛЕЗНОДОРОЖНЫЙ ПОСТ",
+									"ЖЕЛЕЗНОДОРОЖНЫЙ РАЗЪЕЗД",
+									"ЖИВОТНОВОДЧЕСКАЯ ТОЧКА",
+									"ЗАВОД",
+									"ЗАЕЗД",
+									"ЗАСТАВА",
+									"ЗАУЛОК",
+									"Зона",
+									"ЗОНА ОТДЫХА",
+									"ИНДИВИДУАЛЬНАЯ ЗАСТРОЙКА",
+									"КАЗАРМА",
+									"КАНАЛ",
+									"КАРЬЕР",
+									"КВАРТАЛ",
+									"КИЛОМЕТР",
+									"КИШЛАК",
+									"КОЛХОЗ",
+									"КОЛЬЦО",
+									"КОРДОН",
+									"Коса",
+									"КУРОРТНЫЙ ПОСЕЛОК",
+									"Леспромхоз",
+									"ЛЕСХОЗ",
+									"ЛИНИЯ",
+									"МАГИСТРАЛЬ",
+									"МАССИВ",
+									"МАЯК",
+									"МЕСТЕЧКО",
+									"Местность",
+									"МЕТЕОСТАНЦИЯ",
+									"МИКРОРАЙОН",
+									"МОСТ",
+									"МУНИЦИПАЛЬНЫЙ ОКРУГ",
+									"МЫС",
+									"НАБЕРЕЖНАЯ",
+									"НАСЕЛЕННЫЙ ПУНКТ",
+									"Некоммерческое партнерство",
+									"ОБЩЕЖИТИЕ",
+									"ОВРАГ",
+									"ОСТРОВ",
+									"ОТДЕЛЕНИЕ",
+									"ПАНСИОНАТ",
+									"ПАРК",
+									"ПЕРЕЕЗД",
+									"ПЕРЕУЛОК",
+									"ПИКЕТ",
+									"ПИОНЕРСКИЙ ЛАГЕРЬ",
+									"ПИТОМНИК",
+									"ПЛАНИРОВОЧНЫЙ РАЙОН",
+									"ПЛАТФОРМА",
+									"ПЛОЩАДКА",
+									"ПЛОЩАДЬ",
+									"ПОДСОБНОЕ ХОЗЯЙСТВО",
+									"ПОДСТАНЦИЯ",
+									"ПОДЪЕМ",
+									"ПОЛЕ",
+									"ПОЛУОСТРОВ",
+									"ПОЛУСТАНОК",
+									"Полустанок",
+									"ПОРТ",
+									"ПОСЕЛОК",
+									"ПОСЕЛОК ПРИ СТАНЦИИ",
+									"ПОСТ",
+									"ПОЧИНОК",
+									"ПОЧТОВОЕ ОТДЕЛЕНИЕ",
+									"ПРИИСК",
+									"ПРИЧАЛ",
+									"ПРОЕЗД",
+									"ПРОМЗОНА",
+									"ПРОСЕК",
+									"Просека",
+									"ПРОСЕЛОК",
+									"ПРОСПЕКТ",
+									"Проток",
+									"Протока",
+									"ПРОУЛОК",
+									"ПУТЬ",
+									"РАБОЧИЙ ПОСЕЛОК",
+									"РАЗЪЕЗД",
+									"РАЙОН",
+									"РЕКА",
+									"РЕМОНТНАЯ БАЗА",
+									"РЕЧКА",
+									"РОВ",
+									"РЫНОК",
+									"РЯД(Ы)",
+									"САД",
+									"САДОВОДЧЕСКОЕ ТОВАРИЩЕСТВО",
+									"Садовое неком-е товарищество",
+									"СЕЛО",
+									"СКВЕР",
+									"Слобода",
+									"СООРУЖЕНИЕ",
+									"СПУСК",
+									"СТАДИОН",
+									"СТАНЦИЯ",
+									"СТРОЕНИЕ",
+									"СЪЕЗД",
+									"ТЕР-Я ГАРАЖНО-СТРОИТЕЛЬНОГО КООП.",
+									"ТЕР-Я ДАЧНЫХ НЕКОМ.ОБЪЕД-ИЙ ГРАЖДА",
+									"ТЕР-Я ДАЧНЫХ НЕКОММЕРЧ.ПАРТНЕРСТВ",
+									"ТЕР-Я ДАЧНЫХ НЕКОММЕРЧ.ТОВАРИЩЕСТВ",
+									"ТЕР-Я ДАЧНЫХ ПОТРЕБИТЕЛЬСКИХ КООП.",
+									"ТЕР-Я ОГОРО-СКИХ НЕКОМ.ОБЪЕД-ИЙ ГР",
+									"ТЕР-Я ОГОРОД-СКИХ НЕКОМ.ПАРТН-СТВ",
+									"ТЕР-Я ОГОРОД-СКИХ ПОТРЕБ-СКИХ КООП",
+									"ТЕР-Я ОГОРОД-СКОГО НЕКОМ.ТОВ-СТВА",
+									"ТЕР-Я ПОТРЕБИТЕЛЬСКОГО КООП.",
+									"ТЕР-Я САДОВ-СКИХ НЕКОМ.ОБЪЕД-ИЙ ГР",
+									"ТЕР-Я САДОВ-СКИХ НЕКОМ.ПАРТНЕРСТВ",
+									"ТЕР-Я САДОВ-СКИХ ПОТРЕБ-СКИХ КООП.",
+									"ТЕР-Я САДОВ-СКОГО НЕКОМ.ТОВ-СТВА",
+									"ТЕР-Я ТОВАРИЩ.СОБСТВ-КОВ ЖИЛЬЯ",
+									"ТЕР-Я ТОВАРИЩ.СОБСТВ-КОВ НЕДВИЖ",
+									"ТЕРРИТОРИЯ",
+									"ТЕРРИТОРИЯ ФЕРМЕРСКОГО ХОЗЯЙСТВА",
+									"ТОННЕЛЬ",
+									"ТОРГОВЫЕ РЯДЫ",
+									"ТРАКТ",
+									"ТУПИК",
+									"ТУРИСТИЧЕСКАЯ БАЗА",
+									"УЛИЦА",
+									"УСАДЬБА",
+									"УЧАСТОК",
+									"УЧЕБНОЕ ХОЗЯЙСТВО",
+									"ФАКТОРИЯ",
+									"ФЕРМА",
+									"Фермерское хозяйство",
+									"ХУТОР",
+									"ЦЕНТР. УСАДЬБА ПОДС. ХОЗЯЙСТВА",
+									"ЦЕНТРАЛЬНАЯ УСАДЬБА",
+									"ЦЕНТРАЛЬНАЯ УСАДЬБА СОВХОЗА",
+									"ЦЕНТРАЛЬНАЯ УСАДЬБА ТОО",
+									"ШОССЕ"
+								]
+							},
+							"name": {
+								"type": "string",
+								"title": "Наименование",
+								"description": "Если у вас нет улицы, поставьте прочерк"
+							}
+						}
+					},
+					"building": {
+						"type": "string",
+						"title": "Дом"
+					},
+					"block": {
+						"type": "string",
+						"title": "Корпус"
+					},
+					"flat": {
+						"type": "string",
+						"title": "Квартира"
+					}
+				}
+			},
+			"employment": {
+				"title": "Занятость",
+				"properties": {
+					"isPayroll": {
+						"title": "Зарплатный клиент?",
+						"anyOf": [
+							{
+								"title": "Нет",
+								"const": false
+							},
+							{
+								"title": "Да",
+								"const": true
+							}
+						]
+					},
+					"inn": {
+						"type": "string",
+						"title": "ИНН организации",
+						"minLength": 10,
+						"maxLength": 12
+					},
+					"startDate": {
+						"type": "string",
+						"title": "Дата начала работы",
+						"format": "date",
+						"examples": [
+							"01.01.1990"
+						]
+					},
+					"workPhone": {
+						"type": "string",
+						"title": "Рабочий телефон"
+					},
+					"workEmail": {
+						"type": "string",
+						"title": "Рабочая почта",
+						"format": "email",
+						"examples": [
+							"mail@mail.com"
+						]
+					}
+				},
+				"if": {
+					"properties": {
+						"isPayroll": {
+							"const": true
+						}
+					}
+				},
+				"then": {
+					"required": [
+						"startDate",
+						"inn"
+					]
+				},
+				"required": [
+					"startDate"
+				]
+			},
+			"currency": {
+				"title": "Валюта",
+				"type": "string",
+				"anyOf": [
+					{
+						"title": "Российский рубль",
+						"const": "RUR"
+					},
+					{
+						"title": "Доллар США",
+						"const": "USD"
+					},
+					{
+						"title": "Евро",
+						"const": "EUR "
+					}
+				]
+			},
+			"addAlfaCheck": {
+				"title": "Подключить Альфа-Чек?",
+				"anyOf": [
+					{
+						"title": "Нет",
+						"const": false
+					},
+					{
+						"title": "Да",
+						"const": true
+					}
+				]
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "stepper"
+	},
+	"formData": {}
+}

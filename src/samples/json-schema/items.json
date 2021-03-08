@@ -1,0 +1,52 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"itemsSchemaArray": {
+				"title": "Персональная схема для каждого элемента",
+				"type": "array",
+				"items": [
+					{
+						"title": "Email",
+						"type": "string",
+						"format": "email"
+					},
+					{
+						"title": "Мобильный телефон",
+						"type": "string",
+						"pattern": "^\\+79[0-9]{9}$",
+						"x-errorMessages": {
+							"pattern": "должно быть номером мобильного телефона"
+						}
+					},
+					{
+						"title": "Telegram",
+						"type": "string",
+						"pattern": "^@.{10}$",
+						"x-errorMessages": {
+							"pattern": "должно быть логином \"Telegram\""
+						}
+					}
+				]
+			},
+			"itemsSchema": {
+				"title": "Общая схема для всех элементов",
+				"type": "array",
+				"items": {
+					"title": "Email",
+					"type": "string",
+					"format": "email"
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["itemsSchemaArray"]
+	},
+	"formData": {
+		"itemsSchemaArray": ["", "", ""],
+		"itemsSchema": ["", ""]
+	}
+}

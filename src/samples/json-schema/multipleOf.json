@@ -1,0 +1,26 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/amount"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/amount"
+			}
+		},
+		"definitions": {
+			"amount": {
+				"type": "number",
+				"multipleOf": 1
+			}
+		}
+	},
+	"formData": {
+		"valid": 10,
+		"invalid": 10.1
+	}
+}

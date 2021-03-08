@@ -1,0 +1,112 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"typeDefault": {
+				"title": "Чекбокс (по умолчанию)",
+				"$ref": "#/definitions/state"
+			},
+			"typeButton": {
+				"title": "Чекбокс-кнопка",
+				"$ref": "#/definitions/state"
+			}
+		},
+		"definitions": {
+			"state": {
+				"properties": {
+					"indeterminate": {
+						"title": "неопределенно",
+						"description": "текст подсказки в формате [CommonMark](https://commonmark.org/help/)",
+						"type": "boolean"
+					},
+					"checked": {
+						"title": "отмечено",
+						"type": "boolean"
+					},
+					"unchecked": {
+						"title": "не отмечено",
+						"type": "boolean"
+					},
+					"disabled": {
+						"title": "отключено",
+						"type": "boolean",
+						"readOnly": true
+					},
+					"invalid": {
+						"title": "неверно",
+						"type": "boolean",
+						"const": true,
+						"x-errorMessages": {
+							"const": "должно быть отмечено"
+						}
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["typeDefault"],
+		"typeDefault": {
+			"indeterminate": {
+				"ui:widget": "checkbox"
+			},
+			"checked": {
+				"ui:widget": "checkbox"
+			},
+			"unchecked": {
+				"ui:widget": "checkbox"
+			},
+			"disabled": {
+				"ui:widget": "checkbox"
+			}
+		},
+		"typeButton": {
+			"indeterminate": {
+				"ui:widget": "checkbox",
+				"ui:options": {
+					"type": "button"
+				}
+			},
+			"checked": {
+				"ui:widget": "checkbox",
+				"ui:options": {
+					"type": "button"
+				}
+			},
+			"unchecked": {
+				"ui:widget": "checkbox",
+				"ui:options": {
+					"type": "button"
+				}
+			},
+			"disabled": {
+				"ui:widget": "checkbox",
+				"ui:options": {
+					"type": "button"
+				}
+			},
+			"invalid": {
+				"ui:widget": "checkbox",
+				"ui:options": {
+					"type": "button"
+				}
+			}
+		}
+	},
+	"formData": {
+		"typeDefault": {
+			"checked": true,
+			"unchecked": false,
+			"disabled": true,
+			"invalid": false
+		},
+		"typeButton": {
+			"checked": true,
+			"unchecked": false,
+			"disabled": true,
+			"invalid": false
+		}
+	}
+}

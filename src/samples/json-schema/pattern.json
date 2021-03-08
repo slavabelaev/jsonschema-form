@@ -1,0 +1,341 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"phoneNumber": {
+				"title": "^x (начинается на \"x\")",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/phoneNumber"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/phoneNumber"
+					}
+				}
+			},
+			"hostName": {
+				"title": "x$ (заканчивается на \"x\")",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/hostName"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/hostName"
+					}
+				}
+			},
+			"gender": {
+				"title": "x|y (\"x\" или \"y\")",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/gender"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/gender"
+					}
+				}
+			},
+			"romanNumber": {
+				"title": "[xyz] (\"x\", \"y\" или \"z\")",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/romanNumber"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/romanNumber"
+					}
+				}
+			},
+			"firstName": {
+				"title": "[a-z] (любой символ от \"a\" до \"z\")",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/firstName"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/firstName"
+					}
+				}
+			},
+			"lastName": {
+				"title": "[^xyz] (любой символ, кроме \"x\", \"y\", \"z\")",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/lastName"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/lastName"
+					}
+				}
+			},
+			"username": {
+				"title": "[^a-z] (любой символ, кроме от \"a\" до \"z\")",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/username"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/username"
+					}
+				}
+			},
+			"age": {
+				"title": "x+ (повторение \"x\" один и более раз)",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/age"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/age"
+					}
+				}
+			},
+			"email": {
+				"title": "x* (повторение \"x\" ноль и более раз)",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/email"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/email"
+					}
+				}
+			},
+			"snils": {
+				"title": "x? (повторение \"x\" ноль или один раз)",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/snils"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/snils"
+					}
+				}
+			},
+			"series": {
+				"title": "x{y} (повторение \"x\" - \"y\" раз)",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/series"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/series"
+					}
+				}
+			},
+			"cardNumber": {
+				"title": "x{y,z} (повторение \"x\" от \"y\" до \"z\" раз)",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/cardNumber"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/cardNumber"
+					}
+				}
+			},
+			"smsCode": {
+				"title": "x{y,} (повторение \"x\" - \"y\" раз и более)",
+				"properties": {
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/smsCode"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/smsCode"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"phoneNumber": {
+				"title": "Телефон",
+				"type": "string",
+				"pattern": "^\\+7",
+				"x-errorMessages": {
+					"pattern": "должно начинаться на \"+7\""
+				}
+			},
+			"hostName": {
+				"title": "Хост",
+				"type": "string",
+				"pattern": ".com$",
+				"x-errorMessages": {
+					"pattern": "должно заканчиваться на \".com\""
+				}
+			},
+			"gender": {
+				"title": "Пол",
+				"type": "string",
+				"pattern": "^мужской|женский$",
+				"x-errorMessages": {
+					"pattern": "должно быть \"мужской\" или \"женский\""
+				}
+			},
+			"romanNumber": {
+				"title": "Римское число",
+				"type": "string",
+				"pattern": "^[IVXLCDM]*$",
+				"x-errorMessages": {
+					"pattern": "должно состоять из символов I,V,X,L,C,D,M"
+				}
+			},
+			"firstName": {
+				"title": "Имя",
+				"type": "string",
+				"pattern": "^[А-Я][а-я]+$",
+				"x-errorMessages": {
+					"pattern": "должно начинаться с заглавной буквы А-Я"
+				}
+			},
+			"lastName": {
+				"title": "Фамилия",
+				"type": "string",
+				"pattern": "^[^ёЁ]+$",
+				"x-errorMessages": {
+					"pattern": "не должно содержать буквы \"Ё\" и \"ё\""
+				}
+			},
+			"username": {
+				"title": "Логин",
+				"type": "string",
+				"pattern": "^[^A-Z]+$",
+				"x-errorMessages": {
+					"pattern": "не должно содержать заглавные буквы A-Z"
+				}
+			},
+			"age": {
+				"title": "Возраст",
+				"type": "string",
+				"pattern": "^[0-9]+$",
+				"x-errorMessages": {
+					"pattern": "должно содержать не меньше одной цифры"
+				}
+			},
+			"email": {
+				"title": "Email",
+				"type": "string",
+				"pattern": "^user[0-9]*@example.com$",
+				"x-errorMessages": {
+					"pattern": "должно быть в формате user[123]@example.com"
+				}
+			},
+			"snils": {
+				"title": "СНИЛС",
+				"type": "string",
+				"pattern": "^[0-9]{3}-?[0-9]{3}-?[0-9]{3} ?[0-9]{2}$",
+				"x-errorMessages": {
+					"pattern": "должен соответствовать формату 123-456-789 01 или 12345678901"
+				}
+			},
+			"series": {
+				"title": "Серия паспорта РФ",
+				"type": "string",
+				"pattern": "^[0-9]{4}$",
+				"x-errorMessages": {
+					"pattern": "должно содержать 4-е цифры"
+				}
+			},
+			"cardNumber": {
+				"title": "Номер карты",
+				"type": "string",
+				"pattern": "^[0-9]{16,18}$",
+				"x-errorMessages": {
+					"pattern": "должно содержать 16-18 цифр"
+				}
+			},
+			"smsCode": {
+				"title": "SMS-код",
+				"type": "string",
+				"pattern": "^[0-9]{4,}$",
+				"x-errorMessages": {
+					"pattern": "должно содержать не меньше 4-х цифр"
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"phoneNumber": {
+			"valid": "+7 (495) 123-45-67",
+			"invalid": ""
+		},
+		"hostName": {
+			"valid": "example.com",
+			"invalid": ""
+		},
+		"romanNumber": {
+			"valid": "XXVI",
+			"invalid": "1234"
+		},
+		"gender": {
+			"valid": "мужской",
+			"invalid": ""
+		},
+		"username": {
+			"valid": "ivanivanov",
+			"invalid": "IvanIvanov"
+		},
+		"age": {
+			"valid": "18",
+			"invalid": ""
+		},
+		"snils": {
+			"valid": "123-456-789 01",
+			"invalid": ""
+		},
+		"email": {
+			"valid": "ivanivanov123@example.com",
+			"invalid": ""
+		},
+		"firstName": {
+			"valid": "Иван",
+			"invalid": "иван"
+		},
+		"lastName": {
+			"valid": "Парфенов",
+			"invalid": "Парфёнов"
+		},
+		"series": {
+			"valid": "4012",
+			"invalid": ""
+		},
+		"cardNumber": {
+			"valid": "4321098765432109",
+			"invalid": ""
+		},
+		"smsCode": {
+			"valid": "1234",
+			"invalid": ""
+		}
+	}
+}

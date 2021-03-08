@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "properties": {
+    "$ref": {
+      "type": "string",
+      "default": "не найдена схема ${ref}"
+    },
+    "additionalItems": {
+      "type": "string",
+      "default": "должно иметь не более, чем ${limit} ${declension(limit, ['элемент', 'элемента', 'элементов'])}"
+    },
+    "additionalProperties": {
+      "type": "string",
+      "default": "не должно иметь дополнительные поля"
+    },
+    "anyOf": {
+      "type": "string",
+      "default": "должно соответствовать одной их схем в \"anyOf\""
+    },
+    "const": {
+      "type": "string",
+      "default": "должно быть равно заданному значению"
+    },
+    "contains": {
+      "type": "string",
+      "default": "должно содержать значение соответствующее схеме"
+    },
+    "custom": {
+      "type": "string",
+      "default": "должно соответствовать правилу ${keyword}"
+    },
+    "dependencies": {
+      "type": "string",
+      "default": "должно иметь поля ${deps}, когда присутствует поле ${property}"
+    },
+    "enum": {
+      "type": "string",
+      "default": "должно быть равен одному из значений в \"enum\""
+    },
+    "exclusiveMaximum": {
+      "type": "string",
+      "default": "должно быть ${comparison} ${limit}"
+    },
+    "exclusiveMinimum": {
+      "type": "string",
+      "default": "должно быть ${comparison} ${limit}"
+    },
+    "false schema": {
+      "type": "string",
+      "default": "схема равна false"
+    },
+    "format": {
+      "type": "string",
+      "default": "должно соответствовать формату \"${format}\""
+    },
+    "formatExclusiveMaximum": {
+      "type": "string",
+      "default": "${keyword} должно быть boolean"
+    },
+    "formatExclusiveMinimum": {
+      "type": "string",
+      "default": "${keyword} должно быть boolean"
+    },
+    "formatMaximum": {
+      "type": "string",
+      "default": "должно быть ${comparison} ${limit}"
+    },
+    "formatMinimum": {
+      "type": "string",
+      "default": "должно быть ${comparison} ${limit}"
+    },
+    "if": {
+      "type": "string",
+      "default": "должно соответствовать схемe \"${failingKeyword}\""
+    },
+    "maximum": {
+      "type": "string",
+      "default": "должно быть ${comparison} ${limit}"
+    },
+    "maxItems": {
+      "type": "string",
+      "default": "должно иметь не более, чем ${limit} ${declension(limit, ['элемент', 'элемента', 'элементов'])}"
+    },
+    "maxLength": {
+      "type": "string",
+      "default": "должно быть не длиннее, чем ${limit} ${declension(limit, ['символ', 'символа', 'символов'])}"
+    },
+    "maxProperties": {
+      "type": "string",
+      "default": "должно иметь не более, чем ${limit} ${declension(limit, ['поле', 'поля', 'полей'])}"
+    },
+    "minimum": {
+      "type": "string",
+      "default": "должно быть ${comparison} ${limit}"
+    },
+    "minItems": {
+      "type": "string",
+      "default": "должно иметь не менее, чем ${limit} ${declension(limit, ['элемент', 'элемента', 'элементов'])}"
+    },
+    "minLength": {
+      "type": "string",
+      "default": "должно быть не короче, чем ${limit} ${declension(limit, ['символ', 'символа', 'символов'])}"
+    },
+    "minProperties": {
+      "type": "string",
+      "default": "должно иметь не менее, чем ${limit} ${declension(limit, ['поле', 'поля', 'полей'])}"
+    },
+    "multipleOf": {
+      "type": "string",
+      "default": "должно быть кратным ${multipleOf}"
+    },
+    "not": {
+      "type": "string",
+      "default": "должно не соответствовать схеме в \"not\""
+    },
+    "oneOf": {
+      "type": "string",
+      "default": "должно соответствовать в точности одной схеме в \"oneOf\""
+    },
+    "pattern": {
+      "type": "string",
+      "default": "должно соответствовать образцу \"${pattern}\""
+    },
+    "patternRequired": {
+      "type": "string",
+      "default": "должно иметь поле, соответствующее образцу \"${missingPattern}\""
+    },
+    "propertyNames": {
+      "type": "string",
+      "default": "имя поля \"${propertyName}\" не соответствует схеме"
+    },
+    "required": {
+      "type": "string",
+      "default": "обязательное"
+    },
+    "switch": {
+      "type": "string",
+      "default": "должно соответствовать правилу ${caseIndex} в \"switch\""
+    },
+    "type": {
+      "type": "string",
+      "default": "должно быть ${type}"
+    },
+    "uniqueItems": {
+      "type": "string",
+      "default": "не должно иметь повторяющихся элементов (элементы ${j} и ${i} идентичны)"
+    }
+  }
+}

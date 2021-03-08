@@ -1,0 +1,42 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/citizenship"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/citizenship"
+			}
+		},
+		"definitions": {
+			"citizenship": {
+				"description": "Гражданином каких стран вы являетесь?",
+				"type": "array",
+				"items": {
+					"title": "Страна",
+					"type": "string"
+				},
+				"uniqueItems": true
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": [
+			"Россия",
+			"Беларусь"
+		],
+		"invalid": [
+			"Россия",
+			"Россия",
+			"Беларусь"
+		]
+	}
+}

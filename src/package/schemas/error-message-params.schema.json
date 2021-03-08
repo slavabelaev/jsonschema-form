@@ -1,0 +1,484 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "properties": {
+    "message": {
+      "type": "string",
+      "examples": [
+        "должно быть integer"
+      ]
+    },
+    "name": {
+      "enum": [
+        "type",
+        "minimum",
+        "maximum",
+        "exclusiveMinimum",
+        "exclusiveMaximum",
+        "multipleOf",
+        "minLength",
+        "maxLength",
+        "pattern",
+        "format",
+        "minItems",
+        "maxItems",
+        "uniqueItems",
+        "contains",
+        "minProperties",
+        "maxProperties",
+        "required",
+        "propertyNames",
+        "dependencies",
+        "enum",
+        "const",
+        "not"
+      ]
+    },
+    "property": {
+      "type": "string",
+      "examples": [
+        ".path.to.propertyName[0]"
+      ]
+    },
+    "schemaPath": {
+      "type": "string",
+      "examples": [
+        "#/properties/path/properties/to/properties/propertyName/items[0]"
+      ]
+    },
+    "stack": {
+      "type": "string",
+      "examples": [
+        ".path.to.propertyName[0] should be integer"
+      ]
+    }
+  },
+  "dependencies": {
+    "name": {
+      "oneOf": [
+        {
+          "properties": {
+            "name": {
+              "const": "type"
+            },
+            "params": {
+              "properties": {
+                "type": {
+                  "$ref": "#/definitions/type"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "minimum"
+            },
+            "params": {
+              "properties": {
+                "comparison": {
+                  "$ref": "#/definitions/comparison",
+                  "const": ">="
+                },
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                },
+                "exclusive": {
+                  "$ref": "#/definitions/exclusive"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "maximum"
+            },
+            "params": {
+              "properties": {
+                "comparison": {
+                  "$ref": "#/definitions/comparison",
+                  "const": "<="
+                },
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                },
+                "exclusive": {
+                  "$ref": "#/definitions/exclusive"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "exclusiveMinimum"
+            },
+            "params": {
+              "properties": {
+                "comparison": {
+                  "$ref": "#/definitions/comparison",
+                  "const": ">"
+                },
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                },
+                "exclusive": {
+                  "$ref": "#/definitions/exclusive"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "exclusiveMaximum"
+            },
+            "params": {
+              "properties": {
+                "comparison": {
+                  "$ref": "#/definitions/comparison",
+                  "const": "<"
+                },
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                },
+                "exclusive": {
+                  "$ref": "#/definitions/exclusive"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "multipleOf"
+            },
+            "params": {
+              "properties": {
+                "multipleOf": {
+                  "$ref": "#/definitions/multipleOf"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "minLength"
+            },
+            "params": {
+              "properties": {
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "maxLength"
+            },
+            "params": {
+              "properties": {
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "pattern"
+            },
+            "params": {
+              "properties": {
+                "pattern": {
+                  "$ref": "#/definitions/pattern"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "format"
+            },
+            "params": {
+              "properties": {
+                "format": {
+                  "$ref": "#/definitions/format"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "minItems"
+            },
+            "params": {
+              "properties": {
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "maxItems"
+            },
+            "params": {
+              "properties": {
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "uniqueItems"
+            },
+            "params": {
+              "properties": {
+                "i": {
+                  "type": "integer"
+                },
+                "j": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "contains"
+            },
+            "params": {
+              "type": "object"
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "minProperties"
+            },
+            "params": {
+              "properties": {
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "maxProperties"
+            },
+            "params": {
+              "properties": {
+                "limit": {
+                  "$ref": "#/definitions/limit"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "required"
+            },
+            "params": {
+              "properties": {
+                "missingProperty": {
+                  "$ref": "#/definitions/propertyName"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "propertyNames"
+            },
+            "params": {
+              "properties": {
+                "propertyName": {
+                  "$ref": "#/definitions/propertyName"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "dependencies"
+            },
+            "params": {
+              "properties": {
+                "deps": {
+                  "$ref": "#/definitions/deps"
+                },
+                "depsCount": {
+                  "$ref": "#/definitions/depsCount"
+                },
+                "missingProperty": {
+                  "$ref": "#/definitions/propertyName"
+                },
+                "property": {
+                  "$ref": "#/definitions/propertyName"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "enum"
+            },
+            "params": {
+              "properties": {
+                "allowedValues": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/allowedValue"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "const"
+            },
+            "params": {
+              "properties": {
+                "allowedValue": {
+                  "$ref": "#/definitions/allowedValue"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "const": "not"
+            },
+            "params": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "type": {
+      "title": "Тип",
+      "enum": [
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "array",
+        "object",
+        "null"
+      ]
+    },
+    "comparison": {
+      "title": "Тип сравнения",
+      "enum": [
+        ">=",
+        "<=",
+        ">",
+        "<"
+      ]
+    },
+    "limit": {
+      "title": "Ограничение",
+      "type": "number"
+    },
+    "exclusive": {
+      "title": "Эксклюзивное",
+      "type": "boolean"
+    },
+    "multipleOf": {
+      "title": "Кратное",
+      "type": "number"
+    },
+    "pattern": {
+      "title": "Регулярное выражение",
+      "type": "string",
+      "format": "pattern",
+      "examples": [
+        "^[А-я0-9]{7}$"
+      ]
+    },
+    "format": {
+      "title": "Формат",
+      "type": "string",
+      "examples": [
+        "email",
+        "date"
+      ]
+    },
+    "propertyName": {
+      "title": "Свойство",
+      "type": "string",
+      "examples": [
+        "propertyName"
+      ]
+    },
+    "deps": {
+      "title": "Зависимости",
+      "type": "string",
+      "examples": [
+        "propertyName1, propertyName2"
+      ]
+    },
+    "depsCount": {
+      "title": "Количество зависимостей",
+      "type": "integer"
+    },
+    "allowedValue": {
+      "title": "Разрешенное значение",
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object",
+        "null"
+      ]
+    }
+  }
+}

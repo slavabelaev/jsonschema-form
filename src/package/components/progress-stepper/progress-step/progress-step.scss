@@ -1,0 +1,48 @@
+.progress-step {
+  display: grid;
+  grid-gap: 16px;
+
+  &__header {
+    display: grid;
+    grid-gap: 4px;
+  }
+
+  &__hint,
+  &__title {
+    font-size: 13px;
+    color: var(--color-dark-indigo-60);
+    margin-bottom: 0;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    background: #f5f7f9;
+    border-radius: 4px;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  &__next-button {
+    min-width: 50%;
+    max-width: 50%;
+  }
+
+  &__back-button {
+    border: none;
+    background: none;
+  }
+
+  &__icon {
+    min-width: 24px;
+    margin-right: 8px;
+  }
+
+  &__message {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--color-dark-indigo);
+    margin: 0;
+  }
+}

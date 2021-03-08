@@ -1,0 +1,99 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"on": {
+						"title": "включено",
+						"description": "текст подсказки",
+						"type": "boolean"
+					},
+					"off": {
+						"title": "отключено",
+						"type": "boolean"
+					},
+					"onDisabled": {
+						"title": "включено / недоступно",
+						"type": "boolean",
+						"readOnly": true
+					},
+					"offDisabled": {
+						"title": "отключено / недоступно",
+						"type": "boolean",
+						"readOnly": true
+					},
+					"invalid": {
+						"title": "неверно",
+						"type": "boolean"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"validation": {
+				"title": "Проверки",
+				"properties": {
+					"shouldBeON": {
+						"title": "текст",
+						"type": "boolean",
+						"const": true,
+						"x-errorMessages": {
+							"const": "должно быть включено"
+						}
+					},
+					"shouldBeOFF": {
+						"title": "текст",
+						"type": "boolean",
+						"const": false,
+						"x-errorMessages": {
+							"const": "должно быть выключено"
+						}
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"],
+		"state": {
+			"on": {
+				"ui:widget": "toggle"
+			},
+			"off": {
+				"ui:widget": "toggle"
+			},
+			"onDisabled": {
+				"ui:widget": "toggle"
+			},
+			"offDisabled": {
+				"ui:widget": "toggle"
+			},
+			"invalid": {
+				"ui:widget": "toggle"
+			}
+		},
+		"validation": {
+			"shouldBeON": {
+				"ui:widget": "toggle"
+			},
+			"shouldBeOFF": {
+				"ui:widget": "toggle"
+			}
+		}
+	},
+	"formData": {
+		"state": {
+			"on": true,
+			"off": false,
+			"onDisabled": true,
+			"offDisabled": false
+		},
+		"validation": {
+			"shouldBeON": false,
+			"shouldBeOFF": true
+		}
+	}
+}

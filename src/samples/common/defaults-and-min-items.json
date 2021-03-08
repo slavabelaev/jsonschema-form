@@ -1,0 +1,25 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"type": "array",
+		"title": "List and item level defaults",
+		"minItems": 5,
+		"default": [
+			"carp",
+			"trout",
+			"bream"
+		],
+		"items": {
+			"type": "string",
+			"default": "unidentified"
+		}
+	},
+	"formData": [
+		"carp",
+		"trout",
+		"bream",
+		"unidentified",
+		"unidentified"
+	]
+}

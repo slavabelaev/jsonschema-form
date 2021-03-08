@@ -1,0 +1,6 @@
+.md-blockquote {
+  box-sizing: border-box;
+  * + & {
+    margin-top: 16px;
+  }
+}

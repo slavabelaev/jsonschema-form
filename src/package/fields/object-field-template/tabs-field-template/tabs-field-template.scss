@@ -1,0 +1,22 @@
+.tabs-field-template {
+  padding: 0;
+  border-width: 0;
+
+  &__tab-item {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+  }
+
+  &__tab-item + &__tab-item {
+    margin-left: 24px;
+  }
+
+  &__hint-icon {
+    margin-left: 8px;
+  }
+
+  &__tab-content {
+    padding: 16px 0;
+  }
+}

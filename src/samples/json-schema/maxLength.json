@@ -1,0 +1,26 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/username"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/username"
+			}
+		},
+		"definitions": {
+			"username": {
+				"type": "string",
+				"maxLength": 12
+			}
+		}
+	},
+	"formData": {
+		"valid": "ivan.ivanov",
+		"invalid": "ivan.ivanov1970"
+	}
+}

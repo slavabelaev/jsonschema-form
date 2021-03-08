@@ -1,0 +1,873 @@
+{
+  "$schema": "../../../package/schemas/form-props.schema.json",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "state": {
+        "title": "Состояние",
+        "properties": {
+          "default": {
+            "title": "По умолчанию",
+            "description": "Текст подсказки",
+            "$ref": "#/definitions/textEditor"
+          },
+          "readOnly": {
+            "title": "Только для чтения",
+            "readOnly": true,
+            "$ref": "#/definitions/textEditor"
+          }
+        }
+      },
+      "validation": {
+        "title": "Проверки",
+        "properties": {
+          "minLength": {
+            "title": "Минимальная длина",
+            "$ref": "#/definitions/textEditor"
+          },
+          "maxLength": {
+            "title": "Максимальная длина",
+            "$ref": "#/definitions/textEditor"
+          }
+        }
+      },
+      "samples": {
+        "title": "Поддерживаемые языки",
+        "properties": {
+          "language": {
+            "title": "Язык",
+            "enum": ["abap","aes","apex","azcli","bat","c","cameligo","clojure","coffeescript","cpp","csharp","csp","css","dart","dockerfile","ecl","fsharp","go","graphql","handlebars","hcl","html","ini","java","javascript","json","julia","kotlin","less","lexon","lua","m3","markdown","mips","msdax","mysql","objective-c","pascal","pascaligo","perl","pgsql","php","plaintext","postiats","powerquery","powershell","pug","python","r","razor","redis","redshift","restructuredtext","ruby","rust","sb","scala","scheme","scss","shell","sol","sql","st","swift","systemverilog","tcl","twig","typescript","vb","verilog","xml","yaml"]
+          },
+          "editor": {
+            "title": "Текст",
+            "type": "string",
+            "contentMediaType": "text/plain"
+          }
+        },
+        "dependencies": {
+          "language": {
+            "oneOf": [
+              {
+                "properties": {
+                  "language": {
+                    "const": "abap"
+                  },
+                  "editor": {
+                    "title": "abap",
+                    "contentMediaType": "text/x-abap"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "aes"
+                  },
+                  "editor": {
+                    "title": "aes",
+                    "contentMediaType": "text/x-aes"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "apex"
+                  },
+                  "editor": {
+                    "title": "apex",
+                    "contentMediaType": "text/x-apex"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "azcli"
+                  },
+                  "editor": {
+                    "title": "azcli",
+                    "contentMediaType": "text/x-azcli"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "bat"
+                  },
+                  "editor": {
+                    "title": "bat",
+                    "contentMediaType": "text/x-bat"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "c"
+                  },
+                  "editor": {
+                    "title": "c",
+                    "contentMediaType": "text/x-c"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "cameligo"
+                  },
+                  "editor": {
+                    "title": "cameligo",
+                    "contentMediaType": "text/x-cameligo"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "clojure"
+                  },
+                  "editor": {
+                    "title": "clojure",
+                    "contentMediaType": "text/x-clojure"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "coffeescript"
+                  },
+                  "editor": {
+                    "title": "coffeescript",
+                    "contentMediaType": "text/x-coffeescript"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "cpp"
+                  },
+                  "editor": {
+                    "title": "cpp",
+                    "contentMediaType": "text/x-cpp"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "csharp"
+                  },
+                  "editor": {
+                    "title": "csharp",
+                    "contentMediaType": "text/x-csharp"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "csp"
+                  },
+                  "editor": {
+                    "title": "csp",
+                    "contentMediaType": "text/x-csp"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "css"
+                  },
+                  "editor": {
+                    "title": "css",
+                    "contentMediaType": "text/x-css"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "dart"
+                  },
+                  "editor": {
+                    "title": "dart",
+                    "contentMediaType": "text/x-dart"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "dockerfile"
+                  },
+                  "editor": {
+                    "title": "dockerfile",
+                    "contentMediaType": "text/x-dockerfile"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "ecl"
+                  },
+                  "editor": {
+                    "title": "ecl",
+                    "contentMediaType": "text/x-ecl"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "fsharp"
+                  },
+                  "editor": {
+                    "title": "fsharp",
+                    "contentMediaType": "text/x-fsharp"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "go"
+                  },
+                  "editor": {
+                    "title": "go",
+                    "contentMediaType": "text/x-go"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "graphql"
+                  },
+                  "editor": {
+                    "title": "graphql",
+                    "contentMediaType": "text/x-graphql"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "handlebars"
+                  },
+                  "editor": {
+                    "title": "handlebars",
+                    "contentMediaType": "text/x-handlebars"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "hcl"
+                  },
+                  "editor": {
+                    "title": "hcl",
+                    "contentMediaType": "text/x-hcl"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "html"
+                  },
+                  "editor": {
+                    "title": "html",
+                    "contentMediaType": "text/x-html"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "ini"
+                  },
+                  "editor": {
+                    "title": "ini",
+                    "contentMediaType": "text/x-ini"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "java"
+                  },
+                  "editor": {
+                    "title": "java",
+                    "contentMediaType": "text/x-java"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "javascript"
+                  },
+                  "editor": {
+                    "title": "javascript",
+                    "contentMediaType": "text/x-javascript"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "json"
+                  },
+                  "editor": {
+                    "title": "json",
+                    "contentMediaType": "application/json"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "julia"
+                  },
+                  "editor": {
+                    "title": "julia",
+                    "contentMediaType": "text/x-julia"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "kotlin"
+                  },
+                  "editor": {
+                    "title": "kotlin",
+                    "contentMediaType": "text/x-kotlin"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "less"
+                  },
+                  "editor": {
+                    "title": "less",
+                    "contentMediaType": "text/x-less"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "lexon"
+                  },
+                  "editor": {
+                    "title": "lexon",
+                    "contentMediaType": "text/x-lexon"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "lua"
+                  },
+                  "editor": {
+                    "title": "lua",
+                    "contentMediaType": "text/x-lua"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "m3"
+                  },
+                  "editor": {
+                    "title": "m3",
+                    "contentMediaType": "text/x-m3"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "markdown"
+                  },
+                  "editor": {
+                    "title": "markdown",
+                    "contentMediaType": "text/x-markdown"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "mips"
+                  },
+                  "editor": {
+                    "title": "mips",
+                    "contentMediaType": "text/x-mips"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "msdax"
+                  },
+                  "editor": {
+                    "title": "msdax",
+                    "contentMediaType": "text/x-msdax"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "mysql"
+                  },
+                  "editor": {
+                    "title": "mysql",
+                    "contentMediaType": "text/x-mysql"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "objective-c"
+                  },
+                  "editor": {
+                    "title": "objective-c",
+                    "contentMediaType": "text/x-objective-c"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "pascal"
+                  },
+                  "editor": {
+                    "title": "pascal",
+                    "contentMediaType": "text/x-pascal"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "pascaligo"
+                  },
+                  "editor": {
+                    "title": "pascaligo",
+                    "contentMediaType": "text/x-pascaligo"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "perl"
+                  },
+                  "editor": {
+                    "title": "perl",
+                    "contentMediaType": "text/x-perl"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "pgsql"
+                  },
+                  "editor": {
+                    "title": "pgsql",
+                    "contentMediaType": "text/x-pgsql"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "php"
+                  },
+                  "editor": {
+                    "title": "php",
+                    "contentMediaType": "text/x-php"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "plaintext"
+                  },
+                  "editor": {
+                    "title": "plaintext",
+                    "contentMediaType": "text/x-plaintext"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "postiats"
+                  },
+                  "editor": {
+                    "title": "postiats",
+                    "contentMediaType": "text/x-postiats"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "powerquery"
+                  },
+                  "editor": {
+                    "title": "powerquery",
+                    "contentMediaType": "text/x-powerquery"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "powershell"
+                  },
+                  "editor": {
+                    "title": "powershell",
+                    "contentMediaType": "text/x-powershell"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "pug"
+                  },
+                  "editor": {
+                    "title": "pug",
+                    "contentMediaType": "text/x-pug"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "python"
+                  },
+                  "editor": {
+                    "title": "python",
+                    "contentMediaType": "text/x-python"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "r"
+                  },
+                  "editor": {
+                    "title": "r",
+                    "contentMediaType": "text/x-r"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "razor"
+                  },
+                  "editor": {
+                    "title": "razor",
+                    "contentMediaType": "text/x-razor"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "redis"
+                  },
+                  "editor": {
+                    "title": "redis",
+                    "contentMediaType": "text/x-redis"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "redshift"
+                  },
+                  "editor": {
+                    "title": "redshift",
+                    "contentMediaType": "text/x-redshift"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "restructuredtext"
+                  },
+                  "editor": {
+                    "title": "restructuredtext",
+                    "contentMediaType": "text/x-restructuredtext"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "ruby"
+                  },
+                  "editor": {
+                    "title": "ruby",
+                    "contentMediaType": "text/x-ruby"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "rust"
+                  },
+                  "editor": {
+                    "title": "rust",
+                    "contentMediaType": "text/x-rust"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "sb"
+                  },
+                  "editor": {
+                    "title": "sb",
+                    "contentMediaType": "text/x-sb"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "scala"
+                  },
+                  "editor": {
+                    "title": "scala",
+                    "contentMediaType": "text/x-scala"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "scheme"
+                  },
+                  "editor": {
+                    "title": "scheme",
+                    "contentMediaType": "text/x-scheme"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "scss"
+                  },
+                  "editor": {
+                    "title": "scss",
+                    "contentMediaType": "text/x-scss"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "shell"
+                  },
+                  "editor": {
+                    "title": "shell",
+                    "contentMediaType": "text/x-shell"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "sol"
+                  },
+                  "editor": {
+                    "title": "sol",
+                    "contentMediaType": "text/x-sol"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "sql"
+                  },
+                  "editor": {
+                    "title": "sql",
+                    "contentMediaType": "text/x-sql"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "st"
+                  },
+                  "editor": {
+                    "title": "st",
+                    "contentMediaType": "text/x-st"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "swift"
+                  },
+                  "editor": {
+                    "title": "swift",
+                    "contentMediaType": "text/x-swift"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "systemverilog"
+                  },
+                  "editor": {
+                    "title": "systemverilog",
+                    "contentMediaType": "text/x-systemverilog"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "tcl"
+                  },
+                  "editor": {
+                    "title": "tcl",
+                    "contentMediaType": "text/x-tcl"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "twig"
+                  },
+                  "editor": {
+                    "title": "twig",
+                    "contentMediaType": "text/x-twig"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "typescript"
+                  },
+                  "editor": {
+                    "title": "typescript",
+                    "contentMediaType": "text/x-typescript"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "vb"
+                  },
+                  "editor": {
+                    "title": "vb",
+                    "contentMediaType": "text/x-vb"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "verilog"
+                  },
+                  "editor": {
+                    "title": "verilog",
+                    "contentMediaType": "text/x-verilog"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "xml"
+                  },
+                  "editor": {
+                    "title": "xml",
+                    "contentMediaType": "application/xml"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "language": {
+                    "const": "yaml"
+                  },
+                  "editor": {
+                    "title": "yaml",
+                    "contentMediaType": "text/x-yaml"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "definitions": {
+      "textEditor": {
+        "title": "Редактор текста",
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 50,
+        "contentMediaType": "text/plain"
+      }
+    }
+  },
+  "uiSchema": {
+    "ui:template": "collapse-list",
+    "ui:expanded": ["state"]
+  },
+  "formData": {
+    "state": {
+      "readOnly": "Данный текст не может быть изменен"
+    },
+    "validation": {
+      "minLength": "Текст",
+      "maxLength": "Текст первой строки\nТекст второй строки\nТекст третьей строки\nТекст четвертой строки\nТекст пятой строки\nТекст шестой строки"
+    },
+    "samples": {
+      "language": "plaintext"
+    }
+  }
+}

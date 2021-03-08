@@ -1,0 +1,29 @@
+{
+  "$schema": "../../../package/schemas/ui-schema.schema.json",
+  "ui:template": "collapse-list",
+  "ui:expanded": ["schema", "formData"],
+  "template": {
+    "ui:widget": "radio-group",
+    "ui:options": {
+      "type": "line"
+    }
+  },
+  "size": {
+    "ui:widget": "radio-group",
+    "ui:options": {
+      "type": "line"
+    }
+  },
+  "theme": {
+    "ui:widget": "radio-group",
+    "ui:options": {
+      "type": "line"
+    }
+  },
+  "view": {
+    "ui:widget": "radio-group",
+    "ui:options": {
+      "type": "line"
+    }
+  }
+}

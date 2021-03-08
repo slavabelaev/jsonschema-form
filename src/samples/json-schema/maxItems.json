@@ -1,0 +1,41 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/countries"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/countries"
+			}
+		},
+		"definitions": {
+			"countries": {
+				"type": "array",
+				"items": {
+					"title": "Страна",
+					"type": "string"
+				},
+				"maxItems": 2
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": [
+			"Российская Федерация",
+			"Республика Беларусь"
+		],
+		"invalid": [
+			"Российская Федерация",
+			"Республика Беларусь",
+			"Республика Молдова"
+		]
+	}
+}

@@ -1,0 +1,201 @@
+{
+  "$schema": "../../../package/schemas/form-props.schema.json",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "state": {
+        "title": "Состояние",
+        "properties": {
+          "default": {
+            "title": "По умолчанию",
+            "description": "текст подсказки",
+            "type": "string",
+            "format": "date"
+          },
+          "disabled": {
+            "title": "Отключено",
+            "type": "string",
+            "readOnly": true,
+            "format": "date"
+          },
+          "invalid": {
+            "title": "Неверно",
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "offDays": {
+        "title": "Недоступные даты",
+        "properties": {
+          "stringDate": {
+            "title": "Дата-строка",
+            "type": "string",
+            "format": "date",
+            "not": {
+              "enum": [
+                "2021-01-02",
+                "2021-01-04",
+                "2021-01-06",
+                "2021-01-08",
+                "2021-01-10",
+                "2021-01-12",
+                "2021-01-14",
+                "2021-01-16",
+                "2021-01-18",
+                "2021-01-20"
+              ]
+            },
+            "x-errorMessages": {
+              "not": "выбранная дата недоступна"
+            }
+          },
+          "integerDate": {
+            "title": "Дата-число",
+            "type": "integer",
+            "not": {
+              "enum": [
+                1610226000000,
+                1610398800000,
+                1610571600000
+              ]
+            },
+            "x-errorMessages": {
+              "not": "выбранная дата недоступна"
+            }
+          }
+        }
+      },
+      "limitDate": {
+        "title": "Минимальная / максимальная дата",
+        "description": "Из-за ограничений спецификации JSON-Schema, данная проверка доступна только для числового типа",
+        "properties": {
+          "earlierLimit": {
+            "title": "Минимальная",
+            "type": "integer",
+            "minimum": 1610658000000,
+            "x-errorMessages": {
+              "minimum": "должно быть не ранее ${limitDate}"
+            }
+          },
+          "laterLimit": {
+            "title": "Максимальная",
+            "type": "integer",
+            "maximum": 1610658000000,
+            "x-errorMessages": {
+              "maximum": "должно быть не позднее ${limitDate}"
+            }
+          }
+        }
+      },
+      "limitDateRanges": {
+        "title": "Разрешенные / запрещенные диапазоны дат",
+        "description": "Если выбранная дата будет в одном из запрещенных (или за пределами разрешенного) диапазонов, будет показана ошибка",
+        "properties": {
+          "allowedDateRanges": {
+            "title": "Разрешенные",
+            "type": "integer",
+            "anyOf": [
+              {
+                "minimum": 1590226000000,
+                "maximum": 1600226000000,
+                "x-errorMessages": {
+                  "minimum": "должно быть позднее, чем ${limitDate}",
+                  "maximum": "должно быть раньше, чем ${limitDate}"
+                }
+              },
+              {
+                "minimum": 1610226000000,
+                "maximum": 1620226000000,
+                "x-errorMessages": {
+                  "minimum": "должно быть позднее, чем ${limitDate}",
+                  "maximum": "должно быть раньше, чем ${limitDate}"
+                }
+              }
+            ],
+            "x-errorMessages": {
+              "anyOf": "должно быть датой: ${allowedDateRanges}"
+            }
+          },
+          "notAllowedDateRanges": {
+            "title": "Запрещенные",
+            "type": "integer",
+            "not": {
+              "anyOf": [
+                {
+                  "minimum": 1590226000000,
+                  "maximum": 1600226000000
+                },
+                {
+                  "minimum": 1610226000000,
+                  "maximum": 1620226000000
+                }
+              ]
+            },
+            "x-errorMessages": {
+              "not": "не должно быть датой: ${notAllowedDateRanges}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "ui:template": "collapse-list",
+    "ui:expanded": ["state"],
+    "state": {
+      "default": {
+        "ui:widget": "calendar"
+      },
+      "disabled": {
+        "ui:widget": "calendar"
+      },
+      "invalid": {
+        "ui:widget": "calendar"
+      }
+    },
+    "offDays": {
+      "stringDate": {
+        "ui:widget": "calendar"
+      },
+      "integerDate": {
+        "ui:widget": "calendar"
+      }
+    },
+    "limitDate": {
+      "earlierLimit": {
+        "ui:widget": "calendar"
+      },
+      "laterLimit": {
+        "ui:widget": "calendar"
+      }
+    },
+    "limitDateRanges": {
+      "allowedDateRanges": {
+        "ui:widget": "calendar"
+      },
+      "notAllowedDateRanges": {
+        "ui:widget": "calendar"
+      }
+    }
+  },
+  "formData": {
+    "state": {
+      "default": "2021-01-14",
+      "disabled": "2021-01-07",
+      "invalid": "01.14.2021"
+    },
+    "limitDate": {
+      "earlierLimit": 1610571600000,
+      "laterLimit": 1610830800000
+    },
+    "offDays": {
+      "stringDate": "2021-01-07",
+      "integerDate": 1610671600000
+    },
+    "limitDateRanges": {
+      "allowedDateRanges": 1421874000000,
+      "notAllowedDateRanges": 1610658000000
+    }
+  }
+}

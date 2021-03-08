@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "properties": {
+    "schema": {
+      "description": "JSON Schema 7",
+      "type": "string",
+      "contentMediaType": "application/json"
+    },
+    "uiSchema": {
+      "type": "string",
+      "contentMediaType": "application/json"
+    },
+    "formData": {
+      "type": "string",
+      "contentMediaType": "application/json"
+    },
+    "template": {
+      "description": "Шаблон",
+      "enum": ["default", "stepper", "tabs", "collapse-list"]
+    },
+    "liveValidate": {
+      "enum": [true, false],
+      "default": true
+    },
+    "size": {
+      "description": "Размер",
+      "enum": ["s", "m", "l", "xl"],
+      "default": "m"
+    },
+    "theme": {
+      "description": "Тема",
+      "enum": ["alfa-on-color", "alfa-on-white"],
+      "default": "alfa-on-white"
+    },
+    "view": {
+      "description": "Тип",
+      "enum": ["default", "filled"],
+      "default": "filled"
+    }
+  },
+  "required": ["schema"]
+}

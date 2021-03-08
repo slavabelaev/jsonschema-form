@@ -1,0 +1,29 @@
+.reorder {
+    display: flex;
+    flex-direction: column;
+
+    &__button {
+        padding: 0;
+        cursor: pointer;
+        height: auto;
+
+        &:first-child {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:last-child {
+            margin: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        & + & {
+            border-top-width: 0;
+        }
+
+        &.button_disabled + & {
+            border-top-width: 1px;
+        }
+    }
+}

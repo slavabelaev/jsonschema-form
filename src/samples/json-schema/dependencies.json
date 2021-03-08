@@ -1,0 +1,365 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"visibleDependencies": {
+				"title": "Зависимости всегда видны",
+				"description": "Введите \"Имя\", чтобы поля \"Фамилия\", \"Отчество\" стали обязательными",
+				"properties": {
+					"firstName": {
+						"title": "Имя",
+						"type": "string"
+					},
+					"lastName": {
+						"title": "Фамилия",
+						"type": "string"
+					},
+					"middleName": {
+						"title": "Отчество",
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"firstName": ["lastName", "middleName"]
+				},
+				"x-errorMessages": {
+					"dependencies": "обязательное"
+				}
+			},
+			"invisibleDependencies": {
+				"title": "Зависимости не видны, пока нет значения",
+				"description": "Введите \"ФИО\", чтобы увидеть поля \"Пол\", \"Дата рождения\"",
+				"properties": {
+					"fullName": {
+						"title": "ФИО",
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"fullName": {
+						"properties": {
+							"gender": {
+								"title": "Пол",
+								"type": "string",
+								"anyOf": [
+									{
+										"title": "Мужской",
+										"const": "m"
+									},
+									{
+										"title": "Женский",
+										"const": "f"
+									}
+								],
+								"default": "",
+								"x-errorMessages": {
+									"anyOf": "должно быть выбрано"
+								}
+							},
+							"birthdate": {
+								"title": "Дата рождения",
+								"type": "string",
+								"format": "date"
+							}
+						}
+					}
+				}
+			},
+			"constDependencies": {
+				"title": "Разные зависимости для разных значений",
+				"description": "Выберите \"Город\", чтобы поле \"Станция метро\" было заполнено значениями станций выбранного города",
+				"properties": {
+					"city": {
+						"title": "Город",
+						"enum": ["Москва", "Санкт-Петербург"],
+						"default": "",
+						"x-errorMessages": {
+							"enum": "должно быть выбрано"
+						}
+					}
+				},
+				"dependencies": {
+					"city": {
+						"oneOf": [
+							{
+								"properties": {
+									"city": {
+										"const": "Москва"
+									},
+									"metroStation": {
+										"title": "Станция метро",
+										"enum": [
+											"Охотный ряд",
+											"Театральная",
+											"Площадь революции"
+										],
+										"default": "",
+										"x-errorMessages": {
+											"enum": "должно быть выбрано"
+										}
+									}
+								},
+								"required": ["metroStation"]
+							},
+							{
+								"properties": {
+									"city": {
+										"const": "Санкт-Петербург"
+									},
+									"metroStation": {
+										"title": "Станция метро",
+										"enum": [
+											"Садовая",
+											"Спасская",
+											"Сенная площадь"
+										],
+										"default": "",
+										"x-errorMessages": {
+											"enum": "должно быть выбрано"
+										}
+									}
+								},
+								"required": ["metroStation"]
+							}
+						],
+						"x-errorMessages": {
+							"oneOf": "должен быть выбран город и станция метро"
+						}
+					}
+				}
+			},
+			"enumDependencies": {
+				"title": "Одна зависимость для нескольких значений",
+				"description": "Выберите \"Москва\" или \"Санкт-Петербург\", чтобы увидеть 2 способа получения или \"Красноярск\" или \"Новосибирск\", чтобы увидеть один способ получения",
+				"properties": {
+					"city": {
+						"title": "Город",
+						"enum": ["Москва", "Санкт-Петербург", "Красноярск", "Новосибирск"],
+						"default": "",
+						"x-errorMessages": {
+							"enum": "должно быть выбрано"
+						}
+					}
+				},
+				"dependencies": {
+					"city": {
+						"oneOf": [
+							{
+								"properties": {
+									"city": {
+										"enum": ["Москва", "Санкт-Петербург"]
+									},
+									"delivery": {
+										"title": "Способ получения",
+										"enum": [
+											"Доставка курьером",
+											"Забрать в отделении"
+										],
+										"default": "",
+										"x-errorMessages": {
+											"enum": "должно быть выбрано"
+										}
+									}
+								},
+								"required": ["delivery"]
+							},
+							{
+								"properties": {
+									"city": {
+										"enum": ["Красноярск", "Новосибирск"]
+									},
+									"delivery": {
+										"title": "Способ получения",
+										"enum": [
+											"Забрать в отделении"
+										],
+										"x-errorMessages": {
+											"enum": "должно быть выбрано"
+										}
+									}
+								},
+								"required": ["delivery"]
+							}
+						]
+					}
+				}
+			},
+			"minLengthDependencies": {
+				"title": "Зависимости видны при минимальной длине",
+				"description": "Введите хотя бы один символ в поле \"Имя\", чтобы появилось поле \"Фамилия\" или сотрите, чтобы поле исчезло",
+				"properties": {
+					"firstName": {
+						"title": "Имя",
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"firstName": {
+						"oneOf": [
+							{
+								"properties": {
+									"firstName": {
+										"maxLength": 0
+									}
+								}
+							},
+							{
+								"properties": {
+									"firstName": {
+										"minLength": 1
+									},
+									"lastName": {
+										"title": "Фамилия",
+										"type": "string"
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"numberDependencies": {
+				"title": "Разные зависимости для разных числовых диапазонов",
+				"description": "Введите число от 5000-50000, чтобы указать данные выбранного документа или 50001+, чтобы указать данные паспорта РФ",
+				"properties": {
+					"creditAmount": {
+						"title": "Сумма кредита",
+						"type": "number",
+						"minimum": 5000,
+						"maximum": 1500000
+					}
+				},
+				"dependencies": {
+					"creditAmount": {
+						"oneOf": [
+							{
+								"properties": {
+									"creditAmount": {
+										"minimum": 5000,
+										"maximum": 50000
+									},
+									"document": {
+										"title": "Документ, удостоверяющий личность",
+										"properties": {
+											"type": {
+												"title": "Тип документа",
+												"type": "string",
+												"anyOf": [
+													{
+														"title": "Кредитная карта любого банка",
+														"const": "CDR"
+													},
+													{
+														"title": "Дебетовая карта любого банка",
+														"const": "DDR"
+													},
+													{
+														"title": "Водительское удостоверение",
+														"const": "DRL"
+													},
+													{
+														"title": "Загранпаспорт гражданина РФ",
+														"const": "002"
+													},
+													{
+														"title": "ИНН физического лица",
+														"const": "INN"
+													},
+													{
+														"title": "Полис ОМС (обязательного медицинского страхования)",
+														"const": "RMI"
+													},
+													{
+														"title": "СНИЛС (Страховое свидетельство пенсионного фонда)",
+														"const": "PFI"
+													}
+												]
+											},
+											"seriesNumber": {
+												"title": "Серия и номер",
+												"type": "string"
+											}
+										}
+									}
+								}
+							},
+							{
+								"properties": {
+									"creditAmount": {
+										"minimum": 50001
+									},
+									"passport": {
+										"title": "Паспорт гражданина РФ",
+										"properties": {
+											"seriesNumber": {
+												"title": "Серия и номер",
+												"type": "string",
+												"pattern": "^[0-9]{2} ?[0-9]{2} ?[0-9]{6}",
+												"examples": [
+													"1234 567890"
+												]
+											},
+											"issuedDate": {
+												"title": "Дата выдачи",
+												"type": "string",
+												"format": "date"
+											},
+											"issuedCode": {
+												"title": "Код подразделения",
+												"type": "string",
+												"pattern": "[0-9]{3}-[0-9]{3}",
+												"maxLength": 7,
+												"examples": [
+													"123-456"
+												]
+											},
+											"issuedBy": {
+												"title": "Кем выдан",
+												"description": "Укажите точно как в паспорте",
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"patternDependencies": {
+				"title": "Зависимости видны при соответствии регулярному выражению",
+				"description": "Зависимость появится, если в названии организации есть слово \"банк\"",
+				"properties": {
+					"companyName": {
+						"title": "Название организации",
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"companyName": {
+						"oneOf": [
+							{},
+							{
+								"properties": {
+									"companyName": {
+										"pattern": "[Бб][Аа][Нн][Кк]"
+									},
+									"isBankEmployee": {
+										"title": "Вы являетесь сотрудником банка?",
+										"type": "boolean",
+										"default": false
+									}
+								}
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list"
+	},
+	"formData": {}
+}

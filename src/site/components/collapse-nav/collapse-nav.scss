@@ -1,0 +1,21 @@
+.collapse-nav {
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  &__expand-icon {
+    height: 22px;
+    transition: .24s;
+
+    &_expanded {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__header-text {
+    margin-left: 4px;
+  }
+}

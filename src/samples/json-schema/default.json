@@ -1,0 +1,19 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"checkbox": {
+				"title": "Подписаться на специальные предложения",
+				"type": "boolean",
+				"default": false
+			},
+			"select": {
+				"title": "Страна",
+				"enum": ["Россия", "Беларусь", "Украина"],
+				"default": ""
+			}
+		}
+	},
+	"formData": {}
+}

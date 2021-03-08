@@ -1,0 +1,37 @@
+.array-field-template {
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+
+  & > * + * {
+    margin-top: 16px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    .object-field-template {
+      border: 1px solid var(--color-dark-indigo-15);
+      border-radius: 4px;
+      padding: 16px;
+    }
+  }
+
+  &__item-children {
+    width: 100%;
+
+    &_is-empty {
+      border-left: 2px solid var(--color-dark-indigo-60);
+      padding: 8px 16px;
+    }
+  }
+
+  &__empty-children {
+    margin: 0;
+  }
+
+  &__item-reorder {
+    margin-right: 8px
+  }
+}

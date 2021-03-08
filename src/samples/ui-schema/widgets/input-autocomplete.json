@@ -1,0 +1,296 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"city": {
+				"title": "Опции со значением-заголовком",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/city"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"readOnly": true,
+						"$ref": "#/definitions/city"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/city"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/city"
+					}
+				}
+			},
+			"region": {
+				"title": "Опции со значением-идентификатором",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/region"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"readOnly": true,
+						"$ref": "#/definitions/region"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/region"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/region"
+					}
+				}
+			},
+			"remoteSource": {
+				"title": "Опции из удаленного источника данных",
+				"properties": {
+					"fullName": {
+						"title": "ФИО",
+						"description": "источник данных: [dadata.ru](https://dadata.ru/api/suggest/name/), API: ФИО",
+						"$ref": "#/definitions/remote"
+					},
+					"address": {
+						"title": "Адрес",
+						"description": "источник данных: [dadata.ru](https://dadata.ru/api/suggest/metro/), API: адреса",
+						"$ref": "#/definitions/remote"
+					},
+					"metro": {
+						"title": "Станция метро",
+						"description": "источник данных: [dadata.ru](https://dadata.ru/api/suggest/metro/), API: станции метро",
+						"$ref": "#/definitions/remote"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"city": {
+				"enum": [
+					"Королев",
+					"Подольск",
+					"Москва",
+					"Балашиха",
+					"Зеленоград",
+					"Реутов",
+					"Красногорск",
+					"Одинцово",
+					"Мытищи",
+					"Люберцы",
+					"Химки"
+				],
+				"not": {
+					"enum": ["Подольск", "Балашиха"]
+				},
+				"x-errorMessages": {
+					"enum": "должна быть выбрана одна из опций",
+					"not": "выбранная опция недоступна"
+				}
+			},
+			"region": {
+				"type": "string",
+				"anyOf": [
+					{
+						"title": "АВТОНОМНАЯ ОБЛАСТЬ",
+						"const": "001"
+					},
+					{
+						"title": "АВТОНОМНЫЙ ОКРУГ",
+						"const": "002",
+						"readOnly": true
+					},
+					{
+						"title": "ВОЛОСТЬ",
+						"const": "003"
+					},
+					{
+						"title": "ГОРОД",
+						"const": "015"
+					},
+					{
+						"title": "ГОРОД ФЕДЕРАЛЬНОГО ЗНАЧЕНИЯ",
+						"const": "018",
+						"readOnly": true
+					},
+					{
+						"title": "ГОРОДСКОЙ ОКРУГ",
+						"const": "017"
+					},
+					{
+						"title": "КРАЙ",
+						"const": "004"
+					},
+					{
+						"title": "МУНИЦИПАЛЬНЫЙ ОКРУГ",
+						"const": "005"
+					},
+					{
+						"title": "МЫС",
+						"const": "006"
+					},
+					{
+						"title": "ОБЛАСТЬ",
+						"const": "007"
+					},
+					{
+						"title": "ОКРУГ",
+						"const": "016"
+					},
+					{
+						"title": "ОСТРОВ",
+						"const": "008"
+					},
+					{
+						"title": "ПОЛУОСТРОВ",
+						"const": "009"
+					},
+					{
+						"title": "РАЙОН",
+						"const": "010"
+					},
+					{
+						"title": "РЕСПУБЛИКА",
+						"const": "010"
+					},
+					{
+						"title": "ТЕРРИТОРИЯ",
+						"const": "012"
+					},
+					{
+						"title": "ЦЕНТРАЛЬНЫЙ ОКРУГ",
+						"const": "013"
+					}
+				]
+			},
+			"remote": {
+				"type": "string"
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["city"],
+		"city": {
+			"default": {
+				"ui:widget": "input-autocomplete"
+			},
+			"disabled": {
+				"ui:widget": "input-autocomplete"
+			},
+			"valid": {
+				"ui:widget": "input-autocomplete"
+			},
+			"invalid": {
+				"ui:widget": "input-autocomplete"
+			}
+		},
+		"region": {
+			"default": {
+				"ui:widget": "input-autocomplete"
+			},
+			"disabled": {
+				"ui:widget": "input-autocomplete"
+			},
+			"valid": {
+				"ui:widget": "input-autocomplete"
+			},
+			"invalid": {
+				"ui:widget": "input-autocomplete"
+			}
+		},
+		"remoteSource": {
+			"fullName": {
+				"ui:widget": "input-autocomplete",
+				"ui:options": {
+					"remoteConfig": {
+						"request": {
+							"url": "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/fio",
+							"method": "POST",
+							"body": {
+								"query": "${input}"
+							},
+							"headers": {
+								"Content-Type": "application/json",
+								"Accept": "application/json",
+								"Authorization": "Token b741895925361d219018e372b1eb4a0d9c1b5e37"
+							}
+						},
+						"response": {
+							"itemsKey": "suggestions",
+							"valueKey": "value"
+						}
+					}
+				}
+			},
+			"address": {
+				"ui:widget": "input-autocomplete",
+				"ui:options": {
+					"remoteConfig": {
+						"request": {
+							"url": "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address",
+							"method": "POST",
+							"body": {
+								"query": "${input}"
+							},
+							"headers": {
+								"Content-Type": "application/json",
+								"Accept": "application/json",
+								"Authorization": "Token b741895925361d219018e372b1eb4a0d9c1b5e37"
+							}
+						},
+						"response": {
+							"itemsKey": "suggestions",
+							"valueKey": "value"
+						}
+					}
+				}
+			},
+			"metro": {
+				"ui:widget": "input-autocomplete",
+				"ui:options": {
+					"remoteConfig": {
+						"request": {
+							"url": "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/metro",
+							"method": "POST",
+							"body": {
+								"query": "${input}"
+							},
+							"headers": {
+								"Content-Type": "application/json",
+								"Accept": "application/json",
+								"Authorization": "Token b741895925361d219018e372b1eb4a0d9c1b5e37"
+							}
+						},
+						"response": {
+							"itemsKey": "suggestions",
+							"valueKey": "value"
+						}
+					}
+				}
+			}
+		}
+	},
+	"formData": {
+		"city": {
+			"disabled": "Москва",
+			"valid": "Москва",
+			"invalid": "Калининград"
+		},
+		"region": {
+			"disabled": "001",
+			"valid": "001",
+			"invalid": "099"
+		},
+		"remoteSource": {
+			"fullName": "",
+			"address": "",
+			"metro": ""
+		}
+	}
+}

@@ -1,0 +1,140 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"$ref": "#/definitions/comment"
+					},
+					"disabled": {
+						"title": "Отключено",
+						"$ref": "#/definitions/comment",
+						"readOnly": true
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/comment"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/comment"
+					}
+				},
+				"required": ["invalid"]
+			},
+			"validation": {
+				"title": "Проверки",
+				"properties": {
+					"minLength": {
+						"title": "Минимальная длина",
+						"$ref": "#/definitions/comment"
+					},
+					"maxLength": {
+						"title": "Максимальная длина",
+						"$ref": "#/definitions/comment"
+					},
+					"pattern": {
+						"title": "Регулярное выражение",
+						"$ref": "#/definitions/comment"
+					},
+					"format": {
+						"title": "Неверный формат",
+						"type": "string",
+						"format": "uri"
+					}
+				}
+			}
+		},
+		"definitions": {
+			"comment": {
+				"title": "Комментарий",
+				"type": "string",
+				"minLength": 12,
+				"maxLength": 60,
+				"not": {
+					"pattern": "<.+?>"
+				},
+				"x-errorMessages": {
+					"not": "не должен содержать HTML-конструкции"
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"],
+		"state": {
+			"default": {
+				"ui:widget": "textarea"
+			},
+			"disabled": {
+				"ui:widget": "textarea",
+				"ui:options": {
+					"minRows": 1,
+					"maxRows": 5
+				}
+			},
+			"valid": {
+				"ui:widget": "textarea",
+				"ui:options": {
+					"minRows": 1,
+					"maxRows": 5
+				}
+			},
+			"invalid": {
+				"ui:widget": "textarea",
+				"ui:options": {
+					"minRows": 1,
+					"maxRows": 5
+				}
+			}
+		},
+		"validation": {
+			"minLength": {
+				"ui:widget": "textarea",
+				"ui:options": {
+					"minRows": 1,
+					"maxRows": 5
+				}
+			},
+			"maxLength": {
+				"ui:widget": "textarea",
+				"ui:options": {
+					"minRows": 1,
+					"maxRows": 5
+				}
+			},
+			"pattern": {
+				"ui:widget": "textarea",
+				"ui:options": {
+					"minRows": 1,
+					"maxRows": 5
+				}
+			},
+			"format": {
+				"ui:widget": "textarea",
+				"ui:options": {
+					"minRows": 1,
+					"maxRows": 5
+				}
+			}
+		}
+	},
+	"formData": {
+		"state": {
+			"default": "Текст первой строки",
+			"disabled": "Текст первой строки\nТекст второй строки",
+			"valid": "Текст первой строки\nТекст второй строки"
+		},
+		"validation": {
+			"minLength": "",
+			"maxLength": "Текст первой строки\nТекст второй строки\nТекст третьей строки ",
+			"pattern": "<script src=\"https://hackers.net/hack.js\"></script>",
+			"format": "https//example.com/?q=very-long-url-param-value"
+		}
+	}
+}

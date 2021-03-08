@@ -1,0 +1,26 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/price"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/price"
+			}
+		},
+		"definitions": {
+			"price": {
+				"type": "number",
+				"exclusiveMinimum": 98.76
+			}
+		}
+	},
+	"formData": {
+		"valid": 98.77,
+		"invalid": 98.76
+	}
+}

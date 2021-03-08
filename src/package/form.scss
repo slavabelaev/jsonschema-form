@@ -1,0 +1,14 @@
+@import "~arui-feather/vars/color.css";
+@import "~arui-feather/vars/font.css";
+@import "~arui-feather/vars/color.css";
+@import "~arui-feather/vars/primitive-colors.css";
+
+.form {
+    &__submit-button {
+        margin-top: 16px;
+    }
+
+    .input__sub {
+        padding-right: 0;
+    }
+}

@@ -1,0 +1,36 @@
+.layout-tabs {
+  &__tabs {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1;
+
+    .tabs__content {
+      display: flex;
+    }
+  }
+
+  &__editor-form {
+    .collapse-item:first-of-type {
+      border-top-width: 0;
+    }
+  }
+
+  &__tab-item {
+    padding: 8px 16px;
+  }
+
+  &__description {
+    position: relative;
+    padding: 16px;
+    p {
+      line-height: 1.5;
+    }
+  }
+
+  &__docs-edit-link {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+}

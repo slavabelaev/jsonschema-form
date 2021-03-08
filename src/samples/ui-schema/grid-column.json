@@ -1,0 +1,196 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"simple": {
+				"title": "Общий макет",
+				"$ref": "#/definitions/form"
+			},
+			"adaptive": {
+				"title": "Адаптивный макет",
+				"description": "Измените разрешение экрана, чтобы увидеть как будет меняться макет",
+				"$ref": "#/definitions/form"
+			}
+		},
+		"definitions": {
+			"form": {
+				"properties": {
+					"firstName": {
+						"title": "Имя",
+						"type": "string"
+					},
+					"lastName": {
+						"title": "Фамилия",
+						"type": "string"
+					},
+					"middleName": {
+						"title": "Отчество",
+						"type": "string"
+					},
+					"birthdate": {
+						"title": "Дата рождения",
+						"type": "string",
+						"format": "date"
+					},
+					"birthplace": {
+						"title": "Страна рождения",
+						"enum": ["Россия", "Беларусь", "Украина"]
+					},
+					"email": {
+						"title": "Email",
+						"type": "string",
+						"format": "email"
+					},
+					"phone": {
+						"title": "Телефон",
+						"type": "string"
+					},
+					"livingAddress": {
+						"title": "Адрес проживания",
+						"type": "string"
+					},
+					"registrationAddress": {
+						"title": "Адрес регистрации",
+						"type": "string"
+					},
+					"comment": {
+						"title": "Комментарий",
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["simple"],
+		"simple": {
+			"firstName": {
+				"ui:gridColumn": "1 / 5"
+			},
+			"lastName": {
+				"ui:gridColumn": "5 / 9"
+			},
+			"middleName": {
+				"ui:gridColumn": "3 / 7"
+			},
+			"birthdate": {
+				"ui:gridColumn": "7 / 11"
+			},
+			"birthplace": {
+				"ui:gridColumn": "5 / 9"
+			},
+			"email": {
+				"ui:gridColumn": "9 / 13"
+			},
+			"phone": {
+				"ui:widget": "phone-input",
+				"ui:gridColumn": "2 / 6"
+			},
+			"livingAddress": {
+				"ui:gridColumn": "8 / 12"
+			},
+			"registrationAddress": {
+				"ui:gridColumn": "1 / 5"
+			},
+			"comment": {
+				"ui:gridColumn": "9 / 13"
+			}
+		},
+		"adaptive": {
+			"firstName": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "1 / 7",
+					"m": "1 / 7",
+					"l": "1 / 5",
+					"xl": "1 / 5"
+				}
+			},
+			"lastName": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "1 / 13",
+					"m": "7 / 13",
+					"l": "5 / 9",
+					"xl": "5 / 9"
+				}
+			},
+			"middleName": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "1 / 7",
+					"m": "1 / 7",
+					"l": "3 / 7",
+					"xl": "3 / 7"
+				}
+			},
+			"birthdate": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "7 / 13",
+					"m": "7 / 13",
+					"l": "7 / 11",
+					"xl": "7 / 11"
+				}
+			},
+			"birthplace": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "1 / 7",
+					"m": "1 / 7",
+					"l": "5 / 9",
+					"xl": "5 / 9"
+				}
+			},
+			"email": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "7 / 13",
+					"m": "7 / 13",
+					"l": "9 / 13",
+					"xl": "9 / 13"
+				}
+			},
+			"phone": {
+				"ui:widget": "phone-input",
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "1 / 7",
+					"m": "1 / 7",
+					"l": "2 / 6",
+					"xl": "2 / 6"
+				}
+			},
+			"livingAddress": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "7 / 13",
+					"m": "7 / 13",
+					"l": "8 / 12",
+					"xl": "8 / 12"
+				}
+			},
+			"registrationAddress": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "1 / 7",
+					"m": "1 / 7",
+					"l": "1 / 5",
+					"xl": "1 / 5"
+				}
+			},
+			"comment": {
+				"ui:gridColumn": {
+					"xs": "1 / 13",
+					"s": "7 / 13",
+					"m": "7 / 13",
+					"l": "9 / 13",
+					"xl": "9 / 13"
+				}
+			}
+		}
+	},
+	"formData": {}
+}

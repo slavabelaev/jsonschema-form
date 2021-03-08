@@ -1,0 +1,36 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/documentType"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/documentType"
+			}
+		},
+		"definitions": {
+			"documentType": {
+				"title": "Тип документа",
+				"type": "string",
+				"oneOf": [
+					{
+						"title": "Паспорт гражданина РФ",
+						"const": "006"
+					},
+					{
+						"title": "Паспорт гражданина СССР",
+						"const": "001"
+					}
+				]
+			}
+		}
+	},
+	"formData": {
+		"valid": "006",
+		"invalid": ""
+	}
+}

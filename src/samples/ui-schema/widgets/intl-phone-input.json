@@ -1,0 +1,124 @@
+{
+	"$schema": "../../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"state": {
+				"title": "Состояние",
+				"properties": {
+					"default": {
+						"title": "По умолчанию",
+						"description": "текст подсказки",
+						"$ref": "#/definitions/phone"
+					},
+					"disabled": {
+						"title": "Отключен",
+						"readOnly": true,
+						"$ref": "#/definitions/phone"
+					},
+					"valid": {
+						"title": "Верно",
+						"$ref": "#/definitions/phone"
+					},
+					"invalid": {
+						"title": "Неверно",
+						"$ref": "#/definitions/phone"
+					}
+				}
+			},
+			"samples": {
+				"title": "Примеры",
+				"properties": {
+					"russia": {
+						"title": "Телефон Москвы (Россия)",
+						"type": "string",
+						"pattern": "^\\+7(495|499)([0-9]{7})$",
+						"x-errorMessages": {
+							"pattern": "должно быть номером телефона Москвы"
+						}
+					},
+					"moldova": {
+						"title": "Телефон Кишинева (Молдова)",
+						"type": "string",
+						"pattern": "^\\+373([0-9]{8})$",
+						"x-errorMessages": {
+							"pattern": "должно быть номером телефона Кишинева"
+						}
+					},
+					"ukraine": {
+						"title": "Телефон Киева (Украина)",
+						"type": "string",
+						"pattern": "^\\+?380[0-9]{9}$",
+						"x-errorMessages": {
+							"pattern": "должно быть номером телефона Киева"
+						}
+					},
+					"belarus": {
+						"title": "Телефон Минска (Беларусь)",
+						"type": "string",
+						"pattern": "^\\+?375[0-9]{8}$",
+						"x-errorMessages": {
+							"pattern": "должно быть номером телефона Минска"
+						}
+					}
+				}
+			}
+		},
+		"definitions": {
+			"phone": {
+				"type": "string",
+				"pattern": "^\\+(?:[0-9]){6,14}[0-9]$",
+				"examples": ["+7 123 456 78 90"],
+				"x-errorMessages": {
+					"pattern": "должно быть номером телефона"
+				},
+				"$comment": "Regex source: https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s03.html"
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["state"],
+		"state": {
+			"default": {
+				"ui:widget": "intl-phone-input"
+			},
+			"disabled": {
+				"ui:widget": "intl-phone-input"
+			},
+			"valid": {
+				"ui:widget": "intl-phone-input"
+			},
+			"invalid": {
+				"ui:widget": "intl-phone-input"
+			}
+		},
+		"samples": {
+			"russia": {
+				"ui:widget": "intl-phone-input"
+			},
+			"moldova": {
+				"ui:widget": "intl-phone-input"
+			},
+			"ukraine": {
+				"ui:widget": "intl-phone-input"
+			},
+			"belarus": {
+				"ui:widget": "intl-phone-input"
+			}
+		}
+	},
+	"formData": {
+		"state": {
+			"disabled": "+71234567890",
+			"valid": "+71234567890",
+			"invalid": "+7123"
+		},
+		"samples": {
+			"russia": "+7495123456",
+			"moldova": "+3732212345",
+			"ukraine": "+38044123456",
+			"belarus": "+3750171234"
+		}
+	}
+}

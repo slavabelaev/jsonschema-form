@@ -1,0 +1,37 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"title": "Samples",
+		"description": "A text field with example values.",
+		"type": "object",
+		"properties": {
+			"browser": {
+				"type": "string",
+				"title": "Browser",
+				"examples": [
+					"Firefox",
+					"Chrome",
+					"Opera",
+					"Vivaldi",
+					"Safari"
+				]
+			}
+		}
+	},
+	"uiSchema": {},
+	"formData": {
+		"firstName": "Chuck",
+		"active": "wrong",
+		"skills": [
+			"karate",
+			"budo",
+			"aikido"
+		],
+		"multipleChoicesList": [
+			"foo",
+			"bar",
+			"fuzz"
+		]
+	}
+}

@@ -1,0 +1,2447 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "additionalProperties": false,
+  "properties": {
+    "ui:template": {
+      "title": "Шаблон формы",
+      "enum": ["collapse-list", "stepper", "progress-stepper", "tabs"]
+    },
+    "ui:classNames": {
+      "description": "Значение HTML-атрибута **class**.",
+      "type": "string",
+      "examples": [
+        "className-1 className-2"
+      ]
+    },
+    "ui:rootFieldId": {
+      "description": "Уникальный идентификатор, используемый как префикс для имен элементов управления, предназначенный для предотвращения конфликта имен, при наличии нескольких форм на одной странице.",
+      "type": "string",
+      "default": "root",
+      "examples": [
+        "form-1",
+        "form-2"
+      ]
+    },
+    "ui:order": {
+      "description": "Список свойств, определяющих последовательность отображения элементов управления.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        "firstName",
+        "lastName",
+        "middleName"
+      ],
+      "uniqueItems": true
+    },
+    "ui:enumDisabled": {
+      "description": "Список значений ключевого слова **enum** JSON-схемы, которые должны быть недоступны.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        "Опция 1",
+        "Опция 2"
+      ],
+      "uniqueItems": true
+    },
+    "ui:disabled": {
+      "description": "Значение, определяющее доступность элемента управления. Является альтернативой ключевого слова **readOnly** в JSON-схеме.",
+      "enum": [
+        true,
+        false
+      ]
+    },
+    "ui:autofocus": {
+      "description": "Значение, устанавливающее фокус на элемент управления при загрузке документа.",
+      "enum": [
+        true,
+        false
+      ]
+    },
+    "ui:title": {
+      "description": "Текст заголовка, используемый в качестве альтернативы значения ключевого слова **title** в JSON-схеме.",
+      "type": "string"
+    },
+    "ui:description": {
+      "description": "Текст описания, используемый в качестве альтернативы значения ключевого слова **description** в JSON-схеме.",
+      "type": "string"
+    },
+    "ui:label": {
+      "description": "Текст заголовка можно скрыть, указав значение **true**.",
+      "enum": [
+        true,
+        false
+      ]
+    },
+    "ui:gridColumn": {
+      "anyOf": [
+        {
+          "title": "Разметка на любом разрешении экрана",
+          "$ref": "#/definitions/options/definitions/gridColumn"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "title": "Разметка на разрешении 0 – 599",
+              "$ref": "#/definitions/options/definitions/gridColumn"
+            },
+            "s": {
+              "title": "Разметка на разрешении 600 – 1023",
+              "$ref": "#/definitions/options/definitions/gridColumn"
+            },
+            "m": {
+              "title": "Разметка на разрешении 1024 – 1439",
+              "$ref": "#/definitions/options/definitions/gridColumn"
+            },
+            "l": {
+              "title": "Разметка на разрешении 1440 – 1919",
+              "$ref": "#/definitions/options/definitions/gridColumn"
+            },
+            "xl": {
+              "title": "Разметка на разрешении 1920+",
+              "$ref": "#/definitions/options/definitions/gridColumn"
+            }
+          }
+        }
+      ]
+    },
+    "ui:gridRow": {
+      "anyOf": [
+        {
+          "title": "Разметка на любом разрешении экрана",
+          "$ref": "#/definitions/options/definitions/gridRow"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "xs": {
+              "title": "Разметка на разрешении 0 – 599",
+              "$ref": "#/definitions/options/definitions/gridRow"
+            },
+            "s": {
+              "title": "Разметка на разрешении 600 – 1023",
+              "$ref": "#/definitions/options/definitions/gridRow"
+            },
+            "m": {
+              "title": "Разметка на разрешении 1024 – 1439",
+              "$ref": "#/definitions/options/definitions/gridRow"
+            },
+            "l": {
+              "title": "Разметка на разрешении 1440 – 1919",
+              "$ref": "#/definitions/options/definitions/gridRow"
+            },
+            "xl": {
+              "title": "Разметка на разрешении 1920+",
+              "$ref": "#/definitions/options/definitions/gridRow"
+            }
+          }
+        }
+      ]
+    },
+    "ui:widget": {
+      "description": "Название виджета, которое будет использоваться в качестве элемента управления.",
+      "enum": [
+        "attach",
+        "calendar",
+        "calendar-input",
+        "card-input",
+        "checkbox",
+        "checkbox-group",
+        "email-input",
+        "input",
+        "color-input",
+        "password-input",
+        "date-time-input",
+        "input-autocomplete",
+        "intl-phone-input",
+        "money-input",
+        "phone-input",
+        "radio-group",
+        "select",
+        "textarea",
+        "toggle"
+      ]
+    },
+    "ui:options": {
+      "type": "object"
+    }
+  },
+  "patternProperties": {
+    "^(?!ui:)": {
+      "$ref": "#"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "attach"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/attach"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "calendar"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/calendar"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "calendar-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/calendar-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "card-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/card-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "checkbox"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/checkbox"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "checkbox-group"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/checkbox-group"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "email-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/email-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "color-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/color-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "password-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/password-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "date-time-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/date-time-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "input-autocomplete"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/input-autocomplete"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "intl-phone-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/intl-phone-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "money-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/money-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "phone-input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/phone-input"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "radio-group"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/radio-group"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "select"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/select"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "textarea"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/textarea"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "ui:widget": {
+            "const": "toggle"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "ui:options": {
+            "$ref": "#/definitions/widgets/definitions/toggle"
+          }
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "widgets": {
+      "definitions": {
+        "attach": {
+          "$id": "#/definitions/widgets/definitions/attach",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "buttonContent": {
+              "$ref": "#/definitions/options/definitions/buttonContent"
+            },
+            "buttonProps": {
+              "$ref": "#/definitions/widgets/definitions/button"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "maxFilenameLength": {
+              "$ref": "#/definitions/options/definitions/maxFilenameLength"
+            },
+            "noFileText": {
+              "$ref": "#/definitions/options/definitions/noFileText"
+            }
+          }
+        },
+        "calendar": {
+          "$id": "#/definitions/widgets/definitions/calendar",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "eventDays": {
+              "$ref": "#/definitions/options/definitions/eventDays"
+            },
+            "isKeyboard": {
+              "$ref": "#/definitions/options/definitions/isKeyboard"
+            },
+            "month": {
+              "$ref": "#/definitions/options/definitions/month"
+            },
+            "months": {
+              "$ref": "#/definitions/options/definitions/months"
+            },
+            "selectedFrom": {
+              "$ref": "#/definitions/options/definitions/selectedFrom"
+            },
+            "selectedTo": {
+              "$ref": "#/definitions/options/definitions/selectedTo"
+            },
+            "showArrows": {
+              "$ref": "#/definitions/options/definitions/showArrows"
+            },
+            "showToday": {
+              "$ref": "#/definitions/options/definitions/showToday"
+            },
+            "weekdays": {
+              "$ref": "#/definitions/options/definitions/weekdays"
+            }
+          }
+        },
+        "calendar-input": {
+          "$id": "#/definitions/widgets/definitions/calendar-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "calendar": {
+              "$ref": "#/definitions/widgets/definitions/calendar"
+            },
+            "defaultMonth": {
+              "$ref": "#/definitions/options/definitions/defaultMonth"
+            },
+            "directions": {
+              "$ref": "#/definitions/options/definitions/directions"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mobileMode": {
+              "$ref": "#/definitions/options/definitions/mobileMode"
+            },
+            "mobileTitle": {
+              "$ref": "#/definitions/options/definitions/mobileTitle"
+            },
+            "opened": {
+              "$ref": "#/definitions/options/definitions/opened"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder",
+              "default": "00.00.0000"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "withIcon": {
+              "$ref": "#/definitions/options/definitions/withIcon"
+            }
+          }
+        },
+        "card-input": {
+          "$id": "#/definitions/widgets/definitions/card-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "clear": {
+              "$ref": "#/definitions/options/definitions/clear"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder",
+              "default": "0000 0000 0000 0000 00"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            }
+          }
+        },
+        "checkbox": {
+          "$id": "#/definitions/widgets/definitions/checkbox",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "$ref": "#/definitions/options/definitions/text"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "type": {
+              "$ref": "#/definitions/options/definitions/checkboxType"
+            }
+          }
+        },
+        "checkbox-group": {
+          "$id": "#/definitions/widgets/definitions/checkbox-group",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "type": {
+              "$ref": "#/definitions/options/definitions/checkboxGroupType"
+            }
+          }
+        },
+        "email-input": {
+          "$id": "#/definitions/widgets/definitions/email-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "clear": {
+              "$ref": "#/definitions/options/definitions/clear"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            }
+          }
+        },
+        "input": {
+          "$id": "#/definitions/widgets/definitions/input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "clear": {
+              "$ref": "#/definitions/options/definitions/clear"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            }
+          }
+        },
+        "date-time-input": {
+          "$id": "#/definitions/widgets/definitions/date-time-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            }
+          }
+        },
+        "color-input": {
+          "$id": "#/definitions/widgets/definitions/color-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            }
+          }
+        },
+        "password-input": {
+          "$id": "#/definitions/widgets/definitions/password-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            },
+            "visible": {
+              "$ref": "#/definitions/options/definitions/visible"
+            }
+          }
+        },
+        "input-autocomplete": {
+          "$id": "#/definitions/widgets/definitions/input-autocomplete",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "remoteConfig": {
+              "$ref": "#/definitions/options/definitions/remoteConfig"
+            },
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "clear": {
+              "$ref": "#/definitions/options/definitions/clear"
+            },
+            "closeOnSelect": {
+              "$ref": "#/definitions/options/definitions/closeOnSelect"
+            },
+            "directions": {
+              "$ref": "#/definitions/options/definitions/directions"
+            },
+            "equalPopupWidth": {
+              "$ref": "#/definitions/options/definitions/equalPopupWidth"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "opened": {
+              "$ref": "#/definitions/options/definitions/opened"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "popupClassName": {
+              "$ref": "#/definitions/options/definitions/popupClassName"
+            },
+            "popupMaxHeight": {
+              "$ref": "#/definitions/options/definitions/popupMaxHeight"
+            },
+            "renderPopupOnFocus": {
+              "$ref": "#/definitions/options/definitions/renderPopupOnFocus"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "type": {
+              "$ref": "#/definitions/options/definitions/inputType"
+            },
+            "updateValueOnItemSelect": {
+              "$ref": "#/definitions/options/definitions/updateValueOnItemSelect"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            }
+          }
+        },
+        "intl-phone-input": {
+          "$id": "#/definitions/widgets/definitions/intl-phone-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "clear": {
+              "$ref": "#/definitions/options/definitions/clear"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            }
+          }
+        },
+        "money-input": {
+          "$id": "#/definitions/widgets/definitions/money-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "bold": {
+              "$ref": "#/definitions/options/definitions/bold"
+            },
+            "clear": {
+              "$ref": "#/definitions/options/definitions/clear"
+            },
+            "currencyCode": {
+              "$ref": "#/definitions/options/definitions/currencyCode"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "fractionLength": {
+              "$ref": "#/definitions/options/definitions/fractionLength"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "integerLength": {
+              "$ref": "#/definitions/options/definitions/integerLength"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "showCurrency": {
+              "$ref": "#/definitions/options/definitions/showCurrency"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            }
+          }
+        },
+        "phone-input": {
+          "$id": "#/definitions/widgets/definitions/phone-input",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "clear": {
+              "$ref": "#/definitions/options/definitions/clear"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "mask": {
+              "$ref": "#/definitions/options/definitions/mask",
+              "default": "+1 111 111 11 11"
+            },
+            "maskFormatCharacters": {
+              "$ref": "#/definitions/options/definitions/maskFormatCharacters"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder",
+              "default": "+7 000 000 00 00"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "useWhitespacesInMask": {
+              "$ref": "#/definitions/options/definitions/useWhitespacesInMask"
+            }
+          }
+        },
+        "radio-group": {
+          "$id": "#/definitions/widgets/definitions/radio-group",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "type": {
+              "$ref": "#/definitions/options/definitions/radioType"
+            }
+          }
+        },
+        "select": {
+          "$id": "#/definitions/widgets/definitions/select",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "directions": {
+              "$ref": "#/definitions/options/definitions/directions"
+            },
+            "equalPopupWidth": {
+              "$ref": "#/definitions/options/definitions/equalPopupWidth"
+            },
+            "groupView": {
+              "$ref": "#/definitions/options/definitions/groupView"
+            },
+            "hideTick": {
+              "$ref": "#/definitions/options/definitions/hideTick"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "maxHeight": {
+              "$ref": "#/definitions/options/definitions/maxHeight",
+              "description": "Максимальная высота попапа"
+            },
+            "mobileMenuMode": {
+              "$ref": "#/definitions/options/definitions/mobileMenuMode"
+            },
+            "mobileTitle": {
+              "$ref": "#/definitions/options/definitions/mobileTitle"
+            },
+            "mode": {
+              "$ref": "#/definitions/options/definitions/mode"
+            },
+            "nativeOptionPlaceholder": {
+              "$ref": "#/definitions/options/definitions/nativeOptionPlaceholder"
+            },
+            "opened": {
+              "$ref": "#/definitions/options/definitions/opened"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "popupMainOffset": {
+              "$ref": "#/definitions/options/definitions/popupMainOffset"
+            },
+            "popupSecondaryOffset": {
+              "$ref": "#/definitions/options/definitions/popupSecondaryOffset"
+            },
+            "renderPopupOnFocus": {
+              "$ref": "#/definitions/options/definitions/renderPopupOnFocus"
+            }
+          }
+        },
+        "textarea": {
+          "$id": "#/definitions/widgets/definitions/textarea",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "autocomplete": {
+              "$ref": "#/definitions/options/definitions/autocomplete"
+            },
+            "autosize": {
+              "$ref": "#/definitions/options/definitions/autosize"
+            },
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "maxHeight": {
+              "$ref": "#/definitions/options/definitions/maxHeight"
+            },
+            "maxRows": {
+              "$ref": "#/definitions/options/definitions/maxRows"
+            },
+            "minRows": {
+              "$ref": "#/definitions/options/definitions/minRows"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/options/definitions/placeholder"
+            },
+            "resize": {
+              "$ref": "#/definitions/options/definitions/resize"
+            }
+          }
+        },
+        "toggle": {
+          "$id": "#/definitions/widgets/definitions/toggle",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hint": {
+              "$ref": "#/definitions/options/definitions/hint"
+            },
+            "label": {
+              "$ref": "#/definitions/options/definitions/label"
+            },
+            "labelAlign": {
+              "$ref": "#/definitions/options/definitions/labelAlign"
+            }
+          }
+        },
+        "button": {
+          "$id": "#/definitions/widgets/definitions/toggle",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "checked": {
+              "$ref": "#/definitions/options/definitions/checked"
+            },
+            "focused": {
+              "$ref": "#/definitions/options/definitions/focused"
+            },
+            "icon": {
+              "$ref": "#/definitions/options/definitions/icon"
+            },
+            "leftAddons": {
+              "$ref": "#/definitions/options/definitions/leftAddons"
+            },
+            "pseudo": {
+              "$ref": "#/definitions/options/definitions/pseudo"
+            },
+            "rightAddons": {
+              "$ref": "#/definitions/options/definitions/rightAddons"
+            },
+            "tag": {
+              "$ref": "#/definitions/options/definitions/tag"
+            },
+            "text": {
+              "$ref": "#/definitions/options/definitions/text"
+            },
+            "title": {
+              "$ref": "#/definitions/options/definitions/title"
+            },
+            "togglable": {
+              "$ref": "#/definitions/options/definitions/togglable"
+            },
+            "view": {
+              "$ref": "#/definitions/options/definitions/buttonView"
+            }
+          }
+        }
+      }
+    },
+    "options": {
+      "definitions": {
+        "visible": {
+          "title": "Показать пароль",
+          "type": "boolean",
+          "default": false
+        },
+        "gridColumn": {
+          "type": "string",
+          "pattern": "[0-9]+ ?\/ ?[0-9]+",
+          "default": "1 / 13"
+        },
+        "gridRow": {
+          "type": "string"
+        },
+        "remoteConfig": {
+          "request": {
+            "properties": {
+              "url": {
+                "title": "Ссылка запроса",
+                "type": "string",
+                "format": "url",
+                "examples": ["https://example.com/?q=${input}", "https://example.com/path/to/${input}/"]
+              },
+              "method": {
+                "title": "Метод",
+                "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "COPY", "HEAD", "OPTIONS", "LINK", "UNLINK", "PURGE", "LOCK", "UNLOCK", "PROPFIND", "VIEW"],
+                "default": "GET"
+              },
+              "body": {
+                "type": "object",
+                "examples": [{
+                  "query": "${input}"
+                }]
+              },
+              "headers": {
+                "type": "object",
+                "patternProperties": {
+                  "^.+$": {
+                    "type": "string",
+                    "examples": [{
+                      "Header-Name": "${input}"
+                    }]
+                  }
+                },
+                "default": {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                }
+              }
+            },
+            "required": ["url"],
+            "additionalProperties": false
+          },
+          "response": {
+            "properties": {
+              "itemsKey": {
+                "title": "Путь к ключу массива, возвращенных данные",
+                "type": "string",
+                "examples": ["path.to.itemsKey"]
+              },
+              "valueKey": {
+                "title": "Путь к ключу хранящему значение элемента массива",
+                "type": "string",
+                "examples": ["path.to.valueKey"]
+              },
+              "titleKey": {
+                "title": "Путь к ключу хранящему заголовок элемента массива",
+                "type": "string",
+                "examples": ["path.to.titleKey"]
+              },
+              "descriptionKey": {
+                "title": "Путь к ключу хранящему описание элемента массива",
+                "type": "string",
+                "examples": ["path.to.descriptionKey"]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "buttonView": {
+          "$id": "#/definitions/options/definitions/buttonView",
+          "description": "Тип кнопки",
+          "enum": [
+            "default",
+            "action",
+            "extra",
+            "rounded"
+          ],
+          "$comment": "string"
+        },
+        "checked": {
+          "$id": "#/definitions/options/definitions/checked",
+          "title": "Отображение кнопки в отмеченном (зажатом) состоянии",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "pseudo": {
+          "$id": "#/definitions/options/definitions/pseudo",
+          "description": "Псевдо-представление элемента управления",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "tag": {
+          "$id": "#/definitions/options/definitions/tag",
+          "description": "HTML-тег элемента управления в DOM",
+          "enum": [
+            "button",
+            "span"
+          ],
+          "$comment": "string"
+        },
+        "togglable": {
+          "$id": "#/definitions/options/definitions/togglable",
+          "description": "Тип переключателя",
+          "enum": [
+            "check",
+            "radio"
+          ]
+        },
+        "accept": {
+          "$id": "#/definitions/options/definitions/accept",
+          "description": "Доступные для выбора MIME типы файлов",
+          "examples": [
+            "application/pdf",
+            "image/png, image/jpeg"
+          ],
+          "type": "string"
+        },
+        "groupView": {
+          "$id": "#/definitions/options/definitions/groupView",
+          "description": "Размещение заголовка групп: обычное или в одну строку с первым элементом группы",
+          "default": "default",
+          "enum": [
+            "default",
+            "line"
+          ]
+        },
+        "width": {
+          "$id": "#/definitions/options/definitions/width",
+          "description": "Ширина элемента управления. При значении 'available' растягивает на ширину родителя",
+          "default": "default",
+          "enum": [
+            "default",
+            "available"
+          ]
+        },
+        "className": {
+          "$id": "#/definitions/options/definitions/className",
+          "description": "Дополнительный класс",
+          "type": "string",
+          "$comment": "string"
+        },
+        "title": {
+          "$id": "#/definitions/options/definitions/title",
+          "description": "Текст всплывающей подсказки",
+          "type": "string",
+          "$comment": "string"
+        },
+        "tabIndex": {
+          "$id": "#/definitions/options/definitions/tabIndex",
+          "description": "Последовательность перехода между контролами при нажатии на Tab",
+          "type": "number",
+          "$comment": "number"
+        },
+        "autocomplete": {
+          "$id": "#/definitions/options/definitions/autocomplete",
+          "description": "Управление автозаполнением компонента. В случае передачи true или false подставляет on или off. Строка подставляется как есть.",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "string | boolean"
+        },
+        "formNoValidate": {
+          "$id": "#/definitions/options/definitions/formNoValidate",
+          "description": "Управление встроенной проверкой данных введённых пользователем в поле на корректность",
+          "default": false,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "placeholder": {
+          "$id": "#/definitions/options/definitions/placeholder",
+          "description": "Подсказка в поле",
+          "type": "string",
+          "$comment": "string"
+        },
+        "labelAlign": {
+          "$id": "#/definitions/options/definitions/labelAlign",
+          "description": "Выравнивание подписи",
+          "default": "right",
+          "enum": [
+            "left",
+            "right"
+          ]
+        },
+        "clear": {
+          "$id": "#/definitions/options/definitions/clear",
+          "description": "Управление наличием крестика, сбрасывающего значение 'value'",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "focused": {
+          "$id": "#/definitions/options/definitions/focused",
+          "description": "Отображение в состоянии фокуса",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "mask": {
+          "$id": "#/definitions/options/definitions/mask",
+          "description": "Определяет маску для ввода значений. [Шаблон маски](https://github.com/insin/inputmask-core#pattern)",
+          "type": "string",
+          "$comment": "string",
+          "examples": [
+            "1111 1111 1111 1111",
+            "11/11/1111",
+            "1111-11-11",
+            "11:11",
+            "A1A 1A1",
+            "AAA 1111"
+          ]
+        },
+        "useWhitespacesInMask": {
+          "$id": "#/definitions/options/definitions/useWhitespacesInMask",
+          "description": "Разрешает ставить пробелы в инпуте, если они указаны в форматтере, заданном свойством maskFormatCharacters. Не оказывает влияния, если не установлено свойство maskFormatCharacters",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "maskFormatCharacters": {
+          "$id": "#/definitions/options/definitions/maskFormatCharacters",
+          "description": "Кастомные форматтеры символов маски, использует формат formatCharacters из inputmask-core",
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1
+          },
+          "patternProperties": {
+            "^.$": {
+              "properties": {
+                "transform": {
+                  "description": "Трансформация символа",
+                  "enum": [
+                    null,
+                    "toUpperCase",
+                    "toLowerCase"
+                  ],
+                  "default": null
+                },
+                "validate": {
+                  "description": "Регулярное выражение, для проверки валидности символа",
+                  "type": "string",
+                  "format": "pattern"
+                }
+              }
+            }
+          },
+          "examples": [
+            {
+              "w": {
+                "transform": "toUpperCase",
+                "validate": "\\w"
+              }
+            }
+          ],
+          "$comment": "FormatCharacters"
+        },
+        "mobileMode": {
+          "$id": "#/definitions/options/definitions/mobileMode",
+          "description": "Управление нативным режимом на мобильных устройствах",
+          "default": "native",
+          "enum": [
+            "native",
+            "popup",
+            "input"
+          ]
+        },
+        "mobileTitle": {
+          "$id": "#/definitions/options/definitions/mobileTitle",
+          "description": "Подсказка над меню в мобильном режиме",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "leftAddons": {
+          "$id": "#/definitions/options/definitions/leftAddons",
+          "description": "Дополнительное содержимое слева",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "rightAddons": {
+          "$id": "#/definitions/options/definitions/rightAddons",
+          "description": "Дополнительное содержимое справа",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "icon": {
+          "$id": "#/definitions/options/definitions/icon",
+          "description": "Иконка",
+          "enum": [
+            "action-photo-or-file",
+            "add",
+            "analytics",
+            "arrow-back",
+            "attachment",
+            "back",
+            "call",
+            "camera",
+            "card-pin-change",
+            "chat-send",
+            "chat",
+            "convert-rub-to-usd",
+            "copy",
+            "delete",
+            "dislike-filled",
+            "dislike",
+            "dots",
+            "download",
+            "edit",
+            "email",
+            "erase",
+            "filter",
+            "gallery-in-camera",
+            "like-filled",
+            "like",
+            "lock",
+            "logout",
+            "more",
+            "navigation-chat",
+            "navigation-history",
+            "navigation-home",
+            "navigation-marketplace",
+            "navigation-payment",
+            "next",
+            "password-change",
+            "password-hide",
+            "password-show",
+            "pause",
+            "photo-card",
+            "pin-unpin",
+            "pin",
+            "power-card",
+            "printer",
+            "repeat",
+            "reply",
+            "search",
+            "selfemloyed-reg",
+            "settings",
+            "share-android",
+            "share-ios",
+            "sign",
+            "unlock",
+            "account-add",
+            "account-default",
+            "account-shared",
+            "balance-transfer",
+            "card-accounts-list",
+            "card-activation",
+            "card-add",
+            "card-close",
+            "card-expences",
+            "card-list",
+            "card-to-card",
+            "card",
+            "cash",
+            "convert",
+            "costs-card",
+            "costs",
+            "credit-card",
+            "credit",
+            "cvv",
+            "deposit",
+            "expences-planner",
+            "expences",
+            "goals",
+            "insurance",
+            "investments",
+            "limits",
+            "marketplace",
+            "overdraft",
+            "pay-back",
+            "payment-error",
+            "payment-outbox",
+            "payment-plus",
+            "payment-rounded-plus",
+            "payment-to-company",
+            "payment-to-person",
+            "payment-to-self",
+            "payment-to-state",
+            "plan-expenses",
+            "ready-to-send",
+            "request-money",
+            "sent",
+            "subscrption",
+            "transfer-any-bank",
+            "transfer-between-accounts",
+            "transfer-card",
+            "transfer-external",
+            "transfer-in",
+            "transfer-internal",
+            "transfer-out",
+            "transfer-to-card",
+            "wallet",
+            "bank-europe",
+            "bank-qiwi",
+            "bank-trust",
+            "bank-mts",
+            "bank-psb",
+            "bank-uralskiy",
+            "bank-vozrozhdenie",
+            "bank-alfa",
+            "bank-tinkoff",
+            "bank-saint-petersburg",
+            "bank-mkb",
+            "bank-baltiyskiy",
+            "bank-societe-generale",
+            "bank-vtb",
+            "bank-otkritie",
+            "bank-home-credit",
+            "bank-sber",
+            "bank-skb",
+            "bank-moscow",
+            "bank-russian-standard",
+            "bank-otp",
+            "bank-uralsib",
+            "bank-unicredit",
+            "bank-raiffeisen",
+            "bank-mdm",
+            "bank-binbank",
+            "bank-gazprombank",
+            "bank-nsipf-1",
+            "bank-nsipf-1000",
+            "bank-nsipf-128",
+            "bank-nsipf-1326",
+            "bank-nsipf-1439",
+            "bank-nsipf-1481",
+            "bank-nsipf-1792",
+            "bank-nsipf-2209",
+            "bank-nsipf-2241",
+            "bank-nsipf-2268",
+            "bank-nsipf-2275",
+            "bank-nsipf-2289",
+            "bank-nsipf-2361",
+            "bank-nsipf-2524",
+            "bank-nsipf-2673",
+            "bank-nsipf-2748",
+            "bank-nsipf-2766",
+            "bank-nsipf-316",
+            "bank-nsipf-323",
+            "bank-nsipf-3251",
+            "bank-nsipf-3279",
+            "bank-nsipf-3292",
+            "bank-nsipf-3311",
+            "bank-nsipf-354",
+            "bank-nsipf-429",
+            "bank-nsipf-436",
+            "bank-nsipf-705",
+            "bank-yandexmoney",
+            "card-belkart",
+            "card-maestro",
+            "card-mastercard",
+            "card-mir",
+            "card-visa-electron",
+            "card-visa",
+            "fifa-trophy",
+            "forex",
+            "network-facebook",
+            "network-twitter",
+            "network-vk",
+            "category-appliances",
+            "category-auto",
+            "category-books-movies",
+            "category-budget",
+            "category-business-activity",
+            "category-business",
+            "category-cash",
+            "category-cashback",
+            "category-charity",
+            "category-default",
+            "category-dress",
+            "category-education",
+            "category-entertainment",
+            "category-experiments",
+            "category-family",
+            "category-finance",
+            "category-fines",
+            "category-gasoline",
+            "category-gibdd-fines",
+            "category-guard",
+            "category-health",
+            "category-hobby",
+            "category-housekeeping",
+            "category-investments",
+            "category-loans",
+            "category-medicine",
+            "category-mortgage",
+            "category-other",
+            "category-person",
+            "category-pets",
+            "category-rent",
+            "category-repairs",
+            "category-restaurants",
+            "category-salary",
+            "category-scholarship",
+            "category-shopping",
+            "category-state",
+            "category-telecom",
+            "category-transport",
+            "category-travel",
+            "category-troika",
+            "category-tv",
+            "category-unknown",
+            "category-user",
+            "category-vacation",
+            "utilities",
+            "currency-chf",
+            "currency-eur-usd",
+            "currency-eur",
+            "currency-gbp",
+            "currency-jpy",
+            "currency-rub-usd",
+            "currency-rub",
+            "currency-usd",
+            "alfacheck",
+            "alfadialogue",
+            "alfamobile",
+            "APC-bonus",
+            "atm",
+            "bag",
+            "calendar",
+            "card-void",
+            "cashback-bonus",
+            "cashback",
+            "chat-photo",
+            "clock",
+            "contact-list",
+            "contactless",
+            "directions",
+            "discount",
+            "draft",
+            "emoney",
+            "fingerprint",
+            "history",
+            "inbox",
+            "internet",
+            "keyboard-hide",
+            "keyboard",
+            "manager",
+            "message",
+            "metro",
+            "mobile",
+            "moneybox",
+            "mypayments",
+            "news",
+            "notification-badge",
+            "notifications",
+            "office",
+            "person",
+            "photo",
+            "pillow",
+            "predictions",
+            "present",
+            "qr",
+            "registry",
+            "security",
+            "site",
+            "sixty",
+            "todo",
+            "account-euro",
+            "account-info",
+            "account-rub",
+            "account-text",
+            "account-usd",
+            "account",
+            "format-1c",
+            "format-attach",
+            "format-csv",
+            "format-default",
+            "format-doc",
+            "format-pdf",
+            "format-png",
+            "format-ppt",
+            "format-sketch",
+            "format-svg",
+            "format-txt",
+            "format-xls",
+            "format-xml",
+            "format-zip",
+            "arrow-bottom",
+            "arrow-collapse",
+            "arrow-double",
+            "arrow-down",
+            "arrow-expand",
+            "arrow-left",
+            "arrow-right",
+            "arrow-top",
+            "arrow-up",
+            "attention-mark",
+            "attention",
+            "autopayment",
+            "backspace",
+            "buy",
+            "check-bold",
+            "check-indeterminate",
+            "check",
+            "chevron-right",
+            "close-circle",
+            "close",
+            "down",
+            "error",
+            "exchange",
+            "expand-down",
+            "fail",
+            "favorite",
+            "feature",
+            "geolocation-map",
+            "geolocation",
+            "help-filled",
+            "help",
+            "info",
+            "left",
+            "location",
+            "metro-map",
+            "ok-filled",
+            "ok",
+            "play",
+            "right",
+            "sell",
+            "star-active",
+            "star-inactive",
+            "star",
+            "submit",
+            "system-back",
+            "system-help",
+            "system-hide-arrow",
+            "tick",
+            "up",
+            "verifying"
+          ]
+        },
+        "indeterminate": {
+          "$id": "#/definitions/options/definitions/indeterminate",
+          "description": "Управление неопределенным состоянием чекбокса",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "hideTick": {
+          "$id": "#/definitions/options/definitions/hideTick",
+          "description": "Скрытие галочки в правой части кнопки",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "directions": {
+          "$id": "#/definitions/options/definitions/directions",
+          "description": "Направления, в которые может открываться попап компонента",
+          "default": [
+            "bottom-left",
+            "bottom-right",
+            "top-left",
+            "top-right"
+          ],
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "anchor",
+              "top-left",
+              "top-center",
+              "top-right",
+              "left-top",
+              "left-center",
+              "left-bottom",
+              "right-top",
+              "right-center",
+              "right-bottom",
+              "bottom-left",
+              "bottom-center",
+              "bottom-right"
+            ]
+          }
+        },
+        "label": {
+          "$id": "#/definitions/options/definitions/label",
+          "description": "Лейбл для поля",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "hint": {
+          "$id": "#/definitions/options/definitions/hint",
+          "description": "Подсказка под полем",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "autosize": {
+          "$id": "#/definitions/options/definitions/autosize",
+          "description": "Управление возможностью подстраивать высоту компонента под высоту текста",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "maxHeight": {
+          "$id": "#/definitions/options/definitions/maxHeight",
+          "description": "Максимальная высота",
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "inputType": {
+          "$id": "#/definitions/options/definitions/inputType",
+          "description": "Тип поля. Внимание, тип 'number' не умеет работать с масками, в том числе с 'selectionStart' и 'selectionEnd'. Подробнее: [http://w3c.github.io/html/sec-forms.html#does-not-apply](http://w3c.github.io/html/sec-forms.html#does-not-apply)",
+          "default": "text",
+          "enum": [
+            "number",
+            "card",
+            "email",
+            "file",
+            "hidden",
+            "money",
+            "password",
+            "tel",
+            "text"
+          ]
+        },
+        "radioType": {
+          "$id": "#/definitions/options/definitions/radioType",
+          "description": "Тип кнопок",
+          "default": "normal",
+          "enum": [
+            "normal",
+            "button",
+            "line"
+          ]
+        },
+        "checkboxType": {
+          "$id": "#/definitions/options/definitions/checkboxType",
+          "description": "Тип чекбокса",
+          "default": "normal",
+          "enum": [
+            "normal",
+            "button"
+          ]
+        },
+        "checkboxGroupType": {
+          "$id": "#/definitions/options/definitions/checkboxGroupType",
+          "description": "Тип компонента",
+          "default": "normal",
+          "enum": [
+            "button",
+            "normal",
+            "line"
+          ]
+        },
+        "mode": {
+          "$id": "#/definitions/options/definitions/mode",
+          "description": "Тип выпадающего списка",
+          "default": "check",
+          "enum": [
+            "check",
+            "radio",
+            "radio-check"
+          ]
+        },
+        "mobileMenuMode": {
+          "$id": "#/definitions/options/definitions/mobileMenuMode",
+          "description": "Управление нативным режимом на мобильных устройствах",
+          "default": "native",
+          "enum": [
+            "native",
+            "popup"
+          ]
+        },
+        "opened": {
+          "$id": "#/definitions/options/definitions/opened",
+          "description": "Управление видимостью выпадающего списка",
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "buttonContent": {
+          "$id": "#/definitions/options/definitions/buttonContent",
+          "description": "Содержимое кнопки для выбора файла",
+          "default": "Выберите файл",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "buttonProps": {
+          "$id": "#/definitions/options/definitions/buttonProps",
+          "description": "Свойства для кнопки",
+          "type": "object",
+          "$comment": "ButtonProps"
+        },
+        "maxFilenameLength": {
+          "$id": "#/definitions/options/definitions/maxFilenameLength",
+          "description": "Число символов, после которого имя файла будет обрезаться",
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "noFileText": {
+          "$id": "#/definitions/options/definitions/noFileText",
+          "description": "Текст для случая, когда файл не загружен",
+          "default": "Нет файла",
+          "type": "string",
+          "$comment": "string"
+        },
+        "progressBarPercent": {
+          "$id": "#/definitions/options/definitions/progressBarPercent",
+          "description": "Процент выполнения загрузки файла",
+          "type": "number",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "eventDays": {
+          "$id": "#/definitions/options/definitions/eventDays",
+          "description": "Список дней с событиями в виде unix timestamp, отсортированный по возрастанию",
+          "type": "array",
+          "default": [],
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "$comment": "number[]"
+        },
+        "isKeyboard": {
+          "$id": "#/definitions/options/definitions/isKeyboard",
+          "description": "Возможность управления календарём с клавиатуры",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "earlierLimit": {
+          "$id": "#/definitions/options/definitions/earlierLimit",
+          "description": "Левая граница дат, возможных для выбора, в формате unix timestamp",
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "ignoreTimezone": {
+          "$id": "#/definitions/options/definitions/ignoreTimezone",
+          "description": "Игнорировать различие часовых поясов клиента и сервера. Для корректного отображения offDays и eventDays в том случае, если часовой пояс клиента отличается от часового пояса дат в offDays и eventDays",
+          "enum": [
+            true,
+            false
+          ],
+          "default": false,
+          "$comment": "boolean"
+        },
+        "laterLimit": {
+          "$id": "#/definitions/options/definitions/laterLimit",
+          "description": "Правая граница дат, возможных для выбора, в формате unix timestamp",
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "month": {
+          "$id": "#/definitions/options/definitions/month",
+          "description": "Месяц, в формате unix timestamp",
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "months": {
+          "$id": "#/definitions/options/definitions/months",
+          "description": "Список названий месяцев",
+          "default": [
+            "Январь",
+            "Февраль",
+            "Март",
+            "Апрель",
+            "Май",
+            "Июнь",
+            "Июль",
+            "Август",
+            "Сентябрь",
+            "Октябрь",
+            "Ноябрь",
+            "Декабрь"
+          ],
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "minItems": 12,
+          "maxItems": 12,
+          "$comment": " string[]"
+        },
+        "offDays": {
+          "$id": "#/definitions/options/definitions/offDays",
+          "description": "Список выходных дней в виде unix timestamp, отсортированный по возрастанию",
+          "default": [],
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "uniqueItems": true,
+          "type": "array",
+          "$comment": " number[]"
+        },
+        "outputFormat": {
+          "$id": "#/definitions/options/definitions/outputFormat",
+          "description": "Тип форматирования даты при выводе",
+          "default": "DD.MM.YYYY",
+          "type": "string",
+          "$comment": "string"
+        },
+        "selectedFrom": {
+          "$id": "#/definitions/options/definitions/selectedFrom",
+          "description": "Левая граница диапазона дат, в формате unix timestamp",
+          "default": null,
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "selectedTo": {
+          "$id": "#/definitions/options/definitions/selectedTo",
+          "description": "Правая граница диапазона дат, в формате unix timestamp",
+          "default": null,
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "showArrows": {
+          "$id": "#/definitions/options/definitions/showArrows",
+          "description": "Отображение стрелок навигации по месяцам",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "showToday": {
+          "$id": "#/definitions/options/definitions/showToday",
+          "description": "Отображение текущей даты",
+          "default": false,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "weekdays": {
+          "$id": "#/definitions/options/definitions/weekdays",
+          "description": "Список названий дней недели",
+          "type": "array",
+          "default": [
+            "Пн",
+            "Вт",
+            "Ср",
+            "Чт",
+            "Пт",
+            "Сб",
+            "Вс"
+          ],
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "minItems": 7,
+          "maxItems": 7,
+          "$comment": " string[]"
+        },
+        "calendar": {
+          "$id": "#/definitions/options/definitions/calendar",
+          "description": "Свойства компонента [Calendar](#!/Calendar)",
+          "type": "object",
+          "$comment": "CalendarProps"
+        },
+        "defaultMonth": {
+          "$id": "#/definitions/options/definitions/defaultMonth",
+          "description": "Дата для отображения календаря по умолчанию",
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "any"
+        },
+        "withIcon": {
+          "$id": "#/definitions/options/definitions/withIcon",
+          "description": "Управление рендером иконки календаря в инпуте",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "text": {
+          "$id": "#/definitions/options/definitions/text",
+          "description": "Текст",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "children": {
+          "$id": "#/definitions/options/definitions/children",
+          "description": "Дочерние элементы",
+          "type": "string",
+          "$comment": "ReactNode"
+        },
+        "popupClassName": {
+          "$id": "#/definitions/options/definitions/popupClassName",
+          "description": "Название класса попапа с опциями",
+          "type": "string",
+          "$comment": "string"
+        },
+        "popupMaxHeight": {
+          "$id": "#/definitions/options/definitions/popupMaxHeight",
+          "description": "Максимальная высота выпадающего списка опций",
+          "type": "number",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "updateValueOnItemSelect": {
+          "$id": "#/definitions/options/definitions/updateValueOnItemSelect",
+          "description": "Определяет нужно или нет обновлять значение текстового поля при выборе варианта",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "bold": {
+          "$id": "#/definitions/options/definitions/bold",
+          "description": "Толщина шрифта",
+          "default": false,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "currencyCode": {
+          "$id": "#/definitions/options/definitions/currencyCode",
+          "description": "Международный код валюты",
+          "default": "RUR",
+          "type": "string",
+          "$comment": "string"
+        },
+        "fractionLength": {
+          "$id": "#/definitions/options/definitions/fractionLength",
+          "description": "Максимально допустимая длина значения после запятой",
+          "default": null,
+          "type": "number",
+          "$comment": "number"
+        },
+        "integerLength": {
+          "$id": "#/definitions/options/definitions/integerLength",
+          "description": "Максимально допустимая длина значения до запятой",
+          "default": null,
+          "type": "integer",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "showCurrency": {
+          "$id": "#/definitions/options/definitions/showCurrency",
+          "description": "Отображение символа валюты",
+          "default": false,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "type": {
+          "$id": "#/definitions/options/definitions/type",
+          "description": "Тип группы кнопок",
+          "default": "normal",
+          "enum": [
+            "normal",
+            "button",
+            "line"
+          ]
+        },
+        "closeOnSelect": {
+          "$id": "#/definitions/options/definitions/closeOnSelect",
+          "description": "Закрытие выпадающего списка в случае, если произошел выбор элемента",
+          "default": false,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "equalPopupWidth": {
+          "$id": "#/definitions/options/definitions/equalPopupWidth",
+          "description": "Ширинa выпадающего списка равна ширине элемента",
+          "default": false,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "nativeOptionPlaceholder": {
+          "$id": "#/definitions/options/definitions/nativeOptionPlaceholder",
+          "description": "Подсказка в качестве неактивного первого варианта выбора для нативного мобильного контрола",
+          "default": null,
+          "type": "string",
+          "$comment": "string"
+        },
+        "popupMainOffset": {
+          "$id": "#/definitions/options/definitions/popupMainOffset",
+          "description": "Смещение в пикселях всплывающего окна относительно основного направления (только на десктопе)",
+          "type": "number",
+          "$comment": "number"
+        },
+        "popupSecondaryOffset": {
+          "$id": "#/definitions/options/definitions/popupSecondaryOffset",
+          "description": "Смещение в пикселях всплывающего окна относительно второстепенного направления (только на десктопе)",
+          "type": "number",
+          "$comment": "number"
+        },
+        "renderButtonContent": {
+          "$id": "#/definitions/options/definitions/renderButtonContent",
+          "description": "Кастомный метод рендера содержимого кнопки, принимает на вход: массив элементов типа CheckedOption",
+          "type": "string",
+          "$comment": "(checkedOptions: CheckedOption[]) => ReactNode"
+        },
+        "renderPopupOnFocus": {
+          "$id": "#/definitions/options/definitions/renderPopupOnFocus",
+          "description": "Вставляет попап со списком только если элемент активен",
+          "default": false,
+          "enum": [
+            true,
+            false
+          ],
+          "$comment": "boolean"
+        },
+        "maxRows": {
+          "$id": "#/definitions/options/definitions/maxRows",
+          "description": "Максимальное количество отображаемых строк",
+          "type": "number",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "minRows": {
+          "$id": "#/definitions/options/definitions/minRows",
+          "description": "Минимальное количество отображаемых строк",
+          "type": "number",
+          "minimum": 0,
+          "$comment": "number"
+        },
+        "resize": {
+          "$id": "#/definitions/options/definitions/resize",
+          "description": "Управление возможностью изменения размеров компонента",
+          "default": "none",
+          "enum": [
+            "both",
+            "horizontal",
+            "vertical",
+            "none"
+          ]
+        }
+      }
+    }
+  }
+}

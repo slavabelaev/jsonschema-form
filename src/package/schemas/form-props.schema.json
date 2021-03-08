@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "allOf": [
+        {
+          "$ref": "http://json-schema.org/draft-07/schema"
+        },
+        {
+          "properties": {
+            "x-errorMessages": {
+              "$ref": "error-messages.schema.json"
+            }
+          }
+        }
+      ]
+    },
+    "uiSchema": {
+      "$ref": "ui-schema.schema.json"
+    },
+    "formData": {
+      "type": ["object", "array", "string", "number", "integer", "boolean", "null"]
+    },
+    "liveValidate": {
+      "type": "boolean",
+      "default": true
+    },
+    "size": {
+      "description": "Размер",
+      "enum": ["s", "m", "l", "xl"],
+      "default": "m"
+    },
+    "theme": {
+      "description": "Тема",
+      "enum": ["alfa-on-color", "alfa-on-white"],
+      "default": "alfa-on-white"
+    },
+    "view": {
+      "description": "Тип",
+      "enum": ["default", "filled"],
+      "default": "filled"
+    }
+  },
+  "required": ["schema"]
+}
+

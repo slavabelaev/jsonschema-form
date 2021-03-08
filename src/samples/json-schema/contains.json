@@ -1,0 +1,47 @@
+{
+	"$schema": "../../package/schemas/form-props.schema.json",
+	"schema": {
+		"$schema": "http://json-schema.org/draft-07/schema#",
+		"properties": {
+			"valid": {
+				"title": "Верно",
+				"$ref": "#/definitions/countries"
+			},
+			"invalid": {
+				"title": "Неверно",
+				"$ref": "#/definitions/countries"
+			}
+		},
+		"definitions": {
+			"countries": {
+				"type": "array",
+				"items": {
+					"type": "string",
+					"minLength": 3
+				},
+				"contains": {
+					"enum": ["Россия", "Казахстан"]
+				},
+				"x-errorMessages": {
+					"contains": "должен содержать обязательную страну \"Россия\" или \"Казахстан\""
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:template": "collapse-list",
+		"ui:expanded": ["valid"]
+	},
+	"formData": {
+		"valid": [
+			"Россия",
+			"Беларусь",
+			"Китай"
+		],
+		"invalid": [
+			"США",
+			"Китай",
+			"Германия"
+		]
+	}
+}
