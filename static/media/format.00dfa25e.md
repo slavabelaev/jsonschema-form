@@ -1,0 +1,103 @@
+# format
+
+> JavaScript-валидатор (Ajv) поддерживает только [следующие форматы](https://github.com/ajv-validator/ajv-formats):
+*date*, *time*, *date-time*, *duration*, *uri*, *uri-reference*, *uri-template*, *email*, *hostname*, *ipv4*, *ipv6*, *regex*, *uuid*, *json-pointer*, *relative-json-pointer*,
+
+## *date-time*
+Применяется для проверки строки.
+
+Условие: верно, если строка является датой и временем, согласно [RFC 3339, раздел 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) [[RFC3339]](https://tools.ietf.org/html/rfc3339).
+
+## *date*
+Применяется для проверки строки.
+
+Условие: верно, если строка является датой, согласно [RFC 3339, раздел 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) [[RFC3339]](https://tools.ietf.org/html/rfc3339).
+
+## *time*
+Применяется для проверки строки.
+
+Условие: верно, если строка является временем, согласно [RFC 3339, раздел 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) [[RFC3339]](https://tools.ietf.org/html/rfc3339).
+
+## *duration*
+Применяется для проверки строки.
+
+Условие: верно, если строка является продолжительностью, согласно [RFC 3339, раздел 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) [[RFC3339]](https://tools.ietf.org/html/rfc3339).
+
+## *email*
+Применяется для проверки строки.
+
+Условие: верно, если строка является электронной почтой, согласно [RFC 5322, раздел 3.4.1](https://tools.ietf.org/html/rfc5322#section-3.4.1) [[RFC5322]](https://tools.ietf.org/html/rfc5322).
+
+## *idn-email*
+Применяется для проверки строки.
+
+Условие: верно, если строка является международной электронной почтой, согласно [[RFC6531]](https://tools.ietf.org/html/rfc6531).
+
+## *hostname*
+Применяется для проверки строки.
+
+Условие: верно, если строка является именем хоста в Интернете, согласно [RFC 1034, раздел 3.1](https://tools.ietf.org/html/rfc1034#section-3.1) [[RFC1034]](https://tools.ietf.org/html/rfc1034).
+
+## *idn-hostname*
+Применяется для проверки строки.
+
+Условие: верно, если строка является международным именем хоста в Интернете, согласно [[RFC5890]](https://tools.ietf.org/html/rfc5890#section-2.3.2.3).
+
+## *ipv4*
+Применяется для проверки строки.
+
+Условие: верно, если строка является IPv4-адресом в соответствии с **"dotted-quad"** ABNF синтаксисом, согласно [RFC 2673, раздел 3.2](https://tools.ietf.org/html/rfc2673#section-3.2) [[RFC2673]](https://tools.ietf.org/html/rfc2673).
+
+## *ipv6*
+Применяется для проверки строки.
+
+Условие: верно, если строка является IPv6-адресом, согласно [RFC 2373, раздел 2.2](https://tools.ietf.org/html/rfc2373#section-2.2) [[RFC2373]](https://tools.ietf.org/html/rfc2373).
+
+## *uri*
+Применяется для проверки строки.
+
+Условие: верно, если строка является URI, согласно [[RFC3986]](https://tools.ietf.org/html/rfc3986).
+
+## *uri-reference*
+Применяется для проверки строки.
+
+Условие: верно, если строка является ссылкой на URI, согласно [[RFC3986]](https://tools.ietf.org/html/rfc3986#section-4.1).
+
+## *iri*
+Применяется для проверки строки.
+
+Условие: верно, если строка является международным URI, согласно [[RFC3987]](https://tools.ietf.org/html/rfc3987).
+
+## *iri-reference*
+Применяется для проверки строки.
+
+Условие: верно, если строка является международной ссылкой на URI, согласно [[RFC3987]](https://tools.ietf.org/html/rfc3987).
+
+## *uri-template*
+Применяется для проверки строки.
+
+Условие: верно, если строка является шаблоном URI, согласно [[RFC6570]](https://tools.ietf.org/html/rfc6570).
+
+## *json-pointer*
+Применяется для проверки строки.
+
+Условие: верно, если строка это JSON Pointer, согласно [[RFC6901]](https://tools.ietf.org/html/rfc6901).
+
+## *relative-json-pointer*
+Применяется для проверки строки.
+
+Условие: верно, если строка это относительный JSON Pointer, согласно [Relative JSON Pointers](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01).
+
+## *regex*
+Применяется для проверки строки.
+
+Условие: верно, если строка является регулярным выражением, согласно [ECMA 262](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf).
+
+## *uuid*
+Применяется для проверки строки.
+
+Условие: верно, если строка является UUID, согласно [RFC4122](https://tools.ietf.org/html/rfc4122).
+
+#### Ссылки
+- [JSON Schema Validation, draft 07, section 7](https://json-schema.org/draft-07/json-schema-validation.html#rfc.section.7)
+- [Understanding JSON Schema, Format](https://json-schema.org/understanding-json-schema/reference/string.html#format)
