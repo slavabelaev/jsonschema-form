@@ -39,8 +39,8 @@ function App() {
     const { location } = history || {};
     const { pathname } = location || {};
     const ids = pathname.split('/').filter(Boolean);
-    const sample = getRoute(routes, ids);
-    const { fetchFormProps, docsUrl, docsEditPath, formPropsEditPath } = sample || {};
+    const route = getRoute(routes, ids);
+    const { fetchFormProps, docsUrl, docsEditPath, formPropsEditPath } = route || {};
     const editBaseURL = packageJSON.repository.url + '/edit/main/';
     const editDocsUrl = editBaseURL + docsEditPath;
     const editPropsUrl = editBaseURL + formPropsEditPath;
