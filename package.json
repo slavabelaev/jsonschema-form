@@ -2,6 +2,7 @@
   "name": "jsonschema-form",
   "version": "0.1.0",
   "description": "Arui Feather JSON Schema form",
+  "homepage": "https://slavabelaev.github.io/jsonschema-form/",
   "keywords": [
     "react-json-schema-form",
     "arui-feather"
@@ -64,13 +65,13 @@
     "node-sass": "^4.0.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-package": "bit build",
-    "deploy-site": "gh-pages -d build -r https://github.com/slavabelaev/jsonschema-form"
+    "predeploy-site": "npm run build",
+    "deploy-site": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

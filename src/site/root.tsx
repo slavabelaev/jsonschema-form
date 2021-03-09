@@ -1,6 +1,5 @@
 import React from 'react';
-import {Route, Router, Redirect, Switch} from 'react-router-dom';
-import { createBrowserHistory } from "history";
+import {Route, Redirect, Switch, HashRouter} from 'react-router-dom';
 import App from "./app";
 
 export type Params = {
@@ -9,16 +8,14 @@ export type Params = {
     subName: string;
 }
 
-const history = createBrowserHistory();
-
 function Root() {
     return (
-        <Router history={history}>
+        <HashRouter>
             <Switch>
                 <Route path='/:group/:widget' component={App} />
                 <Redirect to='/ui-schema/widget/attach' />
             </Switch>
-        </Router>
+        </HashRouter>
     )
 }
 
