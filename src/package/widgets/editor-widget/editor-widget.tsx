@@ -7,14 +7,15 @@ import {Spin} from 'arui-feather/spin';
 import IconCopy from 'arui-feather/icon/action/copy';
 import IconDownload from 'arui-feather/icon/action/download';
 import IconTick from 'arui-feather/icon/ui/tick';
+import {Heading} from "arui-feather/heading";
 import { ControlledEditor, ControlledEditorProps} from "@monaco-editor/react";
 import {WidgetProps} from "../../types/widget-props";
 import {Helper} from "../../components/helper";
 import {download} from "../../utils/download";
 import {toType} from "../../utils/to-type";
 import {mapHelperProps} from "../../utils/map-helper-props";
-import './editor-widget.scss';
 import {Tooltip} from "../../components/tooltip";
+import './editor-widget.scss';
 
 const cn = createCn('editor-widget');
 
@@ -77,10 +78,9 @@ export function mapEditorProps(props: WidgetProps): ControlledEditorProps {
         schema,
         options,
         onChange,
-        formContext: {
-            theme = 'alfa-on-white'
-        }
+        formContext
     } = props;
+    const { theme = 'alfa-on-white' } = formContext || {};
     const className = [cn(), props.className].join(' ');
 
     const toInput = (value: any): ControlledEditorProps['value'] => {
@@ -119,8 +119,8 @@ export function mapEditorProps(props: WidgetProps): ControlledEditorProps {
         line: undefined,
         loading,
         theme: ({
-            'alfa-on-color': 'dark',
-            'alfa-on-white': 'light'
+            'alfa-on-color': 'light',
+            'alfa-on-white': 'dark'
         })[theme],
         value: toInput(value),
         width: undefined,
@@ -138,7 +138,7 @@ export function mapEditorProps(props: WidgetProps): ControlledEditorProps {
     }
 }
 
-function NotifiedIconButton({ onClick, children, ...props }: ButtonProps) {
+function NotifiedIconButton({ onClick, children, theme, ...props }: ButtonProps) {
     const [pressed, setPressed] = useState(false);
     const handleClick = () => {
         setPressed(true);
@@ -159,14 +159,14 @@ function NotifiedIconButton({ onClick, children, ...props }: ButtonProps) {
                 disabled={pressed}
                 {...props}
             >
-                {pressed ? <IconTick colored={true} /> : children}
+                {pressed ? <IconTick theme={theme} colored={true} /> : children}
             </IconButton>
         </Tooltip>
     );
 }
 
 export function EditorWidget(props: WidgetProps) {
-    const { label, schema, value, formContext: { view } } = props;
+    const { label, schema, value, formContext: { view, theme } } = props;
     const handleDownload = () => download(label, value, schema.contentMediaType);
     const handleCopy = () => copy(value);
 
@@ -176,13 +176,15 @@ export function EditorWidget(props: WidgetProps) {
             popupProps={{
                 directions: ['left-center']
             }}
+            theme={theme}
         >
             <IconButton
                 className={cn('icon-button')}
                 onClick={handleDownload}
                 size='s'
+                theme={theme}
             >
-                <IconDownload size='m' />
+                <IconDownload theme={theme} size='m' />
             </IconButton>
         </Tooltip>
     );
@@ -192,20 +194,30 @@ export function EditorWidget(props: WidgetProps) {
             className={cn('icon-button')}
             onClick={handleCopy}
             size='s'
+            theme={theme}
         >
-            <IconCopy size='m' />
+            <IconCopy theme={theme} size='m' />
         </NotifiedIconButton>
+    );
+
+    const header = (
+        <header className={cn('header')}>
+            <Heading
+                className={cn('heading')}
+                size={'xs'}
+                theme={theme}
+                hasDefaultMargins={false}
+            >
+                {label}
+            </Heading>
+            {downloadButton}
+            {copyButton}
+        </header>
     );
 
     return (
         <div className={cn({ view: view as string })}>
-            <header className={cn('header')}>
-                <label className={cn('label')}>
-                    {label}
-                </label>
-                {downloadButton}
-                {copyButton}
-            </header>
+            {header}
             <ControlledEditor {...mapEditorProps( props )} />
             <Helper {...mapHelperProps(props)} />
         </div>

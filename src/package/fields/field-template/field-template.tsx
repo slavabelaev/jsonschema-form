@@ -16,11 +16,15 @@ const isObject = (schema: JSONSchema7) =>  (
 );
 
 export function FieldTemplate(props: FieldTemplateProps) {
-    const { classNames, children, rawErrors, schema } = props;
+    const { classNames, children, rawErrors, schema, formContext } = props;
+    const { theme } = formContext || {};
     const showErrorList = isObject(schema);
 
     const errorList = showErrorList && (
-        <ErrorList errors={rawErrors?.map(fromMarkdown)} />
+        <ErrorList
+            errors={rawErrors?.map(fromMarkdown)}
+            theme={theme}
+        />
     );
 
     return (

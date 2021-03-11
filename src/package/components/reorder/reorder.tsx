@@ -12,6 +12,8 @@ export type ReorderProps = {
     disabledUp?: boolean;
     disabledDown?: boolean;
     buttonProps?: ButtonProps;
+    theme?: ButtonProps['theme'];
+    size?: ButtonProps['size'];
 }
 
 const cn = createCn('reorder');
@@ -22,7 +24,9 @@ export function Reorder({
     disabledUp = false,
     onClickUp,
     onClickDown,
-    buttonProps
+    buttonProps,
+    theme,
+    size
 }: ReorderProps) {
     const classNames = [cn(), className].join(' ');
 
@@ -33,18 +37,28 @@ export function Reorder({
                 className={cn('button')}
                 disabled={disabledUp}
                 onClick={onClickUp}
+                theme={theme}
+                size={size}
                 {...buttonProps}
             >
-                <ArrowUpIcon size="s" />
+                <ArrowUpIcon
+                    size="s"
+                    theme={theme}
+                />
             </Button>
             <Button
                 type="button"
                 className={cn('button')}
                 disabled={disabledDown}
                 onClick={onClickDown}
+                theme={theme}
+                size={size}
                 {...buttonProps}
             >
-                <ArrowDownIcon size="s" />
+                <ArrowDownIcon
+                    size="s"
+                    theme={theme}
+                />
             </Button>
         </div>
     )

@@ -5,6 +5,7 @@ import {ArrayFieldTemplateProps} from "@rjsf/core";
 import {Button} from "arui-feather/button";
 import {IconButton} from "arui-feather/icon-button";
 import Delete from "arui-feather/icon/action/delete";
+import {Paragraph} from "arui-feather/paragraph";
 import Add from "arui-feather/icon/action/add";
 import {Reorder} from "../../components/reorder";
 import {ErrorList} from "../../components/error-list";
@@ -15,9 +16,9 @@ import {
     TemplateConfigProvider
 } from "../object-field-template/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
-import './array-field-template.scss';
+import {Header} from "../../components/header";
 import {toType} from "../../utils/to-type";
-import {Paragraph} from "arui-feather/paragraph";
+import './array-field-template.scss';
 
 const cn = createCn('array-field-template');
 
@@ -33,7 +34,7 @@ export function mapArrayFieldButtons(props: ArrayFieldTemplateProps) {
         <Button
             className={cn('add-button')}
             onClick={onAddClick}
-            icon={<Add />}
+            icon={<Add theme={theme} size={size} />}
             theme={theme}
             size={size}
         >
@@ -50,35 +51,22 @@ export function mapArrayFieldButtons(props: ArrayFieldTemplateProps) {
 
 export function mapArrayFieldHeader(props: ArrayFieldTemplateProps) {
     const {
-        TitleField,
-        DescriptionField,
         schema,
-        required
+        formContext
     } = props;
+    const { theme, size } = formContext || {};
     const { description } = schema;
     const title = schema.title || props.title;
 
-    const titleField = TitleField && title && (
-        <TitleField
-            id={''}
+    return (
+        <Header
+            className={cn('header')}
             title={title}
-            required={required}
-        />
-    );
-
-    const descriptionField = DescriptionField && description && (
-        <DescriptionField
-            id={''}
             description={description}
+            theme={theme}
+            size={size}
         />
     );
-
-    return (titleField || descriptionField) ? (
-        <div className={cn('header')}>
-            {titleField}
-            {descriptionField}
-        </div>
-    ) : null;
 }
 
 function mapItems(props: ArrayFieldTemplateProps) {
@@ -101,7 +89,7 @@ function mapItems(props: ArrayFieldTemplateProps) {
                     <IconButton
                         className={cn('remove-button')}
                         onClick={item.onDropIndexClick(index)}
-                        icon={<Delete size={size} />}
+                        icon={<Delete theme={theme} size={size} />}
                         theme={theme}
                         size={size}
                     />
@@ -118,6 +106,8 @@ function mapItems(props: ArrayFieldTemplateProps) {
                             width,
                             theme
                         }}
+                        theme={theme}
+                        size={size}
                     />
                 );
 
@@ -125,6 +115,7 @@ function mapItems(props: ArrayFieldTemplateProps) {
                     <Paragraph
                         className={cn('empty-children')}
                         children={toType(formData, 'string')}
+                        theme={theme}
                     />
                 )
 
@@ -153,11 +144,15 @@ function mapItems(props: ArrayFieldTemplateProps) {
 
 function mapErrors(props: ArrayFieldTemplateProps) {
     // @ts-ignore
-    const { rawErrors = [] } = props || {};
+    const { rawErrors = [], formContext } = props || {};
+    const { theme } = formContext || {};
     const hasErrors = rawErrors.length > 0;
 
     return hasErrors ? (
-        <ErrorList errors={rawErrors?.map(fromMarkdown)} />
+        <ErrorList
+            errors={rawErrors?.map(fromMarkdown)}
+            theme={theme}
+        />
     ) : null;
 }
 

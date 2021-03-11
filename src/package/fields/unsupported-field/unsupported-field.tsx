@@ -12,7 +12,8 @@ export type UnsupportedFieldProps = FieldProps & {
 }
 
 export function UnsupportedField(props: UnsupportedFieldProps) {
-    const { schema, reason, idSchema } = props || {};
+    const { schema, reason, idSchema, formContext } = props || {};
+    const { theme } = formContext || {};
     const { $id } = idSchema || {};
     const schemaAsJSON = JSON.stringify(schema, null, 2);
     const schemaMarkdown = '```json\n' + schemaAsJSON + '\n```';
@@ -22,6 +23,7 @@ export function UnsupportedField(props: UnsupportedFieldProps) {
             className={cn('error')}
             errors={[reason]}
             title={`Схема не поддерживается для ${$id}`}
+            theme={theme}
         />
     );
 

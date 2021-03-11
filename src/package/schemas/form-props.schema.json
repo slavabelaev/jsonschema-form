@@ -10,17 +10,25 @@
         {
           "properties": {
             "x-errorMessages": {
-              "$ref": "error-messages.schema.json"
+              "$ref": "./error-messages.schema.json"
             }
           }
         }
       ]
     },
     "uiSchema": {
-      "$ref": "ui-schema.schema.json"
+      "$ref": "./ui-schema.schema.json"
     },
     "formData": {
       "type": ["object", "array", "string", "number", "integer", "boolean", "null"]
+    },
+    "action": {
+      "type": "string",
+      "format": "url"
+    },
+    "method": {
+      "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "COPY", "HEAD", "OPTIONS", "LINK", "UNLINK", "PURGE", "LOCK", "UNLOCK", "PROPFIND", "VIEW"],
+      "default": "GET"
     },
     "liveValidate": {
       "type": "boolean",

@@ -49,7 +49,8 @@ function App() {
     const [formProps, _setFormProps] = useState<FormProps | null>(null);
     const setFormProps = (state) => _setFormProps({
         key: pathname,
-        ...state
+        ...state,
+        theme: 'alfa-on-color'
     });
 
     const handleNavigationChange = () => {

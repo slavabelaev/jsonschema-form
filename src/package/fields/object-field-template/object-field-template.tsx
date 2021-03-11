@@ -7,6 +7,7 @@ import Add from "arui-feather/icon/action/add";
 import Delete from "arui-feather/icon/action/delete";
 import {TemplateConfig, TemplateConfigContext, TemplateConfigProvider} from "./template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
+import {Header} from "../../components/header";
 import './object-field-template.scss';
 
 const cn = createCn('object-field-template');
@@ -17,38 +18,20 @@ export const templateConfig: TemplateConfig = {
 
 export function mapObjectFieldHeader(props: ObjectFieldTemplateProps) {
     const {
-        TitleField,
-        DescriptionField,
         title,
         description,
-        required
+        formContext
     } = props;
+    const { theme } = formContext || {};
 
-    const titleField = title && (
-        <TitleField
-            id={''}
+    return (
+        <Header
+            className={cn('header')}
+            theme={theme}
             title={title}
-            required={required}
-        />
-    );
-
-    const descriptionField = description && (
-        <DescriptionField
-            id={''}
             description={description}
         />
     );
-
-    if (titleField || descriptionField) {
-        return (
-            <div className={cn('header')}>
-                {titleField}
-                {descriptionField}
-            </div>
-        )
-    }
-
-    return null;
 }
 
 export function mapObjectFieldButtons(props: ObjectFieldTemplateProps) {
@@ -69,7 +52,7 @@ export function mapObjectFieldButtons(props: ObjectFieldTemplateProps) {
         <Button
             className={cn('add-button')}
             onClick={onAddClick(schema)}
-            icon={<Add />}
+            icon={<Add theme={theme} />}
             theme={theme}
             size={size}
         >
@@ -95,7 +78,7 @@ function mapProperty(property: ObjectFieldTemplateProps['properties'][0], props:
         <IconButton
             className={cn('remove-button')}
             onClick={onDropPropertyClick(property.name)}
-            icon={<Delete size={size} />}
+            icon={<Delete theme={theme} size={size} />}
             theme={theme}
             size={size}
         />

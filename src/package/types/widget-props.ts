@@ -17,6 +17,5 @@ export type WidgetProps = Omit<OriginWidgetProps, 'formContext'> & {
         theme?: FormProps['theme'];
         size?: FormProps['size'];
         width?: InputProps['width'];
-        formNoValidate?: InputProps['formNoValidate'];
     }
 }

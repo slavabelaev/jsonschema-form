@@ -3,9 +3,10 @@ import {createCn} from "bem-react-classname";
 import {SlideDown, SlideDownProps} from "arui-feather/slide-down";
 import DownIcon from "arui-feather/icon/ui/down";
 import ErrorIcon from "arui-feather/icon/ui/error";
+import {FormProps} from "arui-feather/form";
+import {Heading} from "arui-feather/heading";
 import {Tooltip} from "../tooltip";
 import './collapse-item.scss';
-import {FormProps} from "arui-feather/form";
 
 const cn = createCn('collapse-item');
 
@@ -21,28 +22,33 @@ export type CollapseItemProps = PropsWithChildren<{
 }>;
 
 export function CollapseItem(props: CollapseItemProps) {
-    const { label, hint, hasError, size = 'm', theme, children, disablePadding } = props;
-    const [isExpanded, setExpanded] = useState<boolean>(props?.isExpanded || false);
+    const { label, hint, hasError, size = 'm', theme = 'alfa-on-white', children, disablePadding } = props;
+    const [expanded, setExpanded] = useState<boolean>(props?.isExpanded || false);
     const [needRender, setNeedRender] = useState<boolean>(props?.isExpanded || false);
     const iconSize = ['s', 'xs'].includes(size) ? size : 's';
 
     const toggle = () => {
         setNeedRender(true);
-        setExpanded(!isExpanded);
+        setExpanded(!expanded);
     }
 
     const expandIcon = (
         <DownIcon
-            className={cn('expand-icon', { expanded: isExpanded })}
+            className={cn('expand-icon', { expanded })}
             size={iconSize}
             theme={theme}
         />
     );
 
-    const title = label && (
-        <span className={cn('title')}>
+    const heading = label && (
+        <Heading
+            className={cn('heading')}
+            size={size}
+            theme={theme}
+            hasDefaultMargins={false}
+        >
             {label}
-        </span>
+        </Heading>
     );
 
     const errorIcon = hasError && (
@@ -63,12 +69,12 @@ export function CollapseItem(props: CollapseItemProps) {
         />
     );
 
-    const heading = label && (
+    const header = label && (
         <header
-            className={cn('heading', { size })}
+            className={cn('header', { size, theme })}
             onClick={toggle}
         >
-            {title}
+            {heading}
             {hintIcon}
             {errorIcon}
             {expandIcon}
@@ -77,7 +83,7 @@ export function CollapseItem(props: CollapseItemProps) {
 
     const slideDown = (
         <SlideDown
-            isExpanded={isExpanded}
+            isExpanded={expanded}
             theme={theme}
         >
             <div className={cn('content', { 'with-padding': !disablePadding })}>
@@ -87,8 +93,8 @@ export function CollapseItem(props: CollapseItemProps) {
     )
 
     return (
-        <section className={cn({ 'expanded': isExpanded })}>
-            {heading}
+        <section className={cn({ expanded, theme })}>
+            {header}
             {slideDown}
         </section>
     )

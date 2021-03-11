@@ -1,0 +1,23 @@
+.header {
+  &_theme_alfa-on-white {
+    color: var(--color-dark-indigo);
+  }
+
+  &_theme_alfa-on-color {
+    color: var(--color-white);
+  }
+
+  &__heading {
+    padding: 0;
+    font-size: var(--font-size-l);
+  }
+
+  &__paragraph {
+    margin-bottom: 0;
+    font-size: var(--font-size-s);
+  }
+
+  &__heading + &__paragraph {
+    margin-top: 4px;
+  }
+}

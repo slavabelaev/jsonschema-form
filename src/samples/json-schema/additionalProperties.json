@@ -52,7 +52,7 @@
 					}
 				},
 				"additionalProperties": {
-					"title": "Дополнительные контакты",
+					"title": "Дополнительный контакт",
 					"type": "string",
 					"pattern": "^.*?: .*$",
 					"x-errorMessages": {

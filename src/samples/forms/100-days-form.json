@@ -245,14 +245,14 @@
             "x-errorMessages": {
               "minimum": "Размер ежемесячной зарплаты, актуальный на последние три месяца (не менее ${limit} руб.)"
             }
-          },
-          "required": [
-            "education",
-            "employed",
-            "workPhone",
-            "mainIncome"
-          ]
+          }
         },
+        "required": [
+          "education",
+          "employed",
+          "workPhone",
+          "mainIncome"
+        ],
         "dependencies": {
           "employed": {
             "oneOf": [

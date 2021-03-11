@@ -73,10 +73,12 @@
 				"properties": {
 					"valid": {
 						"title": "Верно",
+						"description": "Текст подсказки",
 						"$ref": "#/definitions/children"
 					},
 					"invalid": {
 						"title": "Неверно",
+						"description": "Текст подсказки",
 						"$ref": "#/definitions/children"
 					}
 				}
@@ -86,10 +88,12 @@
 				"properties": {
 					"valid": {
 						"title": "Верно",
+						"description": "Текст подсказки",
 						"$ref": "#/definitions/personalData"
 					},
 					"invalid": {
 						"title": "Неверно",
+						"description": "Текст подсказки",
 						"$ref": "#/definitions/personalData"
 					}
 				}

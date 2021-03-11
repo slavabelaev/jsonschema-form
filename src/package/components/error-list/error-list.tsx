@@ -11,33 +11,32 @@ export type ErrorListProps = Omit<PlateProps, 'type'> & {
 }
 
 export function ErrorList(props: ErrorListProps) {
-    const { errors, className, ...otherProps } = props;
+    const { errors, className, theme, ...otherProps } = props;
+    const rootClassName = [cn(), className].join(' ');
     const errorMessages = errors?.filter(Boolean) || [];
 
     if (!errorMessages?.length) return null;
 
     const renderChildren = () => {
-        if (errorMessages.length > 1) {
-            const items: ListProps['items'] = errorMessages.map((error, index) => ({
-                key: String(index),
-                value: error
-            }));
+        const items: ListProps['items'] = errorMessages.map((error, index) => ({
+            key: String(index),
+            value: error
+        }));
 
-            return (
-                <List
-                    className={cn('list')}
-                    items={items}
-                />
-            );
-        }
-
-        return errorMessages?.[0] || null;
+        return (
+            <List
+                className={cn('list')}
+                items={items}
+                theme={theme}
+            />
+        );
     }
 
     return (
         <Plate
-            className={[cn(), className].join(' ')}
+            className={rootClassName}
             type='error'
+            theme={theme}
             {...otherProps}
         >
             {renderChildren()}

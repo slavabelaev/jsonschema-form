@@ -1,6 +1,5 @@
-import React from "react";
+import React, {ReactNode, useState} from "react";
 import {createCn} from "bem-react-classname";
-import isEmpty from "lodash.isempty";
 import JSONSchemaForm, {FormProps as OriginFormProps, UiSchema as OriginUiSchema} from "@rjsf/core";
 import {Button} from "arui-feather/button";
 import {InputProps} from "arui-feather/input";
@@ -15,6 +14,7 @@ import {DescriptionField} from "./fields/description-field";
 import {withErrorBoundary} from "./utils/with-error-boundary";
 import {AnyOfField} from "./fields/any-of-field";
 import {UnsupportedField} from "./fields/unsupported-field";
+import {SuccessNotification} from "./components/success-notification";
 import './form.scss';
 
 export type UiSchema = Omit<OriginUiSchema, 'ui:widget' | 'ui:options' | 'ui:expanded'> & {
@@ -24,12 +24,40 @@ export type UiSchema = Omit<OriginUiSchema, 'ui:widget' | 'ui:options' | 'ui:exp
     'ui:template'?: TEMPLATE | string;
 };
 
-export type FormProps<T = any> = Omit<OriginFormProps<T>, 'uiSchema'> & {
+export type FormProps<T = any> = Omit<OriginFormProps<T>, 'uiSchema' | 'children'> & {
     uiSchema?: UiSchema;
     size?: AruiFeatherFormProps['size'];
     theme?: AruiFeatherFormProps['theme'];
     view?: InputProps['view'];
     width?: InputProps['width'];
+    submitText?: ReactNode;
+}
+
+function submitFormData(url, method, formData) {
+    if (!url) return;
+
+    const actionURL = new URL(url);
+    const isMethodGET = method === 'GET';
+    const json = JSON.stringify(formData);
+
+    if (isMethodGET) {
+        actionURL.searchParams.append('formData', json);
+    }
+
+    return fetch(actionURL.toString(), {
+        method,
+        body: isMethodGET ? undefined : json,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        const contentType = response.headers['Content-Type'];
+        switch (contentType) {
+            case 'application/json': return response.json();
+            default: return response.text();
+        }
+    });
 }
 
 const cn = createCn('form');
@@ -42,34 +70,59 @@ function Form<T>({
     noValidate,
     uiSchema,
     formData,
+    action,
+    method,
     onSubmit,
+    submitText = 'Отправить',
     ...props
 }: FormProps<T>) {
+    view = 'default';
     const { $schema, ...schema } = props.schema || {};
+    const [submitted, setSubmitted] = useState(false);
 
-    if (!props.schema) return  null;
+    const handleSubmit: FormProps['onSubmit'] = (props) => {
+        submitFormData(action, method, props.formData)
+            ?.then(() => setSubmitted(true))
+            .catch(console.log);
+        onSubmit?.(props);
+    }
 
-    const submitButton = onSubmit ? (
+    if (!props.schema) return null;
+
+    if (submitted) {
+        return (
+            <SuccessNotification
+                buttonProps={{
+                    onClick: () => setSubmitted(false)
+                }}
+            />
+        );
+    }
+
+    const submitButton = action ? (
         <Button
             className={cn('submit-button')}
-            type="submit"
+            type='submit'
+            view='extra'
             theme={theme}
             size={size}
         >
-            Отправить
+            {submitText}
         </Button>
     ) : <></>;
 
     return (
         <JSONSchemaForm
-            className={cn()}
+            className={cn({ theme })}
             showErrorList={false}
             FieldTemplate={FieldTemplate}
             ObjectFieldTemplate={ObjectFieldTemplate}
             ArrayFieldTemplate={ArrayFieldTemplate}
             {...props}
-            schema={schema}
+            action={action}
+            method={method}
             uiSchema={uiSchema as OriginUiSchema}
+            schema={schema}
             formData={formData}
             fields={{
                 TitleField,
@@ -88,12 +141,11 @@ function Form<T>({
                 size,
                 theme,
                 width,
-                formNoValidate: noValidate,
                 ...props.formContext
             }}
             transformErrors={errors => transformErrors(errors, schema)}
             noValidate={false}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
         >
             {submitButton}
         </JSONSchemaForm>

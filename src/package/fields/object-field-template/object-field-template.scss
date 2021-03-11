@@ -2,6 +2,10 @@
   padding: 0;
   border-width: 0;
 
+  &__paragraph {
+    margin-bottom: 0;
+  }
+
   &__header + *,
   & > * + * {
     margin-top: 16px;
