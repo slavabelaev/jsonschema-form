@@ -18,6 +18,7 @@ const isObject = (schema: JSONSchema7) =>  (
 export function FieldTemplate(props: FieldTemplateProps) {
     const { classNames, children, rawErrors, schema, formContext } = props;
     const { theme } = formContext || {};
+    const rootClassName = [cn(), classNames].join(' ');
     const showErrorList = isObject(schema);
 
     const errorList = showErrorList && (
@@ -28,7 +29,7 @@ export function FieldTemplate(props: FieldTemplateProps) {
     );
 
     return (
-        <div className={[cn(), classNames].join(' ')}>
+        <div className={rootClassName}>
             {errorList}
             {children}
         </div>

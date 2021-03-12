@@ -19,7 +19,6 @@
 
     &__main {
         overflow: auto;
-        padding: 16px;
     }
 
     &__aside {
@@ -56,10 +55,10 @@
     }
 
     @media (min-width: 1024px) {
-        grid-template-columns: 240px 5fr 4fr;
+        grid-template-columns: 240px auto;
     }
 
     @media (max-width: 767px) {
-        grid-template-columns: repeat(3, 100vw);
+        grid-template-columns: repeat(2, 100vw);
     }
 }

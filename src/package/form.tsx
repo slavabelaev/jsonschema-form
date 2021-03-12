@@ -62,7 +62,7 @@ function submitFormData(url, method, formData) {
 
 const cn = createCn('form');
 
-function Form<T>({
+export function Form<T>({
     view = 'filled',
     size = 'm',
     theme = 'alfa-on-white',

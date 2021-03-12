@@ -1,6 +1,6 @@
 # editor
 
-В качестве редактора используется **Monaco Editor**.
+В качестве редактора используется **Monaco SampleEditor**.
 
 > Если желаемый язык не имеет официального MIME-типа, укажите в JSON Schema:
 > ```json
@@ -8,4 +8,4 @@
 > ```
 
 #### Ссылки
-- [Monaco Editor](https://microsoft.github.io/monaco-editor/)
+- [Monaco SampleEditor](https://microsoft.github.io/monaco-editor/)

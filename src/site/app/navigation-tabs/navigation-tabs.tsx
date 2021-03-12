@@ -3,12 +3,13 @@ import {useHistory} from "react-router-dom";
 import {createCn} from "bem-react-classname";
 import {Tabs} from "arui-feather/tabs";
 import {TabItem} from "arui-feather/tab-item";
-import {EditorForm, EditorFormProps} from "../editor-form";
 import {WidgetSchemaForm} from "../../components/widget-schema-form";
 import {EditIconLink} from "../edit-icon-link";
 import {fromMarkdown} from "../../../package/utils/from-markdown";
-import './layout-tabs.scss';
 import {FormProps} from "../../../package";
+import {SampleEditor} from "../sample-editor";
+import './navigation-tabs.scss';
+import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 
 enum TabId {
     EDITOR = 'editor',
@@ -22,23 +23,23 @@ type Tab = {
     renderContent: () => ReactNode;
 }
 
-export type LayoutTabsProps = {
-    editorProps: EditorFormProps;
+export type NavigationTabsProps = {
+    initialFormProps?: FormProps;
     docs?: ReactNode;
     editDocsURL?: string;
     editPropsURL?: string;
     theme?: FormProps['theme'];
 }
 
-const cn = createCn('layout-tabs');
+const cn = createCn('navigation-tabs');
 
-export function LayoutTabs({
+export function NavigationTabs({
     docs,
-    editorProps,
+    initialFormProps,
     editPropsURL,
     editDocsURL,
     theme = 'alfa-on-white'
-}: LayoutTabsProps) {
+}: NavigationTabsProps) {
     const history = useHistory();
     const { location } = history || {};
     const { pathname } = location || {};
@@ -46,14 +47,11 @@ export function LayoutTabs({
     const activeTabId = location?.hash?.substr(1) || TabId.EDITOR;
     const tabList: Tab[] = [];
 
-    const renderEditor = () => {
+    const renderSampleEditor = () => {
         return (
-            <EditorForm
-                className={cn('editor-form')}
-                size={'s'}
-                theme={theme}
-                editURL={editPropsURL}
-                {...editorProps}
+            <SampleEditor
+                className={cn('sample-editor')}
+                initialFormProps={initialFormProps}
             />
         );
     }
@@ -81,15 +79,15 @@ export function LayoutTabs({
         return widgetName && <WidgetSchemaForm widgetName={widgetName} />
     }
 
-    if (editorProps) tabList.push({
+    if (initialFormProps) tabList.push({
         id: TabId.EDITOR,
-        title: 'Редактор',
-        renderContent: renderEditor
+        title: 'Код и примеры',
+        renderContent: renderSampleEditor
     });
 
     if (docs) tabList.push({
         id: TabId.DESCRIPTION,
-        title: 'Описание',
+        title: 'Свойства и методы',
         renderContent: renderDocs
     });
 

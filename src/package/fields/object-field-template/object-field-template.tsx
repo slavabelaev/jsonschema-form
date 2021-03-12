@@ -5,18 +5,20 @@ import {Button} from "arui-feather/button";
 import {IconButton} from "arui-feather/icon-button";
 import Add from "arui-feather/icon/action/add";
 import Delete from "arui-feather/icon/action/delete";
-import {TemplateConfig, TemplateConfigContext, TemplateConfigProvider} from "./template-config-provider";
+import {TemplateConfig, TemplateConfigContext, TemplateConfigProvider} from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
 import {Header} from "../../components/header";
 import './object-field-template.scss';
 
 const cn = createCn('object-field-template');
 
-export const templateConfig: TemplateConfig = {
-    displayHeader: true
+export const defaultTemplateConfig: TemplateConfig = {
+    displayLabel: true,
+    displayHint: true
 }
 
-export function mapObjectFieldHeader(props: ObjectFieldTemplateProps) {
+export function mapObjectFieldHeader(props: ObjectFieldTemplateProps, templateConfig: TemplateConfig) {
+    const { displayLabel, displayHint } = templateConfig || {};
     const {
         title,
         description,
@@ -28,8 +30,8 @@ export function mapObjectFieldHeader(props: ObjectFieldTemplateProps) {
         <Header
             className={cn('header')}
             theme={theme}
-            title={title}
-            description={description}
+            title={displayLabel ? title : undefined}
+            description={displayHint ? description : undefined}
         />
     );
 }
@@ -115,13 +117,13 @@ function mapProperties(props: ObjectFieldTemplateProps) {
 }
 
 export function ObjectFieldTemplate(props: ObjectFieldTemplateProps) {
-    const { displayHeader } = useContext(TemplateConfigContext);
-    const header = displayHeader && mapObjectFieldHeader(props);
+    const templateConfig = useContext(TemplateConfigContext);
+    const header = mapObjectFieldHeader(props, templateConfig);
     const properties = mapProperties(props);
     const buttons = mapObjectFieldButtons(props);
 
     return header || properties || buttons ? (
-        <TemplateConfigProvider value={templateConfig}>
+        <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={[cn()].join(' ')}>
                 {header}
                 {properties}

@@ -7,7 +7,7 @@ import FavoriteIcon from 'arui-feather/icon/ui/favorite';
 import Form, {FormProps} from '../../package';
 import {RouteItem, routes, Routes} from "../routes";
 import {Navigation} from "../components/navigation";
-import {LayoutTabs} from "./layout-tabs";
+import {NavigationTabs} from "./navigation-tabs";
 import packageJSON from "../../../package.json";
 import {parseJSON, toJSON} from "../utils/json";
 import {BottomBar} from "../components/bottom-bar";
@@ -45,14 +45,8 @@ function App() {
     const editDocsUrl = editBaseURL + docsEditPath;
     const editPropsUrl = editBaseURL + formPropsEditPath;
     const [docs, setDocs] = useState<string | null>(null);
-    const [editorFormData, setEditorFormData] = useState<string>('');
-    const [formProps, _setFormProps] = useState<FormProps | null>(null);
-    const { theme = 'alfa-on-white' } = formProps || {};
-    const setFormProps = (state) => _setFormProps({
-        key: pathname,
-        ...state,
-        // theme: 'alfa-on-white'
-    });
+    const [initialFormProps, setInitialFormProps] = useState<FormProps | null>(null);
+    const { theme = 'alfa-on-white' } = initialFormProps || {};
 
     const handleNavigationChange = () => {
         setTimeout(() => scrollIntoView(mainRef?.current), 1);
@@ -66,47 +60,18 @@ function App() {
         }
 
         if (fetchFormProps) {
-            fetchFormProps().then(({ default: formProps }) => {
-                setFormProps(formProps);
-                const json = toJSON(formProps);
-                setEditorFormData(json);
-            });
+            fetchFormProps().then(({ default: formProps }) => setInitialFormProps(formProps));
         } else {
-            setEditorFormData('');
-            setFormProps(null);
+            setInitialFormProps(null);
         }
-    }, [pathname])
+    }, [pathname]);
 
-    const form = formProps && (
-        <Form
-            {...formProps}
-            onBlur={() => {
-                const json = toJSON(formProps);
-                setEditorFormData(json);
-            }}
-            onChange={({ formData }) => {
-                setFormProps({
-                    ...formProps,
-                    formData
-                });
-            }}
-        />
-    );
-
-    const layoutTabs = (
-        <LayoutTabs
-            editorProps={{
-                formData: editorFormData,
-                onChange: ({ formData }) => {
-                    setEditorFormData(formData);
-                    const formProps = parseJSON(formData);
-                    setFormProps(formProps);
-                }
-            }}
+    const navigationTabs = (
+        <NavigationTabs
+            initialFormProps={initialFormProps || undefined}
             docs={docs}
             editDocsURL={editDocsUrl}
             editPropsURL={editPropsUrl}
-            theme={formProps?.theme}
         />
     );
 
@@ -132,7 +97,7 @@ function App() {
                 }
             }}
         />
-    )
+    );
 
     return (
         <div className={cn({ theme: theme || false })}>
@@ -141,15 +106,11 @@ function App() {
                     routes={routes}
                     onChange={handleNavigationChange}
                     theme={theme}
-                    size={'s'}
                 />
             </aside>
             <main ref={mainRef} className={cn('main')}>
-                {form}
+                {navigationTabs}
             </main>
-            <aside ref={asideRef} className={cn('aside', { right: true })}>
-                {layoutTabs}
-            </aside>
             {bottomBar}
         </div>
     );

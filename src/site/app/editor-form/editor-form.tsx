@@ -114,7 +114,7 @@ export function EditorForm({
         : renderEditor();
 
     return (
-        <div className={cn('editor')}>
+        <div className={cn()}>
             {toolbar}
             {editor}
         </div>

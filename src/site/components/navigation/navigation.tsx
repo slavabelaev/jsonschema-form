@@ -43,7 +43,7 @@ const cloneRoutesThenFilter = (routes: Routes = {}, query: string = ''): Routes 
     return nestedClonedRoutes;
 }
 
-export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = 's', className }: NavigationProps) {
+export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = 'm', className }: NavigationProps) {
     const rootClassName = [className, cn({ theme })].join(' ');
     const history = useHistory();
     const { hash, search } = history.location || {};

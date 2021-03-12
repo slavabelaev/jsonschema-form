@@ -14,7 +14,7 @@ import {
     TemplateConfig,
     TemplateConfigContext,
     TemplateConfigProvider
-} from "../object-field-template/template-config-provider";
+} from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
 import {Header} from "../../components/header";
 import {toType} from "../../utils/to-type";
@@ -22,8 +22,9 @@ import './array-field-template.scss';
 
 const cn = createCn('array-field-template');
 
-export const templateConfig: TemplateConfig = {
-    displayHeader: true
+export const defaultTemplateConfig: TemplateConfig = {
+    displayLabel: true,
+    displayHint: true
 }
 
 export function mapArrayFieldButtons(props: ArrayFieldTemplateProps) {
@@ -49,7 +50,8 @@ export function mapArrayFieldButtons(props: ArrayFieldTemplateProps) {
     ) : null;
 }
 
-export function mapArrayFieldHeader(props: ArrayFieldTemplateProps) {
+export function mapArrayFieldHeader(props: ArrayFieldTemplateProps, templateConfig: TemplateConfig) {
+    const { displayLabel, displayHint } = templateConfig || {};
     const {
         schema,
         formContext
@@ -61,8 +63,8 @@ export function mapArrayFieldHeader(props: ArrayFieldTemplateProps) {
     return (
         <Header
             className={cn('header')}
-            title={title}
-            description={description}
+            title={displayLabel ? title : undefined}
+            description={displayHint ? description : undefined}
             theme={theme}
             size={size}
         />
@@ -157,16 +159,16 @@ function mapErrors(props: ArrayFieldTemplateProps) {
 }
 
 export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
-    const { displayHeader } = useContext(TemplateConfigContext);
+    const templateConfig = useContext(TemplateConfigContext);
     const { className } = props;
     const classNames = [cn(), className].join(' ');
-    const header = displayHeader && mapArrayFieldHeader(props);
+    const header = mapArrayFieldHeader(props, templateConfig);
     const items = mapItems(props);
     const buttons = mapArrayFieldButtons(props);
     const errors = mapErrors(props);
 
     return errors || items || buttons || header ? (
-        <TemplateConfigProvider value={templateConfig}>
+        <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={classNames}>
                 {errors}
                 {header}

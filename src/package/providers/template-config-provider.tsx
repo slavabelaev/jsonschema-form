@@ -1,11 +1,13 @@
 import React from 'react';
 
 export type TemplateConfig = {
-    displayHeader: boolean;
+    displayLabel: boolean;
+    displayHint: boolean;
 }
 
 export const defaultTemplateConfig: TemplateConfig = {
-    displayHeader: true
+    displayLabel: true,
+    displayHint: true
 }
 
 export const TemplateConfigContext = React.createContext(defaultTemplateConfig);

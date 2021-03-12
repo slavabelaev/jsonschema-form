@@ -1,26 +1,32 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
 import {TabItem} from "arui-feather/tab-item";
 import {Tabs} from "arui-feather/tabs";
 import {mapObjectFieldButtons, mapObjectFieldHeader} from "../object-field-template";
 import './tabs-field-template.scss';
-import {TemplateConfig, TemplateConfigProvider} from "../template-config-provider";
+import {
+    TemplateConfig,
+    TemplateConfigContext,
+    TemplateConfigProvider
+} from "../../../providers/template-config-provider";
 import {fromMarkdown} from "../../../utils/from-markdown";
 import {Tooltip} from "../../../components/tooltip";
 
 const cn = createCn('tabs-field-template');
 
-export const templateConfig: TemplateConfig = {
-    displayHeader: false
+export const defaultTemplateConfig: TemplateConfig = {
+    displayLabel: false,
+    displayHint: false
 }
 
 export function TabsFieldTemplate(props: ObjectFieldTemplateProps) {
+    const templateConfig = useContext(TemplateConfigContext);
     const { properties, formContext } = props;
     const { theme, size } = formContext || {};
     const [activeIndex, setActiveIndex] = useState(0);
     const activeTab = properties?.[activeIndex];
-    const header = mapObjectFieldHeader(props);
+    const header = mapObjectFieldHeader(props, templateConfig);
     const buttons = mapObjectFieldButtons(props);
 
     const renderTabItem = (property: any, index: number) => {
@@ -73,7 +79,7 @@ export function TabsFieldTemplate(props: ObjectFieldTemplateProps) {
     )
 
     return header || tabs || buttons ? (
-        <TemplateConfigProvider value={templateConfig}>
+        <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={cn()}>
                 {header}
                 {tabs}
