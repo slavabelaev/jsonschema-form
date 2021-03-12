@@ -76,7 +76,6 @@ function Form<T>({
     submitText = 'Отправить',
     ...props
 }: FormProps<T>) {
-    view = 'default';
     const { $schema, ...schema } = props.schema || {};
     const [submitted, setSubmitted] = useState(false);
 

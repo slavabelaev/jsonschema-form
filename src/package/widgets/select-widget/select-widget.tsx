@@ -6,6 +6,7 @@ import {toType} from "../../utils/to-type";
 import {fromMarkdown} from "../../utils/from-markdown";
 import {mapError} from "../../utils/map-error";
 import {mapEnumOptions} from "../../utils/map-enum-options";
+import {mapInputSize} from "../input-widget";
 import "./select-widget.scss";
 import './bugfix';
 
@@ -121,7 +122,7 @@ export function mapSelectProps(props: WidgetProps): SelectProps {
         hint: fromMarkdown(schema.description),
         label: label || schema.title,
         mode: multiple ? 'check' : 'radio',
-        size: formContext?.size,
+        size: mapInputSize(props),
         theme: formContext?.theme,
         view: formContext?.view,
         width: formContext?.width,

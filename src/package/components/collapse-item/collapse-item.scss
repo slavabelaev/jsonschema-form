@@ -13,7 +13,26 @@
     align-items: center;
     cursor: pointer;
     padding: 0 16px;
-    min-height: 54px;
+
+    &_size_s {
+      font-size: var(--font-size-m);
+      min-height: 40px;
+    }
+
+    &_size_m {
+      font-size: var(--font-size-l);
+      min-height: 48px;
+    }
+
+    &_size_l {
+      font-size: var(--font-size-l);
+      min-height: 56px;
+    }
+
+    &_size_xl {
+      font-size: var(--font-size-xl);
+      min-height: 64px;
+    }
   }
 
   &__content_with-padding {
@@ -25,20 +44,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     font-weight: normal;
-    font-size: var(--font-size-l);
-
-    &_size_s {
-      font-size: var(--font-size-m);
-      min-height: 48px;
-    }
-    &_size_m {
-      font-size: var(--font-size-l);
-      min-height: 54px;
-    }
-    &_size_l {
-      font-size: var(--font-size-xl);
-      min-height: 70px;
-    }
+    font-size: inherit;
   }
 
   &__hint-icon {

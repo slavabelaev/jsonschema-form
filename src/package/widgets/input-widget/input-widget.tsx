@@ -31,6 +31,24 @@ export type InputOmitProps = 'width' |
     'onFocus';
 export type InputUiOptions = Omit<InputProps, InputOmitProps>;
 
+export function mapInputSize({ formContext }: WidgetProps): InputProps['size'] {
+    const { size, view } = formContext || {};
+
+    switch (view) {
+        case "filled": {
+            switch (size) {
+                case 's': return 's';
+                case 'm':
+                case 'l':
+                case 'xl':
+                default: return 'm';
+            }
+        }
+        case "default":
+        default: return size;
+    }
+}
+
 const mapInputType = (schema: WidgetProps['schema']): InputProps['type'] => {
     const { type, format } = schema;
     switch (type) {
@@ -186,7 +204,7 @@ export function mapInputProps(props: WidgetProps): InputProps {
         label: uiOptions?.label || label,
         disabled: disabled || readonly,
         pattern: schema.pattern,
-        size: formContext?.size,
+        size: mapInputSize(props),
         theme: formContext?.theme,
         view: formContext?.view,
         width: formContext?.width,

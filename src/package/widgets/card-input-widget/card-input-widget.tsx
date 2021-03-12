@@ -58,7 +58,7 @@ function getCardIcon(cardType: string) {
 
 export function mapCardInputIcon(props: WidgetProps): CardInputProps['icon'] {
     const { value, formContext } = props;
-    const { theme, size } = formContext || {};
+    const { theme } = formContext || {};
     const matchedCards = creditCardType(String(value));
     const { type } = matchedCards?.[0] || {};
     const Icon = (matchedCards.length === 1)
@@ -67,7 +67,7 @@ export function mapCardInputIcon(props: WidgetProps): CardInputProps['icon'] {
 
     return (
         <Icon
-            size={size}
+            size={'m'}
             theme={theme}
             colored={true}
         />

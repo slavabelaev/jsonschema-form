@@ -5,6 +5,7 @@ import {WidgetProps} from "../../types/widget-props";
 import {toType} from "../../utils/to-type";
 import {fromMarkdown} from "../../utils/from-markdown";
 import {mapError} from "../../utils/map-error";
+import {mapInputSize} from "../input-widget";
 import "./textarea-widget.scss";
 
 const cn = createCn('textarea-widget');
@@ -92,7 +93,7 @@ function mapTextareaProps(props: WidgetProps): TextareaProps {
         hint: fromMarkdown(schema.description),
         placeholder,
         tabIndex,
-        size: formContext?.size,
+        size: mapInputSize(props),
         theme: formContext?.theme,
         view: formContext?.view,
         width: formContext?.width,

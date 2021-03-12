@@ -21,6 +21,16 @@ export type CollapseItemProps = PropsWithChildren<{
     disablePadding?: boolean;
 }>;
 
+const mapErrorIconSize = (size: CollapseItemProps['size']) => {
+    switch (size) {
+        case 's': return 's';
+        case 'm':
+        case 'l': return 'm';
+        case 'xl':
+        default: return 'l';
+    }
+}
+
 export function CollapseItem(props: CollapseItemProps) {
     const { label, hint, hasError, size = 'm', theme = 'alfa-on-white', children, disablePadding } = props;
     const [expanded, setExpanded] = useState<boolean>(props?.isExpanded || false);
@@ -55,7 +65,7 @@ export function CollapseItem(props: CollapseItemProps) {
         <ErrorIcon
             className={cn('error-icon')}
             colored={true}
-            size={size}
+            size={mapErrorIconSize(size)}
             theme={theme}
         />
     );
