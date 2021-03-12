@@ -16,7 +16,9 @@ export type EditorFormProps = Omit<FormProps, 'schema' | 'uiSchema'> & {
 };
 
 export function EditorForm({
-   editURL,
+    editURL,
+    theme,
+    size,
     ...formProps
 }: EditorFormProps) {
     const [enabled, setEnabled] = useState(false);
@@ -26,6 +28,7 @@ export function EditorForm({
         <EditIconLink
             url={editURL}
             hint={'Редактировать на GitHub'}
+            theme={theme}
         />
     )
 
@@ -34,6 +37,7 @@ export function EditorForm({
             className={cn('toggle')}
             label={'JSON-режим'}
             labelAlign={'right'}
+            theme={theme}
             size={'s'}
             checked={enabled}
             onChange={toggleEnabled}
@@ -63,6 +67,7 @@ export function EditorForm({
                     }
                 }}
                 size={'s'}
+                theme={theme}
                 {...formProps}
             />
         )
@@ -77,6 +82,7 @@ export function EditorForm({
                 className={cn('editor-form')}
                 schema={editorFormSchema as FormProps['schema']}
                 uiSchema={editorFormUiSchema}
+                theme={theme}
                 size={'s'}
                 formData={{
                     schema: toJSON(schema),

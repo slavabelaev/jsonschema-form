@@ -9,6 +9,7 @@ export interface HelperProps {
     text?: ReactNode;
     isError?: boolean;
     size?: InputProps['size'];
+    theme?: InputProps['theme'];
 }
 
 const cn = createCn('helper');
@@ -17,10 +18,12 @@ export function Helper({
     className = '',
     text,
     isError = false,
-    size = 'm'
+    size = 'm',
+    theme = 'alfa-on-white'
 }: HelperProps) {
+    const classNames = cn({ error: isError, size, theme });
+
     if (!text) return null;
-    const classNames = cn({ error: isError, size });
 
     return (
         <div className={[classNames, className].join(' ')}>

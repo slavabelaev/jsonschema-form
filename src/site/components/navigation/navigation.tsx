@@ -4,6 +4,7 @@ import {useHistory, NavLink} from "react-router-dom";
 import isEmpty from "lodash.isempty";
 import {Input} from "arui-feather/input";
 import {Link} from "arui-feather/link";
+import {FormProps} from "arui-feather/form";
 import SearchIcon from "arui-feather/icon/action/search";
 import {RouteItem, Routes} from "../../routes";
 import {CollapseItem} from "../../../package/components/collapse-item";
@@ -13,6 +14,9 @@ import './navigation.scss';
 const cn = createCn('navigation');
 
 export type NavigationProps = {
+    className?: string;
+    theme?: FormProps['theme'];
+    size?: FormProps['size'];
     routes: Routes;
     onChange?: (path: string) => void;
 }
@@ -39,7 +43,8 @@ const cloneRoutesThenFilter = (routes: Routes = {}, query: string = ''): Routes 
     return nestedClonedRoutes;
 }
 
-export function Navigation({ routes, onChange }: NavigationProps) {
+export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = 's', className }: NavigationProps) {
+    const rootClassName = [className, cn({ theme })].join(' ');
     const history = useHistory();
     const { hash, search } = history.location || {};
     const query = new URLSearchParams(history.location.search).get('q') || '';
@@ -57,6 +62,7 @@ export function Navigation({ routes, onChange }: NavigationProps) {
                     className={cn('nav-link')}
                     url={url}
                     target={'_blank'}
+                    theme={theme}
                 >
                     {item.title || id}
                 </Link>
@@ -67,7 +73,7 @@ export function Navigation({ routes, onChange }: NavigationProps) {
             <NavLink
                 key={id}
                 className={cn('nav-link')}
-                activeClassName={cn('nav-link_active')}
+                activeClassName={cn('nav-link', { active: true })}
                 to={to}
                 onClick={() => onChange?.(to)}
             >
@@ -92,6 +98,7 @@ export function Navigation({ routes, onChange }: NavigationProps) {
                 className={cn('collapse-nav')}
                 headerText={route.title || id}
                 isExpanded={isExpanded}
+                theme={theme}
             >
                 {routes}
             </CollapseNav>
@@ -106,8 +113,9 @@ export function Navigation({ routes, onChange }: NavigationProps) {
                 size='l'
                 clear={true}
                 width='available'
+                theme={theme}
                 value={query}
-                leftAddons={<SearchIcon size='s' />}
+                leftAddons={<SearchIcon theme={theme} size='s' />}
                 onChange={(value) => history.push({
                     search: `?q=${value}`
                 })}
@@ -125,7 +133,8 @@ export function Navigation({ routes, onChange }: NavigationProps) {
                 children={renderNav(route, id)}
                 isExpanded={history.location.pathname.startsWith(`/${id}`)}
                 disablePadding={true}
-                size={"s"}
+                size={size}
+                theme={theme}
             />
         ) : null;
     };
@@ -133,7 +142,7 @@ export function Navigation({ routes, onChange }: NavigationProps) {
     const collapseList = Object.entries(filteredRoutes).map(mapCollapseItem);
 
     return (
-        <div className={cn()}>
+        <div className={rootClassName}>
             {header}
             {collapseList}
         </div>

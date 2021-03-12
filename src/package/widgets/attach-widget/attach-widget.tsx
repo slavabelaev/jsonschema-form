@@ -177,8 +177,12 @@ export function mapAttachProps(props: WidgetProps): AttachProps {
         onClick: undefined,
         onMouseEnter: undefined,
         onMouseLeave: undefined,
-        buttonProps: undefined,
         ...uiOptions,
+        buttonProps: {
+            ...uiOptions?.buttonProps,
+            theme,
+            size
+        },
         icon: mapAttachIcon(props),
         noFileText: uiOptions?.noFileText,
         buttonContent: uiOptions?.buttonContent || title,

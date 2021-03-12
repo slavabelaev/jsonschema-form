@@ -8,6 +8,7 @@ import {WidgetSchemaForm} from "../../components/widget-schema-form";
 import {EditIconLink} from "../edit-icon-link";
 import {fromMarkdown} from "../../../package/utils/from-markdown";
 import './layout-tabs.scss';
+import {FormProps} from "../../../package";
 
 enum TabId {
     EDITOR = 'editor',
@@ -26,6 +27,7 @@ export type LayoutTabsProps = {
     docs?: ReactNode;
     editDocsURL?: string;
     editPropsURL?: string;
+    theme?: FormProps['theme'];
 }
 
 const cn = createCn('layout-tabs');
@@ -34,7 +36,8 @@ export function LayoutTabs({
     docs,
     editorProps,
     editPropsURL,
-    editDocsURL
+    editDocsURL,
+    theme = 'alfa-on-white'
 }: LayoutTabsProps) {
     const history = useHistory();
     const { location } = history || {};
@@ -48,6 +51,7 @@ export function LayoutTabs({
             <EditorForm
                 className={cn('editor-form')}
                 size={'s'}
+                theme={theme}
                 editURL={editPropsURL}
                 {...editorProps}
             />
@@ -57,7 +61,7 @@ export function LayoutTabs({
     const renderDocs = () => {
         const editIconLink = editDocsURL && (
             <EditIconLink
-                className={cn('docs-edit-link')}
+                className={cn('edit-icon-link')}
                 url={editDocsURL}
                 hint={'Редактировать на GitHub'}
             />
@@ -100,7 +104,7 @@ export function LayoutTabs({
             key={item.id}
             className={cn('tab-item')}
             size='m'
-            theme={'alfa-on-white'}
+            theme={theme}
             view={'blue'}
             id={item.id}
             checked={activeTabId === item.id}
@@ -111,7 +115,10 @@ export function LayoutTabs({
     );
 
     const tabs = (
-        <Tabs className={cn('tabs')}>
+        <Tabs
+            className={cn('tabs')}
+            theme={theme}
+        >
             {tabList.map(renderTabItem)}
         </Tabs>
     );
@@ -119,7 +126,7 @@ export function LayoutTabs({
     const tabContent = tabList.find(item => item.id === activeTabId)?.renderContent();
 
     return (
-        <div className={cn()}>
+        <div className={cn({ theme })}>
             {tabs}
             {tabContent}
         </div>

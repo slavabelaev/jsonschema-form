@@ -1,10 +1,29 @@
 .navigation {
+  background-color: inherit;
+
+  &_theme_alfa-on-white {
+    background-color: var(--color-white);
+    color: var(--color-dark-indigo);
+  }
+
+  &_theme_alfa-on-color {
+    background-color: var(--color-dark-indigo);
+    color: var(--color-white);
+  }
+
+  &_theme_alfa-on-white &__nav-link_active {
+    background-color: var(--color-dark-indigo-05);
+  }
+
+  &_theme_alfa-on-color &__nav-link_active {
+    background-color: rgba(255,255,255,.15);
+  }
+
   &__header {
     position: sticky;
     top: 0;
     z-index: 1;
-    background: var(--color-dark-indigo-05-flat);
-    border-bottom: 1px solid var(--color-dark-indigo-15-flat);
+    background: inherit;
   }
 
   .collapse-item:first-of-type {
@@ -12,7 +31,9 @@
   }
 
   &__search-input {
-    padding-left: 16px;
+    .input__addons_left {
+      padding-left: 16px;
+    }
 
     .input__box {
       height: 48px;
@@ -28,9 +49,5 @@
     text-decoration: none;
     padding: 10px 16px;
     color: inherit;
-
-    &_active {
-      background: var(--color-dark-indigo-05);
-    }
   }
 }

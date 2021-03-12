@@ -1,8 +1,21 @@
 .layout-tabs {
+  background-color: inherit;
+  color: inherit;
+
+  &_theme_alfa-on-white {
+    background-color: var(--color-white);
+    color: var(--color-dark-indigo);
+  }
+
+  &_theme_alfa-on-color {
+    background-color: var(--color-dark-indigo);
+    color: var(--color-white);
+  }
+
   &__tabs {
     position: sticky;
     top: 0;
-    background: #fff;
+    background: inherit;
     z-index: 1;
 
     .tabs__content {
@@ -23,12 +36,14 @@
   &__description {
     position: relative;
     padding: 16px;
+    color: inherit;
+
     p {
       line-height: 1.5;
     }
   }
 
-  &__docs-edit-link {
+  &__edit-icon-link {
     position: absolute;
     right: 16px;
     top: 16px;

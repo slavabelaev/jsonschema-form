@@ -19,11 +19,7 @@
         }
 
         & + & {
-            border-top-width: 0;
-        }
-
-        &.button_disabled + & {
-            border-top-width: 1px;
+            top: -1px;
         }
     }
 }

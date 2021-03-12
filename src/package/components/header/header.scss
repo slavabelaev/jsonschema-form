@@ -7,6 +7,14 @@
     color: var(--color-white);
   }
 
+  &_theme_alfa-on-white &__paragraph {
+    color: var(--color-dark-indigo-60);
+  }
+
+  &_theme_alfa-on-color &__paragraph {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
   &__heading {
     padding: 0;
     font-size: var(--font-size-l);

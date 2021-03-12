@@ -166,7 +166,8 @@ function NotifiedIconButton({ onClick, children, theme, ...props }: ButtonProps)
 }
 
 export function EditorWidget(props: WidgetProps) {
-    const { label, schema, value, formContext: { view, theme } } = props;
+    const { label, schema, value, formContext } = props;
+    const { view = 'default', theme = 'alfa-on-white' } = formContext || {};
     const handleDownload = () => download(label, value, schema.contentMediaType);
     const handleCopy = () => copy(value);
 
@@ -216,7 +217,7 @@ export function EditorWidget(props: WidgetProps) {
     );
 
     return (
-        <div className={cn({ view: view as string })}>
+        <div className={cn({ view, theme })}>
             {header}
             <ControlledEditor {...mapEditorProps( props )} />
             <Helper {...mapHelperProps(props)} />

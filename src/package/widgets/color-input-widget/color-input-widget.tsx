@@ -34,22 +34,21 @@ export function ColorInputWidget(props: WidgetProps) {
     const pickerId = `${id}-color-picker`;
 
     const iconButton = (
-        <IconButton key="icon-button">
+        <IconButton
+            key="icon-button"
+            className={cn('icon-button')}
+        >
             <label
+                className={cn('picker-label')}
                 htmlFor={pickerId}
                 style={{
-                    display: 'inline-block',
-                    cursor: 'pointer',
-                    width: 24,
-                    height: 24,
-                    borderRadius: '50%',
                     backgroundColor: value || 'rgba(0,0,0,.05)',
                 }}
             />
             <input
+                className={cn('picker-input')}
                 id={pickerId}
                 type="color"
-                hidden
                 value={value}
                 onChange={event => onChange?.(event?.target?.value)}
             />

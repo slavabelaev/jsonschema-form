@@ -10,16 +10,19 @@ export type CollapseNavProps = PropsWithChildren<{
     className?: string;
     headerText: ReactNode;
     isExpanded?: SlideDownProps['isExpanded'];
+    theme?: SlideDownProps['theme'];
 }>
 
 export function CollapseNav(props: CollapseNavProps) {
-    const className = [cn(), props.className].join(' ');
+    const { theme = 'alfa-on-white' } = props;
+    const className = [cn({ theme }), props.className].join(' ');
     const [isExpanded, setExpanded] = useState(props.isExpanded || false);
     const toggleExpand = () => setExpanded(!isExpanded);
 
     const expandIcon = (
         <ArrowRightIcon
             className={cn('expand-icon', { expanded: isExpanded })}
+            theme={theme}
         />
     )
 
@@ -43,6 +46,7 @@ export function CollapseNav(props: CollapseNavProps) {
         <SlideDown
             className={cn('slide-down')}
             isExpanded={isExpanded}
+            theme={theme}
         >
             {props.children}
         </SlideDown>

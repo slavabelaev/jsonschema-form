@@ -1,5 +1,7 @@
 .md-blockquote {
   box-sizing: border-box;
+  color: inherit;
+
   * + & {
     margin-top: 16px;
   }

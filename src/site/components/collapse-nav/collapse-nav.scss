@@ -1,4 +1,12 @@
 .collapse-nav {
+  &_theme_alfa-on-white {
+    color: var(--color-dark-indigo);
+  }
+
+  &_theme_alfa-on-color {
+    color: var(--color-white);
+  }
+
   &__header {
     display: flex;
     align-items: center;

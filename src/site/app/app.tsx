@@ -47,10 +47,11 @@ function App() {
     const [docs, setDocs] = useState<string | null>(null);
     const [editorFormData, setEditorFormData] = useState<string>('');
     const [formProps, _setFormProps] = useState<FormProps | null>(null);
+    const { theme = 'alfa-on-white' } = formProps || {};
     const setFormProps = (state) => _setFormProps({
         key: pathname,
         ...state,
-        theme: 'alfa-on-color'
+        // theme: 'alfa-on-white'
     });
 
     const handleNavigationChange = () => {
@@ -105,6 +106,7 @@ function App() {
             docs={docs}
             editDocsURL={editDocsUrl}
             editPropsURL={editPropsUrl}
+            theme={formProps?.theme}
         />
     );
 
@@ -133,16 +135,16 @@ function App() {
     )
 
     return (
-        <div className={cn()}>
+        <div className={cn({ theme: theme || false })}>
             <aside ref={menuRef} className={cn('aside', { left: true })}>
                 <Navigation
                     routes={routes}
                     onChange={handleNavigationChange}
+                    theme={theme}
+                    size={'s'}
                 />
             </aside>
-            <main ref={mainRef} className={cn('main', {
-                theme: formProps?.theme || false
-            })}>
+            <main ref={mainRef} className={cn('main')}>
                 {form}
             </main>
             <aside ref={asideRef} className={cn('aside', { right: true })}>

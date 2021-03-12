@@ -1,17 +1,35 @@
 .editor-widget {
+  &_theme_alfa-on-white {
+    .editor-widget__header,
+    .monaco-editor {
+      background-color: var(--color-dark-indigo-05);
+      opacity: .75;
+    }
+  }
+
+  &_theme_alfa-on-color {
+    .editor-widget__header,
+    .monaco-editor {
+      background-color: rgba(255,255,255,.15);
+      opacity: .75;
+    }
+  }
+
+  &_theme_alfa-on-white &__heading {
+    color: rgba(11, 31, 53, 0.6);
+  }
+
   &__header {
     display: flex;
     align-items: center;
-    color: rgba(11, 31, 53, 0.6);
-    font-size: var(--font-size-s);
     padding: 4px 16px;
     border-radius: 4px 4px 0 0;
   }
 
   &__heading {
+    font-size: var(--font-size-s);
     margin-right: auto;
     font-weight: initial;
-    font-size: var(--font-size-s);
   }
 
   &__icon-button {
