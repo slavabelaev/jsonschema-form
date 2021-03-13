@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {useHistory} from "react-router-dom";
 import {createCn} from "bem-react-classname";
 import {Tabs} from "arui-feather/tabs";
@@ -8,8 +8,8 @@ import {EditIconLink} from "../edit-icon-link";
 import {fromMarkdown} from "../../../package/utils/from-markdown";
 import {FormProps} from "../../../package";
 import {SampleEditor} from "../sample-editor";
+import {ThemeSwitch} from "../theme-switch";
 import './navigation-tabs.scss';
-import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 
 enum TabId {
     EDITOR = 'editor',
@@ -112,12 +112,21 @@ export function NavigationTabs({
         </TabItem>
     );
 
+    const actions = (
+        <div className={cn('actions')}>
+            <ThemeSwitch
+                className={cn('theme-switch')}
+            />
+        </div>
+    )
+
     const tabs = (
         <Tabs
             className={cn('tabs')}
             theme={theme}
         >
             {tabList.map(renderTabItem)}
+            {actions}
         </Tabs>
     );
 

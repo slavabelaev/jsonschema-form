@@ -1,9 +1,18 @@
 .sample-editor {
   display: grid;
-  grid-template-columns: 5fr 4fr;
+  height: calc(100vh - 49px);
 
-  & > * + * {
+  &__result,
+  &__editor {
+    overflow: auto;
+  }
+
+  &_theme_alfa-on-white > * + * {
     border-left: 1px solid var(--color-dark-indigo-15);
+  }
+
+  &_theme_alfa-on-color > * + * {
+    border-left: 1px solid rgba(255, 255, 255, 0.24);
   }
 
   &__result {
@@ -18,5 +27,17 @@
     & > * + * {
       margin-left: 8px;
     }
+  }
+
+  @media (min-width: 0) {
+    grid-template-columns: repeat(2, -1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1240px) {
+    grid-template-columns: 5fr 4fr;
   }
 }

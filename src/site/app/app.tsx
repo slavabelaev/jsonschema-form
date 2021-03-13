@@ -1,17 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {createCn} from 'bem-react-classname';
 import SearchIcon from 'arui-feather/icon/action/search';
 import DraftIcon from 'arui-feather/icon/entity/draft';
 import FavoriteIcon from 'arui-feather/icon/ui/favorite';
-import Form, {FormProps} from '../../package';
+import {FormProps} from '../../package';
 import {RouteItem, routes, Routes} from "../routes";
 import {Navigation} from "../components/navigation";
 import {NavigationTabs} from "./navigation-tabs";
 import packageJSON from "../../../package.json";
-import {parseJSON, toJSON} from "../utils/json";
 import {BottomBar} from "../components/bottom-bar";
 import './app.scss';
+import {ThemeSwitchContext} from "./theme-switch";
 
 const toText = (response: any) => response.text();
 
@@ -32,6 +32,7 @@ const scrollIntoView = (element?: HTMLDivElement | null) => {
 const cn = createCn('app');
 
 function App() {
+    const { theme } = useContext(ThemeSwitchContext);
     const history = useHistory();
     const menuRef = useRef<HTMLDivElement>(null);
     const mainRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,6 @@ function App() {
     const editPropsUrl = editBaseURL + formPropsEditPath;
     const [docs, setDocs] = useState<string | null>(null);
     const [initialFormProps, setInitialFormProps] = useState<FormProps | null>(null);
-    const { theme = 'alfa-on-white' } = initialFormProps || {};
 
     const handleNavigationChange = () => {
         setTimeout(() => scrollIntoView(mainRef?.current), 1);
@@ -72,6 +72,7 @@ function App() {
             docs={docs}
             editDocsURL={editDocsUrl}
             editPropsURL={editPropsUrl}
+            theme={theme}
         />
     );
 

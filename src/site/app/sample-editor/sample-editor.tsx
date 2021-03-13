@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {createCn} from "bem-react-classname";
 import {Toggle} from "arui-feather/toggle";
 import Form, {FormProps} from "../../../package";
-import editorFormSchema from "../editor-form/editor-form.schema.json";
-import editorFormUiSchema from "../editor-form/editor-form.ui-schema.json";
+import editorFormSchema from "./editor-form.schema.json";
+import editorFormUiSchema from "./editor-form.ui-schema.json";
 import {EditIconLink} from "../edit-icon-link";
 import './sample-editor.scss';
+import {ThemeSwitchContext} from "../theme-switch";
 
 const cn = createCn('sample-editor');
 
@@ -39,8 +40,9 @@ const toEditorFormData = (props?: FormProps) => {
 }
 
 export function SampleEditor(props: SampleEditorProps) {
+    const { theme = 'alfa-on-white' } = useContext(ThemeSwitchContext);
     const { initialFormProps, className } = props;
-    const rootClassName = [cn(), className].join(' ');
+    const rootClassName = [cn({ theme }), className].join(' ');
     const [state, setState] = useState<any>();
     const { jsonModeEnabled = false } = state || {};
 
@@ -97,6 +99,7 @@ export function SampleEditor(props: SampleEditorProps) {
     const form = (
         <Form
             {...state?.formProps}
+            theme={theme}
             onChange={({ formData }) => {
                 const formProps = {
                     ...state.formProps,
@@ -126,8 +129,9 @@ export function SampleEditor(props: SampleEditorProps) {
             className={cn('editor-form')}
             schema={editorFormSchema as FormProps['schema']}
             uiSchema={editorFormUiSchema}
-            size={'s'}
             formData={state.editorFormData}
+            size={'s'}
+            theme={theme}
             onChange={({ formData }) => {
                 setState({
                     ...state,
@@ -157,8 +161,9 @@ export function SampleEditor(props: SampleEditorProps) {
                     height: 'calc(100vh - 113px)'
                 }
             }}
-            size={'s'}
             formData={state.jsonEditorFormData}
+            size={'s'}
+            theme={theme}
             onChange={({ formData }) => {
                 const formProps = parseJSON(formData);
 
