@@ -20,14 +20,6 @@ const toJSON = (data: any) => data
     ? JSON.stringify(data, null, 2)
     : undefined;
 
-const parseJSON = (json?: string) => {
-    if (!json) return;
-
-    try {
-        return JSON.parse(json)
-    } catch {}
-}
-
 const toEditorFormData = (props?: FormProps) => {
     if (!props) return;
 
@@ -127,17 +119,19 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
             size={'s'}
             theme={theme}
             onChange={({ formData }) => {
-                setState({
-                    ...state,
-                    formProps: {
-                        ...state.formProps,
-                        ...formData,
-                        schema: parseJSON(formData?.schema),
-                        uiSchema: parseJSON(formData?.uiSchema),
-                        formData: parseJSON(formData?.formData)
-                    },
-                    editorFormData: formData
-                })
+                try {
+                    setState({
+                        ...state,
+                        formProps: {
+                            ...state.formProps,
+                            ...formData,
+                            schema: JSON.parse(formData?.schema),
+                            uiSchema: JSON.parse(formData?.uiSchema),
+                            formData: JSON.parse(formData?.formData)
+                        },
+                        editorFormData: formData
+                    })
+                } catch {}
             }}
         />
     )
@@ -160,13 +154,13 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
             size={'s'}
             theme={theme}
             onChange={({ formData }) => {
-                const formProps = parseJSON(formData);
-
-                setState({
-                    ...state,
-                    formProps,
-                    jsonEditorFormData: formData,
-                });
+                try {
+                    setState({
+                        ...state,
+                        formProps: JSON.parse(formData),
+                        jsonEditorFormData: formData,
+                    });
+                } catch {}
             }}
         />
     )
