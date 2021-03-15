@@ -38,6 +38,10 @@
     .input__control {
       padding: 13px 0;
     }
+
+    .input__box {
+      border-bottom-color: var(--color-dark-indigo-15);
+    }
   }
 
   &__collapse-nav &__nav-link {

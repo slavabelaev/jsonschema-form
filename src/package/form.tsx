@@ -151,4 +151,4 @@ export function Form<T>({
     )
 }
 
-export default withErrorBoundary<FormProps>(Form);
+export default withErrorBoundary(Form);

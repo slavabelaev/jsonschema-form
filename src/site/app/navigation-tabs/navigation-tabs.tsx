@@ -1,4 +1,4 @@
-import React, {ReactNode, useContext} from 'react';
+import React, {ReactNode} from 'react';
 import {useHistory} from "react-router-dom";
 import {createCn} from "bem-react-classname";
 import {Tabs} from "arui-feather/tabs";
@@ -7,8 +7,8 @@ import {WidgetSchemaForm} from "../../components/widget-schema-form";
 import {EditIconLink} from "../edit-icon-link";
 import {fromMarkdown} from "../../../package/utils/from-markdown";
 import {FormProps} from "../../../package";
-import {SampleEditor} from "../sample-editor";
-import {ThemeSwitch} from "../theme-switch";
+import {FormPropsEditor} from "../form-props-editor";
+import {ThemeToggle} from "../theme-toggle";
 import './navigation-tabs.scss';
 
 enum TabId {
@@ -33,6 +33,8 @@ export type NavigationTabsProps = {
 
 const cn = createCn('navigation-tabs');
 
+const EDIT_ICON_LINK_TEXT = 'Редактировать на GitHub';
+
 export function NavigationTabs({
     docs,
     initialFormProps,
@@ -48,10 +50,18 @@ export function NavigationTabs({
     const tabList: Tab[] = [];
 
     const renderSampleEditor = () => {
+        const editIconLink = editPropsURL && (
+            <EditIconLink
+                url={editPropsURL}
+                hint={EDIT_ICON_LINK_TEXT}
+            />
+        )
+
         return (
-            <SampleEditor
+            <FormPropsEditor
                 className={cn('sample-editor')}
-                initialFormProps={initialFormProps}
+                initialProps={initialFormProps}
+                toolbarActions={editIconLink}
             />
         );
     }
@@ -61,7 +71,7 @@ export function NavigationTabs({
             <EditIconLink
                 className={cn('edit-icon-link')}
                 url={editDocsURL}
-                hint={'Редактировать на GitHub'}
+                hint={EDIT_ICON_LINK_TEXT}
             />
         )
 
@@ -114,7 +124,7 @@ export function NavigationTabs({
 
     const actions = (
         <div className={cn('actions')}>
-            <ThemeSwitch
+            <ThemeToggle
                 className={cn('theme-switch')}
             />
         </div>

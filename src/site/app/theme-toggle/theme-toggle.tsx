@@ -1,18 +1,18 @@
 import React, {useContext} from 'react';
 import {createCn} from "bem-react-classname";
 import {Toggle} from "arui-feather/toggle";
-import {ThemeSwitchContext} from "./theme-switch-provider";
-import './theme-switch.scss';
+import {ThemeToggleContext} from "./theme-toggle-provider";
+import './theme-toggle.scss';
 
-const cn = createCn('theme-switch');
+const cn = createCn('theme-toggle');
 
-export type ThemeSwitchProps = {
+export type ThemeToggleProps = {
     className?: string;
 };
 
-export function ThemeSwitch(props: ThemeSwitchProps) {
+export function ThemeToggle(props: ThemeToggleProps) {
     const { className } = props;
-    const { theme = 'alfa-on-white', setTheme } = useContext(ThemeSwitchContext);
+    const { theme = 'alfa-on-white', setTheme } = useContext(ThemeToggleContext);
     const rootClassName = [cn({ theme }), className].join(' ');
     const checked = theme === 'alfa-on-color';
     const toggleTheme = () => setTheme?.(checked ? 'alfa-on-white' : 'alfa-on-color');

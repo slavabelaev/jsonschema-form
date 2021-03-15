@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Redirect, Switch, HashRouter} from 'react-router-dom';
-import {ThemeSwitchProvider} from "./app/theme-switch";
+import {ThemeToggleProvider} from "./app/theme-toggle";
 import App from "./app";
 
 export type Params = {
@@ -11,14 +11,14 @@ export type Params = {
 
 function Root() {
     return (
-        <ThemeSwitchProvider>
+        <ThemeToggleProvider>
             <HashRouter>
                 <Switch>
                     <Route path='/:group/:widget' component={App} />
                     <Redirect to='/ui-schema/widget/attach' />
                 </Switch>
             </HashRouter>
-        </ThemeSwitchProvider>
+        </ThemeToggleProvider>
     )
 }
 

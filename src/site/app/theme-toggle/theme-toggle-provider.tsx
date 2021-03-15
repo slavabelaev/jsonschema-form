@@ -1,18 +1,18 @@
 import React, {PropsWithChildren, useState} from 'react';
 import {ThemeProviderProps} from "arui-feather/theme-provider";
 
-export type ThemeSwitchProviderValue = {
+export type ThemeToggleProviderValue = {
     theme?: ThemeProviderProps['theme'];
     setTheme?: (theme: ThemeProviderProps['theme']) => void;
 }
 
-export const ThemeSwitchContext = React.createContext<ThemeSwitchProviderValue>({});
+export const ThemeToggleContext = React.createContext<ThemeToggleProviderValue>({});
 
-const { Provider } = ThemeSwitchContext;
+const { Provider } = ThemeToggleContext;
 
-export type ThemeSwitchProviderProps = PropsWithChildren<{}>;
+export type ThemeToggleProviderProps = PropsWithChildren<{}>;
 
-export function ThemeSwitchProvider(props: ThemeSwitchProviderProps) {
+export function ThemeToggleProvider(props: ThemeToggleProviderProps) {
     const [theme, setTheme] = useState<ThemeProviderProps['theme']>('alfa-on-white');
 
     return (

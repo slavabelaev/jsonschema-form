@@ -11,7 +11,7 @@ import {NavigationTabs} from "./navigation-tabs";
 import packageJSON from "../../../package.json";
 import {BottomBar} from "../components/bottom-bar";
 import './app.scss';
-import {ThemeSwitchContext} from "./theme-switch";
+import {ThemeToggleContext} from "./theme-toggle";
 
 const toText = (response: any) => response.text();
 
@@ -32,7 +32,7 @@ const scrollIntoView = (element?: HTMLDivElement | null) => {
 const cn = createCn('app');
 
 function App() {
-    const { theme } = useContext(ThemeSwitchContext);
+    const { theme } = useContext(ThemeToggleContext);
     const history = useHistory();
     const menuRef = useRef<HTMLDivElement>(null);
     const mainRef = useRef<HTMLDivElement>(null);
@@ -42,7 +42,7 @@ function App() {
     const ids = pathname.split('/').filter(Boolean);
     const route = getRoute(routes, ids);
     const { fetchFormProps, docsUrl, docsEditPath, formPropsEditPath } = route || {};
-    const editBaseURL = packageJSON.repository.url + '/edit/main/';
+    const editBaseURL = packageJSON.repository.url + '/edit/master/';
     const editDocsUrl = editBaseURL + docsEditPath;
     const editPropsUrl = editBaseURL + formPropsEditPath;
     const [docs, setDocs] = useState<string | null>(null);
@@ -65,16 +65,6 @@ function App() {
             setInitialFormProps(null);
         }
     }, [pathname]);
-
-    const navigationTabs = (
-        <NavigationTabs
-            initialFormProps={initialFormProps || undefined}
-            docs={docs}
-            editDocsURL={editDocsUrl}
-            editPropsURL={editPropsUrl}
-            theme={theme}
-        />
-    );
 
     const bottomBar = (
         <BottomBar
@@ -100,14 +90,28 @@ function App() {
         />
     );
 
+    const navigationTabs = (
+        <NavigationTabs
+            initialFormProps={initialFormProps || undefined}
+            docs={docs}
+            editDocsURL={editDocsUrl}
+            editPropsURL={editPropsUrl}
+            theme={theme}
+        />
+    );
+
+    const navigation = (
+        <Navigation
+            routes={routes}
+            onChange={handleNavigationChange}
+            theme={theme}
+        />
+    );
+
     return (
         <div className={cn({ theme: theme || false })}>
             <aside ref={menuRef} className={cn('aside', { left: true })}>
-                <Navigation
-                    routes={routes}
-                    onChange={handleNavigationChange}
-                    theme={theme}
-                />
+                {navigation}
             </aside>
             <main ref={mainRef} className={cn('main')}>
                 {navigationTabs}
