@@ -100,6 +100,7 @@ export function SampleEditor(props: SampleEditorProps) {
         <Form
             {...state?.formProps}
             theme={theme}
+            liveValidate={true}
             onChange={({ formData }) => {
                 const formProps = {
                     ...state.formProps,

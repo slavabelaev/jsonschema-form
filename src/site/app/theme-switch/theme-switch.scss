@@ -1,3 +1,40 @@
 .theme-switch {
   cursor: pointer;
+
+  .toggle__switch {
+    transition: .24s;
+    &:after {
+      transition: .24s;
+    }
+  }
+
+  &_theme_alfa-on-white {
+    .toggle__switch {
+      background-color: #0066ff;
+      box-shadow: inset 0 7px rgba(255,255,255, .1);
+      &:after {
+        box-shadow: inset -2px 0 #ffbb00, inset -7px 0 #ffcc00, inset -24px 0 #ffdd00;
+        background-color: #ffff00;
+      }
+      &:before {
+        background-color: #0066ff;
+      }
+    }
+  }
+
+  &_theme_alfa-on-color {
+    .toggle__switch {
+      &:before {
+        background-color: #111;
+      }
+      &:after {
+        box-shadow: inset -2px 0 #ffbb00, inset -4px 0 #ffcc00, inset -8px 0 #ffdd00;
+        background-color: rgba(255,255,255, .1);
+      }
+    }
+  }
+
+
+
+
 }
