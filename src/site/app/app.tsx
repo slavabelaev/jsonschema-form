@@ -10,8 +10,8 @@ import {Navigation} from "../components/navigation";
 import {NavigationTabs} from "./navigation-tabs";
 import packageJSON from "../../../package.json";
 import {BottomBar} from "../components/bottom-bar";
-import './app.scss';
 import {ThemeToggleContext} from "./theme-toggle";
+import './app.scss';
 
 const toText = (response: any) => response.text();
 

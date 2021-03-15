@@ -1,4 +1,4 @@
-import {TEMPLATE} from "../fields/object-field-template";
+import {OBJECT_FIELD_TEMPLATE} from "../fields/object-field-template";
 import {UiSchema} from "../form";
 
 export type TemplateOptions = {
@@ -6,11 +6,11 @@ export type TemplateOptions = {
 }
 
 export function getTemplateOptions(uiSchema: UiSchema):TemplateOptions {
-    const template = uiSchema?.['ui:template'] as TEMPLATE;
+    const template = uiSchema?.['ui:template'] as OBJECT_FIELD_TEMPLATE;
     const showHeader = ![
-        TEMPLATE.STEPPER,
-        TEMPLATE.COLLAPSE_LIST,
-        TEMPLATE.TABS,
+        OBJECT_FIELD_TEMPLATE.STEPPER,
+        OBJECT_FIELD_TEMPLATE.COLLAPSE_LIST,
+        OBJECT_FIELD_TEMPLATE.TABS,
     ].includes(template);
 
     return {

@@ -4,9 +4,8 @@ import {Toggle} from "arui-feather/toggle";
 import Form, {FormProps} from "../../../package";
 import editorFormSchema from "./editor-form.schema.json";
 import editorFormUiSchema from "./editor-form.ui-schema.json";
-import {EditIconLink} from "../edit-icon-link";
-import './form-props-editor.scss';
 import {ThemeToggleContext} from "../theme-toggle";
+import './form-props-editor.scss';
 
 const cn = createCn('form-props-editor');
 
@@ -132,6 +131,7 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
                     ...state,
                     formProps: {
                         ...state.formProps,
+                        ...formData,
                         schema: parseJSON(formData?.schema),
                         uiSchema: parseJSON(formData?.uiSchema),
                         formData: parseJSON(formData?.formData)
@@ -147,7 +147,7 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
             key={'json-editor-form'}
             className={cn('json-editor-form')}
             schema={{
-                title: "Editor",
+                title: "JSON-редактор",
                 type: "string",
                 contentMediaType: "application/json"
             }}

@@ -4,8 +4,10 @@ import JSONSchemaForm, {FormProps as OriginFormProps, UiSchema as OriginUiSchema
 import {Button} from "arui-feather/button";
 import {InputProps} from "arui-feather/input";
 import {FormProps as AruiFeatherFormProps} from "arui-feather/form";
+import {Plate} from "arui-feather/plate";
+import ErrorIcon from "arui-feather/icon/ui/error";
 import {FieldTemplate} from "./fields/field-template";
-import {ObjectFieldTemplate, TEMPLATE} from "./fields/object-field-template";
+import {ObjectFieldTemplate, OBJECT_FIELD_TEMPLATE} from "./fields/object-field-template";
 import {ArrayFieldTemplate} from "./fields/array-field-template";
 import {transformErrors} from "./utils/transform-errors";
 import {widgets, UiOptions, UiWidget} from "./widgets";
@@ -21,7 +23,7 @@ export type UiSchema = Omit<OriginUiSchema, 'ui:widget' | 'ui:options' | 'ui:exp
     'ui:widget'?: OriginUiSchema['ui:widget'] | UiWidget;
     'ui:options'?: OriginUiSchema['ui:options'] | UiOptions;
     'ui:expanded'?: string[];
-    'ui:template'?: TEMPLATE | string;
+    'ui:template'?: OBJECT_FIELD_TEMPLATE | string;
 };
 
 export type FormProps<T = any> = Omit<OriginFormProps<T>, 'uiSchema' | 'children'> & {
@@ -30,6 +32,7 @@ export type FormProps<T = any> = Omit<OriginFormProps<T>, 'uiSchema' | 'children
     theme?: AruiFeatherFormProps['theme'];
     view?: InputProps['view'];
     width?: InputProps['width'];
+    template?: OBJECT_FIELD_TEMPLATE;
     submitText?: ReactNode;
 }
 
@@ -67,6 +70,7 @@ export function Form<T>({
     size = 'm',
     theme = 'alfa-on-white',
     width = 'available',
+    template,
     noValidate,
     uiSchema,
     formData,
@@ -86,7 +90,24 @@ export function Form<T>({
         onSubmit?.(props);
     }
 
-    if (!props.schema) return null;
+    if (!props.schema) {
+        const errorIcon = (
+            <ErrorIcon
+                theme={theme}
+                colored={true}
+            />
+        )
+
+        return (
+            <Plate
+                className={cn('error-plate')}
+                type='error'
+                theme={theme}
+                title={'JSON-схема неверна'}
+                icon={errorIcon}
+            />
+        );
+    }
 
     if (submitted) {
         return (
@@ -120,7 +141,10 @@ export function Form<T>({
             {...props}
             action={action}
             method={method}
-            uiSchema={uiSchema as OriginUiSchema}
+            uiSchema={{
+                ...uiSchema,
+                'ui:template': template || uiSchema?.['ui:template'],
+            }}
             schema={schema}
             formData={formData}
             fields={{

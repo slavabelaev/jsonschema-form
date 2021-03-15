@@ -48,6 +48,11 @@
       "description": "Тип",
       "enum": ["default", "filled"],
       "default": "filled"
+    },
+    "template": {
+      "description": "Шаблон",
+      "enum": ["default", "stepper", "progress-stepper", "tabs", "collapse-list"],
+      "default": "default"
     }
   },
   "required": ["schema"]
