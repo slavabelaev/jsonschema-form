@@ -9,6 +9,7 @@ import {mapEnumOptions} from "../../utils/map-enum-options";
 import {mapInputSize} from "../input-widget";
 import "./select-widget.scss";
 import './bugfix';
+import ThemeProvider from "arui-feather/theme-provider";
 
 const cn = createCn('select-widget');
 

@@ -1,4 +1,5 @@
 @import "vars";
+@import "form_theme_alfa-on-color";
 
 .form {
     &__submit-button {
@@ -13,5 +14,9 @@
         box-sizing: border-box;
         display: flex;
         align-items: center;
+    }
+
+    .input__input-wrapper {
+        flex: auto;
     }
 }

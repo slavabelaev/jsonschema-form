@@ -1,0 +1,76 @@
+.form_theme_alfa-on-color {
+  .select_view_filled {
+    .select-button {
+      background-color: rgba(255, 255, 255, .1);
+      color: var(--color-white);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, .2);
+      }
+    }
+
+    .select__top,
+    .select__sub {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .select__placeholder {
+      color: rgba(255, 255, 255, .2);
+    }
+
+    &.select_disabled {
+      .select-button {
+        color: rgba(255, 255, 255, 0.4);
+        border-bottom-color: rgba(255, 255, 255, .2);
+        background-color: rgba(255, 255, 255, .05);
+      }
+
+      .select__top,
+      .select__sub {
+        color: rgba(255, 255, 255, .1);
+      }
+    }
+  }
+
+  .input_view_filled {
+    .input__box {
+      background-color: rgba(255, 255, 255, .1);
+    }
+
+    .input__control {
+      color: var(--color-white);
+    }
+
+    .input__top,
+    .input__sub {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &.input_disabled {
+      .input__box {
+        background-color: rgba(255, 255, 255, .05);
+      }
+
+      .input__top,
+      .input__sub,
+      .input__control {
+        color: rgba(255, 255, 255, .1);
+      }
+
+    }
+  }
+
+  .toggle {
+    .toggle__label {
+      color: var(--color-white);
+    }
+
+    .toggle__hint {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .toggle__switch {
+      background-color: rgba(255, 255, 255, .1);
+    }
+  }
+}

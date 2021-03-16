@@ -8,6 +8,7 @@
 				"properties": {
 					"default": {
 						"title": "По умолчанию",
+						"description": "текст подсказки",
 						"$ref": "#/definitions/comment"
 					},
 					"disabled": {

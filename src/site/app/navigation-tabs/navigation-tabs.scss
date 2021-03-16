@@ -1,24 +1,25 @@
 .navigation-tabs {
-  background-color: inherit;
   color: inherit;
 
   &_theme_alfa-on-white {
-    background-color: var(--color-white);
     color: var(--color-dark-indigo);
+
     .tabs__content:after {
       border-bottom-color: var(--color-dark-indigo-15);
     }
   }
 
   &_theme_alfa-on-color {
-    background-color: var(--color-dark-indigo);
     color: var(--color-white);
+
+    .tabs__content:after {
+      border-color: rgba(255,255,255, .24)
+    }
   }
 
   &__tabs {
     position: sticky;
     top: 0;
-    background: inherit;
     z-index: 1;
 
     .tabs__content {

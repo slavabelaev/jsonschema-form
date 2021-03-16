@@ -54,6 +54,7 @@ export function NavigationTabs({
             <EditIconLink
                 url={editPropsURL}
                 hint={EDIT_ICON_LINK_TEXT}
+                theme={theme}
             />
         )
 
@@ -73,6 +74,7 @@ export function NavigationTabs({
                 className={cn('edit-icon-link')}
                 url={editDocsURL}
                 hint={EDIT_ICON_LINK_TEXT}
+                theme={theme}
             />
         )
 

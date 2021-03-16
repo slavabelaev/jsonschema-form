@@ -18,6 +18,7 @@ import {AnyOfField} from "./fields/any-of-field";
 import {UnsupportedField} from "./fields/unsupported-field";
 import {SuccessNotification} from "./components/success-notification";
 import './form.scss';
+import ThemeProvider from "arui-feather/theme-provider";
 
 export type UiSchema = Omit<OriginUiSchema, 'ui:widget' | 'ui:options' | 'ui:expanded'> & {
     'ui:widget'?: OriginUiSchema['ui:widget'] | UiWidget;
@@ -132,46 +133,48 @@ export function Form<T>({
     ) : <></>;
 
     return (
-        <JSONSchemaForm
-            className={cn({ theme })}
-            showErrorList={false}
-            FieldTemplate={FieldTemplate}
-            ObjectFieldTemplate={ObjectFieldTemplate}
-            ArrayFieldTemplate={ArrayFieldTemplate}
-            {...props}
-            action={action}
-            method={method}
-            uiSchema={{
-                ...uiSchema,
-                'ui:template': template || uiSchema?.['ui:template'],
-            }}
-            schema={schema}
-            formData={formData}
-            fields={{
-                TitleField,
-                DescriptionField,
-                AnyOfField,
-                OneOfField: AnyOfField,
-                UnsupportedField,
-                ...props.fields
-            }}
-            widgets={{
-                ...widgets,
-                ...props.widgets
-            }}
-            formContext={{
-                view,
-                size,
-                theme,
-                width,
-                ...props.formContext
-            }}
-            transformErrors={errors => transformErrors(errors, schema)}
-            noValidate={false}
-            onSubmit={handleSubmit}
-        >
-            {submitButton}
-        </JSONSchemaForm>
+        <ThemeProvider theme={theme}>
+            <JSONSchemaForm
+                className={cn({ theme })}
+                showErrorList={false}
+                FieldTemplate={FieldTemplate}
+                ObjectFieldTemplate={ObjectFieldTemplate}
+                ArrayFieldTemplate={ArrayFieldTemplate}
+                {...props}
+                action={action}
+                method={method}
+                uiSchema={{
+                    ...uiSchema,
+                    'ui:template': template || uiSchema?.['ui:template'],
+                }}
+                schema={schema}
+                formData={formData}
+                fields={{
+                    TitleField,
+                    DescriptionField,
+                    AnyOfField,
+                    OneOfField: AnyOfField,
+                    UnsupportedField,
+                    ...props.fields
+                }}
+                widgets={{
+                    ...widgets,
+                    ...props.widgets
+                }}
+                formContext={{
+                    view,
+                    size,
+                    theme,
+                    width,
+                    ...props.formContext
+                }}
+                transformErrors={errors => transformErrors(errors, schema)}
+                noValidate={false}
+                onSubmit={handleSubmit}
+            >
+                {submitButton}
+            </JSONSchemaForm>
+        </ThemeProvider>
     )
 }
 

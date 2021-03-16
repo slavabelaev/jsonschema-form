@@ -7,15 +7,15 @@
     scroll-snap-type: y mandatory;
 
     &_theme_alfa-on-white {
-        background: initial;
+        background-color: var(--color-white);
     }
 
     &_theme_alfa-on-color {
-        background: var(--color-dark-indigo);
+        background-color: var(--color-dark-indigo);
     }
 
     & > * {
-        background: inherit;
+        background-color: inherit;
     }
 
     &__main {
