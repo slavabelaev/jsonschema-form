@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/jsonschema-form/static/css/main.d234edb0.chunk.css",
-    "main.js": "/jsonschema-form/static/js/main.e82affe2.chunk.js",
-    "main.js.map": "/jsonschema-form/static/js/main.e82affe2.chunk.js.map",
+    "main.css": "/jsonschema-form/static/css/main.ec57137c.chunk.css",
+    "main.js": "/jsonschema-form/static/js/main.6d2dc07a.chunk.js",
+    "main.js.map": "/jsonschema-form/static/js/main.6d2dc07a.chunk.js.map",
     "runtime-main.js": "/jsonschema-form/static/js/runtime-main.af0e4c2b.js",
     "runtime-main.js.map": "/jsonschema-form/static/js/runtime-main.af0e4c2b.js.map",
     "static/css/2.5e47be99.chunk.css": "/jsonschema-form/static/css/2.5e47be99.chunk.css",
@@ -164,7 +164,7 @@
     "index.html": "/jsonschema-form/index.html",
     "static/css/2.5e47be99.chunk.css.map": "/jsonschema-form/static/css/2.5e47be99.chunk.css.map",
     "static/css/4.48e03d4d.chunk.css.map": "/jsonschema-form/static/css/4.48e03d4d.chunk.css.map",
-    "static/css/main.d234edb0.chunk.css.map": "/jsonschema-form/static/css/main.d234edb0.chunk.css.map",
+    "static/css/main.ec57137c.chunk.css.map": "/jsonschema-form/static/css/main.ec57137c.chunk.css.map",
     "static/js/2.b19b12db.chunk.js.LICENSE.txt": "/jsonschema-form/static/js/2.b19b12db.chunk.js.LICENSE.txt",
     "static/js/3.01939c46.chunk.js.LICENSE.txt": "/jsonschema-form/static/js/3.01939c46.chunk.js.LICENSE.txt",
     "static/media/$comment.md": "/jsonschema-form/static/media/$comment.8ff3f738.md",
@@ -295,7 +295,7 @@
     "static/js/runtime-main.af0e4c2b.js",
     "static/css/2.5e47be99.chunk.css",
     "static/js/2.b19b12db.chunk.js",
-    "static/css/main.d234edb0.chunk.css",
-    "static/js/main.e82affe2.chunk.js"
+    "static/css/main.ec57137c.chunk.css",
+    "static/js/main.6d2dc07a.chunk.js"
   ]
 }
