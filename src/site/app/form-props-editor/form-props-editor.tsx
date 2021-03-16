@@ -42,9 +42,9 @@ const toEditorFormData = (props?: FormProps) => {
 }
 
 export function FormPropsEditor(props: FormPropsEditorProps) {
-    const { theme = 'alfa-on-white' } = useContext(ThemeToggleContext);
+    const { theme = 'alfa-on-white', setTheme } = useContext(ThemeToggleContext);
     const { initialProps, jsonModeEnabled = false, className } = props;
-    const rootClassName = [cn({ theme }), className].join(' ');
+    const rootClassName = [cn({ theme: theme }), className].join(' ');
     const [state, _setState] = useState<State>();
     const setState = (state) => _setState({
         ...state,
@@ -57,6 +57,19 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
             key: props.id
         }
     });
+
+    useEffect(() => {
+        const formProps = {
+            ...state?.formProps,
+            theme
+        };
+        setState({
+            ...state,
+            formProps,
+            editorFormData: toEditorFormData(formProps),
+            jsonEditorFormData: toJSON(formProps)
+        })
+    }, [theme]);
 
     useEffect(() => {
         setState({
@@ -139,6 +152,10 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
             size={'s'}
             theme={theme}
             onChange={({ formData }) => {
+                if (formData.theme !== theme) {
+                    setTheme?.(formData.theme);
+                }
+
                 try {
                     setState({
                         ...state,
@@ -175,9 +192,15 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
             theme={theme}
             onChange={({ formData }) => {
                 try {
+                    const formProps = JSON.parse(formData);
+
+                    if (formProps.theme !== theme) {
+                        setTheme?.(formProps.theme);
+                    }
+
                     setState({
                         ...state,
-                        formProps: JSON.parse(formData),
+                        formProps,
                         jsonEditorFormData: formData,
                     });
                 } catch {}

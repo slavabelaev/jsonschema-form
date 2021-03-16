@@ -8,10 +8,10 @@
   }
 
   &_theme_alfa-on-color {
-    .editor-widget__header,
-    .monaco-editor {
-      background-color: rgba(255,255,255,.15);
-      opacity: .75;
+    header.editor-widget__header,
+    div.monaco-editor {
+      background-color: black;
+      opacity: 1;
     }
   }
 
