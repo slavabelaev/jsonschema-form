@@ -6,7 +6,7 @@
     &__button {
         padding: 0;
         border-width: 1px;
-        border-radius: 2px;
+        border-radius: var(--border-radius-control);
         cursor: pointer;
         height: auto;
 

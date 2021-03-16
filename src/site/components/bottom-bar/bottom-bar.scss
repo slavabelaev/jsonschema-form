@@ -10,11 +10,11 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 8px;
+    padding: var(--gap-xs);
   }
 
   &__text {
-    margin-top: 4px;
+    margin-top: var(--gap-2xs);
     font-size: var(--font-size-s);
     font-weight: 500;
   }

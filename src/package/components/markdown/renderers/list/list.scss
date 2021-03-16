@@ -4,6 +4,6 @@
   color: inherit;
 
   * + & {
-    margin-top: 8px;
+    margin-top: var(--gap-xs);
   }
 }

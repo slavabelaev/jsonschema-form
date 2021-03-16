@@ -10,11 +10,20 @@ import './form-props-editor.scss';
 const cn = createCn('form-props-editor');
 
 export type FormPropsEditorProps = {
+    id: string;
     className?: string;
     initialProps?: FormProps;
     jsonModeEnabled?: boolean;
     toolbarActions?: ReactNode;
 };
+
+type State = {
+    key?: string;
+    jsonModeEnabled: boolean;
+    formProps?: any;
+    editorFormData?: any;
+    jsonEditorFormData?: string;
+}
 
 const toJSON = (data: any) => data
     ? JSON.stringify(data, null, 2)
@@ -36,7 +45,18 @@ export function FormPropsEditor(props: FormPropsEditorProps) {
     const { theme = 'alfa-on-white' } = useContext(ThemeToggleContext);
     const { initialProps, jsonModeEnabled = false, className } = props;
     const rootClassName = [cn({ theme }), className].join(' ');
-    const [state, setState] = useState<any>();
+    const [state, _setState] = useState<State>();
+    const setState = (state) => _setState({
+        ...state,
+        formProps: {
+            ...state.formProps,
+            key: props.id
+        },
+        editorFormData: {
+            ...state.editorFormData,
+            key: props.id
+        }
+    });
 
     useEffect(() => {
         setState({

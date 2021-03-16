@@ -59,6 +59,7 @@ export function NavigationTabs({
 
         return (
             <FormPropsEditor
+                id={pathname}
                 className={cn('sample-editor')}
                 initialProps={initialFormProps}
                 toolbarActions={editIconLink}
@@ -97,7 +98,7 @@ export function NavigationTabs({
 
     if (docs) tabList.push({
         id: TabId.DESCRIPTION,
-        title: 'Свойства и методы',
+        title: 'Описание',
         renderContent: renderDocs
     });
 

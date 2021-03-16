@@ -5,7 +5,7 @@
         display: flex;
         align-items: center;
         cursor: default;
-        border-radius: 4px;
+        border-radius: var(--border-radius-control);
         margin-bottom: 0;
     }
 
@@ -30,12 +30,12 @@
 
     &__content {
         border-left: 1px solid var(--color-dark-indigo-30);
-        padding: 8px;
-        margin: 8px 0 8px 12px;
+        padding: var(--gap-xs);
+        margin: var(--gap-xs) 0 var(--gap-xs) var(--gap-s);
     }
 
     &_active &__content {
-        padding: 16px;
+        padding: var(--gap-m);
         padding-right: 0;
     }
 
@@ -45,14 +45,14 @@
     }
 
     &__icon {
-        margin-right: 8px;
+        margin-right: var(--gap-xs);
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 24px;
-        max-width: 24px;
-        min-height: 24px;
-        max-height: 24px;
+        min-width: var(--gap-xl);
+        max-width: var(--gap-xl);
+        min-height: var(--gap-xl);
+        max-height: var(--gap-xl);
         font-size: var(--font-size-s);
         background: var(--color-dark-indigo-30);
         color: #fff;
@@ -76,6 +76,6 @@
     }
 
     &__button-group {
-        margin-top: 16px;
+        margin-top: var(--gap-m);
     }
 }

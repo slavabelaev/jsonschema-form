@@ -35,30 +35,30 @@
   &__tab-item {
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    min-height: 49px;
+    padding: 0 var(--gap-m);
+    min-height: calc(var(--gap-4xl) - 1px);
   }
 
   &__description {
     position: relative;
-    padding: 16px;
+    padding: var(--gap-m);
     color: inherit;
 
     p {
-      line-height: 1.5;
+      line-height: var(--line-height-normal);
     }
   }
 
   &__edit-icon-link {
     position: absolute;
-    right: 16px;
-    top: 16px;
+    right: var(--gap-m);
+    top: var(--gap-m);
   }
 
   &__actions {
     display: flex;
     align-items: center;
     margin-left: auto;
-    margin-right: 16px;
+    margin-right: var(--gap-m);
   }
 }

@@ -22,8 +22,8 @@
   &__header {
     display: flex;
     align-items: center;
-    padding: 4px 16px;
-    border-radius: 4px 4px 0 0;
+    padding: var(--gap-2xs) var(--gap-m);
+    border-radius: var(--border-radius-control) var(--border-radius-control) 0 0;
   }
 
   &__heading {
@@ -33,7 +33,7 @@
   }
 
   &__icon-button {
-    margin-left: 2px;
+    margin-left: var(--gap-2xs);
   }
 
   &_view_filled {

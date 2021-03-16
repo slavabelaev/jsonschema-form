@@ -1,11 +1,8 @@
-@import "~arui-feather/vars/color.css";
-@import "~arui-feather/vars/font.css";
-@import "~arui-feather/vars/color.css";
-@import "~arui-feather/vars/primitive-colors.css";
+@import "vars";
 
 .form {
     &__submit-button {
-        margin-top: 16px;
+        margin-top: var(--gap-m);
     }
 
     .input__sub {

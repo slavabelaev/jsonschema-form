@@ -6,8 +6,8 @@
   &__picker-label {
     display: inline-block;
     cursor: pointer;
-    width: 24px;
-    height: 24px;
+    width: var(--gap-xl);
+    height: var(--gap-xl);
     border-radius: 50%;
     border-width: 0;
   }
@@ -18,8 +18,8 @@
     right: 0;
     top: 0;
     bottom: 0;
-    width: 24px;
-    height: 24px;
+    width: var(--gap-xl);
+    height: var(--gap-xl);
     opacity: 0;
     margin: auto;
   }

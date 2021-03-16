@@ -2,20 +2,22 @@
   "$schema": "https://json-schema.org/draft-07/schema",
   "properties": {
     "schema": {
-      "description": "JSON Schema 7",
+      "description": "JSON Schema 7, согласно [спецификации](http://json-schema.org/)",
       "type": "string",
       "contentMediaType": "application/json"
     },
     "uiSchema": {
+      "description": "UI Schema",
       "type": "string",
       "contentMediaType": "application/json"
     },
     "formData": {
+      "description": "Данные формы",
       "type": "string",
       "contentMediaType": "application/json"
     },
     "template": {
-      "description": "Шаблон",
+      "description": "Шаблон формы",
       "enum": ["default", "stepper", "tabs", "collapse-list"]
     },
     "liveValidate": {

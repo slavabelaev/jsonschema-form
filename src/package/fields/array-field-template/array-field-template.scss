@@ -4,7 +4,7 @@
   margin: 0;
 
   & > * + * {
-    margin-top: 16px;
+    margin-top: var(--gap-m);
   }
 
   &__item {
@@ -13,8 +13,8 @@
 
     .object-field-template {
       border: 1px solid var(--color-dark-indigo-15);
-      border-radius: 4px;
-      padding: 16px;
+      border-radius: var(--border-radius-control);
+      padding: var(--gap-m);
     }
   }
 
@@ -23,7 +23,7 @@
 
     &_is-empty {
       border-left: 2px solid var(--color-dark-indigo-60);
-      padding: 8px 16px;
+      padding: var(--gap-xs) var(--gap-m);
     }
   }
 
@@ -32,6 +32,6 @@
   }
 
   &__item-reorder {
-    margin-right: 8px
+    margin-right: var(--gap-xs)
   }
 }

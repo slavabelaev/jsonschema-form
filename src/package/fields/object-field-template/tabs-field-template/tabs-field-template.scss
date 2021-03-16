@@ -5,18 +5,18 @@
   &__tab-item {
     display: inline-flex;
     align-items: center;
-    min-height: 36px;
+    min-height: var(--gap-3xl);
   }
 
   &__tab-item + &__tab-item {
-    margin-left: 24px;
+    margin-left: var(--gap-xl);
   }
 
   &__hint-icon {
-    margin-left: 8px;
+    margin-left: var(--gap-xs);
   }
 
   &__tab-content {
-    padding: 16px 0;
+    padding: var(--gap-m) 0;
   }
 }

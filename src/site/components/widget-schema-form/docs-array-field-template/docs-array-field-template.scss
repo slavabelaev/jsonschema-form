@@ -13,7 +13,7 @@
   }
 
   &__item-group + &__item-add-button {
-    margin-top: 8px;
+    margin-top: var(--gap-xs);
   }
 
   &__item {
@@ -21,16 +21,16 @@
     align-items: center;
 
     & + & {
-      margin-top: 4px;
+      margin-top: var(--gap-2xs);
     }
   }
 
   &__item-reorder {
-    margin-right: 4px;
+    margin-right: var(--gap-2xs);
   }
 
   &__item-remove-button {
-    margin-left: 4px;
+    margin-left: var(--gap-2xs);
     width: auto;
     padding: 0;
     border: none;

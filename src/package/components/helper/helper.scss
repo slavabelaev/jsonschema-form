@@ -1,6 +1,6 @@
 .helper {
     font-family: var(--font);
-    margin-top: 5px;
+    margin-top: var(--gap-2xs);
     color: inherit;
 
     &_theme_alfa-on-white {
@@ -20,7 +20,7 @@
     }
 
     &_size_s {
-        font-size: 12px;
+        font-size: var(--font-size-xs);
     }
 
     &_size_m {
@@ -28,10 +28,10 @@
     }
 
     &_size_l {
-        font-size: 16px;
+        font-size: var(--gap-m);
     }
 
     &_size_xl {
-        font-size: 18px;
+        font-size: var(--font-size-l);
     }
 }

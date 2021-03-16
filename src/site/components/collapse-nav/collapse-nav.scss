@@ -10,12 +10,12 @@
   &__header {
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: var(--gap-xs);
     cursor: pointer;
   }
 
   &__expand-icon {
-    height: 22px;
+    height: calc(var(--gap-xl) - 2px);
     transition: .24s;
 
     &_expanded {
@@ -24,6 +24,6 @@
   }
 
   &__header-text {
-    margin-left: 4px;
+    margin-left: var(--gap-2xs);
   }
 }

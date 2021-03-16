@@ -1,6 +1,6 @@
 .field-template {
   & > * + * {
-    margin-top: 16px;
+    margin-top: var(--gap-m);
   }
 
   &__label {
@@ -18,11 +18,11 @@
   }
 
   & + & {
-    margin-top: 16px;
+    margin-top: var(--gap-m);
   }
 
   & + & > .field-array-of-object,
   & + &.field-object {
-    margin-top: 32px;
+    margin-top: var(--gap-2xl);
   }
 }

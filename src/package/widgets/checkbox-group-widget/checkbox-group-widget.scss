@@ -1,6 +1,6 @@
 .checkbox-group-widget {
   .label-widget + & {
-    margin-top: 8px;
+    margin-top: var(--gap-xs);
   }
 
   .checkbox-group__box > div:last-child > &__checkbox {

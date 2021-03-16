@@ -1,8 +1,8 @@
 .md-list-item {
   position: relative;
-  line-height: 1.4;
+  line-height: var(--line-height-normal);
   list-style: none;
-  margin-left: 48px;
+  margin-left: var(--gap-4xl);
   font-size: inherit;
   color: inherit;
 
@@ -16,6 +16,6 @@
   }
 
   & + & {
-    margin-top: 8px;
+    margin-top: var(--gap-xs);
   }
 }

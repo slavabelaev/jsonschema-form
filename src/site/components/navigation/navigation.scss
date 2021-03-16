@@ -32,11 +32,11 @@
 
   &__search-input {
     .input__addons_left {
-      padding-left: 16px;
+      padding-left: var(--gap-m);
     }
 
     .input__control {
-      padding: 13px 0;
+      padding: var(--gap-s) 0;
     }
 
     .input__box {
@@ -45,13 +45,13 @@
   }
 
   &__collapse-nav &__nav-link {
-    padding-left: 36px;
+    padding-left: var(--gap-2xl);
   }
 
   &__nav-link {
     display: block;
     text-decoration: none;
-    padding: 10px 16px;
+    padding: var(--gap-s) var(--gap-m);
     color: inherit;
   }
 }
