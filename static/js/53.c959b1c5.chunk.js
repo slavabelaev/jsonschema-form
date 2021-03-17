@@ -1,2 +1,0 @@
-(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[53],{1616:function(s){s.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","title":"SMS-\u043a\u043e\u0434","type":"string"},"uiSchema":{"ui:autofocus":true},"formData":""}')}}]);
-//# sourceMappingURL=53.c959b1c5.chunk.js.map

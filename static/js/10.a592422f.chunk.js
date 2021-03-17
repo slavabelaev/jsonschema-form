@@ -1,0 +1,2 @@
+(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[10],{1646:function(s){s.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$id":"https://example.com/json-schema/inn","title":"\u0418\u041d\u041d","type":"string","pattern":"^([0-9]{10}|[0-9]{12})$","minLength":10,"maxLength":12,"examples":["7728168971","781612345678"]},"formData":"781612345678"}')}}]);
+//# sourceMappingURL=10.a592422f.chunk.js.map
