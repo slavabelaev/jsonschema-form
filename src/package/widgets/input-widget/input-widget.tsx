@@ -156,7 +156,7 @@ export function mapInputProps(props: WidgetProps): InputProps {
 
     const handleChange: InputProps['onChange'] = (newValue) => {
         switch (schema.type) {
-            case "string": onChange(newValue);
+            case 'string': onChange(newValue);
                 break;
             default: {
                 const output = toType(newValue, schema.type);
@@ -179,7 +179,6 @@ export function mapInputProps(props: WidgetProps): InputProps {
         mask: undefined,
         disabledAttr: undefined,
         inputRef: undefined,
-        onClearClick: undefined,
         onClick: undefined,
         onKeyDown: undefined,
         onKeyUp: undefined,
@@ -213,6 +212,7 @@ export function mapInputProps(props: WidgetProps): InputProps {
         onChange: handleChange,
         onBlur: () => onBlur(id, value),
         onFocus: () => onFocus(id, value),
+        onClearClick: () => onChange(undefined),
     }
 }
 

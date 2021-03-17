@@ -94,11 +94,12 @@ export function mapCardInputProps(props: WidgetProps): CardInputProps {
     }
 
     return {
+        clear: true,
         ...inputProps,
         className,
         type: 'card',
         leftAddons: mapCardInputIcon(props),
-        onChange: handleChange
+        onChange: handleChange,
     }
 }
 

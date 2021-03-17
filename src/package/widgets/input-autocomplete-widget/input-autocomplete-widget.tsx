@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {createCn} from "bem-react-classname";
-import template from "lodash/template";
-import get from "lodash/get";
+import template from "lodash.template";
+import isEmpty from "lodash.isempty";
+import uniqBy from "lodash.uniqby";
+import get from "lodash.get";
 import {WidgetProps} from "../../types/widget-props";
 import {InputAutocomplete, InputAutocompleteProps} from "arui-feather/input-autocomplete";
 import {InputOmitProps, mapInputProps} from "../input-widget";
@@ -41,7 +43,7 @@ function mapRemoteSuggestions(data: any, config: RemoteConfig): InputAutocomplet
         const label = titleKey ? get(item, titleKey) : item;
         const description = descriptionKey ? get(item, descriptionKey) : undefined;
         return { value, label, description, props: { uid: value } }
-    }).splice(0, 7);
+    });
 }
 
 function fetchSuggestions(config: RemoteConfig, input: string): Promise<InputAutocompleteProps['options']> {
@@ -57,6 +59,28 @@ function fetchSuggestions(config: RemoteConfig, input: string): Promise<InputAut
         .then(data => mapRemoteSuggestions(data, config))
 }
 
+export function findSuggestions(options?: InputAutocompleteProps['options'], input?: any) {
+    return options?.filter(({ value }) => {
+        if (!input) return options;
+        const query = input?.toString();
+        return value && RegExp(query, 'gi').test(value)
+    });
+}
+
+async function getSuggestions(
+    options: InputAutocompleteProps['options'],
+    input?: string,
+    remoteConfig?: InputAutocompleteUiOptions['remoteConfig']
+): Promise<InputAutocompleteProps['options']> {
+    if (!input) return options;
+
+    const suggestions = remoteConfig
+        ? await fetchSuggestions(remoteConfig, input)
+        : findSuggestions(options, input);
+
+    return uniqBy(suggestions, 'props.uid');
+}
+
 export function mapInputAutocompleteOptions(props: WidgetProps): InputAutocompleteProps['options'] {
     return mapEnumOptions(props).map(({ label, value, readonly}) => ({
         description: undefined,
@@ -70,12 +94,6 @@ export function mapInputAutocompleteOptions(props: WidgetProps): InputAutocomple
         type: 'item'
     }));
 }
-
-export const filterOptions = (options?: InputAutocompleteProps['options'], input?: any) => options?.filter(({ value }) => {
-    if (!input) return options;
-    const query = input?.toString();
-    return value && RegExp(query, 'gi').test(value)
-});
 
 export function mapInputAutocompleteProps(props: WidgetProps): InputAutocompleteProps {
     const className = [cn(), props.className].join(' ');
@@ -106,29 +124,22 @@ export function mapInputAutocompleteProps(props: WidgetProps): InputAutocomplete
 function InputUIDsAutocompleteWidget(props: WidgetProps) {
     const { value: uid, options, onChange, ...inputProps } = mapInputAutocompleteProps(props);
     const { remoteConfig } = props.options as InputAutocompleteUiOptions || {};
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState<string>();
     const [suggestions, setSuggestions] = useState<InputAutocompleteProps['options']>(options);
-    const clear = () => props.onChange('');
 
     const updateSuggestions = (input?: string) => {
-        if (!input) {
-            setSuggestions(options);
-            return;
-        }
-
-        if (remoteConfig) {
-            fetchSuggestions(remoteConfig, input).then(setSuggestions)
-        } else {
-            const suggestions = filterOptions(options, input);
-            setSuggestions(suggestions);
-        }
+        getSuggestions(options, input, remoteConfig)
+            .then(setSuggestions);
     }
 
     useEffect(() => {
-        if (uid) {
+        const hasUID = !isEmpty(uid);
+
+        if (hasUID) {
             const selectedOption = options?.find(({ props }) => (props as any)?.uid === uid);
             const { text = '' } = selectedOption || {};
             setInput(text);
+            updateSuggestions(text);
         }
     }, [uid]);
 
@@ -137,16 +148,16 @@ function InputUIDsAutocompleteWidget(props: WidgetProps) {
             {...inputProps}
             options={suggestions}
             value={input}
-            onChange={(value) => {
+            onChange={(value, ...args) => {
                 setInput(value);
                 updateSuggestions(value);
             }}
             onItemSelect={(option) => {
                 const { uid } = option?.props as any || {};
-                props.onChange(uid);
+                setTimeout(() => props.onChange(uid), 1);
             }}
-            onKeyDown={clear}
-            onClearClick={clear}
+            updateValueOnItemSelect={false}
+            onKeyDown={() => inputProps.onClearClick?.()}
         />
     )
 }
@@ -156,28 +167,15 @@ function InputEnumAutocompleteWidget(props: WidgetProps) {
     const [suggestions, setSuggestions] = useState<InputAutocompleteProps['options']>(options);
     const { remoteConfig } = props.options as InputAutocompleteUiOptions || {};
 
-    const updateSuggestions = (input?: string) => {
-        if (!input) {
-            setSuggestions(options);
-            return;
-        }
-
-        if (remoteConfig) {
-            fetchSuggestions(remoteConfig, input).then(setSuggestions)
-        } else {
-            const suggestions = filterOptions(options, input);
-            setSuggestions(suggestions);
-        }
-    }
-
     return (
         <InputAutocomplete
             {...otherProps}
+            options={suggestions}
             onChange={(value) => {
                 onChange?.(value);
-                updateSuggestions(value);
+                getSuggestions(options, value, remoteConfig)
+                    .then(setSuggestions);
             }}
-            options={suggestions}
         />
     );
 }
