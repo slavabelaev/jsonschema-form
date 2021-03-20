@@ -42,7 +42,14 @@
     min-height: calc(var(--gap-4xl) - 1px);
   }
 
-  &__description {
+  &__docs {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__article {
+    width: 100%;
+    max-width: var(--content-width);
     position: relative;
     padding: var(--gap-m);
     color: inherit;
@@ -50,6 +57,14 @@
     p {
       line-height: var(--line-height-normal);
     }
+  }
+
+  &__contents {
+    position: sticky;
+    top: 0;
+    min-width: 240px;
+    max-width: 240px;
+    padding: var(--gap-m);
   }
 
   &__edit-icon-link {

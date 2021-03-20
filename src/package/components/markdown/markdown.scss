@@ -1,14 +1,10 @@
 .markdown {
   color: inherit;
 
-  * + * {
-    margin-top: var(--gap-m);
-  }
-
   .input__sub & .md-blockquote:first-child,
   .md-heading + .md-paragraph,
   .md-heading + .md-list {
-    margin-top: var(--gap-xs);
+    margin-top: var(--gap-m);
   }
 
   table {

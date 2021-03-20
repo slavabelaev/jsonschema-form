@@ -1,0 +1,16 @@
+.page-contents {
+  border-radius: 4px;
+  background-color: var(--color-dark-indigo-05);
+  padding: var(--gap-m);
+  list-style: none;
+  margin: 0;
+  font-size: var(--font-size-m);
+
+  &__item + &__item {
+    margin-top: var(--gap-s)
+  }
+
+  &__link {
+    color: initial;
+  }
+}

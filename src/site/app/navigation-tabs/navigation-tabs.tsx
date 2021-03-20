@@ -80,10 +80,10 @@ export function NavigationTabs({
 
         return docs && (
             <div className={cn('docs')}>
-                <section className={cn('description')}>
+                <article className={cn('article')}>
                     {editIconLink}
                     {fromMarkdown(docs)}
-                </section>
+                </article>
             </div>
         )
     }
@@ -94,7 +94,7 @@ export function NavigationTabs({
 
     if (initialFormProps) tabList.push({
         id: TabId.EDITOR,
-        title: 'Код и примеры',
+        title: 'Примеры и код',
         renderContent: renderSampleEditor
     });
 

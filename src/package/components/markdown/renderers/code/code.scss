@@ -1,0 +1,17 @@
+.md-code {
+  padding: var(--gap-m);
+  border-radius: 4px;
+  border: var(--color-dark-indigo-15) 1px solid;
+  background-color: #F3F4F5;
+  font-family: var(--font);
+
+  & > pre {
+    margin: 0!important;
+    padding: 0!important;
+    background-color: inherit!important;
+  }
+
+  * + & {
+    margin-top: var(--gap-l);
+  }
+}
