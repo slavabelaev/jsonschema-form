@@ -7,7 +7,7 @@
 
 Проверка данных по правилам ключевых слов обычно происходит независимо одно от другого, однако есть исключения. Например **"additionalItems"** в значении *"true"*, разрешает наличие дополнительных элементов массива, правила проверки которых описывает ключевое слово **"items"**.
 
-#### Ссылки
+## Ссылки
 - [JSON Schema - официальный сайт](http://json-schema.org/)
 - [JSON Schema, draft 07](https://json-schema.org/draft-07/json-schema-validation.html)
 - [Understanding JSON Schema](https://json-schema.org/understanding-json-schema/)

@@ -219,7 +219,7 @@ export function EditorWidget(props: WidgetProps) {
     return (
         <div className={cn({ view, theme })}>
             {header}
-            <ControlledEditor {...mapEditorProps( props )} />
+            <ControlledEditor {...mapEditorProps( props )}  />
             <Helper {...mapHelperProps(props)} />
         </div>
     );

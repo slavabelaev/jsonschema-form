@@ -72,7 +72,7 @@
             "pattern": "^[0-9]{2} [0-9]{2}$",
             "examples": ["12 34"],
             "x-errorMessages": {
-              "pattern": "должно состоять из 4-х цифр, например ${example}"
+              "pattern": "должно состоять из 4-х цифр, например ${examples}"
             }
           },
           "number": {
@@ -81,7 +81,7 @@
             "pattern": "^[0-9]{6}$",
             "examples": ["123456"],
             "x-errorMessages": {
-              "pattern": "должно состоять из 6-и цифр, например ${example}"
+              "pattern": "должно состоять из 6-и цифр, например ${examples}"
             }
           },
           "issuedDate": {
@@ -100,7 +100,7 @@
             "pattern": "^[0-9]{3}-[0-9]{3}$",
             "examples": ["123-456"],
             "x-errorMessages": {
-              "pattern": "должно состоять из 6-и цифр, например ${example}"
+              "pattern": "должно состоять из 6-и цифр, например ${examples}"
             }
           },
           "issuedBy": {
@@ -199,7 +199,7 @@
           "+7 (901) 123-45-67"
         ],
         "x-errorMessages": {
-          "pattern": "должно состоять из 11-и цифр, например ${example}"
+          "pattern": "должно состоять из 11-и цифр, например ${examples}"
         }
       },
       "email": {
@@ -211,7 +211,7 @@
           "example@domain.ru"
         ],
         "x-errorMessages": {
-          "format": "должно быть в формате email, например ${example}"
+          "format": "должно быть в формате email, например ${examples}"
         }
       },
       "organizationInn": {

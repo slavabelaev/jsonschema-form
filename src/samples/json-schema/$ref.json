@@ -21,24 +21,22 @@
 				}
 			},
 			"propertyReference": {
-				"title": "Ссылка на свойство",
+				"title": "Ссылка на свойство схемы",
 				"properties": {
-					"lastName": {
-						"title": "Фамилия",
+					"registerAddress": {
+						"title": "Адрес регистрации",
 						"type": "string",
-						"minLength": 3,
-						"maxLength": 24,
-						"pattern": "[А-Я]{1}[а-я]*"
+						"minLength": 10
 					},
-					"firstName": {
-						"title": "Имя",
-						"$ref": "#/properties/propertyReference/properties/lastName"
-					},
-					"middleName": {
-						"title": "Отчество",
-						"$ref": "#/properties/propertyReference/properties/lastName"
+					"livingAddress": {
+						"title": "Адрес проживания",
+						"$ref": "#/properties/propertyReference/properties/registerAddress"
 					}
 				}
+			},
+			"recursiveReference": {
+				"title": "Ссылка на определение-рекурсию",
+				"$ref": "#/definitions/person"
 			}
 		},
 		"definitions": {
@@ -47,6 +45,20 @@
 				"minLength": 3,
 				"maxLength": 24,
 				"pattern": "[А-Я]{1}[а-я]*"
+			},
+			"person": {
+				"properties": {
+					"name": {
+						"title": "Имя",
+						"type": "string"
+					},
+					"children": {
+						"title": "Дети",
+						"type": "array",
+						"items": { "$ref": "#/definitions/person" },
+						"default": []
+					}
+				}
 			}
 		}
 	},
@@ -60,9 +72,28 @@
 			"middleName": ""
 		},
 		"propertyReference": {
-			"lastName": "",
-			"firstName": "",
-			"middleName": ""
+			"registerAddress": "",
+			"livingAddress": ""
+		},
+		"recursiveReference": {
+			"name": "Александра",
+			"children": [
+				{
+					"name": "Дмитрий",
+					"children": [
+						{
+							"name": "Иван",
+							"children": [
+								{ "name": "Георгий" },
+								{ "name": "Елизавета" }
+							]
+						},
+						{
+							"name": "Степан"
+						}
+					]
+				}
+			]
 		}
 	}
 }

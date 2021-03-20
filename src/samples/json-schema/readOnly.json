@@ -3,13 +3,12 @@
 	"schema": {
 		"$schema": "http://json-schema.org/draft-07/schema#",
 		"properties": {
-			"input": {
-				"title": "Место рождения",
+			"apiKey": {
+				"title": "API-ключ",
 				"type": "string",
-				"default": "Россия",
 				"readOnly": true
 			},
-			"select": {
+			"bornPlace": {
 				"title": "Место рождения",
 				"type": "string",
 				"anyOf": [
@@ -29,5 +28,8 @@
 				]
 			}
 		}
+	},
+	"formData": {
+		"apiKey": "5c71291c-ebd8-4c9b-93c6-872715826b8a"
 	}
 }

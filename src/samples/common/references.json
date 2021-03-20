@@ -6,7 +6,7 @@
 			"address": {
 				"type": "object",
 				"properties": {
-					"street_address": {
+					"streetAddress": {
 						"type": "string"
 					},
 					"city": {
@@ -17,7 +17,7 @@
 					}
 				},
 				"required": [
-					"street_address",
+					"streetAddress",
 					"city",
 					"state"
 				]
@@ -62,12 +62,12 @@
 	},
 	"formData": {
 		"billing_address": {
-			"street_address": "21, Jump Street",
+			"streetAddress": "21, Jump Street",
 			"city": "Babel",
 			"state": "Neverland"
 		},
 		"shipping_address": {
-			"street_address": "221B, Baker Street",
+			"streetAddress": "221B, Baker Street",
 			"city": "London",
 			"state": "N/A"
 		},

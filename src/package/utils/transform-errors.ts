@@ -138,9 +138,8 @@ export function transformErrors(errors: AjvError[], schema: FormProps['schema'])
         const numericGetters = getLimitGetters(error.params, subSchema);
 
         const params = {
+            ...subSchema,
             ...error.params,
-            example: subSchema?.examples?.[0],
-            examples: subSchema?.examples,
             ...numericGetters
         };
 

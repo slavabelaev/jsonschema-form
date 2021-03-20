@@ -160,8 +160,9 @@ function mapErrors(props: ArrayFieldTemplateProps) {
 
 export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
     const templateConfig = useContext(TemplateConfigContext);
+    const { theme = 'alfa-on-white' } = props.formContext || {};
     const { className } = props;
-    const classNames = [cn(), className].join(' ');
+    const classNames = [cn({ theme }), className].join(' ');
     const header = mapArrayFieldHeader(props, templateConfig);
     const items = mapItems(props);
     const buttons = mapArrayFieldButtons(props);

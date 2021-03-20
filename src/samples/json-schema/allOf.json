@@ -3,8 +3,8 @@
 	"schema": {
 		"properties": {
 			"objectMerging": {
-				"title": "Объединение объектов",
-				"description": "Объекты \"Адрес\" и \"Контакт\" объединены в один общий",
+				"title": "Объединение схем",
+				"description": "Схемы \"Адрес\" и \"Контакт\" объединены в одну общую схему",
 				"allOf": [
 					{
 						"$ref": "#/definitions/address"

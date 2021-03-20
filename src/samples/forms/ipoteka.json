@@ -34,7 +34,7 @@
             "pattern": "+7[0-9]{11}",
             "examples": ["+7 (901) 123-45-67"],
             "x-errorMessages": {
-              "pattern": "Телефон указан неверно. Должно быть 11 цифр, например: ${examples[0]}"
+              "pattern": "Телефон указан неверно. Должно быть 11 цифр, например: ${examples}"
             }
           },
           "email": {
@@ -44,7 +44,7 @@
             "format": "email",
             "examples": ["example@domain.ru"],
             "x-errorMessages": {
-              "format": "Email введен некорректно. Пример: ${examples[0]}"
+              "format": "Email введен некорректно. Пример: ${examples}"
             }
           },
           "region": {

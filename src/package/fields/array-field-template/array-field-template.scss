@@ -22,9 +22,17 @@
     width: 100%;
 
     &_is-empty {
-      border-left: 2px solid var(--color-dark-indigo-60);
+      border-left: 2px solid;
       padding: var(--gap-xs) var(--gap-m);
     }
+  }
+
+  &_theme_alfa-on-white &__item-children_is-empty {
+    border-color: var(--color-dark-indigo);
+  }
+
+  &_theme_alfa-on-color &__item-children_is-empty {
+    border-color: var(--color-white);
   }
 
   &__empty-children {

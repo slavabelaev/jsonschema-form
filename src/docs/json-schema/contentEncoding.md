@@ -5,6 +5,19 @@
 
 Если содержимое представляет собой двоичные данные, используйте кодировку *"base64"*, указав тип содержимого в **"contentMediaType"**, например *"image/png"* для изображений.
 
-#### Ссылки
+## Пример
+```js
+const isValid = ajv.compile({
+    "type": "string",
+    "contentEncoding": "base64",
+    "contentMediaType": "image/png"
+})
+```
+
+```js
+isValid("iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA...") // true
+```
+
+## Ссылки
 - [JSON Schema Validation, draft 07, section 8.3](https://json-schema.org/draft-07/json-schema-validation.html#rfc.section.8.3)
 - [Understanding JSON Schema, contentEncoding](https://json-schema.org/understanding-json-schema/reference/non_json_data.html#contentencoding)

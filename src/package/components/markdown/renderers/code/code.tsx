@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from "react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 export function Code(props: PropsWithChildren<any>) {
     const { language, value } = props;
@@ -12,7 +12,7 @@ export function Code(props: PropsWithChildren<any>) {
                 borderRadius: 4
             }}
             language={language}
-            style={docco}
+            style={a11yDark}
         >
             {value}
         </SyntaxHighlighter>

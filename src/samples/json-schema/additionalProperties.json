@@ -37,7 +37,7 @@
 				"additionalProperties": false
 			},
 			"additionalPropertiesSchema": {
-				"title": "Схема дополнительных элементов",
+				"title": "Схема дополнительных свойств",
 				"properties": {
 					"phone": {
 						"title": "Мобильный телефон",
