@@ -1,9 +1,16 @@
 .md-code {
+  position: relative;
   padding: var(--gap-m);
-  border-radius: 4px;
+  border-radius: var(--border-radius-control);
   border: var(--color-dark-indigo-15) 1px solid;
   background-color: #F3F4F5;
   font-family: var(--font);
+
+  &__copy-icon-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
 
   & > pre {
     margin: 0!important;

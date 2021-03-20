@@ -132,8 +132,8 @@ export function transformErrors(errors: AjvError[], schema: FormProps['schema'])
     return errors.map(error => {
         const { schemaPath } = error as any || {};
         const subSchema = getSchema(schema, schemaPath);
-        const xErrorMessages = subSchema?.['x-errorMessages'];
-        const errorMessage = xErrorMessages?.[error.name] || getDefaultMessage(error.name);
+        const errorMessages = subSchema?.['x-errorMessages'];
+        const errorMessage = errorMessages?.[error.name] || getDefaultMessage(error.name);
         const compileError = template(errorMessage, CONFIG.template);
         const numericGetters = getLimitGetters(error.params, subSchema);
 

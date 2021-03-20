@@ -394,9 +394,9 @@
                 "name": "index.ts"
             },
             {
-                "relativePath": "src/package/fields/object-field-template/index.tsx",
+                "relativePath": "src/package/fields/object-field-template/index.ts",
                 "test": false,
-                "name": "index.tsx"
+                "name": "index.ts"
             },
             {
                 "relativePath": "src/package/fields/object-field-template/object-field-template.scss",

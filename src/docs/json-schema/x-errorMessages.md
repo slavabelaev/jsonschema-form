@@ -14,8 +14,8 @@
   "maxLength": 10,
   "pattern": "^[А-Я][а-я]+$",
   "x-errorMessages": {
-    "minLength": "должно быть не короче, чем ${minLength}",
-    "maxLength": "должно быть не длиннее, чем ${maxLength}",
+    "minLength": "должно быть не короче, чем ${limit}",
+    "maxLength": "должно быть не длиннее, чем ${limit}",
     "pattern": "должно начинаться с заглавной буквы"
   }
 }

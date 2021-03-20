@@ -1,20 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
-import copy from 'copy-to-clipboard';
-import {IconButton} from "arui-feather/icon-button";
-import {ButtonProps} from "arui-feather/button";
 import {Spin} from 'arui-feather/spin';
-import IconCopy from 'arui-feather/icon/action/copy';
-import IconDownload from 'arui-feather/icon/action/download';
-import IconTick from 'arui-feather/icon/ui/tick';
 import {Heading} from "arui-feather/heading";
 import { ControlledEditor, ControlledEditorProps} from "@monaco-editor/react";
 import {WidgetProps} from "../../types/widget-props";
 import {Helper} from "../../components/helper";
-import {download} from "../../utils/download";
 import {toType} from "../../utils/to-type";
 import {mapHelperProps} from "../../utils/map-helper-props";
-import {Tooltip} from "../../components/tooltip";
+import {CopyIconButton} from "../../components/copy-icon-button";
+import {DownloadIconButton} from "../../components/download-icon-button";
 import './editor-widget.scss';
 
 const cn = createCn('editor-widget');
@@ -138,67 +132,25 @@ export function mapEditorProps(props: WidgetProps): ControlledEditorProps {
     }
 }
 
-function NotifiedIconButton({ onClick, children, theme, ...props }: ButtonProps) {
-    const [pressed, setPressed] = useState(false);
-    const handleClick = () => {
-        setPressed(true);
-        setTimeout(() => setPressed(false), 360);
-        onClick?.();
-    }
-
-    return (
-        <Tooltip
-            hint='Копировать'
-            popupProps={{
-                directions: ['left-center']
-            }}
-        >
-            <IconButton
-                className={cn('icon-button')}
-                onClick={handleClick}
-                disabled={pressed}
-                {...props}
-            >
-                {pressed ? <IconTick theme={theme} colored={true} /> : children}
-            </IconButton>
-        </Tooltip>
-    );
-}
-
 export function EditorWidget(props: WidgetProps) {
     const { label, schema, value, formContext } = props;
     const { view = 'default', theme = 'alfa-on-white' } = formContext || {};
-    const handleDownload = () => download(label, value, schema.contentMediaType);
-    const handleCopy = () => copy(value);
 
     const downloadButton = (
-        <Tooltip
-            hint='Скачать'
-            popupProps={{
-                directions: ['left-center']
+        <DownloadIconButton
+            file={{
+                name: label,
+                content: value,
+                mimeType: schema.contentMediaType
             }}
             theme={theme}
-        >
-            <IconButton
-                className={cn('icon-button')}
-                onClick={handleDownload}
-                size='s'
-                theme={theme}
-            >
-                <IconDownload theme={theme} size='m' />
-            </IconButton>
-        </Tooltip>
+        />
     );
 
-    const copyButton = (
-        <NotifiedIconButton
-            className={cn('icon-button')}
-            onClick={handleCopy}
-            size='s'
-            theme={theme}
-        >
-            <IconCopy theme={theme} size='m' />
-        </NotifiedIconButton>
+    const copyIconButton = (
+        <CopyIconButton
+            copyContent={value}
+        />
     );
 
     const header = (
@@ -212,7 +164,7 @@ export function EditorWidget(props: WidgetProps) {
                 {label}
             </Heading>
             {downloadButton}
-            {copyButton}
+            {copyIconButton}
         </header>
     );
 

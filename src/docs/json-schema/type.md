@@ -18,7 +18,7 @@ isValid("АБ") // true
 isValid(false) // false
 ```
 
-## number | integer
+## number / integer
 Условие: верно, если соответствует типу **"number"** | **"integer"**.
 
 ```js

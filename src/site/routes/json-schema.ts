@@ -30,7 +30,7 @@ export const jsonSchema: Routes = {
         }
     },
     'number': {
-        title: 'number | integer',
+        title: 'number / integer',
         routes: {
             'multipleOf': {
                 fetchFormProps: async () => import('../../samples/json-schema/multipleOf.json'),
