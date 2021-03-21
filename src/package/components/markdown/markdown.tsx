@@ -7,15 +7,21 @@ import './markdown.scss';
 
 const cn = createCn('markdown');
 
-export function Markdown(props: ReactMarkdownProps) {
-    const className = [cn(), props.className].join(' ');
+export type MarkdownProps = ReactMarkdownProps;
+
+export function Markdown(props: MarkdownProps) {
+    const { className, plugins = [], ...otherProps } = props;
+    const rootClassName = [cn(), className].join(' ');
+
+    plugins.push(gfm);
+
     return (
         <ReactMarkdown
-            plugins={[gfm]}
             unwrapDisallowed={true}
             linkTarget="_blank"
-            {...props}
-            className={className}
+            {...otherProps}
+            className={rootClassName}
+            plugins={plugins}
             renderers={{
                 ...defaultRenderers as ReactMarkdownProps['renderers'],
                 ...renderers,

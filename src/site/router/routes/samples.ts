@@ -12,8 +12,8 @@ export const samples: Routes = {
             // },
             "credit-card": {
                 title: "Оформление кредитной карты",
-                fetchFormProps: async () => import('../../samples/forms/credit-card-form.json'),
-                formPropsEditPath: 'src/samples/forms/credit-card-form.json'
+                fetchFormProps: async () => import('../../../samples/forms/credit-card-form.json'),
+                editFormPropsPath: 'src/samples/forms/credit-card-form.json'
             },
             // "client-card": {
             //     title: "Карточка клиента",
@@ -27,13 +27,13 @@ export const samples: Routes = {
             // },
             "100-days": {
                 title: "Заявка на кредитную карту",
-                fetchFormProps: async () => import('../../samples/forms/100-days-form.json'),
-                formPropsEditPath: 'src/samples/forms/100-days-form.json'
+                fetchFormProps: async () => import('../../../samples/forms/100-days-form.json'),
+                editFormPropsPath: 'src/samples/forms/100-days-form.json'
             },
             "credit-cash": {
                 title: "Заявка на кредит наличными или рефинансирование",
-                fetchFormProps: async () => import('../../samples/forms/credit-cash-form.json'),
-                formPropsEditPath: 'src/samples/forms/credit-cash-form.json'
+                fetchFormProps: async () => import('../../../samples/forms/credit-cash-form.json'),
+                editFormPropsPath: 'src/samples/forms/credit-cash-form.json'
             }
         }
     },

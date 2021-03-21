@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
 import {fromMarkdown} from "../../../../package/utils/from-markdown";
-import {schemaToMarkdown} from "../../../utils/schema-to-markdown";
+import {schemaToMarkdown} from "../utils/schema-to-markdown";
 import './docs-object-field-template.scss';
 
 const cn = createCn('docs-object-field-template');

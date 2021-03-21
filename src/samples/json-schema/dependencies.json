@@ -339,7 +339,6 @@
 				"dependencies": {
 					"companyName": {
 						"oneOf": [
-							{},
 							{
 								"properties": {
 									"companyName": {

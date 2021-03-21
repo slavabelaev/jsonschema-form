@@ -1,20 +1,20 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {useHistory} from "react-router-dom";
 import {createCn} from "bem-react-classname";
 import {Tabs} from "arui-feather/tabs";
 import {TabItem} from "arui-feather/tab-item";
 import {WidgetSchemaForm} from "../../components/widget-schema-form";
-import {EditIconLink} from "../edit-icon-link";
-import {fromMarkdown} from "../../../package/utils/from-markdown";
-import {FormProps} from "../../../package";
-import {FormPropsEditor} from "../form-props-editor";
-import {ThemeToggle} from "../theme-toggle";
+import {ThemeToggle, ThemeToggleContext} from "../theme-toggle";
+import {Article} from "../article";
+import {RouteContext} from "../../router/route-provider";
+import {PropsEditor} from "../props-editor";
 import './navigation-tabs.scss';
 
 enum TabId {
     EDITOR = 'editor',
     DESCRIPTION = 'description',
-    OPTIONS = 'options'
+    OPTIONS = 'options',
+    COPY_CODE = 'copy-code',
 }
 
 type Tab = {
@@ -23,25 +23,11 @@ type Tab = {
     renderContent: () => ReactNode;
 }
 
-export type NavigationTabsProps = {
-    initialFormProps?: FormProps;
-    docs?: ReactNode;
-    editDocsURL?: string;
-    editPropsURL?: string;
-    theme?: FormProps['theme'];
-}
-
 const cn = createCn('navigation-tabs');
 
-const EDIT_ICON_LINK_TEXT = 'Редактировать на GitHub';
-
-export function NavigationTabs({
-    docs,
-    initialFormProps,
-    editPropsURL,
-    editDocsURL,
-    theme = 'alfa-on-white'
-}: NavigationTabsProps) {
+export function NavigationTabs() {
+    const { theme = 'alfa-on-white' } = useContext(ThemeToggleContext);
+    const { docsURL, fetchFormProps } = useContext(RouteContext);
     const history = useHistory();
     const { location } = history || {};
     const { pathname } = location || {};
@@ -49,59 +35,22 @@ export function NavigationTabs({
     const activeTabId = location?.hash?.substr(1) || TabId.EDITOR;
     const tabList: Tab[] = [];
 
-    const renderSampleEditor = () => {
-        const editIconLink = editPropsURL && (
-            <EditIconLink
-                url={editPropsURL}
-                hint={EDIT_ICON_LINK_TEXT}
-                theme={theme}
-            />
-        )
-
-        return (
-            <FormPropsEditor
-                id={pathname}
-                className={cn('sample-editor')}
-                initialProps={initialFormProps}
-                toolbarActions={editIconLink}
-            />
-        );
-    }
-
-    const renderDocs = () => {
-        const editIconLink = editDocsURL && (
-            <EditIconLink
-                className={cn('edit-icon-link')}
-                url={editDocsURL}
-                hint={EDIT_ICON_LINK_TEXT}
-                theme={theme}
-            />
-        )
-
-        return docs && (
-            <div className={cn('docs')}>
-                <article className={cn('article')}>
-                    {editIconLink}
-                    {fromMarkdown(docs)}
-                </article>
-            </div>
-        )
-    }
+    const renderSampleEditor = () => <PropsEditor />
 
     const renderUiOptions = () => {
         return widgetName && <WidgetSchemaForm widgetName={widgetName} />
     }
 
-    if (initialFormProps) tabList.push({
+    if (fetchFormProps) tabList.push({
         id: TabId.EDITOR,
         title: 'Примеры и код',
         renderContent: renderSampleEditor
     });
 
-    if (docs) tabList.push({
+    if (docsURL) tabList.push({
         id: TabId.DESCRIPTION,
         title: 'Описание',
-        renderContent: renderDocs
+        renderContent: () => <Article />
     });
 
     if (widgetName) tabList.push({

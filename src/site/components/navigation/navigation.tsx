@@ -6,7 +6,7 @@ import {Input} from "arui-feather/input";
 import {Link} from "arui-feather/link";
 import {FormProps} from "arui-feather/form";
 import SearchIcon from "arui-feather/icon/action/search";
-import {RouteItem, Routes} from "../../routes";
+import {RouteItem, Routes} from "../../router/routes";
 import {CollapseItem} from "../../../package/components/collapse-item";
 import {CollapseNav} from "../collapse-nav";
 import './navigation.scss';

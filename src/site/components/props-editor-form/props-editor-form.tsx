@@ -2,14 +2,14 @@ import React, {ReactNode, useContext, useEffect, useState} from 'react';
 import {createCn} from "bem-react-classname";
 import {Toggle} from "arui-feather/toggle";
 import Form, {FormProps} from "../../../package";
-import editorFormSchema from "./editor-form.schema.json";
-import editorFormUiSchema from "./editor-form.ui-schema.json";
-import {ThemeToggleContext} from "../theme-toggle";
-import './form-props-editor.scss';
+import editorFormSchema from "./props-editor-form.schema.json";
+import editorFormUiSchema from "./props-editor-form.ui-schema.json";
+import {ThemeToggleContext} from "../../containers/theme-toggle";
+import './props-editor-form.scss';
 
-const cn = createCn('form-props-editor');
+const cn = createCn('props-editor-form');
 
-export type FormPropsEditorProps = {
+export type PropsEditorFormProps = {
     id: string;
     className?: string;
     initialProps?: FormProps;
@@ -41,7 +41,7 @@ const toEditorFormData = (props?: FormProps) => {
     }
 }
 
-export function FormPropsEditor(props: FormPropsEditorProps) {
+export function PropsEditorForm(props: PropsEditorFormProps) {
     const { theme = 'alfa-on-white', setTheme } = useContext(ThemeToggleContext);
     const { initialProps, jsonModeEnabled = false, className } = props;
     const rootClassName = [cn({ theme: theme }), className].join(' ');

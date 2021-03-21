@@ -1,6 +1,6 @@
 # editor
 
-В качестве редактора используется **Monaco FormPropsEditor**.
+В качестве редактора используется **Monaco PropsEditorForm**.
 
 > Если желаемый язык не имеет официального MIME-типа, укажите в JSON Schema:
 > ```json
@@ -8,4 +8,4 @@
 > ```
 
 #### Ссылки
-- [Monaco FormPropsEditor](https://microsoft.github.io/monaco-editor/)
+- [Monaco PropsEditorForm](https://microsoft.github.io/monaco-editor/)

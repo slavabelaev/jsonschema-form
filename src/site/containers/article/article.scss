@@ -1,0 +1,18 @@
+.article {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  &__content {
+    width: 100%;
+    max-width: var(--content-width);
+    padding: var(--gap-m);
+    color: inherit;
+  }
+
+  &__edit-icon-link {
+    position: absolute;
+    right: var(--gap-m);
+    top: var(--gap-m);
+  }
+}

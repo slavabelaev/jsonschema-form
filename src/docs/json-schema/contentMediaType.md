@@ -14,7 +14,12 @@ const isValid = ajv.compile({
 ```
 
 ```js
-isValid("<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head></html>") // true
+isValid(`
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head></head>
+    </html>
+`) // true
 ```
 
 ## Ссылки

@@ -8,9 +8,9 @@ export type RouteItem = {
     title?: string;
     description?: string;
     fetchFormProps?: () => Promise<any>;
-    docsUrl?: string;
-    docsEditPath?: string;
-    formPropsEditPath?: string;
+    docsURL?: string;
+    editDocsPath?: string;
+    editFormPropsPath?: string;
     url?: string;
     hash?: string;
     routes?: Routes;
