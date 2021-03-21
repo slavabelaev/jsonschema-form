@@ -1,0 +1,2 @@
+(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[9],{1656:function(s){s.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"type":"string","title":"\u041a\u043e\u0434\u043e\u0432\u043e\u0435 \u0441\u043b\u043e\u0432\u043e","pattern":"^[\u0410-\u042f0-9]{3,8}$","maxLength":8,"$comment":"Author: slav@belaev.com"},"formData":"\u0421\u0415\u041a\u0420\u0415\u042212"}')}}]);
+//# sourceMappingURL=9.7848ea8e.chunk.js.map
