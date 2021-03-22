@@ -1,23 +1,20 @@
-import React, {useContext} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import isEmpty from "lodash.isempty";
 import {ArrayFieldTemplateProps} from "@rjsf/core";
 import {Button} from "arui-feather/button";
-import {IconButton} from "arui-feather/icon-button";
 import Delete from "arui-feather/icon/action/delete";
 import {Paragraph} from "arui-feather/paragraph";
 import Add from "arui-feather/icon/action/add";
 import {Reorder} from "../../components/reorder";
-import {ErrorList} from "../../components/error-list";
-import {fromMarkdown} from "../../utils/from-markdown";
 import {
     TemplateConfig,
-    TemplateConfigContext,
     TemplateConfigProvider
 } from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
-import {Header} from "../../components/header";
 import {toType} from "../../utils/to-type";
+import {Tooltip} from "../../components/tooltip";
+import {isGroup} from "../../utils/json-schema";
 import './array-field-template.scss';
 
 const cn = createCn('array-field-template');
@@ -50,27 +47,6 @@ export function mapArrayFieldButtons(props: ArrayFieldTemplateProps) {
     ) : null;
 }
 
-export function mapArrayFieldHeader(props: ArrayFieldTemplateProps, templateConfig: TemplateConfig) {
-    const { displayLabel, displayHint } = templateConfig || {};
-    const {
-        schema,
-        formContext
-    } = props;
-    const { theme, size } = formContext || {};
-    const { description } = schema;
-    const title = schema.title || props.title;
-
-    return (
-        <Header
-            className={cn('header')}
-            title={displayLabel ? title : undefined}
-            description={displayHint ? description : undefined}
-            theme={theme}
-            size={size}
-        />
-    );
-}
-
 function mapItems(props: ArrayFieldTemplateProps) {
     const { items, formContext } = props || {};
     const { theme, size, width } = formContext || {};
@@ -82,19 +58,30 @@ function mapItems(props: ArrayFieldTemplateProps) {
                 const { index, children } = item;
                 const { uiSchema, schema, formData } = children?.props || {};
                 const isEmptySchema = isEmpty(schema);
+                const isGroupSchema = isGroup(schema);
                 const className = [
-                    cn('item'),
+                    cn('item', {
+                        'is-group': isGroupSchema
+                    }),
                     item.className
                 ].join(' ');
 
                 const removeButton = item.hasRemove && (
-                    <IconButton
-                        className={cn('remove-button')}
-                        onClick={item.onDropIndexClick(index)}
-                        icon={<Delete theme={theme} size={size} />}
-                        theme={theme}
-                        size={size}
-                    />
+                    <Tooltip
+                        className={cn('remove-tooltip')}
+                        popupContent={'Удалить'}
+                        popupProps={{
+                            directions: ['left-center']
+                        }}
+                    >
+                        <span
+                            role='button'
+                            className={cn('remove-button')}
+                            onClick={item.onDropIndexClick(index)}
+                        >
+                            <Delete theme={theme} size={size} />
+                        </span>
+                    </Tooltip>
                 );
 
                 const reorder = (item.hasMoveDown || item.hasMoveUp) && (
@@ -108,8 +95,9 @@ function mapItems(props: ArrayFieldTemplateProps) {
                             width,
                             theme
                         }}
+                        view={isGroupSchema ? 'horizontal' : 'vertical'}
                         theme={theme}
-                        size={size}
+                        size={'s'}
                     />
                 );
 
@@ -127,6 +115,13 @@ function mapItems(props: ArrayFieldTemplateProps) {
                     </div>
                 );
 
+                const toolbar = isGroupSchema ? (
+                    <aside className={cn('toolbar')}>
+                        {reorder}
+                        {removeButton}
+                    </aside>
+                ) : removeButton;
+
                 return (
                     <GridCell
                         key={item.key}
@@ -134,9 +129,9 @@ function mapItems(props: ArrayFieldTemplateProps) {
                         column={uiSchema?.['ui:gridColumn']}
                         row={uiSchema?.['ui:gridRow']}
                     >
-                        {reorder}
+                        {isGroupSchema ? null : reorder}
                         {itemChildren}
-                        {removeButton}
+                        {toolbar}
                     </GridCell>
                 )
             })}
@@ -144,35 +139,16 @@ function mapItems(props: ArrayFieldTemplateProps) {
     ) : null;
 }
 
-function mapErrors(props: ArrayFieldTemplateProps) {
-    // @ts-ignore
-    const { rawErrors = [], formContext } = props || {};
-    const { theme } = formContext || {};
-    const hasErrors = rawErrors.length > 0;
-
-    return hasErrors ? (
-        <ErrorList
-            errors={rawErrors?.map(fromMarkdown)}
-            theme={theme}
-        />
-    ) : null;
-}
-
 export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
     const { theme = 'alfa-on-white' } = props.formContext || {};
     const { className } = props;
     const classNames = [cn({ theme }), className].join(' ');
-    const header = mapArrayFieldHeader(props, templateConfig);
     const items = mapItems(props);
     const buttons = mapArrayFieldButtons(props);
-    const errors = mapErrors(props);
 
-    return errors || items || buttons || header ? (
+    return items || buttons ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={classNames}>
-                {errors}
-                {header}
                 {items}
                 {buttons}
             </div>

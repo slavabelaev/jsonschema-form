@@ -1,5 +1,5 @@
 import {Routes} from "./index";
-// import {common} from "./common";
+import {common} from "./common";
 
 export const samples: Routes = {
     forms: {
@@ -37,8 +37,8 @@ export const samples: Routes = {
             }
         }
     },
-    // common: {
-    //     title: 'Общие',
-    //     routes: common
-    // }
+    common: {
+        title: 'Общие',
+        routes: common
+    }
 };

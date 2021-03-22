@@ -45,7 +45,7 @@ export function CopyIconButton({
 
     return (
         <Tooltip
-            hint='Копировать'
+            popupContent='Копировать'
             popupProps={{
                 directions: ['left-center']
             }}

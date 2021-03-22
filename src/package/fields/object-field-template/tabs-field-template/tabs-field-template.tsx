@@ -1,17 +1,16 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
 import {TabItem} from "arui-feather/tab-item";
 import {Tabs} from "arui-feather/tabs";
-import {mapObjectFieldButtons, mapObjectFieldHeader} from "../object-field-template";
-import './tabs-field-template.scss';
+import {mapObjectFieldButtons} from "../object-field-template";
 import {
     TemplateConfig,
-    TemplateConfigContext,
     TemplateConfigProvider
 } from "../../../providers/template-config-provider";
 import {fromMarkdown} from "../../../utils/from-markdown";
 import {Tooltip} from "../../../components/tooltip";
+import './tabs-field-template.scss';
 
 const cn = createCn('tabs-field-template');
 
@@ -21,12 +20,10 @@ export const defaultTemplateConfig: TemplateConfig = {
 }
 
 export function TabsFieldTemplate(props: ObjectFieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
     const { properties, formContext } = props;
     const { theme, size } = formContext || {};
     const [activeIndex, setActiveIndex] = useState(0);
     const activeTab = properties?.[activeIndex];
-    const header = mapObjectFieldHeader(props, templateConfig);
     const buttons = mapObjectFieldButtons(props);
 
     const renderTabItem = (property: any, index: number) => {
@@ -42,7 +39,7 @@ export function TabsFieldTemplate(props: ObjectFieldTemplateProps) {
         const hintIcon = hint && (
             <Tooltip
                 className={cn('hint-icon')}
-                hint={hint}
+                popupContent={hint}
                 size={size}
                 theme={theme}
                 popupProps={{
@@ -78,10 +75,9 @@ export function TabsFieldTemplate(props: ObjectFieldTemplateProps) {
         </div>
     )
 
-    return header || tabs || buttons ? (
+    return tabs || buttons ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={cn()}>
-                {header}
                 {tabs}
                 {tabContent}
                 {buttons}

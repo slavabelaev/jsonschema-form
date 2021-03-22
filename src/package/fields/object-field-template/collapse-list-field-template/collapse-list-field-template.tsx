@@ -1,12 +1,11 @@
-import React, {useContext} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
-import {mapObjectFieldButtons, mapObjectFieldHeader} from "../object-field-template";
+import {mapObjectFieldButtons} from "../object-field-template";
 import {CollapseItem} from "../../../components/collapse-item";
 import {UiSchema} from "../../../form";
 import {
     TemplateConfig,
-    TemplateConfigContext,
     TemplateConfigProvider
 } from "../../../providers/template-config-provider";
 import {fromMarkdown} from "../../../utils/from-markdown";
@@ -20,12 +19,10 @@ export const defaultTemplateConfig: TemplateConfig = {
 }
 
 export function CollapseListFieldTemplate(props: ObjectFieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
     const { properties, uiSchema, formContext } = props;
     const { size, theme } = formContext || {};
     const expanded = (uiSchema as UiSchema)?.["ui:expanded"] || [];
     const hasProperties = properties.length > 0;
-    const header = mapObjectFieldHeader(props, templateConfig);
     const addButton = mapObjectFieldButtons(props);
 
     const mapProperty = (property: any) => {
@@ -54,10 +51,9 @@ export function CollapseListFieldTemplate(props: ObjectFieldTemplateProps) {
 
     const collapseList = properties?.map(mapProperty);
 
-    return header || hasProperties || addButton ? (
+    return hasProperties || addButton ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={cn()}>
-                {header}
                 {collapseList}
                 {addButton}
             </div>

@@ -1,55 +1,21 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import HelpIcon from "arui-feather/icon/ui/help";
-import {Popup, PopupProps} from "arui-feather/popup";
-import {IconButton} from "arui-feather/icon-button";
-import {ButtonProps} from "arui-feather/button";
+import {Dropdown, DropdownProps} from "arui-feather/dropdown";
 import './tooltip.scss';
 
 const cn = createCn('tooltip');
 
-export type TooltipProps = ButtonProps & {
-    hint: ReactNode;
-    popupProps?: PopupProps;
-}
+export type TooltipProps = DropdownProps;
 
 export function Tooltip({
-    hint,
+    className,
     children,
     theme = 'alfa-on-white',
     size = 'm',
-    popupProps,
     ...props
 }: TooltipProps) {
-    const [visible, setVisible] = useState(false);
-    const show = () => setVisible(true);
-    const hide = () => setVisible(false);
-    let iconButtonRef: any;
-    let popupRef: any;
-    const popupClassName = [
-        cn('popup'),
-        popupProps?.className,
-    ].filter(Boolean).join(' ');
-
-    useEffect(() => {
-        popupRef.setTarget(iconButtonRef.control);
-    }, []);
-
-    const popup = (
-        <Popup
-            maxWidth={240}
-            directions={['right-center', 'right-top', 'right-bottom']}
-            {...popupProps}
-            className={popupClassName}
-            ref={(popup) => popupRef = popup}
-            theme={theme}
-            size={'s'}
-            onClickOutside={hide}
-            visible={visible}
-        >
-            {hint}
-        </Popup>
-    );
+    const rootClassName = [cn(), className].join(' ');
 
     const icon = children || (
         <HelpIcon
@@ -59,24 +25,21 @@ export function Tooltip({
         />
     );
 
-    const iconButton = (
-        <IconButton
-            className={cn()}
-            ref={(iconButton) => iconButtonRef = iconButton}
-            onMouseEnter={show}
-            onMouseLeave={hide}
-            size={'s'}
+    return (
+        <Dropdown
+            className={rootClassName}
+            mode='hover'
             theme={theme}
+            size={size}
             {...props}
+            popupProps={{
+                size: 's',
+                maxWidth: 240,
+                directions: ['right-center', 'right-top', 'right-bottom'],
+                ...props.popupProps
+            }}
         >
             {icon}
-        </IconButton>
+        </Dropdown>
     );
-
-    return (
-        <React.Fragment>
-            {iconButton}
-            {popup}
-        </React.Fragment>
-    )
 }

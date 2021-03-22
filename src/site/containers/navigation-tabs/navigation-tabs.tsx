@@ -43,7 +43,7 @@ export function NavigationTabs() {
 
     if (fetchFormProps) tabList.push({
         id: TabId.EDITOR,
-        title: 'Примеры и код',
+        title: 'Примеры',
         renderContent: renderSampleEditor
     });
 

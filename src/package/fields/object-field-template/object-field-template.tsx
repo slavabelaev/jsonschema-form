@@ -1,39 +1,20 @@
-import React, {useContext} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
 import {Button} from "arui-feather/button";
 import {IconButton} from "arui-feather/icon-button";
 import Add from "arui-feather/icon/action/add";
 import Delete from "arui-feather/icon/action/delete";
-import {TemplateConfig, TemplateConfigContext, TemplateConfigProvider} from "../../providers/template-config-provider";
+import {TemplateConfig, TemplateConfigProvider} from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
-import {Header} from "../../components/header";
 import './object-field-template.scss';
+import {Tooltip} from "../../components/tooltip";
 
 const cn = createCn('object-field-template');
 
 export const defaultTemplateConfig: TemplateConfig = {
     displayLabel: true,
     displayHint: true
-}
-
-export function mapObjectFieldHeader(props: ObjectFieldTemplateProps, templateConfig: TemplateConfig) {
-    const { displayLabel, displayHint } = templateConfig || {};
-    const {
-        title,
-        description,
-        formContext
-    } = props;
-    const { theme } = formContext || {};
-
-    return (
-        <Header
-            className={cn('header')}
-            theme={theme}
-            title={displayLabel ? title : undefined}
-            description={displayHint ? description : undefined}
-        />
-    );
 }
 
 export function mapObjectFieldButtons(props: ObjectFieldTemplateProps) {
@@ -77,13 +58,21 @@ function mapProperty(property: ObjectFieldTemplateProps['properties'][0], props:
     const isAdditionalProperty = schema?.['__additional_property'];
 
     const removeButton = isAdditionalProperty ? (
-        <IconButton
-            className={cn('remove-button')}
-            onClick={onDropPropertyClick(property.name)}
-            icon={<Delete theme={theme} size={size} />}
-            theme={theme}
-            size={size}
-        />
+        <Tooltip
+            className={cn('remove-tooltip')}
+            popupContent={'Удалить'}
+            popupProps={{
+                directions: ['left-center']
+            }}
+        >
+            <span
+                role='button'
+                className={cn('remove-button')}
+                onClick={onDropPropertyClick(property.name)}
+            >
+                <Delete theme={theme} size={size} />
+            </span>
+        </Tooltip>
     ) : null;
 
     const contentBlock = (
@@ -117,15 +106,12 @@ function mapProperties(props: ObjectFieldTemplateProps) {
 }
 
 export function ObjectFieldTemplate(props: ObjectFieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
-    const header = mapObjectFieldHeader(props, templateConfig);
     const properties = mapProperties(props);
     const buttons = mapObjectFieldButtons(props);
 
-    return header || properties || buttons ? (
+    return properties || buttons ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={[cn()].join(' ')}>
-                {header}
                 {properties}
                 {buttons}
             </div>

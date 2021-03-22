@@ -73,7 +73,7 @@ export function CollapseItem(props: CollapseItemProps) {
     const hintIcon = hint && (
         <Tooltip
             className={cn('hint-icon')}
-            hint={hint}
+            popupContent={hint}
             size={size}
             theme={theme}
         />

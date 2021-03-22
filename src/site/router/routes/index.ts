@@ -33,7 +33,7 @@ export const routes: Routes = {
         title: "UI Schema",
         routes: uiSchema
     },
-    'examples': {
+    'samples': {
         title: "Примеры",
         routes: samples
     },

@@ -11,7 +11,7 @@ export type EditIconLinkProps = TooltipProps & {
 export function EditIconLink({ url, theme, size, hint = 'Редактировать', ...otherProps }: EditIconLinkProps) {
     return (
         <Tooltip
-            hint={hint}
+            popupContent={hint}
             popupProps={{
                 directions: ["left-center"]
             }}

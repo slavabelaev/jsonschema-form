@@ -12,6 +12,7 @@ export type ReorderProps = {
     disabledUp?: boolean;
     disabledDown?: boolean;
     buttonProps?: ButtonProps;
+    view?: 'vertical' | 'horizontal';
     theme?: ButtonProps['theme'];
     size?: ButtonProps['size'];
 }
@@ -26,9 +27,10 @@ export function Reorder({
     onClickDown,
     buttonProps,
     theme,
-    size
+    size = 'm',
+    view = 'vertical'
 }: ReorderProps) {
-    const classNames = [cn(), className].join(' ');
+    const classNames = [cn({ view }), className].join(' ');
 
     return (
         <div className={classNames}>
@@ -42,7 +44,7 @@ export function Reorder({
                 {...buttonProps}
             >
                 <ArrowUpIcon
-                    size="s"
+                    size={size}
                     theme={theme}
                 />
             </Button>
@@ -56,7 +58,7 @@ export function Reorder({
                 {...buttonProps}
             >
                 <ArrowDownIcon
-                    size="s"
+                    size={size}
                     theme={theme}
                 />
             </Button>

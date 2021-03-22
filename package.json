@@ -68,12 +68,12 @@
     "node-sass": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "start:site": "react-scripts start",
+    "build:site": "react-scripts build",
+    "test:site": "react-scripts test",
+    "eject:site": "react-scripts eject",
+    "predeploy:site": "npm run build",
+    "deploy:site": "gh-pages -d build",
     "build:package": "bit build"
   },
   "eslintConfig": {

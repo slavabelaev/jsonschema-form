@@ -1,12 +1,11 @@
-import React, {useContext} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
 import {Stepper, StepperItemProps} from "../../../components/stepper";
-import {mapObjectFieldButtons, mapObjectFieldHeader} from "../object-field-template";
+import {mapObjectFieldButtons} from "../object-field-template";
 import {fromMarkdown} from "../../../utils/from-markdown";
 import {
     TemplateConfig,
-    TemplateConfigContext,
     TemplateConfigProvider
 } from "../../../providers/template-config-provider";
 import './stepper-field-template.scss';
@@ -19,10 +18,8 @@ export const defaultTemplateConfig: TemplateConfig = {
 }
 
 export function StepperFieldTemplate(props: ObjectFieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
     const { properties } = props;
     const hasProperties = properties.length > 0;
-    const header = mapObjectFieldHeader(props, templateConfig);
     const buttons = mapObjectFieldButtons(props);
 
     const mapStepItem = (property: any): StepperItemProps => {
@@ -53,10 +50,9 @@ export function StepperFieldTemplate(props: ObjectFieldTemplateProps) {
         />
     );
 
-    return header || hasProperties || buttons ? (
+    return hasProperties || buttons ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={cn()}>
-                {header}
                 {stepper}
                 {buttons}
             </div>

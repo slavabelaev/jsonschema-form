@@ -1,36 +1,56 @@
-import React from "react";
+import React, {useContext} from "react";
 import {createCn} from "bem-react-classname";
 import {FieldTemplateProps} from "@rjsf/core";
-import {JSONSchema7} from "json-schema";
 import {ErrorList} from "../../components/error-list";
 import {fromMarkdown} from "../../utils/from-markdown";
+import {Header} from "../../components/header";
+import {TemplateConfig, TemplateConfigContext} from "../../providers/template-config-provider";
 import './field-template.scss';
 
 const cn = createCn('field-template');
 
-const isObject = (schema: JSONSchema7) =>  (
-    schema?.type === 'object' ||
-    schema?.properties ||
-    schema?.patternProperties ||
-    schema?.additionalProperties
-);
+function mapFieldTemplateHeader(props: FieldTemplateProps, templateConfig: TemplateConfig) {
+    const { displayLabel, displayHint } = templateConfig || {};
+    const { classNames, rawErrors, label, rawDescription, formContext } = props;
+    const { theme, size } = formContext || {};
+    const isGroupField = classNames?.match(/field-(object|array)/);
 
-export function FieldTemplate(props: FieldTemplateProps) {
-    const { classNames, children, rawErrors, schema, formContext } = props;
-    const { theme } = formContext || {};
-    const rootClassName = [cn(), classNames].join(' ');
-    const showErrorList = isObject(schema);
+    if (!isGroupField) return null;
 
-    const errorList = showErrorList && (
+    const errorList = (
         <ErrorList
             errors={rawErrors?.map(fromMarkdown)}
             theme={theme}
         />
     );
 
+    const header = (
+        <Header
+            className={cn('header')}
+            title={displayLabel ? label : undefined}
+            description={displayHint ? rawDescription : undefined}
+            theme={theme}
+            size={size}
+        />
+    );
+
+    return (
+        <React.Fragment>
+            {header}
+            {errorList}
+        </React.Fragment>
+    )
+}
+
+export function FieldTemplate(props: FieldTemplateProps) {
+    const templateConfig = useContext(TemplateConfigContext);
+    const { classNames, children } = props;
+    const rootClassName = [cn(), classNames].join(' ');
+    const header = mapFieldTemplateHeader(props, templateConfig)
+
     return (
         <div className={rootClassName}>
-            {errorList}
+            {header}
             {children}
         </div>
     )

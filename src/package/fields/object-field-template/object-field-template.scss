@@ -1,14 +1,11 @@
 .object-field-template {
+  display: grid;
+  gap: var(--gap-m);
   padding: 0;
   border-width: 0;
 
   &__paragraph {
     margin-bottom: 0;
-  }
-
-  &__header + *,
-  & > * + * {
-    margin-top: var(--gap-m);
   }
 
   &__property {
@@ -20,7 +17,7 @@
     width: 100%;
   }
 
-  &__remove-button {
-    flex: auto;
+  &__remove-tooltip {
+    margin-left: var(--gap-xs);
   }
 }

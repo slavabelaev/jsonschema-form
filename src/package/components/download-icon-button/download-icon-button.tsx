@@ -41,7 +41,7 @@ export function DownloadIconButton({
 
     return (
         <Tooltip
-            hint='Скачать'
+            popupContent='Скачать'
             popupProps={{
                 directions: ['left-center']
             }}

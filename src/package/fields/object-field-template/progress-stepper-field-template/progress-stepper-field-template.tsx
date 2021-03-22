@@ -1,11 +1,10 @@
-import React, {useContext} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
-import {mapObjectFieldButtons, mapObjectFieldHeader} from "../object-field-template";
+import {mapObjectFieldButtons} from "../object-field-template";
 import {fromMarkdown} from "../../../utils/from-markdown";
 import {
     TemplateConfig,
-    TemplateConfigContext,
     TemplateConfigProvider
 } from "../../../providers/template-config-provider";
 import {ProgressStepper, ProgressStepProps} from "../../../components/progress-stepper";
@@ -19,10 +18,8 @@ export const defaultTemplateConfig: TemplateConfig = {
 }
 
 export function ProgressStepperFieldTemplate(props: ObjectFieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
     const { properties, formContext } = props;
     const { theme, size } = formContext || {};
-    const header = mapObjectFieldHeader(props, templateConfig);
     const buttons = mapObjectFieldButtons(props);
 
     const mapStepItem = (property: any): ProgressStepProps => {
@@ -53,10 +50,9 @@ export function ProgressStepperFieldTemplate(props: ObjectFieldTemplateProps) {
         />
     );
 
-    return header || stepper || buttons ? (
+    return stepper || buttons ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={cn()}>
-                {header}
                 {stepper}
                 {buttons}
             </div>
