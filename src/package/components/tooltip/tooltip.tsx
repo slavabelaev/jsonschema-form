@@ -19,7 +19,7 @@ export function Tooltip({
     disabled,
     ...props
 }: TooltipProps) {
-    const rootClassName = [cn(), className].join(' ');
+    const classNames = [cn(), className].join(' ');
     const handleClick = disabled ? undefined : onClick;
 
     const helpIcon = (
@@ -34,7 +34,7 @@ export function Tooltip({
 
     return (
         <Dropdown
-            className={rootClassName}
+            className={classNames}
             mode='hover'
             theme={theme}
             size={size}

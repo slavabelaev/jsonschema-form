@@ -44,7 +44,7 @@ const toEditorFormData = (props?: FormProps) => {
 export function PropsEditorForm(props: PropsEditorFormProps) {
     const { theme = 'alfa-on-white', setTheme } = useContext(ThemeToggleContext);
     const { initialProps, jsonModeEnabled = false, className } = props;
-    const rootClassName = [cn({ theme: theme }), className].join(' ');
+    const classNames = [cn({ theme: theme }), className].join(' ');
     const [state, _setState] = useState<State>();
     const setState = (state) => _setState({
         ...state,
@@ -213,7 +213,7 @@ export function PropsEditorForm(props: PropsEditorFormProps) {
         : renderEditor();
 
     return (
-        <div className={rootClassName}>
+        <div className={classNames}>
             <div className={cn( 'result' )}>
                 {form}
             </div>

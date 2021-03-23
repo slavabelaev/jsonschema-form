@@ -16,7 +16,7 @@ type Item = {
 
 export function PageContents(props: PageContentsProps) {
     const { pathname } = useLocation();
-    const rootClassName = [cn(), props.className].join(' ');
+    const classNames = [cn(), props.className].join(' ');
     const [items, setItems] = useState<Item[]>([
         { title: 'Дополнительные элементы не разрешены', url: '#1' },
         { title: 'Схема дополнительных элементов', url: '#2' },
@@ -49,7 +49,7 @@ export function PageContents(props: PageContentsProps) {
     )
 
     return (
-        <ul className={rootClassName}>
+        <ul className={classNames}>
             {items.map(renderItem)}
         </ul>
     );

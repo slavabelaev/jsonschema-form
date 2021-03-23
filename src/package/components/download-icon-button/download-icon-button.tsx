@@ -24,7 +24,7 @@ export function DownloadIconButton({
     onDownload,
     ...tooltipProps
 }: DownloadIconButtonProps) {
-    const rootClassName = [cn(), className].join(' ');
+    const classNames = [cn(), className].join(' ');
 
     const handleDownload = () => {
         download(file.name, file.content, file.mimeType);
@@ -39,7 +39,7 @@ export function DownloadIconButton({
             }}
             theme={theme}
             {...tooltipProps}
-            className={rootClassName}
+            className={classNames}
             onClick={handleDownload}
         >
             <IconDownload

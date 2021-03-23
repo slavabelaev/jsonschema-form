@@ -44,7 +44,7 @@ const cloneRoutesThenFilter = (routes: Routes = {}, query: string = ''): Routes 
 }
 
 export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = 'm', className }: NavigationProps) {
-    const rootClassName = [className, cn({ theme })].join(' ');
+    const classNames = [className, cn({ theme })].join(' ');
     const history = useHistory();
     const { hash, search } = history.location || {};
     const query = new URLSearchParams(history.location.search).get('q') || '';
@@ -142,7 +142,7 @@ export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = '
     const collapseList = Object.entries(filteredRoutes).map(mapCollapseItem);
 
     return (
-        <div className={rootClassName}>
+        <div className={classNames}>
             {header}
             {collapseList}
         </div>

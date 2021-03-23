@@ -21,7 +21,7 @@ export function CopyIconButton({
     size = 's',
     ...tooltipProps
 }: CopyIconButtonProps) {
-    const rootClassName = [cn(), className].join(' ');
+    const classNames = [cn(), className].join(' ');
     const [pressed, setPressed] = useState(false);
 
     const handleClick = () => {
@@ -42,7 +42,7 @@ export function CopyIconButton({
                 directions: ['left-center']
             }}
             {...tooltipProps}
-            className={rootClassName}
+            className={classNames}
             disabled={pressed}
             onClick={handleClick}
         >

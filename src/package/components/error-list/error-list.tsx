@@ -12,7 +12,7 @@ export type ErrorListProps = Omit<PlateProps, 'type'> & {
 
 export function ErrorList(props: ErrorListProps) {
     const { errors, className, theme, ...otherProps } = props;
-    const rootClassName = [cn(), className].join(' ');
+    const classNames = [cn(), className].join(' ');
     const errorMessages = errors?.filter(Boolean) || [];
 
     if (!errorMessages?.length) return null;
@@ -34,7 +34,7 @@ export function ErrorList(props: ErrorListProps) {
 
     return (
         <Plate
-            className={rootClassName}
+            className={classNames}
             type='error'
             theme={theme}
             {...otherProps}

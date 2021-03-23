@@ -18,7 +18,7 @@ export type ControlItemProps = PropsWithChildren<{
 
 export function ControlItem(props: ControlItemProps) {
     const { className, theme = 'alfa-on-white', size, children, onRemove, reorderProps } = props;
-    const rootClassName = [cn(), className].join(' ');
+    const classNames = [cn(), className].join(' ');
 
     const removeButton = onRemove && (
         <Tooltip
@@ -53,7 +53,7 @@ export function ControlItem(props: ControlItemProps) {
     )
 
     return (
-        <div className={rootClassName}>
+        <div className={classNames}>
             {reorder}
             {content}
             {removeButton}

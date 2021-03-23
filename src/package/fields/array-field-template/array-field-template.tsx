@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {createCn} from "bem-react-classname";
 import isEmpty from "lodash.isempty";
 import {ArrayFieldTemplateProps} from "@rjsf/core";
@@ -6,7 +6,7 @@ import {Button} from "arui-feather/button";
 import {Paragraph} from "arui-feather/paragraph";
 import Add from "arui-feather/icon/action/add";
 import {
-    TemplateConfig,
+    TemplateConfig, TemplateConfigContext,
     TemplateConfigProvider
 } from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
@@ -15,7 +15,10 @@ import {isGroup} from "../../utils/json-schema";
 import {Card} from "../../components/card";
 import {ControlItem} from "../../components/control-item";
 import {SymbolIcon} from "../../components/symbol-icon";
+import {fromMarkdown} from "../../utils/from-markdown";
 import './array-field-template.scss';
+import {Header} from "../../components/header";
+import {ErrorList} from "../../components/error-list";
 
 const cn = createCn('array-field-template');
 
@@ -73,7 +76,7 @@ function mapItems(props: ArrayFieldTemplateProps) {
 
                 const emptyContent = isEmptySchema && (
                     <Paragraph
-                        className={cn('empty-children')}
+                        className={cn('empty-content')}
                         children={toType(formData, 'string')}
                         theme={theme}
                     />
@@ -91,7 +94,7 @@ function mapItems(props: ArrayFieldTemplateProps) {
                             />
                         )}
                         title={schema?.title}
-                        hint={schema?.description}
+                        hint={fromMarkdown(schema?.description)}
                         onRemove={onRemove}
                         reorderProps={reorderProps}
                         theme={theme}
@@ -132,16 +135,52 @@ function mapItems(props: ArrayFieldTemplateProps) {
     ) : null;
 }
 
+export function mapArrayFieldTemplateHeader(props: ArrayFieldTemplateProps, templateConfig: TemplateConfig) {
+    const { displayLabel, displayHint } = templateConfig || {};
+    const { title, formContext, schema } = props;
+    const { description } = schema || {};
+    // @ts-ignore
+    const { rawErrors } = props;
+    const { theme, size } = formContext || {};
+
+    const errorList = (
+        <ErrorList
+            errors={rawErrors?.map(fromMarkdown)}
+            theme={theme}
+        />
+    );
+
+    const header = (
+        <Header
+            className={cn('header')}
+            title={displayLabel ? title : undefined}
+            description={displayHint ? fromMarkdown(description) : undefined}
+            theme={theme}
+            size={size}
+        />
+    )
+
+    return (
+        <React.Fragment>
+            {header}
+            {errorList}
+        </React.Fragment>
+    )
+}
+
 export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
+    const templateConfig = useContext(TemplateConfigContext);
     const { theme = 'alfa-on-white' } = props.formContext || {};
     const { className } = props;
     const classNames = [cn({ theme }), className].join(' ');
+    const header = mapArrayFieldTemplateHeader(props, templateConfig);
     const items = mapItems(props);
     const footer = mapArrayFieldFooter(props);
 
     return items || footer ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={classNames}>
+                {header}
                 {items}
                 {footer}
             </div>

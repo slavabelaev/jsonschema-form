@@ -13,9 +13,9 @@ function mapFieldTemplateHeader(props: FieldTemplateProps, templateConfig: Templ
     const { displayLabel, displayHint } = templateConfig || {};
     const { classNames, rawErrors, label, rawDescription, formContext } = props;
     const { theme, size } = formContext || {};
-    const isGroupField = classNames?.match(/field-(object|array)/);
+    const isObjectField = classNames?.match(/field-(object)/);
 
-    if (!isGroupField) return null;
+    if (!isObjectField) return null;
 
     const errorList = (
         <ErrorList
@@ -28,7 +28,7 @@ function mapFieldTemplateHeader(props: FieldTemplateProps, templateConfig: Templ
         <Header
             className={cn('header')}
             title={displayLabel ? label : undefined}
-            description={displayHint ? rawDescription : undefined}
+            description={displayHint ? fromMarkdown(rawDescription) : undefined}
             theme={theme}
             size={size}
         />
@@ -44,12 +44,12 @@ function mapFieldTemplateHeader(props: FieldTemplateProps, templateConfig: Templ
 
 export function FieldTemplate(props: FieldTemplateProps) {
     const templateConfig = useContext(TemplateConfigContext);
-    const { classNames, children } = props;
-    const rootClassName = [cn(), classNames].join(' ');
+    const { children } = props;
+    const classNames = [cn(), props.classNames].join(' ');
     const header = mapFieldTemplateHeader(props, templateConfig)
 
     return (
-        <div className={rootClassName}>
+        <div className={classNames}>
             {header}
             {children}
         </div>

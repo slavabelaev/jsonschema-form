@@ -21,7 +21,7 @@ export type CardProps = PropsWithChildren<{
 
 export function Card(props: CardProps) {
     const { className, icon, title, hint, children, theme = 'alfa-on-white', size, onRemove, reorderProps } = props;
-    const rootClassName = [cn({ theme }), className].join(' ');
+    const classNames = [cn({ theme }), className].join(' ');
 
     const removeButton = onRemove && (
         <Tooltip
@@ -49,9 +49,9 @@ export function Card(props: CardProps) {
         />
     );
 
-    const help = hint && (
+    const hintTooltip = hint && (
         <Tooltip
-            className={cn('help')}
+            className={cn('hint')}
             popupContent={hint}
         />
     )
@@ -69,11 +69,11 @@ export function Card(props: CardProps) {
         </div>
     )
 
-    const header = (icon || heading || help || actions) && (
+    const header = (icon || heading || hintTooltip || actions) && (
         <header className={cn('header')}>
             {icon}
             {heading}
-            {help}
+            {hintTooltip}
             {actions}
         </header>
     )
@@ -85,7 +85,7 @@ export function Card(props: CardProps) {
     )
 
     return (
-        <div className={rootClassName}>
+        <div className={classNames}>
             {header}
             {body}
         </div>

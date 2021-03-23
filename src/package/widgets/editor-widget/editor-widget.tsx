@@ -138,6 +138,7 @@ export function EditorWidget(props: WidgetProps) {
 
     const downloadButton = (
         <DownloadIconButton
+            className={cn('icon-button')}
             file={{
                 name: label,
                 content: value,
@@ -149,6 +150,7 @@ export function EditorWidget(props: WidgetProps) {
 
     const copyIconButton = (
         <CopyIconButton
+            className={cn('icon-button')}
             copyContent={value}
             theme={theme}
             size={size}

@@ -18,10 +18,10 @@ export function SymbolIcon({
     theme = 'alfa-on-white',
     size = 'm'
 }: SymbolIconProps) {
-    const rootClassName = [cn({ theme, size }), className].join(' ');
+    const classNames = [cn({ theme, size }), className].join(' ');
 
     return (
-        <div className={rootClassName}>
+        <div className={classNames}>
             {symbol}
         </div>
     )

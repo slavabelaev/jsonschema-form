@@ -11,7 +11,7 @@ export type MarkdownProps = ReactMarkdownProps;
 
 export function Markdown(props: MarkdownProps) {
     const { className, plugins = [], ...otherProps } = props;
-    const rootClassName = [cn(), className].join(' ');
+    const classNames = [cn(), className].join(' ');
 
     plugins.push(gfm);
 
@@ -20,7 +20,7 @@ export function Markdown(props: MarkdownProps) {
             unwrapDisallowed={true}
             linkTarget="_blank"
             {...otherProps}
-            className={rootClassName}
+            className={classNames}
             plugins={plugins}
             renderers={{
                 ...defaultRenderers as ReactMarkdownProps['renderers'],

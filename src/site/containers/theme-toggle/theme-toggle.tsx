@@ -13,13 +13,13 @@ export type ThemeToggleProps = {
 export function ThemeToggle(props: ThemeToggleProps) {
     const { className } = props;
     const { theme = 'alfa-on-white', setTheme } = useContext(ThemeToggleContext);
-    const rootClassName = [cn({ theme }), className].join(' ');
+    const classNames = [cn({ theme }), className].join(' ');
     const checked = theme === 'alfa-on-color';
     const toggleTheme = () => setTheme?.(checked ? 'alfa-on-white' : 'alfa-on-color');
 
     return (
         <Toggle
-            className={rootClassName}
+            className={classNames}
             checked={checked}
             onChange={toggleTheme}
         />

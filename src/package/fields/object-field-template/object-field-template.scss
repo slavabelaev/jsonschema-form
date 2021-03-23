@@ -13,6 +13,13 @@
     align-items: center;
   }
 
+  &__property + &__property > &__content {
+    & > .field-array > .array-field-template > .array-field-template__header,
+    & > .field-object > .field-template__header {
+      margin-top: var(--gap-s);
+    }
+  }
+
   &__content {
     width: 100%;
   }

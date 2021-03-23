@@ -20,7 +20,7 @@ export function SuccessNotification({
     headingProps,
     paragraphProps,
 }: SuccessNotificationProps) {
-    const rootClassName = [cn(), className].join(' ');
+    const classNames = [cn(), className].join(' ');
 
     const renderButton = () => {
         const { children = 'Вернуться' } = buttonProps || {};
@@ -62,7 +62,7 @@ export function SuccessNotification({
     }
 
     return (
-        <div className={rootClassName}>
+        <div className={classNames}>
             {renderHeading()}
             {renderParagraph()}
             {renderButton()}

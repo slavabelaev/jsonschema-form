@@ -6,10 +6,12 @@ import Add from "arui-feather/icon/action/add";
 import Delete from "arui-feather/icon/action/delete";
 import {TemplateConfig, TemplateConfigProvider} from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
-import './object-field-template.scss';
 import {Tooltip} from "../../components/tooltip";
+import './object-field-template.scss';
 
 const cn = createCn('object-field-template');
+
+export type ObjectFieldProperty = ObjectFieldTemplateProps['properties'][0];
 
 export const defaultTemplateConfig: TemplateConfig = {
     displayLabel: true,
@@ -49,14 +51,14 @@ export function mapObjectFieldButtons(props: ObjectFieldTemplateProps) {
     );
 }
 
-function mapProperty(property: ObjectFieldTemplateProps['properties'][0], props: ObjectFieldTemplateProps) {
+function mapProperty(property: ObjectFieldProperty, props: ObjectFieldTemplateProps) {
     const { formContext } = props;
     const { theme, size } = formContext || {}
     const { name, content } = property || {};
     const { onDropPropertyClick, schema, uiSchema } = content?.props || {};
-    const isAdditionalProperty = schema?.['__additional_property'];
+    const { __additional_property: isAdditional } = schema || {};
 
-    const removeButton = isAdditionalProperty ? (
+    const removeButton = isAdditional ? (
         <Tooltip
             className={cn('remove-tooltip')}
             popupContent={'Удалить'}
