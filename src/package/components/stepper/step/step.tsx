@@ -29,8 +29,8 @@ export function Step({
     nextButtonProps,
     ...props
 }: StepProps) {
-    const buttonGroup = isActive ? (
-        <div className={cn( 'button-group' )}>
+    const footer = isActive ? (
+        <div className={cn( 'footer' )}>
             <Button
                 view='default'
                 theme='alfa-on-white'
@@ -78,9 +78,7 @@ export function Step({
 
     const header = (
         <header className={cn( 'header' )}>
-            <div className={cn( 'icon' )}>
-                {renderIcon()}
-            </div>
+            {renderIcon()}
             <div className={cn( 'caption' )}>
                 {label}
                 {hint}
@@ -92,7 +90,7 @@ export function Step({
         <div className={cn( 'content' )}>
             <SlideDown isExpanded={isActive}>
                 {children}
-                {buttonGroup}
+                {footer}
             </SlideDown>
         </div>
     );

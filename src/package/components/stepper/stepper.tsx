@@ -1,16 +1,22 @@
 import React, {useState} from "react";
 import {Step, StepProps} from "./step";
+import {SymbolIcon} from "../symbol-icon";
+import {FormProps} from "arui-feather/form";
 
 export type StepperItemProps = Omit<StepProps, 'icon' | 'isCompleted' | 'isLast' | 'isFirst' | 'isActive'>
 
 export type StepperProps = {
     className?: string;
     items: StepperItemProps[];
+    theme?: FormProps['theme']
+    size?: FormProps['size'];
 };
 
 export function Stepper({
     className,
     items,
+    theme,
+    size
 }: StepperProps) {
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -36,7 +42,13 @@ export function Stepper({
                 key={index}
                 {...props}
                 children={isActive ? props.children : null}
-                icon={number}
+                icon={(
+                    <SymbolIcon
+                        symbol={number}
+                        theme={theme}
+                        size={size}
+                    />
+                )}
                 isCompleted={isCompleted}
                 isActive={isActive}
                 backButtonProps={{

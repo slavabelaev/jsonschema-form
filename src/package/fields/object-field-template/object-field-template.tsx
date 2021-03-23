@@ -2,7 +2,6 @@ import React from "react";
 import {createCn} from "bem-react-classname";
 import {ObjectFieldTemplateProps} from "@rjsf/core";
 import {Button} from "arui-feather/button";
-import {IconButton} from "arui-feather/icon-button";
 import Add from "arui-feather/icon/action/add";
 import Delete from "arui-feather/icon/action/delete";
 import {TemplateConfig, TemplateConfigProvider} from "../../providers/template-config-provider";
@@ -64,14 +63,9 @@ function mapProperty(property: ObjectFieldTemplateProps['properties'][0], props:
             popupProps={{
                 directions: ['left-center']
             }}
+            onClick={onDropPropertyClick(property.name)}
         >
-            <span
-                role='button'
-                className={cn('remove-button')}
-                onClick={onDropPropertyClick(property.name)}
-            >
-                <Delete theme={theme} size={size} />
-            </span>
+            <Delete theme={theme} size={size} />
         </Tooltip>
     ) : null;
 

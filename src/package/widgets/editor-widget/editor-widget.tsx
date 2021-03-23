@@ -134,7 +134,7 @@ export function mapEditorProps(props: WidgetProps): ControlledEditorProps {
 
 export function EditorWidget(props: WidgetProps) {
     const { label, schema, value, formContext } = props;
-    const { view = 'default', theme = 'alfa-on-white' } = formContext || {};
+    const { view = 'default', size, theme = 'alfa-on-white' } = formContext || {};
 
     const downloadButton = (
         <DownloadIconButton
@@ -150,6 +150,8 @@ export function EditorWidget(props: WidgetProps) {
     const copyIconButton = (
         <CopyIconButton
             copyContent={value}
+            theme={theme}
+            size={size}
         />
     );
 

@@ -1,36 +1,28 @@
 import React from 'react';
 import {createCn} from "bem-react-classname";
-import {IconButton} from "arui-feather/icon-button";
 import IconDownload from "arui-feather/icon/action/download";
-import {ButtonProps} from "arui-feather/button";
 import {Tooltip, TooltipProps} from "../tooltip";
 import {download} from "./download";
 import './download-icon-button.scss';
 
 const cn = createCn('download-icon-button');
 
-export type DownloadIconButtonProps = {
-    className?: string;
+export type DownloadIconButtonProps = Omit<TooltipProps, 'onClick'> & {
     file: {
         name?: string;
         content: string;
         mimeType?: string;
     }
-    theme?: ButtonProps['theme'];
-    size?: ButtonProps['size'];
-    tooltipProps?: TooltipProps;
-    buttonProps?: ButtonProps;
     onDownload?: () => void;
 }
 
 export function DownloadIconButton({
     className,
     file,
-    theme,
+    theme = 'alfa-on-white',
     size = 's',
-    tooltipProps,
-    buttonProps,
-    onDownload
+    onDownload,
+    ...tooltipProps
 }: DownloadIconButtonProps) {
     const rootClassName = [cn(), className].join(' ');
 
@@ -48,16 +40,12 @@ export function DownloadIconButton({
             theme={theme}
             {...tooltipProps}
             className={rootClassName}
+            onClick={handleDownload}
         >
-            <IconButton
-                size={size}
+            <IconDownload
                 theme={theme}
-                {...buttonProps}
-                className={cn('icon-button')}
-                onClick={handleDownload}
-            >
-                <IconDownload theme={theme} size='m' />
-            </IconButton>
+                size='m'
+            />
         </Tooltip>
     )
 }

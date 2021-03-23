@@ -1,0 +1,18 @@
+.symbol-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--gap-xl);
+  max-width: var(--gap-xl);
+  min-height: var(--gap-xl);
+  max-height: var(--gap-xl);
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-dark-indigo-05);
+  border-radius: 50%;
+  cursor: default;
+
+  &_theme_alfa-on-color {
+    background: var(--color-white-24);
+  }
+}

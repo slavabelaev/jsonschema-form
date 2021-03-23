@@ -3,18 +3,18 @@ import {createCn} from "bem-react-classname";
 import isEmpty from "lodash.isempty";
 import {ArrayFieldTemplateProps} from "@rjsf/core";
 import {Button} from "arui-feather/button";
-import Delete from "arui-feather/icon/action/delete";
 import {Paragraph} from "arui-feather/paragraph";
 import Add from "arui-feather/icon/action/add";
-import {Reorder} from "../../components/reorder";
 import {
     TemplateConfig,
     TemplateConfigProvider
 } from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
 import {toType} from "../../utils/to-type";
-import {Tooltip} from "../../components/tooltip";
 import {isGroup} from "../../utils/json-schema";
+import {Card} from "../../components/card";
+import {ControlItem} from "../../components/control-item";
+import {SymbolIcon} from "../../components/symbol-icon";
 import './array-field-template.scss';
 
 const cn = createCn('array-field-template');
@@ -24,7 +24,7 @@ export const defaultTemplateConfig: TemplateConfig = {
     displayHint: true
 }
 
-export function mapArrayFieldButtons(props: ArrayFieldTemplateProps) {
+export function mapArrayFieldFooter(props: ArrayFieldTemplateProps) {
     const { canAdd, onAddClick, formContext } = props;
     const { theme, size } = formContext || {};
 
@@ -41,65 +41,35 @@ export function mapArrayFieldButtons(props: ArrayFieldTemplateProps) {
     ) : null;
 
     return addButton ? (
-        <div className={cn('buttons')}>
+        <footer className={cn('footer')}>
             {addButton}
-        </div>
+        </footer>
     ) : null;
 }
 
 function mapItems(props: ArrayFieldTemplateProps) {
     const { items, formContext } = props || {};
-    const { theme, size, width } = formContext || {};
+    const { theme, size } = formContext || {};
     const hasItems = items.length > 0;
 
     return hasItems ? (
         <Grid className={cn('items')}>
             {items.map(item => {
-                const { index, children } = item;
+                const { index, children, className } = item;
+                const orderNumber = index + 1;
                 const { uiSchema, schema, formData } = children?.props || {};
                 const isEmptySchema = isEmpty(schema);
                 const isGroupSchema = isGroup(schema);
-                const className = [
-                    cn('item', {
-                        'is-group': isGroupSchema
-                    }),
-                    item.className
-                ].join(' ');
-
-                const removeButton = item.hasRemove && (
-                    <Tooltip
-                        className={cn('remove-tooltip')}
-                        popupContent={'Удалить'}
-                        popupProps={{
-                            directions: ['left-center']
-                        }}
-                    >
-                        <span
-                            role='button'
-                            className={cn('remove-button')}
-                            onClick={item.onDropIndexClick(index)}
-                        >
-                            <Delete theme={theme} size={size} />
-                        </span>
-                    </Tooltip>
-                );
-
-                const reorder = (item.hasMoveDown || item.hasMoveUp) && (
-                    <Reorder
-                        className={cn('item-reorder')}
-                        onClickUp={item.onReorderClick(index, index - 1)}
-                        onClickDown={item.onReorderClick(index, index + 1)}
-                        disabledUp={!item.hasMoveUp}
-                        disabledDown={!item.hasMoveDown}
-                        buttonProps={{
-                            width,
-                            theme
-                        }}
-                        view={isGroupSchema ? 'horizontal' : 'vertical'}
-                        theme={theme}
-                        size={'s'}
-                    />
-                );
+                const classNames = [cn('item'), className].join(' ');
+                const onRemove = item.hasRemove
+                    ? item.onDropIndexClick(index)
+                    : undefined;
+                const reorderProps = (item.hasMoveDown || item.hasMoveUp) ? {
+                    onClickUp: item.onReorderClick(index, index - 1),
+                    onClickDown: item.onReorderClick(index, index + 1),
+                    disabledUp: !item.hasMoveUp,
+                    disabledDown: !item.hasMoveDown
+                } : undefined;
 
                 const emptyContent = isEmptySchema && (
                     <Paragraph
@@ -109,29 +79,52 @@ function mapItems(props: ArrayFieldTemplateProps) {
                     />
                 )
 
-                const itemChildren = (
-                    <div className={cn('item-children', { 'is-empty': isEmptySchema })}>
-                        {emptyContent || children}
-                    </div>
-                );
+                const content = emptyContent || children;
 
-                const toolbar = isGroupSchema ? (
-                    <aside className={cn('toolbar')}>
-                        {reorder}
-                        {removeButton}
-                    </aside>
-                ) : removeButton;
+                const card = isGroupSchema && (
+                    <Card
+                        icon={(
+                            <SymbolIcon
+                                symbol={orderNumber}
+                                theme={theme}
+                                size={size}
+                            />
+                        )}
+                        title={schema?.title}
+                        hint={schema?.description}
+                        onRemove={onRemove}
+                        reorderProps={reorderProps}
+                        theme={theme}
+                        size={size}
+                    >
+                        <TemplateConfigProvider value={{
+                            displayLabel: false,
+                            displayHint: false
+                        }}>
+                            {content}
+                        </TemplateConfigProvider>
+                    </Card>
+                )
+
+                const field = card || (
+                    <ControlItem
+                        onRemove={onRemove}
+                        reorderProps={reorderProps}
+                        theme={theme}
+                        size={size}
+                    >
+                        {content}
+                    </ControlItem>
+                )
 
                 return (
                     <GridCell
                         key={item.key}
-                        className={className}
+                        className={classNames}
                         column={uiSchema?.['ui:gridColumn']}
                         row={uiSchema?.['ui:gridRow']}
                     >
-                        {isGroupSchema ? null : reorder}
-                        {itemChildren}
-                        {toolbar}
+                        {field}
                     </GridCell>
                 )
             })}
@@ -144,13 +137,13 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
     const { className } = props;
     const classNames = [cn({ theme }), className].join(' ');
     const items = mapItems(props);
-    const buttons = mapArrayFieldButtons(props);
+    const footer = mapArrayFieldFooter(props);
 
-    return items || buttons ? (
+    return items || footer ? (
         <TemplateConfigProvider value={defaultTemplateConfig}>
             <div className={classNames}>
                 {items}
-                {buttons}
+                {footer}
             </div>
         </TemplateConfigProvider>
     ) : null;

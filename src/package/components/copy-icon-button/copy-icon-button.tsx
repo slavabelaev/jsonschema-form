@@ -1,8 +1,6 @@
-import {ButtonProps} from "arui-feather/button";
 import copyToClipboard from "copy-to-clipboard";
 import React, {useState} from "react";
 import {createCn} from "bem-react-classname";
-import {IconButton} from "arui-feather/icon-button";
 import IconTick from "arui-feather/icon/ui/tick";
 import IconCopy from "arui-feather/icon/action/copy";
 import {Tooltip, TooltipProps} from "../tooltip";
@@ -10,12 +8,7 @@ import './copy-icon-button.scss';
 
 const cn = createCn('copy-icon-button');
 
-export type CopyIconButtonProps = {
-    className?: string;
-    theme?: ButtonProps['theme'];
-    size?: ButtonProps['size'];
-    buttonProps?: ButtonProps;
-    tooltipProps?: TooltipProps;
+export type CopyIconButtonProps = Omit<TooltipProps, 'onClick'> & {
     copyContent: string;
     onCopied?: () => void;
 };
@@ -23,11 +16,10 @@ export type CopyIconButtonProps = {
 export function CopyIconButton({
     className,
     onCopied,
-    buttonProps,
-    tooltipProps,
     copyContent,
     theme,
-    size = 's'
+    size = 's',
+    ...tooltipProps
 }: CopyIconButtonProps) {
     const rootClassName = [cn(), className].join(' ');
     const [pressed, setPressed] = useState(false);
@@ -51,16 +43,10 @@ export function CopyIconButton({
             }}
             {...tooltipProps}
             className={rootClassName}
+            disabled={pressed}
+            onClick={handleClick}
         >
-            <IconButton
-                onClick={handleClick}
-                disabled={pressed}
-                size={'s'}
-                {...buttonProps}
-                className={cn('icon-button')}
-            >
-                {icon}
-            </IconButton>
+            {icon}
         </Tooltip>
     );
 }

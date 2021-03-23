@@ -6,18 +6,23 @@ import './tooltip.scss';
 
 const cn = createCn('tooltip');
 
-export type TooltipProps = DropdownProps;
+export type TooltipProps = DropdownProps & {
+    onClick?: (event?: any) => void;
+};
 
 export function Tooltip({
     className,
     children,
     theme = 'alfa-on-white',
     size = 'm',
+    onClick,
+    disabled,
     ...props
 }: TooltipProps) {
     const rootClassName = [cn(), className].join(' ');
+    const handleClick = disabled ? undefined : onClick;
 
-    const icon = children || (
+    const helpIcon = (
         <HelpIcon
             colored={true}
             size={size}
@@ -25,13 +30,17 @@ export function Tooltip({
         />
     );
 
+    const icon = children || helpIcon;
+
     return (
         <Dropdown
             className={rootClassName}
             mode='hover'
             theme={theme}
             size={size}
+            disabled={disabled}
             {...props}
+            switcherType={'button'}
             popupProps={{
                 size: 's',
                 maxWidth: 240,
@@ -39,7 +48,12 @@ export function Tooltip({
                 ...props.popupProps
             }}
         >
-            {icon}
+            <span
+                role='button'
+                onClick={handleClick}
+            >
+                {icon}
+            </span>
         </Dropdown>
     );
 }

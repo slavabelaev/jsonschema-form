@@ -1,13 +1,16 @@
 .tooltip {
-  &__popup {
-    max-width: 240px;
-  }
+  display: inline-flex;
 
-  .link,
-  .link__text-container,
-  .link__text {
-    display: inline-block;
-    border-style: none;
+  > .button,
+  > .button > .button__content,
+  > .button  > .button__content > .button__text {
+    padding: 0;
+    margin: 0;
     line-height: initial;
+    border: none;
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    background: initial;
   }
 }

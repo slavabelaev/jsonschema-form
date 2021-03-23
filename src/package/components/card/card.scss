@@ -1,0 +1,48 @@
+.card {
+  border: 1px solid var(--color-dark-indigo-15);
+  border-radius: 4px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: var(--gap-m);
+  }
+
+  &__heading {
+    padding: 0;
+    font-size: var(--font-size-l);
+    * + & {
+      margin-left: var(--gap-xs);
+    }
+  }
+
+  &__heading + &__help {
+    margin-left: var(--gap-xs);
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    > * + * {
+      margin-left: var(--gap-xs);
+    }
+  }
+
+  &__body {
+    padding: var(--gap-m);
+  }
+
+  &__header + &__body {
+    border-top: 1px solid var(--color-dark-indigo-15);
+  }
+
+  &_theme_alfa-on-color &__header + &__body {
+    border-top: 1px solid var(--color-white-24);
+  }
+
+  &_theme_alfa-on-color {
+    border: 1px solid var(--color-white-24);
+  }
+}

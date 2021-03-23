@@ -1,0 +1,13 @@
+.control-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  & > * + * {
+    margin-left: var(--gap-xs);
+  }
+
+  &__content {
+    width: 100%;
+  }
+}

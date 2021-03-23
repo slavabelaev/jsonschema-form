@@ -18,7 +18,8 @@ export const defaultTemplateConfig: TemplateConfig = {
 }
 
 export function StepperFieldTemplate(props: ObjectFieldTemplateProps) {
-    const { properties } = props;
+    const { properties, formContext } = props;
+    const { theme, size } = formContext || {};
     const hasProperties = properties.length > 0;
     const buttons = mapObjectFieldButtons(props);
 
@@ -47,6 +48,8 @@ export function StepperFieldTemplate(props: ObjectFieldTemplateProps) {
         <Stepper
             className={cn('field')}
             items={items}
+            theme={theme}
+            size={size}
         />
     );
 
