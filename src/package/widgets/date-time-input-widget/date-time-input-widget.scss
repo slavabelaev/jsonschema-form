@@ -1,1 +1,21 @@
-.date-time-input-widget {}
+.date-time-input-widget {
+  .input__control {
+    position: relative;
+  }
+
+  .input__control::-webkit-calendar-picker-indicator {
+    background-image: url("~arui-feather/icon/entity/calendar/icon_calendar_m_black.svg");
+    background-size: 120%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  &.input_theme_alfa-on-color .input__control::-webkit-calendar-picker-indicator {
+    background: url("~arui-feather/icon/entity/calendar/icon_calendar_m_white.svg");
+  }
+}
