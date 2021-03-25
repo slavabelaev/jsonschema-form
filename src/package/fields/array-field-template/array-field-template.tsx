@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import isEmpty from "lodash.isempty";
 import {ArrayFieldTemplateProps} from "@rjsf/core";
@@ -6,8 +6,8 @@ import {Button} from "arui-feather/button";
 import {Paragraph} from "arui-feather/paragraph";
 import Add from "arui-feather/icon/action/add";
 import {
-    TemplateConfig, TemplateConfigContext,
-    TemplateConfigProvider
+    TemplateConfig,
+    TemplateConfigProvider, useThemeConfig
 } from "../../providers/template-config-provider";
 import {Grid, GridCell} from "../../components/grid";
 import {toType} from "../../utils/to-type";
@@ -169,7 +169,7 @@ export function mapArrayFieldTemplateHeader(props: ArrayFieldTemplateProps, temp
 }
 
 export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
+    const templateConfig = useThemeConfig();
     const { theme = 'alfa-on-white' } = props.formContext || {};
     const { className } = props;
     const classNames = [cn({ theme }), className].join(' ');

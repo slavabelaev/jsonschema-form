@@ -41,6 +41,8 @@ export function CopyIconButton({
             popupProps={{
                 directions: ['left-center']
             }}
+            theme={theme}
+            size={size}
             {...tooltipProps}
             className={classNames}
             disabled={pressed}

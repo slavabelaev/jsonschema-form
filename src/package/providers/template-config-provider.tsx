@@ -1,18 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 export type TemplateConfig = {
     displayLabel: boolean;
     displayHint: boolean;
 }
 
-export const defaultTemplateConfig: TemplateConfig = {
+const TemplateConfigContext = React.createContext<TemplateConfig>({
     displayLabel: true,
     displayHint: true
-}
+});
 
-export const TemplateConfigContext = React.createContext(defaultTemplateConfig);
+export const useThemeConfig = () => useContext(TemplateConfigContext);
 
-export const {
-    Provider: TemplateConfigProvider,
-    Consumer: TemplateConfigConsumer
-} = TemplateConfigContext;
+export const { Provider: TemplateConfigProvider } = TemplateConfigContext;

@@ -1,8 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {EditIconLink} from "../edit-icon-link";
 import {PropsEditorForm} from "../../components/props-editor-form";
-import {RouteContext} from "../../router/route-provider";
-import {ThemeToggleContext} from "../theme-toggle";
+import {useRoute} from "../../router/route-provider";
+import {useThemeToggle} from "../theme-toggle";
 import {FormProps} from "../../../package";
 import {Loading} from "../loading";
 
@@ -12,8 +12,8 @@ type State = {
 }
 
 export function PropsEditor() {
-    const { theme = 'alfa-on-white' } = useContext(ThemeToggleContext);
-    const { fetchFormProps, editPropsURL } = useContext(RouteContext);
+    const { theme = 'alfa-on-white' } = useThemeToggle();
+    const { fetchFormProps, editPropsURL } = useRoute();
     const [state, setState] = useState<State>({
         loading: false,
         formProps: undefined

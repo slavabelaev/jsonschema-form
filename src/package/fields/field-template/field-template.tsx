@@ -1,10 +1,10 @@
-import React, {useContext} from "react";
+import React from "react";
 import {createCn} from "bem-react-classname";
 import {FieldTemplateProps} from "@rjsf/core";
 import {ErrorList} from "../../components/error-list";
 import {fromMarkdown} from "../../utils/from-markdown";
 import {Header} from "../../components/header";
-import {TemplateConfig, TemplateConfigContext} from "../../providers/template-config-provider";
+import {TemplateConfig, useThemeConfig} from "../../providers/template-config-provider";
 import './field-template.scss';
 
 const cn = createCn('field-template');
@@ -43,7 +43,7 @@ function mapFieldTemplateHeader(props: FieldTemplateProps, templateConfig: Templ
 }
 
 export function FieldTemplate(props: FieldTemplateProps) {
-    const templateConfig = useContext(TemplateConfigContext);
+    const templateConfig = useThemeConfig();
     const { children } = props;
     const classNames = [cn(), props.classNames].join(' ');
     const header = mapFieldTemplateHeader(props, templateConfig)

@@ -1,10 +1,10 @@
-import React, {ReactNode, useContext, useEffect, useState} from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 import {createCn} from "bem-react-classname";
 import {Toggle} from "arui-feather/toggle";
 import Form, {FormProps} from "../../../package";
 import editorFormSchema from "./props-editor-form.schema.json";
 import editorFormUiSchema from "./props-editor-form.ui-schema.json";
-import {ThemeToggleContext} from "../../containers/theme-toggle";
+import {useThemeToggle} from "../../containers/theme-toggle";
 import './props-editor-form.scss';
 
 const cn = createCn('props-editor-form');
@@ -42,10 +42,11 @@ const toEditorFormData = (props?: FormProps) => {
 }
 
 export function PropsEditorForm(props: PropsEditorFormProps) {
-    const { theme = 'alfa-on-white', setTheme } = useContext(ThemeToggleContext);
+    const { theme = 'alfa-on-white', setTheme } = useThemeToggle();
     const { initialProps, jsonModeEnabled = false, className } = props;
-    const classNames = [cn({ theme: theme }), className].join(' ');
+    const classNames = [cn({ theme }), className].join(' ');
     const [state, _setState] = useState<State>();
+
     const setState = (state) => _setState({
         ...state,
         formProps: {
@@ -72,11 +73,16 @@ export function PropsEditorForm(props: PropsEditorFormProps) {
     }, [theme]);
 
     useEffect(() => {
+        const formProps: FormProps = {
+            schema: {},
+            ...initialProps,
+            theme
+        };
         setState({
             jsonModeEnabled,
-            formProps: initialProps,
-            editorFormData: toEditorFormData(initialProps),
-            jsonEditorFormData: toJSON(initialProps)
+            formProps,
+            editorFormData: toEditorFormData(formProps),
+            jsonEditorFormData: toJSON(formProps)
         });
     }, [initialProps, jsonModeEnabled]);
 

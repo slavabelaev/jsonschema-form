@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from 'react';
+import React, {PropsWithChildren, useContext} from 'react';
 import {useHistory} from "react-router-dom";
 import {RouteItem, Routes, routes} from "./routes";
 import packageJSON from "../../../package.json";
@@ -10,11 +10,12 @@ export type RouteContextProps = {
     editPropsURL?: string;
 }
 
-export const RouteContext = React.createContext<RouteContextProps>({});
+export type RouteProviderProps = PropsWithChildren<{}>;
 
+const RouteContext = React.createContext<RouteContextProps>({});
 const { Provider } = RouteContext;
 
-export type RouteProviderProps = PropsWithChildren<{}>;
+export const useRoute = () => useContext(RouteContext);
 
 const getRoute = (routes: Routes = {}, ids: string[] = []): RouteItem | undefined => {
     const id = ids.shift() as string;

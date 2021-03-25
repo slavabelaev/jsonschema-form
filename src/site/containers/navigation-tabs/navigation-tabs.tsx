@@ -1,12 +1,12 @@
-import React, {ReactNode, useContext} from 'react';
+import React, {ReactNode} from 'react';
 import {useHistory} from "react-router-dom";
 import {createCn} from "bem-react-classname";
 import {Tabs} from "arui-feather/tabs";
 import {TabItem} from "arui-feather/tab-item";
 import {WidgetSchemaForm} from "../../components/widget-schema-form";
-import {ThemeToggle, ThemeToggleContext} from "../theme-toggle";
+import {ThemeToggle, useThemeToggle} from "../theme-toggle";
 import {Article} from "../article";
-import {RouteContext} from "../../router/route-provider";
+import {useRoute} from "../../router/route-provider";
 import {PropsEditor} from "../props-editor";
 import './navigation-tabs.scss';
 
@@ -26,8 +26,8 @@ type Tab = {
 const cn = createCn('navigation-tabs');
 
 export function NavigationTabs() {
-    const { theme = 'alfa-on-white' } = useContext(ThemeToggleContext);
-    const { docsURL, fetchFormProps } = useContext(RouteContext);
+    const { theme = 'alfa-on-white' } = useThemeToggle();
+    const { docsURL, fetchFormProps } = useRoute();
     const history = useHistory();
     const { location } = history || {};
     const { pathname } = location || {};

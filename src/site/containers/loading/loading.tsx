@@ -1,13 +1,13 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Spin} from "arui-feather/spin";
 import {createCn} from "bem-react-classname";
-import {ThemeToggleContext} from "../theme-toggle";
+import {useThemeToggle} from "../theme-toggle";
 import './loading.scss';
 
 const cn = createCn('loading');
 
 export function Loading() {
-    const { theme = 'alfa-on-white' } = useContext(ThemeToggleContext);
+    const { theme = 'alfa-on-white' } = useThemeToggle();
 
     return (
         <div className={cn()}>

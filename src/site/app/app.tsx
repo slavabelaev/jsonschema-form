@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from 'react';
+import React, {useRef} from 'react';
 import {createCn} from 'bem-react-classname';
 import SearchIcon from 'arui-feather/icon/action/search';
 import DraftIcon from 'arui-feather/icon/entity/draft';
@@ -6,7 +6,7 @@ import FavoriteIcon from 'arui-feather/icon/ui/favorite';
 import {Navigation} from "../components/navigation";
 import {NavigationTabs} from "../containers/navigation-tabs";
 import {BottomBar} from "../components/bottom-bar";
-import {ThemeToggleContext} from "../containers/theme-toggle";
+import {useThemeToggle} from "../containers/theme-toggle";
 import {routes} from "../router/routes";
 import './app.scss';
 
@@ -20,7 +20,7 @@ const scrollIntoView = (element?: HTMLDivElement | null) => {
 const cn = createCn('app');
 
 function App() {
-    const { theme } = useContext(ThemeToggleContext);
+    const { theme } = useThemeToggle();
     const menuRef = useRef<HTMLDivElement>(null);
     const mainRef = useRef<HTMLDivElement>(null);
     const asideRef = useRef<HTMLDivElement>(null);

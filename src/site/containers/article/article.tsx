@@ -1,8 +1,8 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {createCn} from "bem-react-classname";
 import {Markdown} from "../../../package/components/markdown";
-import {ThemeToggleContext} from "../theme-toggle";
-import {RouteContext} from "../../router/route-provider";
+import {useThemeToggle} from "../theme-toggle";
+import {useRoute} from "../../router/route-provider";
 import {EditIconLink} from "../edit-icon-link";
 import {Loading} from "../loading";
 import './article.scss';
@@ -15,8 +15,8 @@ type State = {
 }
 
 export function Article() {
-    const { theme } = useContext(ThemeToggleContext);
-    const { docsURL, editDocsURL } = useContext(RouteContext);
+    const { theme } = useThemeToggle();
+    const { docsURL, editDocsURL } = useRoute();
     const [state, setState] = useState<State>({
         loading: false,
         markdownText: undefined
