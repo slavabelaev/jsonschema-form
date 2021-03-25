@@ -1,2 +1,0 @@
-(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[25],{1601:function(e){e.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","type":"array","title":"A multiple choices list","description":"Some description","items":{"type":"string","enum":["foo","bar","fuzz","qux"]},"uniqueItems":true},"uiSchema":{"ui:widget":"checkboxes"},"formData":["foo","bar"]}')}}]);
-//# sourceMappingURL=25.3b44eb13.chunk.js.map

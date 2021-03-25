@@ -1,2 +1,0 @@
-(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[31],{1619:function(e){e.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","type":"object","oneOf":[{"properties":{"lorem":{"type":"string"}},"required":["lorem"]},{"properties":{"ipsum":{"type":"string"}},"required":["ipsum"]}]},"uiSchema":{},"formData":{}}')}}]);
-//# sourceMappingURL=31.109bcdb4.chunk.js.map

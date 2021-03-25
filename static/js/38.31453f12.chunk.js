@@ -1,2 +1,0 @@
-(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[38],{1604:function(e){e.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","title":"Unorderable items","type":"array","items":{"type":"string","default":"lorem ipsum"}},"uiSchema":{"ui:options":{"orderable":false}},"formData":["one","two"]}')}}]);
-//# sourceMappingURL=38.31453f12.chunk.js.map

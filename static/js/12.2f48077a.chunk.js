@@ -1,2 +1,0 @@
-(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[12],{1606:function(e){e.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","title":"A localisation Form","type":"object","required":["lat","lon"],"properties":{"lat":{"type":"number"},"lon":{"type":"number"}}},"uiSchema":{"ui:field":"geo"},"formData":{"lat":0,"lon":0}}')}}]);
-//# sourceMappingURL=12.2f48077a.chunk.js.map
