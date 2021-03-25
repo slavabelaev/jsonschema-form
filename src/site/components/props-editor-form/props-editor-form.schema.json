@@ -18,7 +18,7 @@
     },
     "template": {
       "description": "Шаблон формы",
-      "enum": ["default", "stepper", "tabs", "collapse-list"]
+      "enum": ["default", "stepper", "progress-stepper", "tabs", "collapse-list"]
     },
     "liveValidate": {
       "enum": [true, false],

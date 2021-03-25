@@ -38,40 +38,55 @@ const mapNextButtonSize = (size: FormProps['size']) => {
     }
 }
 
-export function ProgressStep(props: ProgressStepProps) {
-    const {
-        stepNumber,
-        totalSteps,
-        minPercent = 0,
-        maxPercent = 100,
-        percent = 0,
-        children,
-        theme,
-        size,
-        onNext,
-        onBack,
-        canBack,
-        canNext
-    } = props;
-    const className = [cn(), props.className].filter(Boolean).join(' ');
+export function ProgressStep({
+    className,
+    hint,
+    stepNumber,
+    totalSteps,
+    minPercent = 0,
+    maxPercent = 100,
+    percent = 0,
+    children,
+    theme = 'alfa-on-white',
+    size = 'm',
+    onNext,
+    onBack,
+    canBack,
+    canNext
+}: ProgressStepProps) {
+    const classNames = [cn({ theme }), className].join(' ');
 
-    const hint = props?.hint && (
-        <Paragraph className={cn('hint')}>
-            {props?.hint}
+    const help = hint && (
+        <Paragraph
+            className={cn('hint', { theme })}
+            theme={theme}
+        >
+            {hint}
         </Paragraph>
     );
 
+    const title = (
+        <Paragraph
+            className={cn('title', { theme })}
+            theme={theme}
+        >
+            Шаг {stepNumber} из {totalSteps}: Заполнено на {percent.toFixed(0)}%
+        </Paragraph>
+    )
+
+    const progress = (
+        <Progress
+            className={cn('progress')}
+            percent={percent}
+            maxPercent={maxPercent}
+        />
+    )
+
     const header = (
         <header className={cn('header')}>
-            <Paragraph className={cn('title')}>
-                Шаг {stepNumber} из {totalSteps}: Заполнено на {percent.toFixed(0)}%
-            </Paragraph>
-            <Progress
-                className={cn('progress')}
-                percent={percent}
-                maxPercent={maxPercent}
-            />
-            {hint}
+            {title}
+            {progress}
+            {help}
         </header>
     )
 
@@ -92,7 +107,12 @@ export function ProgressStep(props: ProgressStepProps) {
         <Button
             className={cn('back-button')}
             onClick={onBack}
-            icon={<SystemBackIcon />}
+            icon={(
+                <SystemBackIcon
+                    theme={theme}
+                    size={size}
+                />
+            )}
             theme={theme}
             size={size}
         >
@@ -101,14 +121,21 @@ export function ProgressStep(props: ProgressStepProps) {
     );
 
     const message = (
-        <p className={cn('message')}>
-            <CategoryGuardIcon className={cn('icon')} />
+        <Paragraph
+            className={cn('message')}
+            theme={theme}
+        >
+            <CategoryGuardIcon
+                className={cn('icon')}
+                theme={theme}
+                size={size}
+            />
             Мы гарантируем безопасность и сохранность ваших данных
-        </p>
+        </Paragraph>
     );
 
     const footer = (nextButton || message) && (
-        <footer className={cn('footer')}>
+        <footer className={cn('footer', { theme })}>
             {nextButton}
             {message}
         </footer>
@@ -127,7 +154,7 @@ export function ProgressStep(props: ProgressStepProps) {
     );
 
     return (
-        <div className={className}>
+        <div className={classNames}>
             {header}
             {content}
             {footer}

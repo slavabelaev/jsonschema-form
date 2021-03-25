@@ -69,4 +69,16 @@
     &__footer {
         margin-top: var(--gap-m);
     }
+
+    &_theme_alfa-on-color &__content {
+        border-left-color: var(--color-white-24);
+    }
+
+    &_theme_alfa-on-color &__label {
+        color: var(--color-white);
+    }
+
+    &_theme_alfa-on-color &__hint {
+        color: var(--color-white-70);
+    }
 }

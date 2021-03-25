@@ -5,8 +5,12 @@
 @import "~arui-feather/vars/border.css";
 
 :root {
+  --color-white-05: rgba(255, 255, 255, 0.05);
   --color-white-24: rgba(255, 255, 255, 0.24);
+  --color-white-70: rgba(255, 255, 255, 0.7);
   --content-width: 1092px;
+
+  --input-background: rgba(11, 31, 53, 0.05);
 
   /**
    * Брейкпоинты

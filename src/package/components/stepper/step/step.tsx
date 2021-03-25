@@ -4,11 +4,13 @@ import {Button, ButtonProps} from "arui-feather/button";
 import {SlideDown} from "arui-feather/slide-down";
 import IconError from "arui-feather/icon/ui/error";
 import IconTick from "arui-feather/icon/ui/tick";
+import {FormProps} from "arui-feather/form";
 import './step.scss';
 
 const cn = createCn('step');
 
 export type StepProps = PropsWithChildren<{
+    className?: string;
     icon: ReactNode;
     label: ReactNode;
     hint?: ReactNode;
@@ -17,9 +19,12 @@ export type StepProps = PropsWithChildren<{
     isCompleted?: boolean;
     backButtonProps?: ButtonProps;
     nextButtonProps?: ButtonProps;
+    theme?: FormProps['theme'];
+    size?: FormProps['size'];
 }>;
 
 export function Step({
+    className,
     isActive,
     isCompleted,
     error,
@@ -27,19 +32,30 @@ export function Step({
     children,
     backButtonProps,
     nextButtonProps,
+    theme = 'alfa-on-white',
+    size = 'm',
     ...props
 }: StepProps) {
+    const classNames = [cn({
+        theme,
+        'active': Boolean(isActive),
+        'completed': Boolean(isCompleted),
+        'error': Boolean(error),
+    }), className].join(' ');
+
     const footer = isActive ? (
         <div className={cn( 'footer' )}>
             <Button
                 view='default'
-                theme='alfa-on-white'
+                theme={theme}
+                size={size}
                 children='Назад'
                 {...backButtonProps}
             />
             <Button
                 view='extra'
-                theme='alfa-on-white'
+                theme={theme}
+                size={size}
                 children='Продолжить'
                 {...nextButtonProps}
             />
@@ -50,14 +66,14 @@ export function Step({
         if (error) return (
             <IconError
                 colored={true}
-                theme='alfa-on-color'
+                theme={theme}
             />
         );
 
         if (isCompleted) return (
             <IconTick
-                size='s'
-                theme='alfa-on-color'
+                colored={true}
+                theme={theme}
             />
         );
 
@@ -96,13 +112,7 @@ export function Step({
     );
 
     return (
-        <div
-            className={cn( {
-                'active': Boolean(isActive),
-                'completed': Boolean(isCompleted),
-                'error': Boolean(error),
-            } )}
-        >
+        <div className={classNames}>
             {header}
             {content}
         </div>

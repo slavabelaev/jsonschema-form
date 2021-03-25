@@ -1,1 +1,5 @@
-.calendar-widget {}
+.calendar-widget {
+  .label + & {
+    margin-top: var(--gap-s)
+  }
+}

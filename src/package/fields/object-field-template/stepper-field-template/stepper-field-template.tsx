@@ -39,7 +39,9 @@ export function StepperFieldTemplate(props: ObjectFieldTemplateProps) {
             nextButtonProps: {
               disabled: hasError || disabled || readonly
             },
-            error
+            error,
+            theme,
+            size
         });
     }
 
