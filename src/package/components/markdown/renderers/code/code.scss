@@ -2,12 +2,10 @@
   position: relative;
   padding: var(--gap-m);
   border-radius: var(--border-radius-control);
-  border: var(--color-dark-indigo-15) 1px solid;
   background-color: #F3F4F5;
   font-family: var(--font);
 
   &_theme_alfa-on-color {
-    border: var(--color-white-24) 1px solid;
     background-color: var(--color-dark-indigo);
   }
 

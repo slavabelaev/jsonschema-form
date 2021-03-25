@@ -10,7 +10,7 @@
   &_theme_alfa-on-color {
     header.editor-widget__header,
     div.monaco-editor {
-      background-color: black;
+      background-color: var(--color-dark-indigo);
       opacity: 1;
     }
   }
