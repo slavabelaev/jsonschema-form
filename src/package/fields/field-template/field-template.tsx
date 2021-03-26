@@ -5,17 +5,18 @@ import {ErrorList} from "../../components/error-list";
 import {fromMarkdown} from "../../utils/from-markdown";
 import {Header} from "../../components/header";
 import {TemplateConfig, useThemeConfig} from "../../providers/template-config-provider";
+import {isObject} from "../../utils/json-schema";
 import './field-template.scss';
 
 const cn = createCn('field-template');
 
 function mapFieldTemplateHeader(props: FieldTemplateProps, templateConfig: TemplateConfig) {
     const { displayLabel, displayHint } = templateConfig || {};
-    const { classNames, rawErrors, label, rawDescription, formContext } = props;
+    const { rawErrors, label, rawDescription, formContext, schema } = props;
     const { theme, size } = formContext || {};
-    const isObjectField = classNames?.match(/field-(object)/);
+    const isObjectSchema = isObject(schema);
 
-    if (!isObjectField) return null;
+    if (!isObjectSchema) return null;
 
     const errorList = (
         <ErrorList

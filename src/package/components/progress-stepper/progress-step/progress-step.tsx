@@ -79,6 +79,8 @@ export function ProgressStep({
             className={cn('progress')}
             percent={percent}
             maxPercent={maxPercent}
+            theme={theme}
+            size={size}
         />
     )
 

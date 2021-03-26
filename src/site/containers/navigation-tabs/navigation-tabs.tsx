@@ -35,16 +35,10 @@ export function NavigationTabs() {
     const activeTabId = location?.hash?.substr(1) || TabId.EDITOR;
     const tabList: Tab[] = [];
 
-    const renderSampleEditor = () => <PropsEditor />
-
-    const renderUiOptions = () => {
-        return widgetName && <WidgetSchemaForm widgetName={widgetName} />
-    }
-
     if (fetchFormProps) tabList.push({
         id: TabId.EDITOR,
         title: 'Примеры',
-        renderContent: renderSampleEditor
+        renderContent: () => <PropsEditor />
     });
 
     if (docsURL) tabList.push({
@@ -56,7 +50,7 @@ export function NavigationTabs() {
     if (widgetName) tabList.push({
         id: TabId.OPTIONS,
         title: 'Опции',
-        renderContent: renderUiOptions
+        renderContent: () => widgetName && <WidgetSchemaForm widgetName={widgetName} />
     });
 
     const renderTabItem = (item: Tab) => (

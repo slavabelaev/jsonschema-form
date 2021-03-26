@@ -86,9 +86,9 @@ const mapInputType = (schema: WidgetProps['schema']): InputProps['type'] => {
 const mapInputPlaceholder = (props: WidgetProps): InputProps['placeholder'] => {
     const { placeholder, schema: { examples } } = props;
     const uiOptions = props.options as InputUiOptions;
+
     if (placeholder) return placeholder;
     if (uiOptions?.placeholder) return uiOptions.placeholder;
-
     if (examples instanceof Array) {
         if (!examples.length) return;
         return toType(examples[0], 'string');

@@ -21,13 +21,13 @@
   &__footer {
     display: flex;
     align-items: center;
-    background: var(--input-background);
+    background: var(--color-dark-indigo-05-flat);
     border-radius: var(--border-radius-control);
     padding: var(--gap-m);
     gap: var(--gap-m);
 
     &_theme_alfa-on-color {
-      background: var(--color-white-05);
+      background: var(--color-dark-indigo-60);
     }
   }
 

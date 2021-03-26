@@ -3,7 +3,11 @@
   overflow: hidden;
   height: var(--gap-xs);
   border-radius: var(--border-radius-control);
-  background: #f5f7f9;
+  background: var(--color-dark-indigo-05-flat);
+
+  &_theme_alfa-on-color {
+    background-color: var(--color-dark-indigo-60);
+  }
 
   &__percent,
   &__max-percent {
@@ -16,13 +20,20 @@
   }
 
   &__percent {
-    background-color: #f05459;
+    background-color: var(--color-accent);
     border-radius: var(--border-radius-control);
   }
 
   &__max-percent {
-    background-color: #f5f7f9;
-    background-image: linear-gradient(-45deg,#dbdee1 25%,transparent 0,transparent 50%,#dbdee1 0,#dbdee1 75%,transparent 0,transparent);
+    background-image: linear-gradient(-45deg,
+      var(--color-dark-indigo-10) 25%,
+      var(--color-white-10) 0,
+      var(--color-white-10) 50%,
+      var(--color-dark-indigo-10) 0,
+      var(--color-dark-indigo-10) 75%,
+      var(--color-white-10) 0,
+      var(--color-white-10)
+    );
     background-size: 1rem 1rem;
     height: var(--gap-xs);
   }

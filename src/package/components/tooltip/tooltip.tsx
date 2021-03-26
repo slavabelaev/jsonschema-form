@@ -42,7 +42,8 @@ export function Tooltip({
             {...props}
             switcherType={'button'}
             popupProps={{
-                size: 's',
+                theme,
+                size: ['s', 'm'].includes(size) ? 's' : size,
                 maxWidth: 240,
                 directions: ['right-center', 'right-top', 'right-bottom'],
                 ...props.popupProps

@@ -2,11 +2,13 @@
   position: relative;
   display: flex;
   justify-content: center;
+  padding: var(--gap-m);
+  line-height: var(--line-height-normal);
 
   &__content {
+    box-sizing: border-box;
     width: 100%;
     max-width: var(--content-width);
-    padding: var(--gap-m);
     color: inherit;
   }
 
