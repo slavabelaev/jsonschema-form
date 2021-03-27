@@ -1,2 +1,0 @@
-(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[37],{1627:function(s){s.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","title":"A single-field Form","type":"string"},"uiSchema":{},"formData":"initial value"}')}}]);
-//# sourceMappingURL=37.a8021cf7.chunk.js.map

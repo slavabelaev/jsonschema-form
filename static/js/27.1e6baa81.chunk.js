@@ -1,2 +1,0 @@
-(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[27],{1605:function(e){e.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","title":"No add, remove and order buttons","type":"array","items":{"type":"string","default":"lorem ipsum"}},"uiSchema":{"ui:options":{"addable":false,"orderable":false,"removable":false}},"formData":["one","two"]}')}}]);
-//# sourceMappingURL=27.1e6baa81.chunk.js.map

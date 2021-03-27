@@ -1,0 +1,2 @@
+(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[10],{1606:function(s){s.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","title":"Custom array of strings","type":"array","items":{"type":"string"}},"uiSchema":{},"formData":["react","jsonschema","form"]}')}}]);
+//# sourceMappingURL=10.22ff353b.chunk.js.map

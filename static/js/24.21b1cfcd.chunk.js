@@ -1,0 +1,2 @@
+(this["webpackJsonpjsonschema-form"]=this["webpackJsonpjsonschema-form"]||[]).push([[24],{1598:function(e){e.exports=JSON.parse('{"$schema":"../../package/schemas/form-props.schema.json","schema":{"$schema":"http://json-schema.org/draft-07/schema#","type":"array","title":"A list with a minimal number of items","minItems":3,"items":{"type":"object","properties":{"name":{"type":"string","default":"Default name"}}}},"formData":[{"name":"Default name"},{"name":"Default name"},{"name":"Default name"}]}')}}]);
+//# sourceMappingURL=24.21b1cfcd.chunk.js.map
