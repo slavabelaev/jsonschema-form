@@ -16,6 +16,8 @@ export function Code(props: PropsWithChildren<any>) {
         : a11yLight;
     const { language, value } = props;
 
+    if (!value) return null;
+
     const copyButton = (
         <CopyIconButton
             className={cn('button')}
@@ -35,15 +37,18 @@ export function Code(props: PropsWithChildren<any>) {
         </div>
     )
 
+    const syntaxHighlighter = (
+        <SyntaxHighlighter
+            language={language}
+            style={style}
+            children={value}
+        />
+    )
+
     return (
         <div className={cn({ theme })}>
             {actions}
-            <SyntaxHighlighter
-                language={language}
-                style={style}
-            >
-                {value}
-            </SyntaxHighlighter>
+            {syntaxHighlighter}
         </div>
     )
 }

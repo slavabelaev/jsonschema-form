@@ -21,10 +21,9 @@
       border-top-width: 0;
       border-left-width: 0;
     }
-
-    tr:nth-child(odd) > td {
-      background-color: var(--color-dark-indigo-05-flat);
-    }
   }
 
+  * + table {
+    margin-top: var(--gap-m);
+  }
 }

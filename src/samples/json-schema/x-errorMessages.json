@@ -9,8 +9,8 @@
 						"title": "По умолчанию",
 						"type": "string"
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"x-errorMessages": {
 							"type": "должно быть строкой ${help}"
@@ -24,8 +24,8 @@
 						"title": "По умолчанию",
 						"enum": ["Опция 1", "Опция 2", "Опция 3"]
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"enum": ["Опция 1", "Опция 2", "Опция 3"],
 						"x-errorMessages": {
 							"enum": "должна быть выбрана одна из опций ${help}"
@@ -40,8 +40,8 @@
 						"type": "string",
 						"const": "секрет"
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"const": "oldP@$$word",
 						"x-errorMessages": {
@@ -57,8 +57,8 @@
 						"type": "number",
 						"multipleOf": 1.0
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "number",
 						"multipleOf": 1.0,
 						"x-errorMessages": {
@@ -74,8 +74,8 @@
 						"type": "number",
 						"maximum": 99
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "number",
 						"maximum": 99,
 						"x-errorMessages": {
@@ -91,8 +91,8 @@
 						"type": "number",
 						"exclusiveMaximum": 99
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "number",
 						"exclusiveMaximum": 99,
 						"x-errorMessages": {
@@ -108,8 +108,8 @@
 						"type": "number",
 						"minimum": 99
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "number",
 						"minimum": 99,
 						"x-errorMessages": {
@@ -125,8 +125,8 @@
 						"type": "number",
 						"exclusiveMinimum": 99
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "number",
 						"exclusiveMinimum": 99,
 						"x-errorMessages": {
@@ -142,8 +142,8 @@
 						"type": "string",
 						"maxLength": 3
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"maxLength": 3,
 						"x-errorMessages": {
@@ -159,8 +159,8 @@
 						"type": "string",
 						"minLength": 3
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"minLength": 3,
 						"x-errorMessages": {
@@ -176,8 +176,8 @@
 						"type": "string",
 						"pattern": "^[A-z0-9]+$"
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"pattern": "^[A-z0-9]+$",
 						"x-errorMessages": {
@@ -193,8 +193,8 @@
 						"type": "string",
 						"format": "email"
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"format": "email",
 						"x-errorMessages": {
@@ -218,8 +218,8 @@
 						],
 						"additionalItems": false
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "array",
 						"items": [
 							{
@@ -246,8 +246,8 @@
 						},
 						"maxItems": 2
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "array",
 						"items": {
 							"type": "string"
@@ -269,8 +269,8 @@
 						},
 						"minItems": 2
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "array",
 						"items": {
 							"type": "string"
@@ -292,8 +292,8 @@
 						},
 						"uniqueItems": true
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "array",
 						"items": {
 							"type": "string"
@@ -317,8 +317,8 @@
 							"pattern": "^[0-9]+$"
 						}
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "array",
 						"items": {
 							"type": "string"
@@ -342,8 +342,8 @@
 						},
 						"maxProperties": 2
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "object",
 						"additionalProperties": {
 							"type": "string"
@@ -365,8 +365,8 @@
 						},
 						"minProperties": 2
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "object",
 						"additionalProperties": {
 							"type": "string"
@@ -390,8 +390,8 @@
 						},
 						"required": ["first"]
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "object",
 						"properties": {
 							"first": {
@@ -417,8 +417,8 @@
 							}
 						}
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "object",
 						"additionalProperties": false,
 						"properties": {
@@ -450,8 +450,8 @@
 							"first": ["second"]
 						}
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "object",
 						"additionalProperties": false,
 						"properties": {
@@ -483,8 +483,8 @@
 							"pattern": "^_[a-z]"
 						}
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "object",
 						"additionalProperties": {
 							"type": "string"
@@ -515,8 +515,8 @@
 							}
 						]
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"allOf": [
 							{
@@ -546,8 +546,8 @@
 							}
 						]
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"anyOf": [
 							{
@@ -577,8 +577,8 @@
 							}
 						]
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"oneOf": [
 							{
@@ -603,8 +603,8 @@
 							"pattern": "[0-9]"
 						}
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"not": {
 							"pattern": "[0-9]"
@@ -631,8 +631,8 @@
 							"format": "email"
 						}
 					},
-					"redefined": {
-						"title": "Переопределено",
+					"sample": {
+						"title": "Пример",
 						"type": "string",
 						"if": {
 							"pattern": "^\\+7"
@@ -658,71 +658,71 @@
 	"formData": {
 		"type": {
 			"default": false,
-			"redefined": false
+			"sample": false
 		},
 		"enum": {
 			"default": "",
-			"redefined": ""
+			"sample": ""
 		},
 		"const": {
 			"default": null,
-			"redefined": null
+			"sample": null
 		},
 		"multipleOf": {
 			"default": 1.1,
-			"redefined": 1.1
+			"sample": 1.1
 		},
 		"maximum": {
 			"default": 99.1,
-			"redefined": 99.1
+			"sample": 99.1
 		},
 		"exclusiveMaximum": {
 			"default": 99,
-			"redefined": 99
+			"sample": 99
 		},
 		"minimum": {
 			"default": 98.9,
-			"redefined": 98.9
+			"sample": 98.9
 		},
 		"exclusiveMinimum": {
 			"default": 99,
-			"redefined": 99
+			"sample": 99
 		},
 		"maxLength": {
 			"default": "абвг",
-			"redefined": "абвг"
+			"sample": "абвг"
 		},
 		"minLength": {
 			"default": "",
-			"redefined": ""
+			"sample": ""
 		},
 		"pattern": {
 			"default": "inv@lid",
-			"redefined": "inv@lid"
+			"sample": "inv@lid"
 		},
 		"format": {
 			"default": "",
-			"redefined": ""
+			"sample": ""
 		},
 		"additionalItems": {
 			"default": ["Опция 1", "Опция 2", "Опция 3"],
-			"redefined": ["Опция 1", "Опция 2", "Опция 3"]
+			"sample": ["Опция 1", "Опция 2", "Опция 3"]
 		},
 		"maxItems": {
 			"default": ["Опция 1", "Опция 2", "Опция 3"],
-			"redefined": ["Опция 1", "Опция 2", "Опция 3"]
+			"sample": ["Опция 1", "Опция 2", "Опция 3"]
 		},
 		"minItems": {
 			"default": ["Опция 1"],
-			"redefined": ["Опция 1"]
+			"sample": ["Опция 1"]
 		},
 		"uniqueItems": {
 			"default": ["Опция 1", "Опция 1"],
-			"redefined": ["Опция 1", "Опция 1"]
+			"sample": ["Опция 1", "Опция 1"]
 		},
 		"contains": {
 			"default": ["Опция 1", "Опция 1"],
-			"redefined": ["Опция 1", "Опция 1"]
+			"sample": ["Опция 1", "Опция 1"]
 		},
 		"maxProperties": {
 			"default": {
@@ -730,7 +730,7 @@
 				"second": "Опция 2",
 				"third": "Опция 3"
 			},
-			"redefined": {
+			"sample": {
 				"first": "Опция 1",
 				"second": "Опция 2",
 				"third": "Опция 3"
@@ -738,14 +738,14 @@
 		},
 		"required": {
 			"default": {},
-			"redefined": {}
+			"sample": {}
 		},
 		"additionalProperties": {
 			"default": {
 				"first": "Опция 1",
 				"additional": "Опция 3"
 			},
-			"redefined": {
+			"sample": {
 				"first": "Опция 1",
 				"additional": "Опция 3"
 			}
@@ -754,7 +754,7 @@
 			"default": {
 				"first": "Опция 1"
 			},
-			"redefined": {
+			"sample": {
 				"first": "Опция 1"
 			}
 		},
@@ -762,29 +762,29 @@
 			"default": {
 				"invalidName": "Опция 2"
 			},
-			"redefined": {
+			"sample": {
 				"invalidName": "Опция 2"
 			}
 		},
 		"allOf": {
 			"default": "",
-			"redefined": ""
+			"sample": ""
 		},
 		"anyOf": {
 			"default": "",
-			"redefined": ""
+			"sample": ""
 		},
 		"oneOf": {
 			"default": "",
-			"redefined": ""
+			"sample": ""
 		},
 		"not": {
 			"default": "абв123",
-			"redefined": "абв123"
+			"sample": "абв123"
 		},
 		"if": {
 			"default": "+7",
-			"redefined": "+7"
+			"sample": "+7"
 		}
 	}
 }

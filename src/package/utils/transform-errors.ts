@@ -1,29 +1,12 @@
 import {AjvError} from "@rjsf/core";
-import {JSONSchema7} from "json-schema";
 import template from 'lodash.template';
 import get from 'lodash.get';
-import fileSize from "filesize";
 import {declension} from "./declension";
 import {ErrorMessages} from "../types/error-messages";
 import errorMessagesSchema from "../schemas/error-messages.schema.json";
 import {CONFIG} from "../config";
 import {FormProps} from "../form";
-import {toCurrency, toDate, toDateTime, toNumber, toTime} from "./format-number";
-
-export type TransformNumber = (number?: number) => string;
-
-function getMinMaxRanges(schema: JSONSchema7, transformNumber?: TransformNumber): string[] {
-    const { anyOf, oneOf } = schema || {};
-    return (anyOf || oneOf)?.map((item): string => {
-        const { minimum, maximum } = (item as JSONSchema7) || {};
-        const hasMinimum = Number.isFinite(minimum as number);
-        const hasMaximum = Number.isFinite(maximum as number);
-        if (!hasMinimum || !hasMaximum) return '';
-        const currencyMinimum = transformNumber?.(minimum) || minimum;
-        const currencyMaximum = transformNumber?.(maximum) || maximum;
-        return `${currencyMinimum}-${currencyMaximum}`;
-    }).filter(Boolean) || [];
-}
+import {toCurrency, toDate, toDateTime, toFileSize, toNumber, toTime} from "./format-number";
 
 function decodeRegex(regex: string) {
     const decoded = decodeURIComponent(regex);
@@ -35,7 +18,7 @@ function decodeRegex(regex: string) {
         .replace(/~1/g, '/');
 }
 
-function getSchema(schema: FormProps['schema'], schemaPath: string) {
+function getPathSchema(schema: FormProps['schema'], schemaPath: string) {
     const pathSegments = schemaPath?.split('/').map(decodeRegex);
     pathSegments?.shift();
     pathSegments?.pop();
@@ -44,85 +27,63 @@ function getSchema(schema: FormProps['schema'], schemaPath: string) {
         : schema;
 }
 
-function getLimitGetters(params: any, schema: any) {
+function getLimitGetters(params: any) {
     const { limit } = params || {};
     const hasLimit = typeof limit === 'number';
-    const isString = schema?.type === 'string';
-    const isNumeric = ['number', 'integer'].includes(schema?.type);
 
-    const numericGetters = hasLimit && {
-        get limitNumber() {
+    const limitGetters = hasLimit && {
+        get limitAsNumber() {
             return toNumber(limit);
         },
-        get limitCurrency() {
+        get limitAsCurrency() {
             return toCurrency(limit);
         },
-        get limitDate() {
+        get limitAsDate() {
             return toDate(limit);
         },
-        get limitTime() {
+        get limitAsTime() {
             return toTime(limit);
         },
-        get limitDateTime() {
+        get limitAsDateTime() {
             return toDateTime(limit);
         },
-        get limitFileSize() {
-            const bytes = (3 * (limit / 4)) || 0;
-            return fileSize(bytes);
-        }
-    }
-
-    const otherGetters = (isString || isNumeric) && {
-        get notAllowedNumbers() {
-            return schema?.not?.enum?.map(toNumber).join('; ')
-        },
-        get notAllowedCurrencies() {
-            return schema?.not?.enum?.map(toCurrency).join('; ')
-        },
-        get notAllowedDates() {
-            return schema?.not?.enum?.map(toDate).join('; ')
-        },
-        get notAllowedTimes() {
-            return schema?.not?.enum?.map(toTime).join('; ')
-        },
-        get notAllowedDateTimes() {
-            return schema?.not?.enum?.map(toDateTime).join('; ')
-        },
-        get allowedDateRanges() {
-            return getMinMaxRanges(schema, toDate).join('; ')
-        },
-        get allowedTimeRanges() {
-            return getMinMaxRanges(schema, toTime).join('; ')
-        },
-        get allowedDateTimeRanges() {
-            return getMinMaxRanges(schema, toDateTime).join('; ')
-        },
-        get allowedNumberRanges() {
-            return getMinMaxRanges(schema, toNumber).join('; ')
-        },
-        get allowedCurrencyRanges() {
-            return getMinMaxRanges(schema, toCurrency).join('; ')
-        },
-        get notAllowedNumberRanges() {
-            return getMinMaxRanges(schema?.not, toNumber).join('; ');
-        },
-        get notAllowedCurrencyRanges() {
-            return getMinMaxRanges(schema?.not, toCurrency).join('; ');
-        },
-        get notAllowedDateRanges() {
-            return getMinMaxRanges(schema?.not, toDate).join('; ');
-        },
-        get notAllowedDateTimeRanges() {
-            return getMinMaxRanges(schema?.not, toDateTime).join('');
-        },
-        get notAllowedTimeRanges() {
-            return getMinMaxRanges(schema?.not, toTime).join('');
+        get limitAsFileSize() {
+            return toFileSize(limit);
         }
     }
 
     return {
-        ...numericGetters,
-        ...otherGetters
+        ...limitGetters
+    }
+}
+
+function getSchemaGetters(schema: any) {
+    const isString = schema?.type === 'string';
+    const isNumeric = ['number', 'integer'].includes(schema?.type);
+
+    const notEnumGetters = (isString || isNumeric) && {
+        get notEnumAsNumbers() {
+            return schema?.not?.enum?.map(toNumber)
+        },
+        get notEnumAsCurrencies() {
+            return schema?.not?.enum?.map(toCurrency)
+        },
+        get notEnumAsDates() {
+            return schema?.not?.enum?.map(toDate)
+        },
+        get notEnumAsTimes() {
+            return schema?.not?.enum?.map(toTime)
+        },
+        get notEnumAsDateTimes() {
+            return schema?.not?.enum?.map(toDateTime)
+        },
+        get notEnumAsFileSizes() {
+            return schema?.not?.enum?.map(toFileSize)
+        }
+    }
+
+    return {
+        ...notEnumGetters
     }
 }
 
@@ -131,33 +92,36 @@ const getDefaultMessage = (name: ErrorMessages['name']) => errorMessagesSchema.p
 export function transformErrors(errors: AjvError[], schema: FormProps['schema']) {
     return errors.map(error => {
         const { schemaPath } = error as any || {};
-        const subSchema = getSchema(schema, schemaPath);
-        const errorMessages = subSchema?.['x-errorMessages'];
+        const pathSchema = getPathSchema(schema, schemaPath);
+        const errorMessages = pathSchema?.['x-errorMessages'];
         const errorMessage = errorMessages?.[error.name] || getDefaultMessage(error.name);
         const compileError = template(errorMessage, CONFIG.template);
-        const limitGetters = getLimitGetters(error.params, subSchema);
+        const limitGetters = getLimitGetters(error.params);
+        const schemaGetters = getSchemaGetters(pathSchema);
 
         const params = {
-            ...subSchema,
             ...error.params,
-            ...limitGetters
+            ...limitGetters,
+            ...schemaGetters
         };
 
         const transformedError = compileError({
             ...params,
             keyword: error.name,
-            schema: subSchema,
+            schema: pathSchema,
             declension,
             get help() {
                 const json = JSON.stringify(params, null, 2);
-                return '\n##### Параметры: \n```json\n' + json + '\n```';
+                return `\n~~~json\n${json}\n~~~`;
             }
         });
 
         return ({
             ...error,
             message: transformedError || error.message,
-            stack: transformedError ? `${error.property} ${transformedError}` : error.stack
+            stack: transformedError
+                ? `${error.property} ${transformedError}`
+                : error.stack
         })
     });
 }

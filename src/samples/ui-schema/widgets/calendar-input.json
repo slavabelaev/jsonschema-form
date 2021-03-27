@@ -79,7 +79,7 @@
 						"type": "integer",
 						"minimum": 1610658000000,
 						"x-errorMessages": {
-							"minimum": "должно быть не ранее, чем ${limitDate}"
+							"minimum": "должно быть не ранее, чем ${limitAsDate}"
 						}
 					},
 					"laterLimit": {
@@ -87,7 +87,7 @@
 						"type": "integer",
 						"maximum": 1610658000000,
 						"x-errorMessages": {
-							"maximum": "должно быть не позднее, чем ${limitDate}"
+							"maximum": "должно быть не позднее, чем ${limitAsDate}"
 						}
 					}
 				}
@@ -104,16 +104,16 @@
 								"minimum": 1590226000000,
 								"maximum": 1600226000000,
 								"x-errorMessages": {
-									"minimum": "должно быть не ранее, чем ${limitDate}",
-									"maximum": "должно быть не позднее, чем ${limitDate}"
+									"minimum": "должно быть не ранее, чем ${limitAsDate}",
+									"maximum": "должно быть не позднее, чем ${limitAsDate}"
 								}
 							},
 							{
 								"minimum": 1610226000000,
 								"maximum": 1620226000000,
 								"x-errorMessages": {
-									"minimum": "должно быть не ранее, чем ${limitDate}",
-									"maximum": "должно быть не позднее, чем ${limitDate}"
+									"minimum": "должно быть не ранее, чем ${limitAsDate}",
+									"maximum": "должно быть не позднее, чем ${limitAsDate}"
 								}
 							}
 						]

@@ -1,10 +1,12 @@
+import fileSize from "filesize";
+
 export function toNumber(number?: number) {
-    if (!Number.isFinite(number as number)) return "";
+    if (!Number.isFinite(number as number)) return;
     return Intl.NumberFormat().format(number as number);
 }
 
 export function toCurrency(number?: number) {
-    if (!Number.isFinite(number as number)) return "";
+    if (!Number.isFinite(number as number)) return;
     return new Intl.NumberFormat('ru-RU', {
         style: 'currency',
         currency: 'RUB'
@@ -13,7 +15,7 @@ export function toCurrency(number?: number) {
 
 export function toDate(number?: number) {
     const time = number && new Date(number).getTime();
-    if (!Number.isFinite(time as number)) return "";
+    if (!Number.isFinite(time as number)) return;
     return new Intl.DateTimeFormat(undefined, {
         year: 'numeric',
         month: 'numeric',
@@ -23,7 +25,7 @@ export function toDate(number?: number) {
 
 export function toTime(number?: number) {
     const time = number && new Date(number).getTime();
-    if (!Number.isFinite(time as number)) return "";
+    if (!Number.isFinite(time as number)) return;
     return new Intl.DateTimeFormat(undefined, {
         hour: 'numeric',
         minute: 'numeric',
@@ -33,7 +35,7 @@ export function toTime(number?: number) {
 
 export function toDateTime(number?: number) {
     const time = number && new Date(number).getTime();
-    if (!Number.isFinite(time as number)) return "";
+    if (!Number.isFinite(time as number)) return;
     return new Intl.DateTimeFormat(undefined, {
         year: 'numeric',
         month: 'numeric',
@@ -43,4 +45,11 @@ export function toDateTime(number?: number) {
         second: 'numeric',
         hour12: false
     }).format(time)
+}
+
+export function toFileSize(number?: number) {
+    const sizeNumber = Number(number);
+    if (!Number.isFinite(sizeNumber)) return;
+    const bytes = (3 * (sizeNumber / 4)) || 0;
+    return fileSize(bytes);
 }

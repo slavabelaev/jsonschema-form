@@ -65,6 +65,8 @@ function mapProperty(property: ObjectFieldProperty, props: ObjectFieldTemplatePr
             popupProps={{
                 directions: ['left-center']
             }}
+            theme={theme}
+            size={size}
             onClick={onDropPropertyClick(property.name)}
         >
             <Delete theme={theme} size={size} />

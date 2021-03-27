@@ -2,7 +2,7 @@
   position: relative;
   padding: var(--gap-m);
   border-radius: var(--border-radius-control);
-  background-color: #F3F4F5;
+  background-color: var(--color-dark-indigo-05-flat);
   font-family: var(--font);
 
   &_theme_alfa-on-color {
@@ -28,6 +28,6 @@
   }
 
   * + & {
-    margin-top: var(--gap-l);
+    margin-top: var(--gap-m);
   }
 }

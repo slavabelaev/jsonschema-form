@@ -30,6 +30,8 @@ export function Card(props: CardProps) {
             popupProps={{
                 directions: ['left-center']
             }}
+            theme={theme}
+            size={size}
             onClick={onRemove}
         >
             <Delete
@@ -70,7 +72,7 @@ export function Card(props: CardProps) {
     )
 
     const header = (icon || heading || hintTooltip || actions) && (
-        <header className={cn('header')}>
+        <header className={cn('header', { theme })}>
             {icon}
             {heading}
             {hintTooltip}
@@ -79,7 +81,7 @@ export function Card(props: CardProps) {
     )
 
     const body = (
-        <div className={cn('body')}>
+        <div className={cn('body', { theme })}>
             {children}
         </div>
     )

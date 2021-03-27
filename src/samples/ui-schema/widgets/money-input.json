@@ -53,7 +53,7 @@
 							"enum": [7000, 8000, 9000, 10000]
 						},
 						"x-errorMessages": {
-							"not": "не должно быть суммой: ${notAllowedCurrencies}"
+							"not": "не должно быть суммой: ${notEnumAsCurrencies}"
 						}
 					},
 					"any": {
@@ -64,16 +64,16 @@
 								"minimum": 0,
 								"maximum": 3000,
 								"x-errorMessages": {
-									"minimum": "должно быть больше, чем ${limitCurrency}",
-									"maximum": "должно быть меньше, чем ${limitCurrency}"
+									"minimum": "должно быть больше, чем ${limitAsCurrency}",
+									"maximum": "должно быть меньше, чем ${limitAsCurrency}"
 								}
 							},
 							{
 								"minimum": 10000,
 								"maximum": 20000,
 								"x-errorMessages": {
-									"minimum": "должно быть больше, чем ${limitCurrency}",
-									"maximum": "должно быть меньше, чем ${limitCurrency}"
+									"minimum": "должно быть больше, чем ${limitAsCurrency}",
+									"maximum": "должно быть меньше, чем ${limitAsCurrency}"
 								}
 							}
 						]
@@ -134,8 +134,8 @@
 				"maximum": 1000000,
 				"multipleOf": 1000,
 				"x-errorMessages": {
-					"minimum": "должно быть >= ${limitCurrency}",
-					"maximum": "должно быть <= ${limitCurrency}",
+					"minimum": "должно быть >= ${limitAsCurrency}",
+					"maximum": "должно быть <= ${limitAsCurrency}",
 					"multipleOf": "должно делиться на ${multipleOf} без остатка"
 				}
 			}

@@ -27,6 +27,8 @@ export function ControlItem(props: ControlItemProps) {
             popupProps={{
                 directions: ['left-center']
             }}
+            theme={theme}
+            size={size}
             onClick={onRemove}
         >
             <Delete

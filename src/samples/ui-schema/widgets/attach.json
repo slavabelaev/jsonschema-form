@@ -40,7 +40,7 @@
 						"contentEncoding": "base64",
 						"minLength": 2999,
 						"x-errorMessages": {
-							"minLength": "должен быть не менее, чем ${limitFileSize}"
+							"minLength": "должен быть не менее, чем ${limitAsFileSize}"
 						},
 						"$comment": "https://stackoverflow.com/questions/13378815/base64-length-calculation"
 					},
@@ -50,7 +50,7 @@
 						"contentEncoding": "base64",
 						"maxLength": 50,
 						"x-errorMessages": {
-							"maxLength": "должен быть не более, чем ${limitFileSize}"
+							"maxLength": "должен быть не более, чем ${limitAsFileSize}"
 						},
 						"$comment": "https://stackoverflow.com/questions/13378815/base64-length-calculation"
 					}

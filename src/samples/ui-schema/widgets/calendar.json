@@ -75,7 +75,7 @@
             "type": "integer",
             "minimum": 1610658000000,
             "x-errorMessages": {
-              "minimum": "должно быть не ранее ${limitDate}"
+              "minimum": "должно быть не ранее ${limitAsDate}"
             }
           },
           "laterLimit": {
@@ -83,7 +83,7 @@
             "type": "integer",
             "maximum": 1610658000000,
             "x-errorMessages": {
-              "maximum": "должно быть не позднее ${limitDate}"
+              "maximum": "должно быть не позднее ${limitAsDate}"
             }
           }
         }
@@ -100,22 +100,19 @@
                 "minimum": 1590226000000,
                 "maximum": 1600226000000,
                 "x-errorMessages": {
-                  "minimum": "должно быть позднее, чем ${limitDate}",
-                  "maximum": "должно быть раньше, чем ${limitDate}"
+                  "minimum": "должно быть позднее, чем ${limitAsDate}",
+                  "maximum": "должно быть раньше, чем ${limitAsDate}"
                 }
               },
               {
                 "minimum": 1610226000000,
                 "maximum": 1620226000000,
                 "x-errorMessages": {
-                  "minimum": "должно быть позднее, чем ${limitDate}",
-                  "maximum": "должно быть раньше, чем ${limitDate}"
+                  "minimum": "должно быть позднее, чем ${limitAsDate}",
+                  "maximum": "должно быть раньше, чем ${limitAsDate}"
                 }
               }
-            ],
-            "x-errorMessages": {
-              "anyOf": "должно быть датой: ${allowedDateRanges}"
-            }
+            ]
           },
           "notAllowedDateRanges": {
             "title": "Запрещенные",
@@ -133,7 +130,7 @@
               ]
             },
             "x-errorMessages": {
-              "not": "не должно быть датой: ${notAllowedDateRanges}"
+              "not": "не должно быть датой 23.05.2020-16.09.2020 или 10.01.2021-05.05.2021"
             }
           }
         }
