@@ -22,7 +22,7 @@ export function ControlItem(props: ControlItemProps) {
 
     const removeButton = onRemove && (
         <Tooltip
-            className={cn('remove-tooltip')}
+            className={cn('remove-button')}
             popupContent={'Удалить'}
             popupProps={{
                 directions: ['left-center']

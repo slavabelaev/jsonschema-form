@@ -60,7 +60,7 @@ function mapProperty(property: ObjectFieldProperty, props: ObjectFieldTemplatePr
 
     const removeButton = isAdditional ? (
         <Tooltip
-            className={cn('remove-tooltip')}
+            className={cn('remove-button')}
             popupContent={'Удалить'}
             popupProps={{
                 directions: ['left-center']

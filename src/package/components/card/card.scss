@@ -15,12 +15,12 @@
   &__heading {
     padding: 0;
     font-size: var(--font-size-l);
-    * + & {
-      margin-left: var(--gap-xs);
-    }
   }
 
-  &__heading + &__hint {
+  &__remove-button,
+  &__reorder,
+  &__hint,
+  * + &__heading {
     margin-left: var(--gap-xs);
   }
 
@@ -28,10 +28,6 @@
     display: flex;
     align-items: center;
     margin-left: auto;
-
-    > * + * {
-      margin-left: var(--gap-xs);
-    }
   }
 
   &__body {

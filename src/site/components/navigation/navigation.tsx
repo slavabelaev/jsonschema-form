@@ -47,7 +47,7 @@ export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = '
     const classNames = [className, cn({ theme })].join(' ');
     const history = useHistory();
     const { hash, search } = history.location || {};
-    const query = new URLSearchParams(history.location.search).get('q') || '';
+    const query = new URLSearchParams(search).get('q') || '';
     const filteredRoutes = cloneRoutesThenFilter(routes, query);
 
     const renderLink = (item: RouteItem, id: string, pathTo?: string) => {

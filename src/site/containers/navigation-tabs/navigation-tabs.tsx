@@ -11,10 +11,9 @@ import {PropsEditor} from "../props-editor";
 import './navigation-tabs.scss';
 
 enum TabId {
-    EDITOR = 'editor',
-    DESCRIPTION = 'description',
-    OPTIONS = 'options',
-    COPY_CODE = 'copy-code',
+    EDITOR = '#editor',
+    DESCRIPTION = '#description',
+    OPTIONS = '#options'
 }
 
 type Tab = {
@@ -30,28 +29,40 @@ export function NavigationTabs() {
     const { docsURL, fetchFormProps } = useRoute();
     const history = useHistory();
     const { location } = history || {};
-    const { pathname } = location || {};
+    const { pathname, hash } = location || {};
     const widgetName = pathname.match(/widget\/(.*?)($|\/)/)?.[1];
-    const activeTabId = location?.hash?.substr(1) || TabId.EDITOR;
+    const hasFormProps = Boolean(fetchFormProps);
+    const hasDocs = Boolean(docsURL);
+    const hasOptions = Boolean(widgetName);
     const tabList: Tab[] = [];
 
-    if (fetchFormProps) tabList.push({
+    if (hasFormProps) tabList.push({
         id: TabId.EDITOR,
         title: 'Примеры',
         renderContent: () => <PropsEditor />
     });
 
-    if (docsURL) tabList.push({
+    if (hasDocs) tabList.push({
         id: TabId.DESCRIPTION,
         title: 'Описание',
         renderContent: () => <Article />
     });
 
-    if (widgetName) tabList.push({
+    if (hasOptions) tabList.push({
         id: TabId.OPTIONS,
         title: 'Опции',
         renderContent: () => widgetName && <WidgetSchemaForm widgetName={widgetName} />
     });
+
+    const activeTabId = tabList.find(item => item.id === hash)
+        ? hash
+        : (
+            hasFormProps ? TabId.EDITOR :
+            hasDocs ? TabId.DESCRIPTION :
+            hasOptions ? TabId.OPTIONS : undefined
+        );
+
+    console.log('activeTabId', activeTabId, tabList);
 
     const renderTabItem = (item: Tab) => (
         <TabItem

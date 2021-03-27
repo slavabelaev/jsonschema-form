@@ -25,7 +25,7 @@ export function Card(props: CardProps) {
 
     const removeButton = onRemove && (
         <Tooltip
-            className={cn('remove-tooltip')}
+            className={cn('remove-button')}
             popupContent={'Удалить'}
             popupProps={{
                 directions: ['left-center']
