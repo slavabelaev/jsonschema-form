@@ -1,6 +1,6 @@
 import React from "react";
 import {createCn} from "bem-react-classname";
-import {useHistory, NavLink} from "react-router-dom";
+import {useHistory, NavLink, useLocation} from "react-router-dom";
 import isEmpty from "lodash.isempty";
 import {Input} from "arui-feather/input";
 import {Link} from "arui-feather/link";
@@ -46,7 +46,7 @@ const cloneRoutesThenFilter = (routes: Routes = {}, query: string = ''): Routes 
 export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = 'm', className }: NavigationProps) {
     const classNames = [className, cn({ theme })].join(' ');
     const history = useHistory();
-    const { hash, search } = history.location || {};
+    const { hash, search, pathname } = useLocation();
     const query = new URLSearchParams(search).get('q') || '';
     const filteredRoutes = cloneRoutesThenFilter(routes, query);
 
@@ -89,7 +89,7 @@ export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = '
             return renderItem(item, id, pathTo);
         };
         const routes = route.routes ? Object.entries(route.routes).map(mapItem) : null;
-        const isExpanded = history.location.pathname.includes(pathTo);
+        const isExpanded = pathname.includes(pathTo);
         const hasRoutes = !isEmpty(route.routes);
 
         return (parentPath && hasRoutes) ? (
@@ -131,7 +131,7 @@ export function Navigation({ routes, onChange, theme = 'alfa-on-white', size = '
                 label={route?.title}
                 hint={route?.description}
                 children={renderNav(route, id)}
-                isExpanded={history.location.pathname.startsWith(`/${id}`)}
+                isExpanded={pathname.startsWith(`/${id}`)}
                 disablePadding={true}
                 size={size}
                 theme={theme}
