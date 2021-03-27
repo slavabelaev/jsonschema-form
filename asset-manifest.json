@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/jsonschema-form/static/css/main.8bc964f7.chunk.css",
-    "main.js": "/jsonschema-form/static/js/main.9c26ceeb.chunk.js",
-    "main.js.map": "/jsonschema-form/static/js/main.9c26ceeb.chunk.js.map",
+    "main.css": "/jsonschema-form/static/css/main.b52457b5.chunk.css",
+    "main.js": "/jsonschema-form/static/js/main.c8bc2d5d.chunk.js",
+    "main.js.map": "/jsonschema-form/static/js/main.c8bc2d5d.chunk.js.map",
     "runtime-main.js": "/jsonschema-form/static/js/runtime-main.35457491.js",
     "runtime-main.js.map": "/jsonschema-form/static/js/runtime-main.35457491.js.map",
     "static/css/2.d97b4a4c.chunk.css": "/jsonschema-form/static/css/2.d97b4a4c.chunk.css",
-    "static/js/2.221d2364.chunk.js": "/jsonschema-form/static/js/2.221d2364.chunk.js",
-    "static/js/2.221d2364.chunk.js.map": "/jsonschema-form/static/js/2.221d2364.chunk.js.map",
+    "static/js/2.efed40f8.chunk.js": "/jsonschema-form/static/js/2.efed40f8.chunk.js",
+    "static/js/2.efed40f8.chunk.js.map": "/jsonschema-form/static/js/2.efed40f8.chunk.js.map",
     "static/js/3.c6ee3944.chunk.js": "/jsonschema-form/static/js/3.c6ee3944.chunk.js",
     "static/js/3.c6ee3944.chunk.js.map": "/jsonschema-form/static/js/3.c6ee3944.chunk.js.map",
     "static/css/4.48e03d4d.chunk.css": "/jsonschema-form/static/css/4.48e03d4d.chunk.css",
@@ -234,8 +234,8 @@
     "index.html": "/jsonschema-form/index.html",
     "static/css/2.d97b4a4c.chunk.css.map": "/jsonschema-form/static/css/2.d97b4a4c.chunk.css.map",
     "static/css/4.48e03d4d.chunk.css.map": "/jsonschema-form/static/css/4.48e03d4d.chunk.css.map",
-    "static/css/main.8bc964f7.chunk.css.map": "/jsonschema-form/static/css/main.8bc964f7.chunk.css.map",
-    "static/js/2.221d2364.chunk.js.LICENSE.txt": "/jsonschema-form/static/js/2.221d2364.chunk.js.LICENSE.txt",
+    "static/css/main.b52457b5.chunk.css.map": "/jsonschema-form/static/css/main.b52457b5.chunk.css.map",
+    "static/js/2.efed40f8.chunk.js.LICENSE.txt": "/jsonschema-form/static/js/2.efed40f8.chunk.js.LICENSE.txt",
     "static/js/3.c6ee3944.chunk.js.LICENSE.txt": "/jsonschema-form/static/js/3.c6ee3944.chunk.js.LICENSE.txt",
     "static/media/$comment.md": "/jsonschema-form/static/media/$comment.00ee49f8.md",
     "static/media/$id.md": "/jsonschema-form/static/media/$id.1cfbd859.md",
@@ -355,8 +355,8 @@
     "static/media/select.md": "/jsonschema-form/static/media/select.eb089cf6.md",
     "static/media/set-up-an-editor.md": "/jsonschema-form/static/media/set-up-an-editor.7d2a976b.md",
     "static/media/textarea.md": "/jsonschema-form/static/media/textarea.551ac38f.md",
-    "static/media/theme-icon.bc66d42c.svg": "/jsonschema-form/static/media/theme-icon.bc66d42c.svg",
-    "static/media/theme-icon_alfa-on-color.0bd9305b.svg": "/jsonschema-form/static/media/theme-icon_alfa-on-color.0bd9305b.svg",
+    "static/media/theme-icon.ea6ebe71.svg": "/jsonschema-form/static/media/theme-icon.ea6ebe71.svg",
+    "static/media/theme-icon_alfa-on-color.36070bb6.svg": "/jsonschema-form/static/media/theme-icon_alfa-on-color.36070bb6.svg",
     "static/media/title.md": "/jsonschema-form/static/media/title.ffc0e8b7.md",
     "static/media/toggle.md": "/jsonschema-form/static/media/toggle.fc55e01d.md",
     "static/media/type.md": "/jsonschema-form/static/media/type.4186100a.md",
@@ -368,8 +368,8 @@
   "entrypoints": [
     "static/js/runtime-main.35457491.js",
     "static/css/2.d97b4a4c.chunk.css",
-    "static/js/2.221d2364.chunk.js",
-    "static/css/main.8bc964f7.chunk.css",
-    "static/js/main.9c26ceeb.chunk.js"
+    "static/js/2.efed40f8.chunk.js",
+    "static/css/main.b52457b5.chunk.css",
+    "static/js/main.c8bc2d5d.chunk.js"
   ]
 }
